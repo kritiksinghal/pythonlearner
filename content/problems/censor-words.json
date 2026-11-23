@@ -1,0 +1,25 @@
+{
+  "slug": "censor-words",
+  "title": "Word Censor",
+  "track": "CS50P",
+  "difficulty": "Medium",
+  "testType": "function",
+  "functionName": "censor_words",
+  "description": "Write a function `censor_words(text, forbidden_words)` that replaces any forbidden word in a sentence with asterisks (`*`) matching the length of the word.\n\n**Rules:**\n- Matching is **case-insensitive** (`\"bad\"`, `\"Bad\"`, and `\"BAD\"` all get censored).\n- Replace only the word characters; preserve any attached punctuation (like commas, periods, exclamation marks).\n- Each censored word should be replaced with `*` characters equal to the word's length.\n- If `text` or `forbidden_words` is empty, return `text`.\n\n```python\n# Example:\ncensor_words(\"That was a bad idea!\", [\"bad\"])\n# Returns: \"That was a *** idea!\"\n```",
+  "starterCode": "def censor_words(text, forbidden_words):\n    # Replace forbidden words with * of equal length\n    pass\n",
+  "referenceSolution": "import string\n\ndef censor_words(text, forbidden_words):\n    if not text or not forbidden_words:\n        return text\n    forbidden_set = {w.lower() for w in forbidden_words}\n    tokens = text.split(\" \")\n    result = []\n    for token in tokens:\n        i = 0\n        while i < len(token) and token[i] in string.punctuation:\n            i += 1\n        j = len(token)\n        while j > i and token[j - 1] in string.punctuation:\n            j -= 1\n        prefix = token[:i]\n        core = token[i:j]\n        suffix = token[j:]\n        if core.lower() in forbidden_set:\n            result.append(prefix + (\"*\" * len(core)) + suffix)\n        else:\n            result.append(token)\n    return \" \".join(result)\n",
+  "tests": [
+    { "args": ["That was a bad idea!", ["bad"]], "expected": "That was a *** idea!" },
+    { "args": ["BAD, Bad! bad?", ["bad"]], "expected": "***, ***! ***?" },
+    { "args": ["Hello world", ["secret"]], "expected": "Hello world" },
+    { "args": ["", ["bad"]], "expected": "" },
+    { "args": ["Keep it safe", []], "expected": "Keep it safe" },
+    { "args": ["Stop this nonsense now.", ["stop", "now"]], "expected": "**** this nonsense ***." },
+    { "args": ["(darn) that hurt!", ["darn"]], "expected": "(****) that hurt!" },
+    { "args": ["You are a silly goose.", ["silly", "goose"]], "expected": "You are a ***** *****." },
+    { "args": ["Do not click the spam link, ok?", ["spam", "link"]], "expected": "Do not click the **** ****, ok?" },
+    { "args": ["badge is not bad", ["bad"]], "expected": "badge is not ***" },
+    { "args": ["One Two Three", ["two"]], "expected": "One *** Three" },
+    { "args": ["OMG, that is so cool!", ["omg"]], "expected": "***, that is so cool!" }
+  ]
+}

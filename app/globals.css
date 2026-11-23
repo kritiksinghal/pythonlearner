@@ -1,26 +1,53 @@
 @import "tailwindcss";
 
+/* ── Light-mode colors (default) ── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafafa;       /* warm off-white */
+  --foreground: #1e293b;       /* slate-800, easy on the eyes */
+  --muted: #64748b;            /* slate-500, secondary text */
+  --border: #e2e8f0;           /* slate-200 */
+  --accent: #2563eb;           /* blue-600, links & buttons */
+  --accent-hover: #1d4ed8;     /* blue-700 */
+  --surface: #ffffff;          /* card / navbar background */
+  --code-bg: #f1f5f9;          /* slate-100, code block background */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* ── Dark-mode colors (follows system setting) ── */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;     /* slate-900 */
+    --foreground: #e2e8f0;     /* slate-200 */
+    --muted: #94a3b8;          /* slate-400 */
+    --border: #334155;         /* slate-700 */
+    --accent: #60a5fa;         /* blue-400 */
+    --accent-hover: #93c5fd;   /* blue-300 */
+    --surface: #1e293b;        /* slate-800 */
+    --code-bg: #1e293b;        /* slate-800 */
   }
 }
 
+/* ── Make Tailwind aware of our custom colors ── */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-surface: var(--surface);
+  --color-code-bg: var(--code-bg);
+  --font-sans: var(--font-ibm-plex-sans);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+/* ── Base body styles ── */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-ibm-plex-sans), sans-serif;
+}
+
+/* ── Utility: anything with class "font-mono" uses JetBrains Mono ── */
+.font-mono {
+  font-family: var(--font-jetbrains-mono), monospace;
 }

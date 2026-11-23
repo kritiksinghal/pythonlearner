@@ -1,0 +1,52 @@
+{
+  "slug": "greeting-card",
+  "title": "Personalized Greeting",
+  "track": "Python from zero",
+  "difficulty": "Easy",
+  "testType": "stdio",
+  "description": "Write a Python script that asks for a person's name and their age, then prints two lines of greeting.\n\n**Program behavior:**\n1. Read the user's name using `input()`.\n2. Read the user's current age as an integer using `input()`.\n3. Print `Hello, <name>!` on the first line.\n4. Print `Next year you will be <age + 1> years old.` on the second line.\n\n```python\n# Example input:\n# Alex\n# 19\n#\n# Expected output:\n# Hello, Alex!\n# Next year you will be 20 years old.\n```",
+  "starterCode": "# Read name and age with input(), then print the greeting\nname = input()\nage = int(input())\n",
+  "referenceSolution": "name = input().strip()\nage = int(input().strip())\nprint(f\"Hello, {name}!\")\nprint(f\"Next year you will be {age + 1} years old.\")\n",
+  "tests": [
+    {
+      "input": "Alex\n19",
+      "expectedOutput": "Hello, Alex!\nNext year you will be 20 years old."
+    },
+    {
+      "input": "Maya\n0",
+      "expectedOutput": "Hello, Maya!\nNext year you will be 1 years old."
+    },
+    {
+      "input": "Bob\n49",
+      "expectedOutput": "Hello, Bob!\nNext year you will be 50 years old."
+    },
+    {
+      "input": "Charlie Brown\n8",
+      "expectedOutput": "Hello, Charlie Brown!\nNext year you will be 9 years old."
+    },
+    {
+      "input": "Dr. Smith\n99",
+      "expectedOutput": "Hello, Dr. Smith!\nNext year you will be 100 years old."
+    },
+    {
+      "input": "J\n1",
+      "expectedOutput": "Hello, J!\nNext year you will be 2 years old."
+    },
+    {
+      "input": "Ada Lovelace\n36",
+      "expectedOutput": "Hello, Ada Lovelace!\nNext year you will be 37 years old."
+    },
+    {
+      "input": "Sam\n100",
+      "expectedOutput": "Hello, Sam!\nNext year you will be 101 years old."
+    },
+    {
+      "input": "Anna-Marie\n25",
+      "expectedOutput": "Hello, Anna-Marie!\nNext year you will be 26 years old."
+    },
+    {
+      "input": "Participant 42\n12",
+      "expectedOutput": "Hello, Participant 42!\nNext year you will be 13 years old."
+    }
+  ]
+}

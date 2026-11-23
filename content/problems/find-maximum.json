@@ -1,0 +1,25 @@
+{
+  "slug": "find-maximum",
+  "title": "Find the Largest Number",
+  "track": "Python from zero",
+  "difficulty": "Easy",
+  "testType": "function",
+  "functionName": "find_max",
+  "description": "Write a function `find_max(numbers)` that takes a non-empty list of numbers and returns the largest value in the list.\n\n**Rules:**\n- Do **not** use Python's built-in `max()` function.\n- The list will always contain at least one number.\n- Numbers can be positive, negative, or zero.\n\n```python\n# Example:\nfind_max([3, 7, 2, 9, 5])  # Returns 9\nfind_max([-10, -3, -50])   # Returns -3\n```",
+  "starterCode": "def find_max(numbers):\n    # Find and return the largest number without using max()\n    pass\n",
+  "referenceSolution": "def find_max(numbers):\n    biggest = numbers[0]\n    for num in numbers[1:]:\n        if num > biggest:\n            biggest = num\n    return biggest\n",
+  "tests": [
+    { "args": [[1, 2, 3, 4, 5]], "expected": 5 },
+    { "args": [[5, 4, 3, 2, 1]], "expected": 5 },
+    { "args": [[42]], "expected": 42 },
+    { "args": [[-5, -2, -9, -1]], "expected": -1 },
+    { "args": [[-100, 0, 100]], "expected": 100 },
+    { "args": [[7, 7, 7, 7]], "expected": 7 },
+    { "args": [[3.14, 2.71, 1.41, 3.1415]], "expected": 3.1415 },
+    { "args": [[-10, -20, -30, -5, -15]], "expected": -5 },
+    { "args": [[1000, 2000, 500, 3000, 1500]], "expected": 3000 },
+    { "args": [[0, 0, 0, 0, 1]], "expected": 1 },
+    { "args": [[-1, 0, -2]], "expected": 0 },
+    { "args": [[15, 3, 98, 24, 76, 98, 12]], "expected": 98 }
+  ]
+}

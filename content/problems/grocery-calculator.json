@@ -1,0 +1,56 @@
+{
+  "slug": "grocery-calculator",
+  "title": "Grocery Receipt",
+  "track": "CS50P",
+  "difficulty": "Medium",
+  "testType": "stdio",
+  "description": "Write a Python script that reads grocery items with their prices and prints an itemized receipt with the total cost.\n\n**Program behavior:**\n1. Continually read lines using `input()` until the user types `done` (case-insensitive).\n2. Each line before `done` contains an item name and a price separated by a colon (`:`), e.g. `Milk: 3.50`.\n3. For each item, print: `<ITEM_IN_UPPERCASE>: $<PRICE_WITH_2_DECIMALS>`.\n4. Once `done` is received, print `TOTAL: $<TOTAL_PRICE_WITH_2_DECIMALS>`.\n5. If `done` is entered immediately, print `TOTAL: $0.00`.\n\n```python\n# Example input:\n# Apple: 1.50\n# Milk: 3\n# done\n#\n# Expected output:\n# APPLE: $1.50\n# MILK: $3.00\n# TOTAL: $4.50\n```",
+  "starterCode": "# Read items and prices until 'done', then print the receipt and total\n",
+  "referenceSolution": "total = 0.0\nwhile True:\n    try:\n        line = input().strip()\n    except EOFError:\n        break\n    if line.lower() == \"done\":\n        break\n    if not line:\n        continue\n    item, price_str = line.split(\":\")\n    item = item.strip().upper()\n    price = float(price_str.strip())\n    total += price\n    print(f\"{item}: ${price:.2f}\")\nprint(f\"TOTAL: ${total:.2f}\")\n",
+  "tests": [
+    {
+      "input": "Apple: 1.50\nMilk: 3\ndone",
+      "expectedOutput": "APPLE: $1.50\nMILK: $3.00\nTOTAL: $4.50"
+    },
+    {
+      "input": "done",
+      "expectedOutput": "TOTAL: $0.00"
+    },
+    {
+      "input": "DONE",
+      "expectedOutput": "TOTAL: $0.00"
+    },
+    {
+      "input": "Bread: 2.49\ndone",
+      "expectedOutput": "BREAD: $2.49\nTOTAL: $2.49"
+    },
+    {
+      "input": "Eggs: 4.25\nCheese: 5.75\nButter: 3.00\ndone",
+      "expectedOutput": "EGGS: $4.25\nCHEESE: $5.75\nBUTTER: $3.00\nTOTAL: $13.00"
+    },
+    {
+      "input": "coffee beans: 12.99\ndone",
+      "expectedOutput": "COFFEE BEANS: $12.99\nTOTAL: $12.99"
+    },
+    {
+      "input": "Chocolate: 0.99\nGum: 0.50\nCandy: 1.25\nDone",
+      "expectedOutput": "CHOCOLATE: $0.99\nGUM: $0.50\nCANDY: $1.25\nTOTAL: $2.74"
+    },
+    {
+      "input": "Free sample: 0\ndone",
+      "expectedOutput": "FREE SAMPLE: $0.00\nTOTAL: $0.00"
+    },
+    {
+      "input": "Pasta: 1.20\nTomato Sauce: 2.80\ndone",
+      "expectedOutput": "PASTA: $1.20\nTOMATO SAUCE: $2.80\nTOTAL: $4.00"
+    },
+    {
+      "input": "Soda: 1.5\nChips: 2\nSalsa: 3.5\ndone",
+      "expectedOutput": "SODA: $1.50\nCHIPS: $2.00\nSALSA: $3.50\nTOTAL: $7.00"
+    },
+    {
+      "input": "Ice Cream: 5.99\nCones: 2.01\ndone",
+      "expectedOutput": "ICE CREAM: $5.99\nCONES: $2.01\nTOTAL: $8.00"
+    }
+  ]
+}

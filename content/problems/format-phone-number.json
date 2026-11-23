@@ -1,0 +1,26 @@
+{
+  "slug": "format-phone-number",
+  "title": "Format Phone Number",
+  "track": "CS50P",
+  "difficulty": "Medium",
+  "testType": "function",
+  "functionName": "format_phone",
+  "description": "Write a function `format_phone(raw)` that extracts the digits from a messy phone string and returns a standardized US number.\n\n**Rules:**\n- Extract all digit characters (`0-9`) from `raw`.\n- If there are **exactly 10 digits**, return the formatted string: `\"(XXX) XXX-XXXX\"`.\n- If there are fewer or more than 10 digits, return `None`.\n\n```python\n# Examples:\nformat_phone(\"555-123-4567\")    # \"(555) 123-4567\"\nformat_phone(\"5551234567\")      # \"(555) 123-4567\"\nformat_phone(\"(555) 123 4567\")  # \"(555) 123-4567\"\nformat_phone(\"123-456\")        # None (only 6 digits)\n```",
+  "starterCode": "def format_phone(raw):\n    # Extract digits and return (XXX) XXX-XXXX or None\n    pass\n",
+  "referenceSolution": "def format_phone(raw):\n    digits = [ch for ch in str(raw) if ch.isdigit()]\n    if len(digits) != 10:\n        return None\n    area = \"\".join(digits[:3])\n    mid = \"\".join(digits[3:6])\n    last = \"\".join(digits[6:])\n    return f\"({area}) {mid}-{last}\"\n",
+  "tests": [
+    { "args": ["555-123-4567"], "expected": "(555) 123-4567" },
+    { "args": ["5551234567"], "expected": "(555) 123-4567" },
+    { "args": ["(800) 555-0199"], "expected": "(800) 555-0199" },
+    { "args": ["800.555.0199"], "expected": "(800) 555-0199" },
+    { "args": ["call me at 123-456-7890 please"], "expected": "(123) 456-7890" },
+    { "args": ["12345"], "expected": null },
+    { "args": ["12345678901"], "expected": null },
+    { "args": [""], "expected": null },
+    { "args": ["no digits here!"], "expected": null },
+    { "args": ["+1 (555) 012-3456"], "expected": null },
+    { "args": ["000-000-0000"], "expected": "(000) 000-0000" },
+    { "args": ["987 654 3210"], "expected": "(987) 654-3210" },
+    { "args": ["--8--0--0--1--2--3--4--5--6--7--"], "expected": "(800) 123-4567" }
+  ]
+}
