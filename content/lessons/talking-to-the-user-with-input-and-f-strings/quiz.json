@@ -1,0 +1,101 @@
+[
+  {
+    "question": "What is the return data type of the built-in `input()` function in Python 3?",
+    "options": [
+      "`int` if the user types whole numbers, `float` for decimals, and `str` otherwise",
+      "Always `str` (string)",
+      "`None`",
+      "`bool`"
+    ],
+    "correctIndex": 1,
+    "explanation": "In Python 3, `input()` unconditionally returns a string (`str`), even if the user enters only digits. To perform math on the input, you must explicitly convert it using `int()` or `float()`."
+  },
+  {
+    "question": "Which prefix turns a standard string literal into a formatted f-string in Python?",
+    "options": [
+      "The prefix `f` or `F` immediately preceding the opening quote",
+      "The prefix `format:` inside the string",
+      "The prefix `$` before the variable name",
+      "The suffix `.format`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Preceding the opening quote with `f` or `F` (e.g. `f'Hello {name}'`) designates the string as an f-string, enabling expression interpolation inside curly braces `{}`."
+  },
+  {
+    "question": "What does the format specifier `:.2f` accomplish inside an f-string placeholder `{cost:.2f}`?",
+    "options": [
+      "Multiplies the variable by 2.",
+      "Formats the number as a floating-point value rounded to exactly two decimal places.",
+      "Truncates the number to two total digits.",
+      "Converts the number into binary format."
+    ],
+    "correctIndex": 1,
+    "explanation": "The format specifier `:.2f` formats a number as a fixed-point float rounded to 2 decimal places (e.g. `12.3456` becomes `12.35`)."
+  },
+  {
+    "question": "What output is produced by evaluating `f'{1500000:,}'`?",
+    "options": [
+      "'1500000'",
+      "'1,500,000'",
+      "'1.500.000'",
+      "'15,00,000'"
+    ],
+    "correctIndex": 1,
+    "explanation": "The comma `,` format specifier automatically inserts standard thousands comma separators every three digits, producing `'1,500,000'`."
+  },
+  {
+    "question": "What will `f'{7:04d}'` display?",
+    "options": [
+      "'7000'",
+      "'0007'",
+      "'7.000'",
+      "'007'"
+    ],
+    "correctIndex": 1,
+    "explanation": "The format specifier `:04d` zero-pads an integer to a total width of 4 characters, turning `7` into `'0007'`."
+  },
+  {
+    "question": "What happens if you execute `result = input('Enter number: ') * 2` and the user enters `5`?",
+    "options": [
+      "`result` is integer `10`",
+      "`result` is string `'55'`",
+      "`result` is float `10.0`",
+      "Python raises a `TypeError`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Because `input()` returns string `'5'`, multiplying string `'5'` by integer `2` performs string repetition, resulting in string `'55'`. To get `10`, you must write `int(input(...)) * 2`."
+  },
+  {
+    "question": "What error occurs if you run `int('twenty')`?",
+    "options": [
+      "SyntaxError: invalid syntax",
+      "ValueError: invalid literal for int() with base 10: 'twenty'",
+      "TypeError: unsupported operand type",
+      "NameError: name 'twenty' is not defined"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `int()` function expects a string composed of valid numeric digits. Passing an alphabetic word raises a `ValueError`."
+  },
+  {
+    "question": "Which format specifier aligns text to the left within a 12-character wide column?",
+    "options": [
+      ":>12",
+      ":<12",
+      ":^12",
+      ":left12"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `<` character specifies left alignment, while `>` specifies right alignment and `^` specifies centering. Thus `:<12` left-aligns content within 12 character spaces."
+  },
+  {
+    "question": "What is the advantage of using modern f-strings over legacy `%` or `.format()` formatting?",
+    "options": [
+      "f-strings run entirely in the browser without Python.",
+      "f-strings are evaluated at runtime as bytecode instructions, making them faster and more readable.",
+      "f-strings do not require closing quotation marks.",
+      "f-strings automatically translate English words into French."
+    ],
+    "correctIndex": 1,
+    "explanation": "f-strings are compiled into direct bytecode instructions (`FORMAT_VALUE`, `BUILD_STRING`) in CPython, bypassing method lookup overhead and providing cleaner syntax directly where the variables appear."
+  }
+]

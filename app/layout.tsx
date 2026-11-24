@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
+import { Doto, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-/* ── Fonts loaded via next/font (self-hosted, no external requests) ── */
-const ibmPlexSans = IBM_Plex_Sans({
-  variable: "--font-ibm-plex-sans",
+/* ── Typography loaded via next/font/google ── */
+const doto = Doto({
+  variable: "--font-doto",
+  subsets: ["latin"],
+  weight: ["600", "700", "800", "900"],
+});
+
+const hankenGrotesk = Hanken_Grotesk({
+  variable: "--font-hanken-grotesk",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -18,21 +24,24 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PyLearner — Learn Python for Free",
+  title: "PyLearner — Python from zero to advanced",
   description:
-    "Go from zero to advanced Python with free lessons, a code playground, and an AI tutor.",
+    "Write. Run. Learn. Python from zero to advanced with browser execution and targeted test feedback.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"
-      className={`${ibmPlexSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${doto.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-accent selection:text-accent-ink">
         <Navbar />
-        {/* Main content grows to fill the space between navbar and footer */}
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 page-fade-in">{children}</main>
         <Footer />
       </body>
     </html>

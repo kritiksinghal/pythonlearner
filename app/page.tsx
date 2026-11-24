@@ -1,35 +1,162 @@
+/*
+ * app/page.tsx — Home Page
+ *
+ * Implements the dot-matrix, hairline aesthetic:
+ * a. Headline "WRITE. RUN." -> DotGridGlyph -> "LEARN." in Doto font
+ * b. Outlined pill labels (variables, loops, functions, tests, bugs, quiz) and tiny dots
+ * c. Muted description
+ * d. Dark rounded CTA button with yellow tile + text link to /practice
+ * e. Facts row with Doto numerals (10-15 tests, 0 installs, 2 tracks)
+ * f. Two-tone statement section with decorative HalftoneCanvas
+ */
+
 import Link from "next/link";
+import DotGridGlyph from "@/components/DotGridGlyph";
+import HalftoneCanvas from "@/components/HalftoneCanvas";
 
 export default function HomePage() {
   return (
-    <section className="mx-auto flex max-w-2xl flex-col items-center justify-center px-4 py-24 text-center">
-      {/* Headline */}
-      <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-        Learn Python,{" "}
-        <span className="text-accent">from zero to advanced</span>
-      </h1>
+    <div className="mx-auto max-w-5xl px-4 py-16 sm:py-24">
+      {/* ── Section A & B: Hero Lockup ── */}
+      <section className="relative mx-auto flex flex-col items-center justify-center text-center">
+        {/* Top Headline */}
+        <h1 className="font-doto text-[clamp(2.5rem,8vw,5.5rem)] font-extrabold tracking-tight text-foreground leading-none">
+          WRITE. RUN.
+        </h1>
 
-      {/* One-sentence description */}
-      <p className="mt-4 text-lg text-muted">
-        Free lessons, a built-in code playground, and an AI tutor — everything
-        you need to become confident in Python.
-      </p>
+        {/* Center Graphic Lockup with Scattered Pills */}
+        <div className="relative my-6 flex h-48 w-full max-w-md items-center justify-center">
+          {/* Central Dot-Grid Tile */}
+          <div className="z-10">
+            <DotGridGlyph />
+          </div>
 
-      {/* Two CTA buttons */}
-      <div className="mt-8 flex gap-4">
-        <Link
-          href="/learn"
-          className="rounded-lg bg-accent px-6 py-3 font-medium text-white transition-colors hover:bg-accent-hover"
-        >
-          Start learning
-        </Link>
-        <Link
-          href="/practice"
-          className="rounded-lg border border-border px-6 py-3 font-medium transition-colors hover:bg-surface"
-        >
-          Practice coding
-        </Link>
-      </div>
-    </section>
+          {/* Static scattered labels and dots around the tile */}
+          {/* Top Left: variables */}
+          <span className="absolute top-4 left-6 rounded-full border border-border bg-background/80 px-2.5 py-0.5 font-mono text-[11px] text-muted shadow-2xs">
+            variables
+          </span>
+          <span className="absolute top-12 left-28 h-1 w-1 rounded-full bg-muted/40" />
+
+          {/* Top Right: loops */}
+          <span className="absolute top-3 right-8 rounded-full border border-border bg-background/80 px-2.5 py-0.5 font-mono text-[11px] text-muted shadow-2xs">
+            loops
+          </span>
+          <span className="absolute top-14 right-24 h-1 w-1 rounded-full bg-muted/40" />
+
+          {/* Mid Left: tests */}
+          <span className="absolute bottom-16 left-3 rounded-full border border-border bg-background/80 px-2.5 py-0.5 font-mono text-[11px] text-muted shadow-2xs">
+            tests
+          </span>
+          <span className="absolute bottom-24 left-20 h-1 w-1 rounded-full bg-muted/30" />
+
+          {/* Mid Right: bugs */}
+          <span className="absolute bottom-16 right-4 rounded-full border border-border bg-background/80 px-2.5 py-0.5 font-mono text-[11px] text-muted shadow-2xs">
+            bugs
+          </span>
+          <span className="absolute bottom-24 right-20 h-1 w-1 rounded-full bg-muted/30" />
+
+          {/* Bottom Left: functions */}
+          <span className="absolute bottom-2 left-12 rounded-full border border-border bg-background/80 px-2.5 py-0.5 font-mono text-[11px] text-muted shadow-2xs">
+            functions
+          </span>
+
+          {/* Bottom Right: quiz */}
+          <span className="absolute bottom-2 right-14 rounded-full border border-border bg-background/80 px-2.5 py-0.5 font-mono text-[11px] text-muted shadow-2xs">
+            quiz
+          </span>
+        </div>
+
+        {/* Bottom Headline */}
+        <div className="font-doto text-[clamp(2.5rem,8vw,5.5rem)] font-extrabold tracking-tight text-foreground leading-none">
+          LEARN.
+        </div>
+
+        {/* ── Section C: Muted single-sentence summary ── */}
+        <p className="mt-8 max-w-lg text-sm leading-relaxed text-muted sm:text-base">
+          Python from zero to advanced, with a tutor that tells you why your code
+          failed.
+        </p>
+
+        {/* ── Section D: Action Button & Text Link ── */}
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-5">
+          {/* Dark button with small yellow icon tile on left */}
+          <Link
+            href="/learn"
+            className="inline-flex items-center gap-3 rounded-lg bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
+          >
+            <span className="flex h-4 w-4 items-center justify-center rounded bg-accent">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent-ink" />
+            </span>
+            <span>Start learning</span>
+          </Link>
+
+          {/* Plain text link */}
+          <Link
+            href="/practice"
+            className="text-sm font-medium text-foreground underline-offset-4 hover:underline hover:text-muted transition-colors"
+          >
+            Practice coding
+          </Link>
+        </div>
+      </section>
+
+      {/* ── Section E: True Facts Row ── */}
+      <section className="mt-20 border-y border-border py-8">
+        <div className="grid grid-cols-1 gap-8 text-center sm:grid-cols-3 sm:divide-x sm:divide-border">
+          {/* Fact 1 */}
+          <div className="flex flex-col items-center px-4">
+            <span className="font-doto text-3xl font-extrabold text-foreground sm:text-4xl">
+              10–15
+            </span>
+            <span className="mt-1.5 text-xs text-muted max-w-[180px]">
+              hidden tests per problem
+            </span>
+          </div>
+
+          {/* Fact 2 */}
+          <div className="flex flex-col items-center px-4">
+            <span className="font-doto text-3xl font-extrabold text-foreground sm:text-4xl">
+              0
+            </span>
+            <span className="mt-1.5 text-xs text-muted max-w-[180px]">
+              installs, Python runs in your browser
+            </span>
+          </div>
+
+          {/* Fact 3 */}
+          <div className="flex flex-col items-center px-4">
+            <span className="font-doto text-3xl font-extrabold text-foreground sm:text-4xl">
+              2
+            </span>
+            <span className="mt-1.5 text-xs text-muted max-w-[180px]">
+              tracks, Python from zero and CS50P
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section F: Editorial Statement + Halftone Dot Field ── */}
+      <section className="mt-16 rounded-xl border border-border bg-surface/50 p-6 sm:p-10">
+        <div className="grid items-center gap-8 lg:grid-cols-12">
+          {/* Statement Text */}
+          <div className="lg:col-span-7">
+            <p className="text-xl leading-relaxed tracking-tight sm:text-2xl">
+              <span className="font-medium text-foreground">
+                A tutor that does not just say your code is wrong.{" "}
+              </span>
+              <span className="text-muted">
+                It tells you which test failed, why, and what to change.
+              </span>
+            </p>
+          </div>
+
+          {/* Decorative Halftone Canvas */}
+          <div className="flex justify-center lg:col-span-5 lg:justify-end">
+            <HalftoneCanvas />
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

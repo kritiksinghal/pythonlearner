@@ -1,0 +1,56 @@
+[
+  {
+    "question": "What does `batting[\"Asha\"]` retrieve from `batting = {\"Asha\": 48, \"Rohan\": 31}`?",
+    "options": ["The value 48", "The key \"Rohan\"", "The first pair", "The number of keys"],
+    "correctIndex": 0,
+    "explanation": "The key `\"Asha\"` maps to the value `48`, so the lookup returns 48. A tempting mistake is to treat the braces like a list and expect a position; dictionary brackets use a key."
+  },
+  {
+    "question": "After `prices = {\"tea\": 18}; prices[\"tea\"] = 20`, how many pairs are in `prices`?",
+    "options": ["Zero", "One", "Two", "Three"],
+    "correctIndex": 1,
+    "explanation": "Assigning to the existing key replaces its value, so there is still one pair and tea now costs 20. It may look like a second assignment should add another pair, but keys are unique in a dictionary."
+  },
+  {
+    "question": "What does `inventory.get(\"pear\", 0)` return if `inventory` has no `\"pear\"` key?",
+    "options": ["0", "None", "KeyError", "False"],
+    "correctIndex": 0,
+    "explanation": "The second argument to `get` is the fallback, so the result is 0. Direct lookup with brackets would be the tempting alternative, but it raises `KeyError` for a missing key."
+  },
+  {
+    "question": "In `\"tea\" in prices`, what does Python check?",
+    "options": ["Whether tea is a value", "Whether tea is a key", "Whether the dictionary has two entries", "Whether tea is the first item"],
+    "correctIndex": 1,
+    "explanation": "Membership on a dictionary checks keys, so this asks whether `\"tea\"` is a key in `prices`. The tempting guess is that it searches values, but use `prices.values()` when you need to examine values."
+  },
+  {
+    "question": "Which expression safely reads a missing `\"juice\"` price as zero?",
+    "options": ["`prices[\"juice\"]`", "`prices.get(\"juice\", 0)`", "`prices.append(\"juice\", 0)`", "`prices.key(\"juice\")`"],
+    "correctIndex": 1,
+    "explanation": "`get` accepts a fallback and returns it when the key is absent. Bracket lookup is tempting but raises `KeyError`; dictionaries also do not have list's `append` method or a `key` lookup method."
+  },
+  {
+    "question": "Why can `\"Delhi\"` be a dictionary key while `[\"Delhi\"]` cannot?",
+    "options": ["Strings are hashable, while lists are mutable and unhashable", "Dictionary keys must be written in quotes", "Lists can only store numbers", "Strings are always unique"],
+    "correctIndex": 0,
+    "explanation": "A string is an immutable, hashable value that Python can use as a key; a list can change and is unhashable. It is tempting to think quotes are the reason, but integer keys work too."
+  },
+  {
+    "question": "What does `for city, temperature in readings.items():` provide on each pass?",
+    "options": ["A key and its matching value", "Two keys", "A key and its numeric position", "Only the value"],
+    "correctIndex": 0,
+    "explanation": "`.items()` supplies each key-value pair, which the loop unpacks into `city` and `temperature`. A numeric position is tempting because lists have indexes, but dictionary pairs are not returned with positions."
+  },
+  {
+    "question": "Which statement removes `\"mango\"` and also saves its old value in `sold`?",
+    "options": ["`sold = snacks.pop(\"mango\")`", "`sold = del snacks[\"mango\"]`", "`snacks.get(\"mango\")`", "`snacks.remove(\"mango\")`"],
+    "correctIndex": 0,
+    "explanation": "`.pop(key)` removes the pair and returns its value, so assignment saves it in `sold`. `del` also removes a pair but is a statement and does not return the removed value; dictionaries have no `remove` method."
+  },
+  {
+    "question": "If `departures = dict([ (\"Gate A\", \"09:10\"), (\"Gate B\", \"09:35\") ])`, what is `departures[\"Gate B\"]`?",
+    "options": ["`\"Gate B\"`", "`\"09:35\"`", "2", "A list of both gates"],
+    "correctIndex": 1,
+    "explanation": "Each two-item tuple supplies a key followed by a value, so Gate B maps to `\"09:35\"`. It is tempting to read the pair as a position or a list, but `dict()` builds key-value entries from those pairs."
+  }
+]

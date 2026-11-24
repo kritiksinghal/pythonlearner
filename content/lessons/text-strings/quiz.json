@@ -1,0 +1,101 @@
+[
+  {
+    "question": "What does it mean that Python strings are 'immutable'?",
+    "options": [
+      "Strings cannot be printed to the screen.",
+      "Once created, the individual characters of a string cannot be changed or replaced in-place in memory.",
+      "Strings can only contain alphabetic letters and cannot hold numbers.",
+      "Strings are automatically erased from memory after five seconds."
+    ],
+    "correctIndex": 1,
+    "explanation": "Immutability means that a string object in memory cannot be altered after creation. Any method or operation that appears to modify a string (such as `.replace()` or `.upper()`) actually creates and returns a brand-new string."
+  },
+  {
+    "question": "What is the return value of `len('Data Science')`?",
+    "options": [
+      "11",
+      "12",
+      "10",
+      "2"
+    ],
+    "correctIndex": 1,
+    "explanation": "`'Data'` has 4 characters, `'Science'` has 7 characters, and the space between them counts as 1 character. 4 + 1 + 7 = 12 characters total."
+  },
+  {
+    "question": "What will `text = '  python  '; text.strip()` leave as the value of `text`?",
+    "options": [
+      "'python'",
+      "'  python  '",
+      "'PYTHON'",
+      "None"
+    ],
+    "correctIndex": 1,
+    "explanation": "Because strings are immutable, `text.strip()` returns `'python'`, but does not modify the variable `text`. Without reassignment (`text = text.strip()`), `text` retains its original untrimmed value `'  python  '`."
+  },
+  {
+    "question": "What does the expression `'2026'.isdigit()` return?",
+    "options": [
+      "True",
+      "False",
+      "2026",
+      "TypeError"
+    ],
+    "correctIndex": 0,
+    "explanation": "The `.isdigit()` method returns `True` if every character in the string is a numerical digit (0 through 9) and the string is not empty."
+  },
+  {
+    "question": "What does the method call `'database_dump.sql'.endswith('.sql')` return?",
+    "options": [
+      "'.sql'",
+      "True",
+      "False",
+      "14"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `.endswith()` method returns a Boolean `True` if the string terminates with the specified suffix, and `False` otherwise."
+  },
+  {
+    "question": "What output is produced by evaluating `'Mississippi'.count('s')`?",
+    "options": [
+      "2",
+      "4",
+      "3",
+      "1"
+    ],
+    "correctIndex": 1,
+    "explanation": "The letter `'s'` appears exactly 4 times in `'Mississippi'` (two pairs of double 's')."
+  },
+  {
+    "question": "What will `'hello'.find('z')` return?",
+    "options": [
+      "0",
+      "-1",
+      "False",
+      "ValueError: substring not found"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `.find()` method returns `-1` when the target substring does not exist within the string. (In contrast, `.index()` raises a ValueError)."
+  },
+  {
+    "question": "What happens if you run the statement `'Hello'[0] = 'h'`?",
+    "options": [
+      "The first letter is replaced with 'h', producing 'hello'.",
+      "Python raises a `TypeError: 'str' object does not support item assignment`.",
+      "Python duplicates the string.",
+      "Python converts the string to an integer."
+    ],
+    "correctIndex": 1,
+    "explanation": "Because Python strings are immutable, attempting to overwrite an index using item assignment raises a `TypeError`."
+  },
+  {
+    "question": "Which method capitalizes the first letter of every word in a title string?",
+    "options": [
+      ".capitalize()",
+      ".upper()",
+      ".title()",
+      ".toTitleCase()"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `.title()` method capitalizes the first letter of each word in the string. In contrast, `.capitalize()` only capitalizes the very first letter of the entire string."
+  }
+]

@@ -1,0 +1,101 @@
+[
+  {
+    "question": "What is the primary difference between a Python string and a Python list regarding mutability?",
+    "options": [
+      "Strings are mutable and can be changed in-place, while lists are immutable.",
+      "Lists are mutable and can be changed in-place, while strings are immutable.",
+      "Both strings and lists are completely immutable.",
+      "Lists can only hold numbers, while strings can hold letters."
+    ],
+    "correctIndex": 1,
+    "explanation": "Lists in Python are mutable, meaning you can reassign elements, append, insert, and delete items in-place. Strings are strictly immutable; modifying a string creates a brand-new string object."
+  },
+  {
+    "question": "What does the method call `items.append('apple')` do?",
+    "options": [
+      "Inserts 'apple' at index 0 of the list.",
+      "Appends 'apple' to the end of the list in-place.",
+      "Returns a brand-new list without modifying the original.",
+      "Replaces all existing elements with 'apple'."
+    ],
+    "correctIndex": 1,
+    "explanation": "`.append(x)` adds element `x` to the very end of the list in-place, increasing the list length by 1 and returning `None`."
+  },
+  {
+    "question": "What does `numbers = [10, 20, 30]; popped = numbers.pop(1)` leave in `numbers` and `popped`?",
+    "options": [
+      "`numbers` is `[10, 30]`, `popped` is `20`",
+      "`numbers` is `[20, 30]`, `popped` is `10`",
+      "`numbers` is `[10, 20]`, `popped` is `30`",
+      "`numbers` is `[10, 20, 30]`, `popped` is `1`"
+    ],
+    "correctIndex": 0,
+    "explanation": "`.pop(1)` removes the element at index 1 (`20`) from the list, returns that removed element, and leaves the remaining elements `[10, 30]` in the list."
+  },
+  {
+    "question": "What happens if you execute `items = ['a', 'b']; items.remove('c')`?",
+    "options": [
+      "Python ignores the command silently.",
+      "Python removes `'b'` instead.",
+      "Python raises a `ValueError: list.remove(x): x not in list`.",
+      "Python appends `'c'` to the list."
+    ],
+    "correctIndex": 2,
+    "explanation": "`.remove(val)` searches the list for `val` and deletes the first matching instance. If `val` is not present, it raises a `ValueError`."
+  },
+  {
+    "question": "What is the result of `a = [1, 2]; b = a; b.append(3)`?",
+    "options": [
+      "`a` is `[1, 2]` and `b` is `[1, 2, 3]`",
+      "Both `a` and `b` reference the exact same list, so both evaluate to `[1, 2, 3]`",
+      "Python raises an `AliasError`",
+      "`a` becomes empty"
+    ],
+    "correctIndex": 1,
+    "explanation": "Assigning `b = a` creates an alias (a reference to the same list object in memory). Mutating `b` directly affects `a`. To create an independent duplicate, you must write `b = a.copy()`."
+  },
+  {
+    "question": "What is the difference between `items.append([1, 2])` and `items.extend([1, 2])`?",
+    "options": [
+      "They are exact synonyms.",
+      "`append` adds the list as a single nested element, while `extend` unpacks and appends each element individually.",
+      "`extend` only works with strings.",
+      "`append` is deprecated in Python 3."
+    ],
+    "correctIndex": 1,
+    "explanation": "`.append([1, 2])` appends the inner list as a single object (e.g. `['x', [1, 2]]`), whereas `.extend([1, 2])` iterates over the collection and appends `1` and `2` as separate individual elements."
+  },
+  {
+    "question": "What will `min([45, 12, 89, 3])` return?",
+    "options": [
+      "`45`",
+      "`3`",
+      "`89`",
+      "`4`"
+    ],
+    "correctIndex": 1,
+    "explanation": "The built-in `min()` function scans the iterable and returns the smallest item, which is `3`."
+  },
+  {
+    "question": "What does `'gold' in inventory` evaluate to?",
+    "options": [
+      "The index of `'gold'` in the list.",
+      "A boolean `True` if `'gold'` is an element of `inventory`, and `False` otherwise.",
+      "A copy of the inventory list.",
+      "A `TypeError`."
+    ],
+    "correctIndex": 1,
+    "explanation": "The `in` keyword is a membership test operator that returns `True` if the item exists in the collection, and `False` otherwise."
+  },
+  {
+    "question": "Why does `colors = ['red', 'blue']; print(colors[2])` fail?",
+    "options": [
+      "Because Python requires quotes around numbers.",
+      "Because the list contains 2 elements with valid zero-based indices 0 and 1; index 2 is out of range.",
+      "Because `print()` cannot display list items.",
+      "Because lists cannot hold color names."
+    ],
+    "correctIndex": 1,
+    "explanation": "Lists use zero-based indexing. For a list of 2 items, valid indices are 0 and 1. Attempting to access index 2 raises `IndexError: list index out of range`."
+  }
+]

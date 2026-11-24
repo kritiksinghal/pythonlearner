@@ -1,8 +1,8 @@
 /*
  * ProblemClient.tsx — interactive practice editor and test runner for a problem.
  *
- * Runs client-side Python in a Web Worker using Pyodide.
- * Works for both "function" and "stdio" test types.
+ * Restyled with hairline borders, disciplined typography,
+ * dark action button with yellow accent mark, and zero heavy shadows.
  */
 
 "use client";
@@ -34,32 +34,34 @@ export default function ProblemClient({ problem }: Props) {
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8">
+    <div className="mx-auto max-w-6xl px-4 py-10 sm:py-14">
       {/* Navigation Breadcrumb */}
-      <div className="mb-4 flex items-center gap-2 text-sm text-muted">
-        <Link href="/practice" className="transition-colors hover:text-accent">
-          ← Back to all problems
+      <div className="mb-6 flex items-center gap-2 text-xs font-mono text-muted">
+        <Link href="/practice" className="transition-colors hover:text-foreground">
+          ← ALL PROBLEMS
         </Link>
         <span>/</span>
-        <span className="text-foreground">{problem.title}</span>
+        <span className="text-foreground">{problem.title.toUpperCase()}</span>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-8 lg:grid-cols-2">
         {/* ── Left Column: Problem details ── */}
-        <section className="h-fit rounded-xl border border-border bg-surface p-6 shadow-xs">
-          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border pb-3">
-            <h1 className="text-2xl font-bold tracking-tight">{problem.title}</h1>
+        <section className="h-fit rounded-lg border border-border bg-surface p-6">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border pb-4">
+            <h1 className="font-doto text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+              {problem.title}
+            </h1>
             <div className="flex items-center gap-2">
-              <span className="rounded bg-code-bg px-2.5 py-1 text-xs font-medium text-muted">
+              <span className="rounded border border-border bg-code-bg px-2 py-0.5 font-mono text-[11px] text-muted">
                 {problem.track}
               </span>
               <span
-                className={`rounded px-2 py-0.5 text-xs font-semibold ${
+                className={`rounded border px-2 py-0.5 font-mono text-[11px] font-semibold ${
                   problem.difficulty === "Easy"
-                    ? "bg-green-100 text-green-800 dark:bg-green-950/60 dark:text-green-300"
+                    ? "border-green-200 bg-green-50/80 text-green-800 dark:border-green-900 dark:bg-green-950/40 dark:text-green-300"
                     : problem.difficulty === "Medium"
-                      ? "bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300"
-                      : "bg-red-100 text-red-800 dark:bg-red-950/60 dark:text-red-300"
+                      ? "border-amber-200 bg-amber-50/80 text-amber-800 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-300"
+                      : "border-red-200 bg-red-50/80 text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300"
                 }`}
               >
                 {problem.difficulty}
@@ -67,64 +69,71 @@ export default function ProblemClient({ problem }: Props) {
             </div>
           </div>
 
-          {/* Render description formatted with Markdown */}
-          <div className="mt-4">
+          {/* Description */}
+          <div className="mt-5">
             <MarkdownView content={problem.description} />
           </div>
 
-          {/* Quick info footer */}
-          <div className="mt-6 rounded-lg border border-border bg-code-bg p-3.5 text-xs text-muted">
-            <span className="font-semibold text-foreground">Test mode: </span>
+          {/* Test mode summary */}
+          <div className="mt-8 rounded-md border border-border bg-code-bg/60 p-3 text-xs text-muted font-mono">
+            <span className="font-semibold text-foreground">Target: </span>
             {problem.testType === "function" ? (
               <span>
-                Function call (<code>def {problem.functionName}()</code>)
+                Function <code>{problem.functionName}()</code>
               </span>
             ) : (
-              <span>Standard I/O (reads with <code>input()</code>, prints with <code>print()</code>)</span>
+              <span>Standard I/O (reads via <code>input()</code>, prints via <code>print()</code>)</span>
             )}
           </div>
         </section>
 
-        {/* ── Right Column: Code Editor + Run Button + Results ── */}
-        <section className="flex flex-col gap-5">
+        {/* ── Right Column: Editor + Run Button + Results ── */}
+        <section className="flex flex-col gap-4">
           {/* Header */}
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold tracking-tight">Your Code</h2>
+            <h2 className="text-xs font-mono font-semibold uppercase tracking-wider text-muted">
+              Editor
+            </h2>
             {isLoading && (
-              <span className="flex items-center gap-1.5 text-xs text-muted">
-                <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-accent" />
+              <span className="flex items-center gap-1.5 text-xs font-mono text-muted">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
                 Loading Python…
               </span>
             )}
           </div>
 
           {/* Monaco Editor */}
-          <CodeEditor code={code} onChange={setCode} />
+          <CodeEditor code={code} onChange={setCode} height="340px" />
 
-          {/* Run button */}
-          <div className="flex items-center gap-4">
+          {/* Action Bar */}
+          <div className="flex items-center justify-between">
             <button
               onClick={handleRun}
               disabled={isLoading || isRunning}
-              className="inline-flex items-center justify-center rounded-lg bg-accent px-6 py-2.5 font-medium text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex items-center gap-2.5 rounded-md bg-foreground px-5 py-2 text-xs font-medium text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {isLoading
-                ? "Loading Python…"
-                : isRunning
-                  ? "Running tests…"
-                  : "Run Tests"}
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              <span>
+                {isLoading
+                  ? "Loading Python…"
+                  : isRunning
+                    ? "Running tests…"
+                    : "Run Tests"}
+              </span>
             </button>
 
             {isRunning && (
-              <span className="text-xs text-muted">
-                Executing tests against your solution…
+              <span className="text-xs font-mono text-muted">
+                Testing against hidden cases…
               </span>
             )}
           </div>
 
           {/* Test results panel below */}
           <div className="border-t border-border pt-4">
-            <h3 className="mb-3 text-base font-semibold tracking-tight">Results</h3>
+            <h3 className="mb-3 text-xs font-mono font-semibold uppercase tracking-wider text-muted">
+              Test Results
+            </h3>
             <TestResults
               results={results}
               totalTests={problem.tests.length}

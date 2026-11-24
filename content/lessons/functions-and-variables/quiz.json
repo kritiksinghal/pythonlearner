@@ -1,0 +1,101 @@
+[
+  {
+    "question": "What data type is always returned by Python's built-in input() function?",
+    "options": [
+      "int",
+      "str",
+      "float",
+      "bool"
+    ],
+    "correctIndex": 1,
+    "explanation": "The input() function always returns text as a str, even if the person types numbers like 42 or 3.14. To perform arithmetic on user responses, you must explicitly convert them using int() or float()."
+  },
+  {
+    "question": "What is the result of evaluating 7 // 2 in Python?",
+    "options": [
+      "3.5",
+      "3",
+      "4",
+      "1"
+    ],
+    "correctIndex": 1,
+    "explanation": "The // operator represents floor division in Python. It divides the two numbers and drops the fractional remainder, returning 3. Standard division (/) produces 3.5, while modulo (%) returns the remainder 1."
+  },
+  {
+    "question": "What does print('2' + '3') display on screen?",
+    "options": [
+      "5",
+      "23",
+      "TypeError",
+      "2 3"
+    ],
+    "correctIndex": 1,
+    "explanation": "Both '2' and '3' are string literals enclosed in quotes. For strings, the + operator performs concatenation (joining text together), producing '23'. To perform mathematical addition yielding 5, you would convert them to numbers: int('2') + int('3')."
+  },
+  {
+    "question": "Which Python keyword is used inside a function to hand a computed result back to the calling code?",
+    "options": [
+      "print",
+      "give",
+      "return",
+      "output"
+    ],
+    "correctIndex": 2,
+    "explanation": "The return statement terminates a function execution and passes a calculated value back to where the function was called. In contrast, print() only displays text on the screen and hands back None to the program."
+  },
+  {
+    "question": "What is the result of the modulo operation 7 % 2 in Python?",
+    "options": [
+      "3",
+      "3.5",
+      "1",
+      "0"
+    ],
+    "correctIndex": 2,
+    "explanation": "The % (modulo) operator returns the remainder left over after integer division. 7 divided by 2 is 3 with a remainder of 1."
+  },
+  {
+    "question": "Given the definition def greet(name='world'): return f'Hello, {name}', what does calling greet() return?",
+    "options": [
+      "Hello, world",
+      "Hello, name",
+      "TypeError",
+      "None"
+    ],
+    "correctIndex": 0,
+    "explanation": "When a parameter has a default value assigned in the function definition (like name='world'), calling the function without passing an argument falls back to that default value, returning 'Hello, world'."
+  },
+  {
+    "question": "What does '  ada lovelace  '.strip().title() evaluate to?",
+    "options": [
+      "ADA LOVELACE",
+      "Ada Lovelace",
+      "  Ada Lovelace  ",
+      "ada lovelace"
+    ],
+    "correctIndex": 1,
+    "explanation": "The .strip() method removes leading and trailing spaces, leaving 'ada lovelace'. Calling .title() on the resulting text capitalizes the first letter of each word, producing 'Ada Lovelace'."
+  },
+  {
+    "question": "What happens if code outside a function attempts to access a variable defined inside that function's body?",
+    "options": [
+      "Python prints None",
+      "Python raises a NameError because the variable only exists in the function's local scope",
+      "The variable automatically becomes a global variable accessible everywhere",
+      "Python automatically converts the variable to an empty string"
+    ],
+    "correctIndex": 1,
+    "explanation": "Variables created inside a function are local to that function. They are allocated when the function runs and destroyed when it finishes. Attempting to access them from the global scope raises NameError: name '<var>' is not defined."
+  },
+  {
+    "question": "What is printed by running: print('A', 'B', sep='-', end='!'); print('C')?",
+    "options": [
+      "A-B!C",
+      "A B C",
+      "A-B! C",
+      "A B!C"
+    ],
+    "correctIndex": 0,
+    "explanation": "The sep='-' argument places a hyphen between 'A' and 'B' ('A-B'). The end='!' argument replaces the default newline with an exclamation mark, leaving the cursor on the same line so the subsequent print('C') appends 'C' directly, producing 'A-B!C'."
+  }
+]

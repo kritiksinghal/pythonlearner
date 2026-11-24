@@ -1,0 +1,101 @@
+[
+  {
+    "question": "Which of the following is a valid variable name according to Python rules?",
+    "options": [
+      "2nd_score",
+      "user-name",
+      "total_price",
+      "class"
+    ],
+    "correctIndex": 2,
+    "explanation": "total_price uses only lowercase letters and underscores. 2nd_score is invalid because variable names cannot start with a number. user-name is invalid because hyphens are interpreted as the minus operator. class is a reserved Python keyword and cannot be used as an identifier."
+  },
+  {
+    "question": "What is printed by the following code?\n\nx = 10\ny = x\nx = 25\nprint(y)",
+    "options": [
+      "25",
+      "10",
+      "35",
+      "NameError"
+    ],
+    "correctIndex": 1,
+    "explanation": "When y = x runs, y stores the current value of x (10). Later reassigning x to 25 points x to a new value in memory but does not change y. A tempting mistake is thinking variables remain linked like algebraic equations."
+  },
+  {
+    "question": "What are the results of 17 // 5 and 17 % 5 in Python?",
+    "options": [
+      "3.4 and 2",
+      "3 and 2",
+      "3 and 0.4",
+      "4 and 1"
+    ],
+    "correctIndex": 1,
+    "explanation": "// is floor division, which drops any fractional remainder and returns 3. % is modulo, which returns the remainder of the division (17 - 15 = 2). A tempting mistake is confusing // with regular division (/) which would produce 3.4."
+  },
+  {
+    "question": "What error occurs when running: score = 50; print('Final score: ' + score)?",
+    "options": [
+      "SyntaxError",
+      "TypeError",
+      "ValueError",
+      "NameError"
+    ],
+    "correctIndex": 1,
+    "explanation": "In Python, the + operator cannot concatenate a str and an int. Python raises TypeError: can only concatenate str (not 'int') to str. A tempting mistake is expecting Python to automatically convert the integer to text like JavaScript does; in Python you must use str(score) or an f-string."
+  },
+  {
+    "question": "What is the data type of the variable value in: value = '3.14'?",
+    "options": [
+      "float",
+      "int",
+      "str",
+      "number"
+    ],
+    "correctIndex": 2,
+    "explanation": "Any value enclosed in quotation marks is of type str (string), regardless of what characters appear inside. A tempting mistake is assuming Python sees 3.14 and automatically treats it as a float. To convert it, you must call float(value)."
+  },
+  {
+    "question": "What does print(type(5 == 5)) display?",
+    "options": [
+      "<class 'int'>",
+      "<class 'bool'>",
+      "<class 'str'>",
+      "True"
+    ],
+    "correctIndex": 1,
+    "explanation": "The comparison expression 5 == 5 evaluates to the boolean value True. Passing that value to type() outputs its type representation, which is <class 'bool'>. A tempting error is thinking it prints True, but type() returns the class type, not the value itself."
+  },
+  {
+    "question": "What is the result of evaluating int(9.99) in Python?",
+    "options": [
+      "10",
+      "9",
+      "9.0",
+      "ValueError"
+    ],
+    "correctIndex": 1,
+    "explanation": "The int() function truncates (chops off) the decimal part toward zero without rounding, yielding 9. A tempting error is expecting standard rounding to 10. If you want mathematical rounding to the nearest whole number, use round(9.99)."
+  },
+  {
+    "question": "What is printed by: msg = 'code'; print(msg * 3)?",
+    "options": [
+      "code 3",
+      "codecodecode",
+      "SyntaxError",
+      "9"
+    ],
+    "correctIndex": 1,
+    "explanation": "When multiplying a string by an integer using *, Python repeats the string that many times, producing 'codecodecode'. A tempting mistake is assuming string multiplication is invalid or produces an error."
+  },
+  {
+    "question": "Which line causes an error in the following code?\n\n1: greeting = 'Hello'\n2: print(Greetings)\n3: name = 'World'\n4: print(greeting + name)",
+    "options": [
+      "Line 1",
+      "Line 2",
+      "Line 3",
+      "Line 4"
+    ],
+    "correctIndex": 1,
+    "explanation": "Python variable names are strictly case-sensitive. The variable defined on line 1 is greeting (lowercase g), but line 2 attempts to use Greetings (capital G). Because Greetings does not exist, Python raises NameError: name 'Greetings' is not defined."
+  }
+]

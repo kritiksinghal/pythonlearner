@@ -1,0 +1,101 @@
+[
+  {
+    "question": "What are the three logical operator keywords used in Python?",
+    "options": [
+      "`&&`, `||`, and `!`",
+      "`and`, `or`, and `not`",
+      "`AND`, `OR`, and `NOT`",
+      "`both`, `either`, and `neither`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Python uses lowercase plain English words `and`, `or`, and `not` as logical operators. Operators like `&&` or `||` belong to languages like C and JavaScript and cause syntax errors in Python."
+  },
+  {
+    "question": "Under what condition does the expression `A and B` evaluate to `True`?",
+    "options": [
+      "When either `A` or `B` is true, but not both",
+      "Only when both `A` and `B` evaluate to `True`",
+      "When at least one of `A` or `B` is true",
+      "When neither `A` nor `B` is true"
+    ],
+    "correctIndex": 1,
+    "explanation": "The conjunction operator `and` requires both operands to be truthy. If either operand is `False`, the entire expression evaluates to `False`."
+  },
+  {
+    "question": "What is the result of evaluating `not False or False and True` without parentheses?",
+    "options": [
+      "`False`",
+      "`True`",
+      "`None`",
+      "`TypeError`"
+    ],
+    "correctIndex": 1,
+    "explanation": "By operator precedence, `not` evaluates first (`not False` becomes `True`), then `and` evaluates (`False and True` becomes `False`), and finally `or` evaluates (`True or False` becomes `True`)."
+  },
+  {
+    "question": "Why does the statement `if x == 1 or 2:` always evaluate to `True`?",
+    "options": [
+      "Because Python replaces `or` with an addition sign.",
+      "Because Python evaluates `x == 1` first, and if false, evaluates `2`, which is a non-zero number and therefore always truthy.",
+      "Because Python automatically assigns 2 to `x`.",
+      "Because 1 or 2 is a special built-in range in Python."
+    ],
+    "correctIndex": 1,
+    "explanation": "Python interprets `x == 1 or 2` as `(x == 1) or (2)`. Even if `x == 1` is `False`, the second operand `2` is evaluated. Because any non-zero integer is truthy in Python, the whole condition evaluates to truth every time."
+  },
+  {
+    "question": "What is 'short-circuit evaluation' in Python logical operations?",
+    "options": [
+      "A hardware failure that crashes the CPU when checking conditions.",
+      "An optimization where Python stops evaluating a compound expression as soon as the final boolean result is guaranteed.",
+      "A feature that converts all strings into numbers automatically.",
+      "A tool for measuring electrical current in computer circuits."
+    ],
+    "correctIndex": 1,
+    "explanation": "Short-circuit evaluation means Python halts evaluation immediately once the outcome is certain. In `False and expr`, `expr` is never evaluated because the result must be `False`. In `True or expr`, `expr` is never evaluated because the result must be `True`."
+  },
+  {
+    "question": "What value is returned by the expression `\"\" or \"Guest\"` in Python?",
+    "options": [
+      "`True`",
+      "`\"Guest\"`",
+      "`\"\"`",
+      "`False`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Python's `or` operator returns the first truthy operand, or the last operand if all are falsy. Since empty string `\"\"` is falsy, Python moves to and returns `\"Guest\"`. This is the classic default value fallback pattern."
+  },
+  {
+    "question": "According to De Morgan's Laws, which expression is logically equivalent to `not (A or B)`?",
+    "options": [
+      "`not A or not B`",
+      "`not A and not B`",
+      "`A and B`",
+      "`not A and B`"
+    ],
+    "correctIndex": 1,
+    "explanation": "De Morgan's Laws state that negating a disjunction `not (A or B)` is equivalent to the conjunction of the negations: `not A and not B`."
+  },
+  {
+    "question": "What is the recommended pythonic way to test if a boolean variable `is_active` is True?",
+    "options": [
+      "`if is_active == True:`",
+      "`if is_active:`",
+      "`if bool(is_active) is True:`",
+      "`if str(is_active) == 'True':`"
+    ],
+    "correctIndex": 1,
+    "explanation": "PEP 8 recommends writing `if is_active:` directly. Comparing directly to `== True` is redundant and unpythonic."
+  },
+  {
+    "question": "What is the output of `print(False or not False and True)`?",
+    "options": [
+      "`False`",
+      "`True`",
+      "`None`",
+      "`SyntaxError`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`not False` evaluates first to `True`. Next, `True and True` evaluates to `True`. Finally, `False or True` evaluates to `True`."
+  }
+]

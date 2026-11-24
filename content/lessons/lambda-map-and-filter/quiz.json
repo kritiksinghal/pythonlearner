@@ -1,0 +1,56 @@
+[
+  {
+    "question": "What can appear in the body of a lambda expression?",
+    "options": ["One expression", "Any number of statements", "Only a print statement", "A class definition"],
+    "correctIndex": 0,
+    "explanation": "A lambda body is one expression whose value is returned. The tempting answer is any number of statements because a `def` body allows statements, but use `def` for that."
+  },
+  {
+    "question": "What does `map(function, values)` do?",
+    "options": ["Applies function to each value and yields the results", "Keeps only values that are true", "Sorts the values", "Calls the function once with the whole list"],
+    "correctIndex": 0,
+    "explanation": "`map` calls the function for each input item and provides transformed results. The tempting answer describes filtering, which keeps original values based on a test."
+  },
+  {
+    "question": "What does `filter(test, values)` yield?",
+    "options": ["The original items whose test result is true", "The test results only", "Every transformed value", "A sorted copy"],
+    "correctIndex": 0,
+    "explanation": "`filter` keeps the input items for which the test function returns a true value. The tempting answer says it returns the booleans, but the booleans decide which original values pass."
+  },
+  {
+    "question": "What does `list(map(lambda n: n + 1, [2, 4]))` produce?",
+    "options": ["`[3, 5]`", "`[2, 4, 1]`", "`[True, True]`", "`5`"],
+    "correctIndex": 0,
+    "explanation": "The lambda adds one to each input and `list` collects the results, producing `[3, 5]`. The tempting answer appends one only once, but the transformation runs for each item."
+  },
+  {
+    "question": "Why might `list(results)` be empty the second time when `results` is a map iterator?",
+    "options": ["The iterator was already consumed", "Map sorts items after the first pass", "The input list was deleted", "Lambda functions run once only"],
+    "correctIndex": 0,
+    "explanation": "Iterators provide their values as they are consumed, so a second pass over the same exhausted map result is empty. The tempting answer blames the source list, which remains unchanged."
+  },
+  {
+    "question": "Which expression keeps numbers below 10 using `filter()`?",
+    "options": ["`filter(lambda n: n < 10, numbers)`", "`filter(n < 10, numbers)`", "`map(lambda n: n < 10, numbers)`", "`sorted(numbers < 10)`"],
+    "correctIndex": 0,
+    "explanation": "`filter` needs a function to call for each item, and the lambda provides that test. The tempting second option is a boolean expression rather than a function."
+  },
+  {
+    "question": "Which is usually clearer for a short transformation that creates a list?",
+    "options": ["A list comprehension can be a clear alternative", "A deeply nested lambda is always best", "A set is required", "A while loop is required"],
+    "correctIndex": 0,
+    "explanation": "A list comprehension often reads directly as a transformation over items and is a good alternative to `map`. The tempting answer assumes the shortest-looking code is always clearest."
+  },
+  {
+    "question": "What happens if `map()` supplies one item to a function that requires two arguments?",
+    "options": ["The call raises TypeError for a missing argument", "The second parameter becomes zero", "Map duplicates the item", "The function is skipped"],
+    "correctIndex": 0,
+    "explanation": "For a single iterable, `map` calls the function with one item at a time, so a function requiring two arguments raises `TypeError`. The tempting answer assumes map invents a default value, but it does not."
+  },
+  {
+    "question": "What does the lambda in `sorted(rows, key=lambda row: row[1])` provide?",
+    "options": ["The comparison value for each row", "A replacement row", "A filter condition", "The number of rows"],
+    "correctIndex": 0,
+    "explanation": "The lambda returns the second item in each row as its sorting key, while the sorted result keeps full rows. The tempting answer confuses sorting with transforming the collection."
+  }
+]

@@ -1,53 +1,113 @@
 @import "tailwindcss";
 
-/* ── Light-mode colors (default) ── */
+/* ── Light-mode design tokens ── */
 :root {
-  --background: #fafafa;       /* warm off-white */
-  --foreground: #1e293b;       /* slate-800, easy on the eyes */
-  --muted: #64748b;            /* slate-500, secondary text */
-  --border: #e2e8f0;           /* slate-200 */
-  --accent: #2563eb;           /* blue-600, links & buttons */
-  --accent-hover: #1d4ed8;     /* blue-700 */
-  --surface: #ffffff;          /* card / navbar background */
-  --code-bg: #f1f5f9;          /* slate-100, code block background */
+  --background: #F7F8FA;       /* paper white */
+  --foreground: #111418;       /* deep ink */
+  --muted: #6B7280;            /* neutral muted text */
+  --border: #E3E6EB;           /* hairline border */
+  --surface: #FFFFFF;          /* crisp surface for panels */
+  --code-bg: #EFEFEF;          /* light code background */
+  
+  /* ONE accent: Python yellow. Used for dots, icon tiles, focus ring */
+  --accent: #FFC832;
+  --accent-ink: #111418;       /* ink on yellow */
+
+  /* Pass / Fail colors for test results */
+  --pass: #1B7F4F;
+  --pass-bg: #E6F4EC;
+  --fail: #C0342B;
+  --fail-bg: #FBEAE8;
 }
 
-/* ── Dark-mode colors (follows system setting) ── */
+/* ── Dark-mode design tokens (system preference) ── */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0f172a;     /* slate-900 */
-    --foreground: #e2e8f0;     /* slate-200 */
-    --muted: #94a3b8;          /* slate-400 */
-    --border: #334155;         /* slate-700 */
-    --accent: #60a5fa;         /* blue-400 */
-    --accent-hover: #93c5fd;   /* blue-300 */
-    --surface: #1e293b;        /* slate-800 */
-    --code-bg: #1e293b;        /* slate-800 */
+    --background: #0E1116;     /* dark ink background */
+    --foreground: #EDEDED;     /* crisp light text */
+    --muted: #8B949E;          /* muted grey */
+    --border: #232830;         /* dark hairline border */
+    --surface: #161B22;        /* dark surface panel */
+    --code-bg: #1B212A;        /* dark code background */
+
+    --accent: #FFC832;         /* same single Python yellow accent */
+    --accent-ink: #111418;
+
+    --pass: #3FB950;
+    --pass-bg: #15332A;
+    --fail: #F85149;
+    --fail-bg: #3A2026;
   }
 }
 
-/* ── Make Tailwind aware of our custom colors ── */
+/* ── Register theme tokens with Tailwind v4 ── */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
-  --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
   --color-surface: var(--surface);
   --color-code-bg: var(--code-bg);
-  --font-sans: var(--font-ibm-plex-sans);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-pass: var(--pass);
+  --color-pass-bg: var(--pass-bg);
+  --color-fail: var(--fail);
+  --color-fail-bg: var(--fail-bg);
+
+  --font-sans: var(--font-hanken-grotesk);
   --font-mono: var(--font-jetbrains-mono);
+  --font-doto: var(--font-doto);
 }
 
-/* ── Base body styles ── */
+/* ── Base typographic styles ── */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-ibm-plex-sans), sans-serif;
+  font-family: var(--font-hanken-grotesk), system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ── Utility: anything with class "font-mono" uses JetBrains Mono ── */
+/* Dot-matrix display font utility */
+.font-doto {
+  font-family: var(--font-doto), monospace;
+  letter-spacing: -0.02em;
+}
+
 .font-mono {
   font-family: var(--font-jetbrains-mono), monospace;
+}
+
+/* Hairline border utility */
+.border-hairline {
+  border-width: 1px;
+}
+
+/* Accessible yellow focus ring */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Smooth initial page fade-in (respects prefers-reduced-motion) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-fade-in {
+  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-fade-in {
+    animation: none;
+    opacity: 1;
+  }
 }

@@ -1,0 +1,101 @@
+[
+  {
+    "question": "What is the default separator inserted between multiple arguments in `print('A', 'B', 'C')`?",
+    "options": [
+      "A comma `,`",
+      "A single space `' '`",
+      "A newline character `\\n`",
+      "No space at all"
+    ],
+    "correctIndex": 1,
+    "explanation": "By default, the `sep` parameter in `print()` is set to a single space `' '`. Therefore, `print('A', 'B', 'C')` prints `A B C`. A comma separates arguments in Python code, not in terminal output."
+  },
+  {
+    "question": "What does Python automatically append at the end of every `print()` call by default?",
+    "options": [
+      "A period `.`",
+      "A space character `' '`",
+      "A newline character `\\n`",
+      "Nothing"
+    ],
+    "correctIndex": 2,
+    "explanation": "The default value of `end` is `\\n` (a newline character), which causes subsequent print statements to begin on the next line. Setting `end=' '` keeps the cursor on the same line."
+  },
+  {
+    "question": "What is the output of `print('10', '20', '30', sep='-')`?",
+    "options": [
+      "10 20 30-",
+      "10-20-30",
+      "-10-20-30",
+      "10 - 20 - 30"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `sep='-'` argument specifies that a hyphen should be inserted strictly between adjacent arguments. It is not placed before the first argument or after the final argument."
+  },
+  {
+    "question": "Which escape character represents a horizontal tab in Python text strings?",
+    "options": [
+      "\\b",
+      "\\t",
+      "\\n",
+      "\\r"
+    ],
+    "correctIndex": 1,
+    "explanation": "`\\t` is the escape sequence for a horizontal tab stop, commonly used to align items into columns. `\\n` represents a newline, while `\\b` represents backspace."
+  },
+  {
+    "question": "What happens if you execute `print('Hello', end='')` followed immediately by `print('World')`?",
+    "options": [
+      "Python prints `Hello` and `World` on separate lines.",
+      "Python prints `HelloWorld` on the same line.",
+      "Python raises a `SyntaxError` because `end` cannot be empty.",
+      "Python deletes the word `Hello` from the screen."
+    ],
+    "correctIndex": 1,
+    "explanation": "Because `end=''` prevents the first `print()` call from emitting a trailing newline, the second `print()` call emits its text starting at the exact same cursor position, producing `HelloWorld`."
+  },
+  {
+    "question": "What will Python do when evaluating `print(PlayerOne)` if `PlayerOne` has not been assigned a value?",
+    "options": [
+      "Print the word `PlayerOne` to the screen.",
+      "Print an empty line.",
+      "Raise a `NameError` stating that `PlayerOne` is not defined.",
+      "Assign `PlayerOne` a random number automatically."
+    ],
+    "correctIndex": 2,
+    "explanation": "Without quotation marks, Python treats `PlayerOne` as a variable identifier. Because no variable named `PlayerOne` exists in memory, Python halts with a `NameError`."
+  },
+  {
+    "question": "Which of the following lines correctly prints: She said, \"Python is fun!\"?",
+    "options": [
+      "print('She said, \"Python is fun!\"')",
+      "print(\"She said, \"Python is fun!\"\")",
+      "print('She said, 'Python is fun!'')",
+      "print(She said, \"Python is fun!\")"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wrapping the entire string in single quotes `'...'` allows double quotes `\"...\"` to appear inside without conflict or escape characters. Wrapping with identical unescaped double quotes terminates the string prematurely, causing a SyntaxError."
+  },
+  {
+    "question": "What output is produced by `print('Python', 'Rocks', sep='', end='!')`?",
+    "options": [
+      "Python Rocks!",
+      "PythonRocks!",
+      "PythonRocks!\\n",
+      "Python!Rocks"
+    ],
+    "correctIndex": 1,
+    "explanation": "With `sep=''`, the two words are joined with zero spaces (`PythonRocks`). Then, `end='!'` appends the exclamation mark at the end without a trailing newline, resulting in `PythonRocks!`."
+  },
+  {
+    "question": "Why does `print('Total:' 100)` fail with a `SyntaxError: invalid syntax`?",
+    "options": [
+      "Because 100 is too large to print in Python.",
+      "Because `print()` can only accept one argument at a time.",
+      "Because arguments must be separated by commas `,` in the parameter list.",
+      "Because 100 must be enclosed in quotes."
+    ],
+    "correctIndex": 2,
+    "explanation": "In Python, arguments passed inside a function call must be delimited by commas. Without a comma between `'Total:'` and `100`, the parser cannot interpret the juxtaposition of a string literal and an integer literal."
+  }
+]

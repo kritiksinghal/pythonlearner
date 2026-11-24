@@ -1,0 +1,101 @@
+[
+  {
+    "question": "In a nested loop construct, how many times does the inner loop execute?",
+    "options": [
+      "Exactly once total.",
+      "It executes to full completion once for every single iteration of the outer loop.",
+      "The same number of times as the outer loop.",
+      "It alternates turns with the outer loop."
+    ],
+    "correctIndex": 1,
+    "explanation": "For every single cycle of the outer loop, the inner loop enters, executes all of its iterations from start to finish, and terminates before the outer loop advances to its next step."
+  },
+  {
+    "question": "If an outer loop runs 5 times and an inner loop runs 4 times, how many total times will the inner loop's body execute?",
+    "options": [
+      "`9` times",
+      "`20` times",
+      "`5` times",
+      "`4` times"
+    ],
+    "correctIndex": 1,
+    "explanation": "The total number of inner loop executions is multiplicative: $5 \\times 4 = 20$ total executions."
+  },
+  {
+    "question": "What is the consequence of naming both the outer loop variable and the inner loop variable `i` (e.g. `for i in range(3): for i in range(3):`)?",
+    "options": [
+      "Python raises a `SyntaxError: duplicate variable`.",
+      "The inner loop overwrites the value of `i`, disrupting the outer loop's progression and causing confusing logic bugs.",
+      "Python automatically renames the inner variable to `i_inner`.",
+      "Both loops run in parallel."
+    ],
+    "correctIndex": 1,
+    "explanation": "Python does not prevent you from reusing variable names, but the inner loop will overwrite `i` on each cycle, leading to hard-to-diagnose logic defects. You should always use distinct names like `row` and `col`."
+  },
+  {
+    "question": "Why is an empty `print()` call placed at the end of the outer loop when printing 2D grids?",
+    "options": [
+      "To clear the computer's memory cache.",
+      "To emit a newline character, advancing the cursor down to start the next row.",
+      "To pause execution for user input.",
+      "To print an empty space character."
+    ],
+    "correctIndex": 1,
+    "explanation": "Because the inner loop uses `end=\" \"` to keep numbers on the same line across columns, calling parameterless `print()` at the end of each outer loop iteration outputs a standard `\\n` newline to advance to the next line."
+  },
+  {
+    "question": "What output is produced by: `for r in range(1, 4): print(r * 2, end=' ')`?",
+    "options": [
+      "`2 4 6 `",
+      "`1 2 3 `",
+      "`2 4 `",
+      "`4 6 8 `"
+    ],
+    "correctIndex": 0,
+    "explanation": "`range(1, 4)` yields 1, 2, 3. Multiplying each by 2 produces 2, 4, 6, printed on one line with spaces."
+  },
+  {
+    "question": "What algorithmic time complexity describes two nested loops of size $N$?",
+    "options": [
+      "Linear time: $O(N)$",
+      "Quadratic time: $O(N^2)$",
+      "Logarithmic time: $O(\\log N)$",
+      "Constant time: $O(1)$"
+    ],
+    "correctIndex": 1,
+    "explanation": "When an inner loop of size $N$ is nested inside an outer loop of size $N$, total operations scale with $N \\times N = N^2$, known as quadratic time complexity."
+  },
+  {
+    "question": "What pattern does `for r in range(1, 4): print('*' * r)` generate?",
+    "options": [
+      "A vertical line of asterisks.",
+      "A right-angled triangle with 1 star on row 1, 2 stars on row 2, and 3 stars on row 3.",
+      "A square of 3x3 stars.",
+      "An inverted triangle."
+    ],
+    "correctIndex": 1,
+    "explanation": "On each line, string multiplication repeats `'*'` by `r` times, producing row 1 with `*`, row 2 with `**`, and row 3 with `***`."
+  },
+  {
+    "question": "How can you determine if coordinate `(row, col)` belongs to an alternating checkerboard pattern?",
+    "options": [
+      "Check if `row == col`",
+      "Check if `(row + col) % 2 == 0`",
+      "Check if `row > col`",
+      "Check if `row * col > 0`"
+    ],
+    "correctIndex": 1,
+    "explanation": "The mathematical formula `(row + col) % 2 == 0` tests whether the coordinate sum is even or odd. Since adjacent cells change sum parity alternately, it creates an alternating grid."
+  },
+  {
+    "question": "What happens to the inner loop's iterator in CPython when the outer loop advances to its next turn?",
+    "options": [
+      "The old iterator continues running from where it left off.",
+      "A brand-new inner iterator is instantiated and runs from the beginning.",
+      "The interpreter skips the inner loop.",
+      "The outer loop exits."
+    ],
+    "correctIndex": 1,
+    "explanation": "Every time the outer loop starts a new iteration, Python re-evaluates the inner loop statement, creating a fresh iterator that starts at the initial sequence value."
+  }
+]

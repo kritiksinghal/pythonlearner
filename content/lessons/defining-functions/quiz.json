@@ -1,0 +1,56 @@
+[
+  {
+    "question": "What does `def announce():` do when Python reads it?",
+    "options": ["Defines and names a function", "Calls the function immediately", "Prints the word announce", "Creates a list"],
+    "correctIndex": 0,
+    "explanation": "The `def` statement creates a function and gives it the name `announce`; its body waits until a call. The tempting answer is that it runs immediately, but definition and execution are separate."
+  },
+  {
+    "question": "Which line calls a function named `show_menu`?",
+    "options": ["`show_menu`", "`show_menu()`", "`def show_menu():`", "`print(show_menu)`"],
+    "correctIndex": 1,
+    "explanation": "The parentheses in `show_menu()` call the function. Writing only the name refers to the function but does not run its body, which is a common tempting mistake."
+  },
+  {
+    "question": "Which part of a function definition marks its body?",
+    "options": ["An indented block after the colon", "A comment after the name", "A blank line before the call", "Square brackets"],
+    "correctIndex": 0,
+    "explanation": "Python uses the indented statements after the definition line as the function body. A comment or blank line is not what defines which instructions belong to the function."
+  },
+  {
+    "question": "How many times does the body run if `greet()` is called three times?",
+    "options": ["Zero", "One", "Three", "It runs once when defined"],
+    "correctIndex": 2,
+    "explanation": "Each call executes the body once, so three calls run it three times. It is tempting to think the definition runs only once and controls execution, but definitions save instructions rather than execute the body."
+  },
+  {
+    "question": "Why is a descriptive name like `print_match_summary()` useful?",
+    "options": ["It tells a reader what task the function performs", "It makes Python skip the body", "It automatically supplies inputs", "It sorts the program"],
+    "correctIndex": 0,
+    "explanation": "A clear function name communicates intent at the call site and helps organize a program. The tempting answer is that a name changes execution behavior, but the name's primary role is identification and readability."
+  },
+  {
+    "question": "What happens if Python reaches `show_weather()` before any function with that name has been defined?",
+    "options": ["It prints nothing", "It raises NameError", "It defines the function automatically", "It calls main()"],
+    "correctIndex": 1,
+    "explanation": "Python cannot find a name that has not been defined yet, so the call raises `NameError`. It is tempting to think Python will search forward and find a later definition, but execution moves from top to bottom."
+  },
+  {
+    "question": "Does Python automatically call a function named `main()`?",
+    "options": ["Yes, every function with that name runs automatically", "No, the code must call `main()`", "Only when the file has a print statement", "Only in a web browser"],
+    "correctIndex": 1,
+    "explanation": "`main` is a naming convention, not a special automatic call in Python. The tempting answer imports behavior from other languages; include `main()` when you want that function to run."
+  },
+  {
+    "question": "Which function name follows the common Python style?",
+    "options": ["`PrintMatchSummary`", "`print-match-summary`", "`print_match_summary`", "`print match summary`"],
+    "correctIndex": 2,
+    "explanation": "Lowercase words separated by underscores are the usual Python style for function names. Hyphens and spaces are not valid in identifiers, and capitalized words are not the common function naming convention."
+  },
+  {
+    "question": "What does the final `main()` line do in a program where `main` was defined earlier?",
+    "options": ["Runs the saved instructions in main's body", "Defines main again", "Renames the program", "Imports a module"],
+    "correctIndex": 0,
+    "explanation": "The call starts the function body, which can then call other functions. It is tempting to interpret the line as another definition, but only `def main():` defines it."
+  }
+]

@@ -1,0 +1,101 @@
+[
+  {
+    "question": "What does a negative index like `items[-1]` do in Python?",
+    "options": [
+      "Causes an IndexError because negative indices are invalid.",
+      "Accesses the final (last) element in the sequence.",
+      "Deletes the first element from the sequence.",
+      "Reverses the entire list."
+    ],
+    "correctIndex": 1,
+    "explanation": "Python supports negative indexing counting backward from the end. `-1` refers to the last element, `-2` refers to the second to last, and so on."
+  },
+  {
+    "question": "Given `letters = ['a', 'b', 'c', 'd', 'e']`, what does `letters[1:4]` return?",
+    "options": [
+      "`['b', 'c', 'd', 'e']`",
+      "`['b', 'c', 'd']`",
+      "`['a', 'b', 'c']`",
+      "`['a', 'b', 'c', 'd']`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Slice notation `[start:stop]` includes the start index (1 -> 'b') and stops immediately before index 4 (so index 1, 2, 3 -> `['b', 'c', 'd']`)."
+  },
+  {
+    "question": "What is the idiomatic Python syntax to completely reverse a sequence `s` using slicing?",
+    "options": [
+      "`s.reverse_slice()`",
+      "`s[::-1]`",
+      "`s[-1:0]`",
+      "`s[0:-1:-1]`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Omitting `start` and `stop` and specifying a step of `-1` (`s[::-1]`) steps backward across the entire sequence, returning a reversed copy."
+  },
+  {
+    "question": "How many elements are returned by `nums[2:7]` on a list containing 10 numbers?",
+    "options": [
+      "`5` elements",
+      "`6` elements",
+      "`7` elements",
+      "`4` elements"
+    ],
+    "correctIndex": 0,
+    "explanation": "The number of elements in a standard unit-step slice is always `stop - start`. Here $7 - 2 = 5$ elements (indices 2, 3, 4, 5, 6)."
+  },
+  {
+    "question": "What happens if you slice a list far beyond its length, e.g. `[10, 20][0:100]`?",
+    "options": [
+      "Python raises `IndexError: list index out of range`.",
+      "Python pads the list with zeroes up to index 100.",
+      "Python clamps the slice safely to the end of the list and returns `[10, 20]` without error.",
+      "Python returns `None`."
+    ],
+    "correctIndex": 2,
+    "explanation": "Unlike single element indexing (which raises IndexError), slice indices clamp gracefully to valid sequence bounds, preventing unexpected crashes."
+  },
+  {
+    "question": "What does `numbers[:]` do when applied to a list `numbers`?",
+    "options": [
+      "Clears all elements from the list.",
+      "Returns a full shallow copy of the list.",
+      "Returns only the first and last elements.",
+      "Converts the list to a tuple."
+    ],
+    "correctIndex": 1,
+    "explanation": "A slice with both start and stop omitted (`[:]`) creates a new list containing all elements of the original list, functioning as a shallow copy."
+  },
+  {
+    "question": "What is the result of `data = [1, 2, 3, 4]; data[1:3] = [99]`?",
+    "options": [
+      "`[1, 99, 4]`",
+      "`[1, [99], 4]`",
+      "`[1, 99, 3, 4]`",
+      "`TypeError: slice assignment length mismatch`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Slice assignment replaces the slice `data[1:3]` (which contained `2` and `3`) with the elements of the assigned iterable `[99]`, resulting in `[1, 99, 4]`."
+  },
+  {
+    "question": "Why does `'Python'[0:2] = 'Cy'` raise a `TypeError`?",
+    "options": [
+      "Because 'Cy' is not a valid word.",
+      "Because strings in Python are immutable and do not support item or slice assignment.",
+      "Because slicing is not supported on strings.",
+      "Because the lengths do not match."
+    ],
+    "correctIndex": 1,
+    "explanation": "Strings are immutable sequences in Python. While you can read and slice strings, you cannot assign to their indices or slices in-place."
+  },
+  {
+    "question": "What does `'ABCDEF'[1::2]` extract?",
+    "options": [
+      "`'BDF'`",
+      "`'ACE'`",
+      "`'BCDE'`",
+      "`'B'`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Starting at index 1 (`'B'`) and advancing by step 2 selects index 1 (`'B'`), index 3 (`'D'`), and index 5 (`'F'`), producing `'BDF'`."
+  }
+]

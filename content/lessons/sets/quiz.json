@@ -1,0 +1,56 @@
+[
+  {
+    "question": "What is the result of `set([\"pop\", \"jazz\", \"pop\"])` in terms of members?",
+    "options": ["Three members, including pop twice", "Two unique members", "A sorted list", "An empty set"],
+    "correctIndex": 1,
+    "explanation": "A set stores each distinct value once, so the members are pop and jazz. It is tempting to count all three list entries, but the repeated pop does not make a second set member."
+  },
+  {
+    "question": "Which expression creates an empty set?",
+    "options": ["`{}`", "`set()`", "`[]`", "`dict()`"],
+    "correctIndex": 1,
+    "explanation": "`set()` constructs an empty set. The empty braces `{}` are a tempting answer, but Python uses them for an empty dictionary; `[]` is a list and `dict()` is also a dictionary."
+  },
+  {
+    "question": "What does `a & b` contain?",
+    "options": ["Members in either set", "Members in both sets", "Members only in a", "Members in exactly one set"],
+    "correctIndex": 1,
+    "explanation": "The ampersand is intersection, so it keeps members shared by both sets. Union (`a | b`) is the tempting mix-up because that contains members from either set."
+  },
+  {
+    "question": "What does `a - b` contain?",
+    "options": ["Members in a that are not in b", "Members in b that are not in a", "All members from both sets", "Members that appear in both sets"],
+    "correctIndex": 0,
+    "explanation": "Difference starts with the left set and removes anything also found in the right set. The tempting answer reverses the sets; `b - a` would do that instead."
+  },
+  {
+    "question": "Which method adds a single value to a set?",
+    "options": ["`.append(value)`", "`.add(value)`", "`.insert(value)`", "`.push(value)`"],
+    "correctIndex": 1,
+    "explanation": "Sets use `.add(value)` to add one member. `.append` and `.insert` are tempting because lists have related operations, but those methods do not add set members."
+  },
+  {
+    "question": "Why should you use `sorted(my_set)` before showing set members in a repeatable order?",
+    "options": ["Sets guarantee alphabetical order", "Sets do not promise insertion or display order", "Sorting changes the set into a dictionary", "A set cannot be printed"],
+    "correctIndex": 1,
+    "explanation": "A set has no guaranteed insertion order for display, while `sorted` returns a list in sorted order. It is tempting to rely on the order you happened to see once, but that order is not a set guarantee."
+  },
+  {
+    "question": "What happens when you run `places = {\"Park\"}; places[0]`?",
+    "options": ["It returns Park", "It raises TypeError because sets have no indexes", "It returns the only member", "It sorts the set"],
+    "correctIndex": 1,
+    "explanation": "Sets are not subscriptable and do not assign positions to members, so indexing raises `TypeError`. The tempting answer assumes the single member has index zero, as it would in a list."
+  },
+  {
+    "question": "Which group is returned by `a ^ b`?",
+    "options": ["Members in both sets", "Members in exactly one of the sets", "Only members from a", "Every value including duplicates"],
+    "correctIndex": 1,
+    "explanation": "Symmetric difference keeps values that occur in one set but not both. The tempting answer is intersection, which keeps only the shared members."
+  },
+  {
+    "question": "Why does `bag.add([\"red\", \"gold\"])` fail when `bag` is a set?",
+    "options": ["Sets accept only numbers", "A list is mutable and unhashable", "The list is too long", "Set members must be strings"],
+    "correctIndex": 1,
+    "explanation": "Lists can change and are unhashable, so they cannot be set members. It is tempting to think the problem is the list's contents or length, but even a one-item list cannot be a member."
+  }
+]

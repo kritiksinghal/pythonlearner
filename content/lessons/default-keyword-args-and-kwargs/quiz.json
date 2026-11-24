@@ -1,0 +1,56 @@
+[
+  {
+    "question": "What happens when a caller omits a parameter that has a default value?",
+    "options": ["The default is used", "The function always raises an error", "The parameter becomes a list", "Python chooses a random value"],
+    "correctIndex": 0,
+    "explanation": "A default supplies the value when that argument is omitted. The tempting answer is an error, which is what happens for a required parameter with no default."
+  },
+  {
+    "question": "What does `visit(city=\"Leh\", days=4)` use to match each value?",
+    "options": ["The parameter names", "The order of values only", "The values' data types", "The function's return value"],
+    "correctIndex": 0,
+    "explanation": "Keyword arguments match by parameter name, so the order can be changed while the meaning stays clear. The tempting answer is position, which applies to positional arguments."
+  },
+  {
+    "question": "Inside `def total(*values):`, what type of object is `values`?",
+    "options": ["A tuple", "A dictionary", "A string", "A set"],
+    "correctIndex": 0,
+    "explanation": "`*values` collects extra positional arguments into a tuple. A list is a tempting guess because it is a collection, but Python uses a tuple for `*args`."
+  },
+  {
+    "question": "Inside `def show(**details):`, what type of object is `details`?",
+    "options": ["A tuple", "A dictionary", "A list", "A boolean"],
+    "correctIndex": 1,
+    "explanation": "`**details` collects extra keyword arguments into a dictionary of names and values. A tuple is tempting because `*args` uses one, but the double-star form gathers named values."
+  },
+  {
+    "question": "What does `area(*dimensions)` do when `dimensions` is `(8, 5)`?",
+    "options": ["Passes 8 and 5 as separate positional arguments", "Passes the tuple as one argument", "Creates a dictionary", "Returns a tuple"],
+    "correctIndex": 0,
+    "explanation": "In a call, `*` unpacks the sequence so the function receives two positional arguments. The tempting answer treats the call like a definition that collects arguments."
+  },
+  {
+    "question": "What must be true when using `print_settings(**settings)`?",
+    "options": ["Dictionary keys should match parameter names", "The dictionary must have integer keys", "The function must have *args", "The dictionary must be empty"],
+    "correctIndex": 0,
+    "explanation": "The dictionary keys become keyword argument names, so they need to match the function's parameters. The tempting answer focuses on the dictionary's type, but its key names are what matter."
+  },
+  {
+    "question": "Why can a mutable list default cause surprising behavior across calls?",
+    "options": ["The same default object is reused", "Lists cannot be function arguments", "Python converts it into a tuple", "Defaults are recalculated from user input"],
+    "correctIndex": 0,
+    "explanation": "A default object is created when the function is defined and reused by later calls, so changes can persist. The tempting answer assumes Python creates a fresh list each time."
+  },
+  {
+    "question": "What does `def collect(*args, **kwargs):` do?",
+    "options": ["Collects extra positional values in a tuple and extra named values in a dictionary", "Unpacks a tuple and dictionary when calling", "Creates two default values", "Requires exactly two arguments"],
+    "correctIndex": 0,
+    "explanation": "In a function definition, `*args` and `**kwargs` collect extra positional and named values. The tempting answer describes the similar-looking call syntax, where the stars unpack instead."
+  },
+  {
+    "question": "Which call avoids supplying the same parameter twice?",
+    "options": ["`trip(\"Puri\", city=\"Konark\")`", "`trip(city=\"Puri\", city=\"Konark\")`", "`trip(\"Puri\", \"Konark\", city=\"Puri\")`", "`trip(city=\"Puri\", \"Konark\")`"],
+    "correctIndex": 0,
+    "explanation": "The first call supplies one positional value and a separate keyword value for another parameter. The tempting duplicate version assigns `city` twice, which Python rejects."
+  }
+]

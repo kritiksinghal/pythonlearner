@@ -1,0 +1,101 @@
+[
+  {
+    "question": "Under what condition does a while loop terminate naturally in Python?",
+    "options": [
+      "When its boolean condition evaluates to False",
+      "After executing an arbitrary maximum of 10 times",
+      "Whenever an internal if statement is evaluated",
+      "Only when the user closes the terminal window"
+    ],
+    "correctIndex": 0,
+    "explanation": "A while loop evaluates its test condition before every iteration. As soon as the condition produces False (or when an explicit break statement executes), Python halts the loop and resumes execution after the loop block."
+  },
+  {
+    "question": "What is printed by the following code?\n\ncount = 1\nwhile count < 4:\n    print(count)\n    count += 1",
+    "options": [
+      "1, 2, 3 (each on a new line)",
+      "1, 2, 3, 4 (each on a new line)",
+      "0, 1, 2, 3 (each on a new line)",
+      "4"
+    ],
+    "correctIndex": 0,
+    "explanation": "count starts at 1, so lines print 1, 2, and 3. On the next cycle, count is incremented to 4. Because the condition 4 < 4 evaluates to False, the loop terminates without printing 4. A common off-by-one mistake is assuming < 4 includes 4."
+  },
+  {
+    "question": "What is the primary difference between the break and continue statements inside a while loop?",
+    "options": [
+      "break terminates the entire loop immediately; continue skips only the rest of the current iteration",
+      "break pauses the program for 1 second; continue resumes execution",
+      "continue terminates the entire loop; break skips only the current iteration",
+      "Both statements perform identical actions and can be used interchangeably"
+    ],
+    "correctIndex": 0,
+    "explanation": "break completely abandons the loop and jumps directly to the code following the loop block. continue skips only the remaining statements in the current iteration and jumps immediately back to the condition test at the top."
+  },
+  {
+    "question": "What values are displayed by this snippet?\n\nn = 0\nwhile n < 5:\n    n += 1\n    if n == 3:\n        continue\n    print(n)",
+    "options": [
+      "1, 2, 4, 5 (skipping 3)",
+      "1, 2, 3, 4, 5",
+      "1, 2",
+      "3, 4, 5"
+    ],
+    "correctIndex": 0,
+    "explanation": "When n reaches 3, the condition n == 3 triggers continue, bypassing print(n) for that cycle. Iterations 1, 2, 4, and 5 run normally, resulting in 1, 2, 4, 5."
+  },
+  {
+    "question": "What is the root cause of an unintended infinite loop?",
+    "options": [
+      "The loop condition never transitions to False during execution",
+      "The loop body contains more than ten statements",
+      "Using augmented assignment operators like += inside the body",
+      "Using list index lookups inside the loop"
+    ],
+    "correctIndex": 0,
+    "explanation": "An infinite loop occurs when the loop condition evaluates to True on every single pass, usually because the loop counter or state variable is never updated toward the stopping boundary inside the loop body."
+  },
+  {
+    "question": "What is the final value of total after this loop completes?\n\ntotal = 0\ni = 1\nwhile i <= 4:\n    total += i\n    i += 1",
+    "options": [
+      "10",
+      "6",
+      "4",
+      "15"
+    ],
+    "correctIndex": 0,
+    "explanation": "Using the accumulator pattern, total successively adds 1 (total = 1), 2 (total = 3), 3 (total = 6), and 4 (total = 10). When i becomes 5, 5 <= 4 evaluates to False, leaving total at 10."
+  },
+  {
+    "question": "What is printed by the following code?\n\nx = 10\nwhile x > 5:\n    x -= 2\nprint(x)",
+    "options": [
+      "4",
+      "5",
+      "6",
+      "8"
+    ],
+    "correctIndex": 0,
+    "explanation": "On cycle 1, x drops from 10 to 8 (8 > 5 is True). On cycle 2, x drops from 8 to 6 (6 > 5 is True). On cycle 3, x drops from 6 to 4. When Python re-tests 4 > 5, the condition is False. The loop terminates and print(x) displays 4."
+  },
+  {
+    "question": "Which line contains an error in this code?\n\n1: count = 0\n2: while count < 10\n3:     print(count)\n4:     count += 1",
+    "options": [
+      "Line 2 (missing colon at the end)",
+      "Line 1 (missing quotation marks around 0)",
+      "Line 3 (print cannot run inside while)",
+      "Line 4 (count += 1 is invalid syntax)"
+    ],
+    "correctIndex": 0,
+    "explanation": "Line 2 is missing the mandatory colon (:) at the end of the while header. Python expects while condition: and will raise SyntaxError: expected ':'."
+  },
+  {
+    "question": "Why is the while True: loop construct frequently used with a break statement?",
+    "options": [
+      "It allows loops to run until an exit condition evaluated inside the body triggers a break",
+      "Python does not permit boolean conditions directly on the while statement line",
+      "It makes mathematical calculations run significantly faster",
+      "It allows programs to run without indentation"
+    ],
+    "correctIndex": 0,
+    "explanation": "The while True: pattern (sentinel loop) is standard practice when the termination condition depends on logic evaluated in the middle or end of the loop body (like user input or data retrieval), allowing an explicit break to exit cleanly."
+  }
+]

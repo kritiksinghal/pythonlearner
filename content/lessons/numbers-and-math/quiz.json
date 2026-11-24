@@ -1,0 +1,101 @@
+[
+  {
+    "question": "What is the return type and value produced by the true division expression `12 / 4` in Python 3?",
+    "options": [
+      "Integer with value `3`",
+      "Float with value `3.0`",
+      "String with value `'3.0'`",
+      "Integer with value `0`"
+    ],
+    "correctIndex": 1,
+    "explanation": "In Python 3, the single slash division operator `/` always performs true floating-point division and returns a `float` (here `3.0`), even when the operands divide with no remainder. Floor division (`//`) returns an integer."
+  },
+  {
+    "question": "What does the floor division expression `17 // 5` evaluate to?",
+    "options": [
+      "3.4",
+      "3",
+      "2",
+      "4"
+    ],
+    "correctIndex": 1,
+    "explanation": "Floor division `//` computes the mathematical quotient and truncates any decimal fraction toward negative infinity. Since 5 goes into 17 three whole times with 2 leftover, `17 // 5` returns integer `3`."
+  },
+  {
+    "question": "What is the value of the modulo expression `23 % 5`?",
+    "options": [
+      "4.6",
+      "4",
+      "3",
+      "0"
+    ],
+    "correctIndex": 2,
+    "explanation": "The modulo operator `%` returns the remainder after integer division. Since `23 = (4 * 5) + 3`, the remainder is `3`."
+  },
+  {
+    "question": "Which operator performs mathematical exponentiation (power) in Python?",
+    "options": [
+      "^",
+      "**",
+      "pow^",
+      "^^"
+    ],
+    "correctIndex": 1,
+    "explanation": "Python uses `**` for exponentiation (e.g. `2 ** 3` evaluates to `8`). In Python, the caret `^` represents the bitwise XOR operator."
+  },
+  {
+    "question": "What is the result of evaluating `10 + 4 * 2`?",
+    "options": [
+      "28",
+      "18",
+      "48",
+      "20"
+    ],
+    "correctIndex": 1,
+    "explanation": "By PEMDAS precedence rules, multiplication `*` evaluates before addition `+`. Thus, `4 * 2` is evaluated first to `8`, and `10 + 8` yields `18`."
+  },
+  {
+    "question": "Why does Python evaluate `0.1 + 0.2` to `0.30000000000000004` rather than exact `0.3`?",
+    "options": [
+      "Because Python has an unpatched arithmetic bug.",
+      "Because computers represent floating-point decimals using base-2 binary registers where 0.1 cannot be stored as an exact finite fraction.",
+      "Because the computer processor was running in low-power mode.",
+      "Because Python automatically adds a margin of error to all floating-point numbers."
+    ],
+    "correctIndex": 1,
+    "explanation": "This behavior is an unavoidable consequence of the IEEE 754 binary floating-point standard used by all modern computer hardware. Numbers like 0.1 have repeating infinite binary fractions (analogous to 1/3 in base 10), causing tiny rounding artifacts in the 17th decimal place."
+  },
+  {
+    "question": "What will `abs(-75)` return?",
+    "options": [
+      "-75",
+      "75",
+      "0",
+      "TypeError"
+    ],
+    "correctIndex": 1,
+    "explanation": "The built-in function `abs()` returns the absolute value (magnitude) of a number, stripping any negative sign. Hence `abs(-75)` evaluates to `75`."
+  },
+  {
+    "question": "What does the statement `score += 10` do to the variable `score`?",
+    "options": [
+      "Checks if `score` equals 10.",
+      "Replaces `score` with 10.",
+      "Adds 10 to the current value of `score` and reassigns the result back to `score`.",
+      "Raises a SyntaxError because `+=` is not valid Python syntax."
+    ],
+    "correctIndex": 2,
+    "explanation": "`+=` is an augmented assignment operator. `score += 10` is shorthand for `score = score + 10`, updating the variable in place."
+  },
+  {
+    "question": "What error occurs if you run `total = 50 + '25'`?",
+    "options": [
+      "SyntaxError: invalid syntax",
+      "TypeError: unsupported operand type(s) for +: 'int' and 'str'",
+      "ValueError: invalid literal",
+      "NameError: name 'total' is not defined"
+    ],
+    "correctIndex": 1,
+    "explanation": "Python is strongly typed and will not implicitly convert string `'25'` into an integer for arithmetic addition. It raises a `TypeError` explaining that `+` cannot operate between `int` and `str`."
+  }
+]

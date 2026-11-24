@@ -1,0 +1,101 @@
+[
+  {
+    "question": "What are the two valid boolean literals in Python?",
+    "options": [
+      "`true` and `false`",
+      "`True` and `False`",
+      "`YES` and `NO`",
+      "`1` and `0`"
+    ],
+    "correctIndex": 1,
+    "explanation": "In Python, boolean literals must be capitalized as `True` and `False`. Using lowercase `true` or `false` raises a NameError because Python treats them as unassigned variable names."
+  },
+  {
+    "question": "What is the difference between `=` and `==` in Python?",
+    "options": [
+      "`=` assigns a value to a variable, while `==` checks whether two values are equal.",
+      "`=` checks for equality, while `==` assigns a value.",
+      "Both operators perform identical operations and can be used interchangeably.",
+      "`=` is for integers, while `==` is for strings."
+    ],
+    "correctIndex": 0,
+    "explanation": "`=` is the assignment operator that binds a variable name to an object. `==` is the relational equality operator that tests whether the expressions on both sides evaluate to equal values."
+  },
+  {
+    "question": "What does the comparison `'apple' > 'Banana'` evaluate to in Python?",
+    "options": [
+      "`False` because Banana has more letters than apple",
+      "`True` because lowercase 'a' has a higher Unicode code point (97) than uppercase 'B' (66)",
+      "`TypeError` because words cannot be compared with greater-than",
+      "`None`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Python compares strings character by character based on their Unicode ordinal numbers. In ASCII/Unicode, all uppercase letters (A–Z: 65–90) precede all lowercase letters (a–z: 97–122). Because 97 > 66, `'apple' > 'Banana'` evaluates to `True`."
+  },
+  {
+    "question": "What does the chained comparison `10 < 15 < 20` evaluate to?",
+    "options": [
+      "`True`",
+      "`False`",
+      "`TypeError: cannot chain comparisons`",
+      "`15`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Python supports chained comparisons. `10 < 15 < 20` is shorthand for `10 < 15 and 15 < 20`. Because both conditions hold true, the entire expression evaluates to `True`."
+  },
+  {
+    "question": "Which of the following values evaluates to `True` when passed to `bool()`?",
+    "options": [
+      "`0`",
+      "`\"\"` (empty string)",
+      "`\"0\"` (string containing the digit zero)",
+      "`None`"
+    ],
+    "correctIndex": 2,
+    "explanation": "In Python, any non-empty string is considered truthy, even if it contains the character `'0'` or whitespace. Only genuinely empty strings `\"\"`, the numeric zero `0`, and `None` evaluate to `False`."
+  },
+  {
+    "question": "What is the result of evaluating `bool(' ')` (a string containing a single space)?",
+    "options": [
+      "`False` because space is whitespace",
+      "`True` because the string length is 1 (non-empty)",
+      "`None`",
+      "`SyntaxError`"
+    ],
+    "correctIndex": 1,
+    "explanation": "A string containing a single space character has a length of 1. Because it is non-empty, Python evaluates its truthiness as `True`."
+  },
+  {
+    "question": "What will Python output for `True + True`?",
+    "options": [
+      "`TrueTrue`",
+      "`2`",
+      "`TypeError: unsupported operand`",
+      "`True`"
+    ],
+    "correctIndex": 1,
+    "explanation": "In Python, `bool` is a direct subclass of `int`. `True` evaluates to the integer `1` and `False` evaluates to `0` in arithmetic contexts, so `True + True` computes `1 + 1 = 2`."
+  },
+  {
+    "question": "Why does `0.1 + 0.2 == 0.3` return `False` in Python?",
+    "options": [
+      "Because Python cannot add decimal numbers.",
+      "Because IEEE 754 binary floating-point representation causes tiny rounding inaccuracies in fractional values.",
+      "Because Python round-trips floating-point numbers to integers.",
+      "Because 0.1 and 0.2 are imaginary numbers."
+    ],
+    "correctIndex": 1,
+    "explanation": "Hardware floating-point arithmetic represents decimals using binary fractions, which cannot represent 0.1 or 0.2 with exact finite precision. The evaluated sum is `0.30000000000000004`, which is strictly not equal to `0.3`."
+  },
+  {
+    "question": "What will `age = 20; print(18 <= age <= 25)` print?",
+    "options": [
+      "`True`",
+      "`False`",
+      "`SyntaxError`",
+      "`20`"
+    ],
+    "correctIndex": 0,
+    "explanation": "The chained comparison evaluates whether 20 is greater than or equal to 18 AND less than or equal to 25. Since both sub-conditions are true, it outputs `True`."
+  }
+]

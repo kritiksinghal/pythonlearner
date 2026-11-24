@@ -1,0 +1,56 @@
+[
+  {
+    "question": "Where can a local variable assigned inside a function normally be used?",
+    "options": ["Inside that function", "In every function", "Only at the top level", "Only after the program ends"],
+    "correctIndex": 0,
+    "explanation": "A local name belongs to the function where it is assigned. The tempting answer says every function because the name exists somewhere in the program, but local scope keeps it limited."
+  },
+  {
+    "question": "Can a function read a global variable when it has no local name with the same spelling?",
+    "options": ["Yes", "No, globals are never visible inside functions", "Only after using `global`", "Only if the value is a string"],
+    "correctIndex": 0,
+    "explanation": "Python searches the global scope after local and enclosing scopes, so a function can read a global name. The tempting answer confuses reading a global with assigning to one."
+  },
+  {
+    "question": "If a function assigns `venue = \"Hall\"` inside its body, what happens to a global `venue` by default?",
+    "options": ["A local venue is created; the global remains unchanged", "The global is always overwritten", "Both names are deleted", "Python raises SyntaxError"],
+    "correctIndex": 0,
+    "explanation": "Assignment inside a function makes the name local by default, so the global value remains as it was. The tempting answer assumes same spelling means shared storage, but scope distinguishes the names."
+  },
+  {
+    "question": "What is the usual Python name search order inside a function?",
+    "options": ["Local, enclosing, global, built-in", "Global, local, built-in, enclosing", "Built-in, global, local, enclosing", "Enclosing, built-in, local, global"],
+    "correctIndex": 0,
+    "explanation": "Python checks local, enclosing, global, and built-in scopes in that order. The tempting choice starts at global, but a local variable with the same name takes precedence."
+  },
+  {
+    "question": "What does a function parameter represent in terms of scope?",
+    "options": ["A local name for that function call", "A global name", "A built-in name", "A name shared with every function"],
+    "correctIndex": 0,
+    "explanation": "A parameter is local to the function call and receives the caller's value. It may feel global because the caller supplies it, but it does not become a top-level variable."
+  },
+  {
+    "question": "What happens when an inner function reads a name from its enclosing function and does not define it locally?",
+    "options": ["It can find the enclosing name", "It must use `global`", "It always raises NameError", "It changes the enclosing name"],
+    "correctIndex": 0,
+    "explanation": "Python searches enclosing function scopes after the current local scope, so the inner function can read that value. The tempting answer assumes only locals and globals exist."
+  },
+  {
+    "question": "Which approach makes an updated value easiest to see at the call site?",
+    "options": ["Pass the value as a parameter and assign the returned result", "Change an unrelated local variable", "Print a new value but do not return it", "Rename the global variable"],
+    "correctIndex": 0,
+    "explanation": "Passing a value in and assigning the returned result makes the data flow visible where the function is called. The tempting print approach shows output but does not provide a value for the caller to store."
+  },
+  {
+    "question": "What is likely when a function tries to use a name that is not defined in any visible scope?",
+    "options": ["NameError", "KeyError", "IndexError", "StopIteration"],
+    "correctIndex": 0,
+    "explanation": "Python raises `NameError` when it cannot find a name in the visible scopes. `KeyError` is a tempting answer because it also involves a missing item, but it refers to dictionary keys."
+  },
+  {
+    "question": "Why are parameters often clearer than changing a global value?",
+    "options": ["They show what information the function receives", "They make the function run automatically", "They prevent the function from returning", "They make all names global"],
+    "correctIndex": 0,
+    "explanation": "Parameters make a function's dependencies visible in its definition and call. The tempting idea is that parameters are a performance switch, but their main benefit here is clear data flow."
+  }
+]

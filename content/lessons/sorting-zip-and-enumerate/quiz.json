@@ -1,0 +1,56 @@
+[
+  {
+    "question": "What is the main difference between `sorted(values)` and `values.sort()`?",
+    "options": ["`sorted` returns a new list; `.sort()` rearranges the list itself", "`.sort()` returns a new list; `sorted` changes the original", "They both return tuples", "They both sort in descending order"],
+    "correctIndex": 0,
+    "explanation": "`sorted` leaves the input alone and returns a sorted list, while `.sort()` changes the list in place and returns `None`. The tempting answer swaps the two behaviors."
+  },
+  {
+    "question": "What does `sorted(scores, reverse=True)` do?",
+    "options": ["Sorts scores from highest to lowest", "Reverses the list without sorting", "Deletes the first score", "Changes scores in place"],
+    "correctIndex": 0,
+    "explanation": "`reverse=True` asks for the sorted result in descending order. It is tempting to think it only flips the original sequence, but sorting still happens."
+  },
+  {
+    "question": "In `sorted(tracks, key=duration)`, what does the key function provide?",
+    "options": ["The value used to compare each track", "The value that replaces each track in the result", "A new track name", "The number of tracks to keep"],
+    "correctIndex": 0,
+    "explanation": "Python uses the key function's result to decide the order, while the output still contains the original track items. The tempting answer confuses a comparison key with a transformed result."
+  },
+  {
+    "question": "If `zip(names, scores)` receives lists of lengths 3 and 2, how many pairs does it produce?",
+    "options": ["One", "Two", "Three", "Five"],
+    "correctIndex": 1,
+    "explanation": "Ordinary `zip` stops when the shortest input ends, so it creates two pairs. A tempting answer is three because that is the longer list's length, but there is no third score to pair."
+  },
+  {
+    "question": "What does `enumerate([\"a\", \"b\"])` produce on its first loop pass?",
+    "options": ["`(0, \"a\")`", "`(1, \"a\")`", "`(\"a\", 0)`", "`(0, \"b\")`"],
+    "correctIndex": 0,
+    "explanation": "The default counter starts at zero, and the first item is `\"a\"`, so the first pair is `(0, \"a\")`. The tempting answer starts at one because many displayed lists use one-based numbering."
+  },
+  {
+    "question": "What does `enumerate(names, start=1)` change?",
+    "options": ["The counter produced by enumerate", "The list's valid indexes", "The order of names", "The first item in names"],
+    "correctIndex": 0,
+    "explanation": "The `start` option changes the counter value produced for display. It does not change the underlying list indexes, which still begin at zero; that is the tempting mix-up."
+  },
+  {
+    "question": "What is `list(zip([\"Asha\", \"Mina\"], [40]))`?",
+    "options": ["`[(\"Asha\", 40)]`", "`[(\"Asha\", 40), (\"Mina\", None)]`", "`[(\"Asha\", 40), (\"Mina\", 0)]`", "An error"],
+    "correctIndex": 0,
+    "explanation": "`zip` stops at the shortest input, so only Asha has a corresponding score and only one pair is made. The tempting choice fills a missing value automatically, but ordinary `zip` does not do that."
+  },
+  {
+    "question": "Which loop header provides both a one-based number and each task?",
+    "options": ["`for number, task in enumerate(tasks, start=1):`", "`for number, task in zip(tasks):`", "`for number, task in sorted(tasks):`", "`for task, number in tasks:`"],
+    "correctIndex": 0,
+    "explanation": "`enumerate` yields a counter and item, and `start=1` makes the counter begin at one. `zip` is tempting because it pairs values, but with one input it does not create a counter."
+  },
+  {
+    "question": "What does `values = values.sort()` leave in `values` after the method runs?",
+    "options": ["`None`", "The sorted list", "The original list", "A tuple"],
+    "correctIndex": 0,
+    "explanation": "`.sort()` rearranges the list and returns `None`, so assigning that return value replaces the variable with `None`. The tempting answer assumes the method returns the modified list."
+  }
+]

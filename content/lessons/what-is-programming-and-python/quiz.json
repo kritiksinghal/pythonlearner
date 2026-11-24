@@ -1,0 +1,101 @@
+[
+  {
+    "question": "What primary role does the Python interpreter perform when you run a program?",
+    "options": [
+      "It physically solders electrical connections on your motherboard to match your code.",
+      "It translates your human-readable source code into bytecode and executes it via a virtual machine.",
+      "It permanently converts your computer's operating system into raw assembly instructions.",
+      "It compiles your Python code into a standalone hardware microchip."
+    ],
+    "correctIndex": 1,
+    "explanation": "The Python interpreter (such as CPython) parses human-readable text into an abstract syntax tree, compiles it into platform-independent bytecode, and executes those instructions on the Python Virtual Machine. It does not alter hardware or permanently reflash the operating system."
+  },
+  {
+    "question": "What is the primary operational difference between high-level programming languages and machine code?",
+    "options": [
+      "High-level languages can only solve simple addition, whereas machine code solves calculus.",
+      "High-level languages use human-readable syntax and abstraction, whereas machine code consists of raw binary instructions executed directly by the CPU.",
+      "High-level languages run without requiring electrical power on the host computer.",
+      "Machine code requires a web browser to run, whereas high-level languages do not."
+    ],
+    "correctIndex": 1,
+    "explanation": "High-level languages like Python provide readable words, structured data types, and logical operators that abstract away hardware specifics. Machine code consists of raw binary bits (1s and 0s) that the CPU's arithmetic logic unit decodes directly."
+  },
+  {
+    "question": "What output is produced by evaluating the expression `print('Py' * 3)`?",
+    "options": [
+      "Py 3",
+      "PyPyPy",
+      "TypeError: unsupported operand type",
+      "9"
+    ],
+    "correctIndex": 1,
+    "explanation": "In Python, multiplying a string by an integer duplicates the string sequence without spaces. Multiplying `'Py'` by `3` yields `'PyPyPy'`. It does not calculate numbers or raise an error."
+  },
+  {
+    "question": "Which of the following built-in functions reports the underlying data type of a value in Python?",
+    "options": [
+      "typeof()",
+      "inspect()",
+      "type()",
+      "classof()"
+    ],
+    "correctIndex": 2,
+    "explanation": "Python provides the built-in function `type()` to inspect the runtime category of any object, returning types such as `<class 'int'>` or `<class 'str'>`. Keywords like `typeof` belong to JavaScript, not Python."
+  },
+  {
+    "question": "Why does Python evaluate `186 / 20` to `9.3` as a float rather than an integer `9`?",
+    "options": [
+      "Because Python 3 division with a single forward slash `/` always performs true floating-point division.",
+      "Because 186 is an imaginary number in standard arithmetic.",
+      "Because the terminal display automatically appends decimals to all whole numbers.",
+      "Because Python was unable to find an exact whole factor."
+    ],
+    "correctIndex": 0,
+    "explanation": "In Python 3, the single slash operator `/` denotes true division, always returning a `float` even when numbers divide evenly (e.g. `4 / 2` yields `2.0`). Floor division that truncates to an integer requires the `//` operator."
+  },
+  {
+    "question": "What happens if you attempt to execute the line `result = 45 / 0` in Python?",
+    "options": [
+      "Python assigns `result` the value `Infinity` and continues execution silently.",
+      "Python rounds the output to 0.",
+      "Python raises a `ZeroDivisionError` and halts execution.",
+      "Python restarts the host operating system."
+    ],
+    "correctIndex": 2,
+    "explanation": "Division by zero is mathematically undefined. Python immediately stops execution and raises a `ZeroDivisionError` exception with an informative traceback, preventing corrupted numerical calculations."
+  },
+  {
+    "question": "What is the primary role of Python's intermediate bytecode (`.pyc` files)?",
+    "options": [
+      "To encrypt source code so that no other programmer can read it.",
+      "To cache parsed, pre-compiled virtual machine instructions, speeding up subsequent program startup times.",
+      "To convert Python scripts into HTML web pages automatically.",
+      "To compress text files so they consume less space on USB drives."
+    ],
+    "correctIndex": 1,
+    "explanation": "Bytecode represents an intermediate stage between human source text and machine hardware. CPython caches compiled bytecode in `__pycache__` directories to bypass the tokenizing and parsing phases on future executions when source files haven't changed."
+  },
+  {
+    "question": "Which error will Python raise if you execute `print(score)` before assigning any value to `score`?",
+    "options": [
+      "SyntaxError: invalid syntax",
+      "NameError: name 'score' is not defined",
+      "TypeError: unsupported operand",
+      "ValueError: invalid literal"
+    ],
+    "correctIndex": 1,
+    "explanation": "When Python encounters an identifier that has not been defined in the local, global, or built-in namespace, it raises a `NameError`. It is not a syntax error because the grammar `print(identifier)` is syntactically valid."
+  },
+  {
+    "question": "What happens if a program contains a `SyntaxError` on line 10 of a 20-line file?",
+    "options": [
+      "Lines 1 through 9 execute, and then the program halts on line 10.",
+      "The program will not execute any lines because Python's parser fails during the compilation phase before execution begins.",
+      "Python skips line 10 and executes lines 11 through 20.",
+      "Python automatically corrects the syntax error and runs the entire file."
+    ],
+    "correctIndex": 1,
+    "explanation": "Syntax errors are caught during the parsing phase before the Python Virtual Machine executes any runtime instructions. Because the parser cannot construct a valid Abstract Syntax Tree, the script does not start running at all."
+  }
+]

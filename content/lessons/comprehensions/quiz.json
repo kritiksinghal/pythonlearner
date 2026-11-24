@@ -1,0 +1,56 @@
+[
+  {
+    "question": "What is the value of `[price + 5 for price in [10, 20]]`?",
+    "options": ["`[15, 25]`", "`[10, 20, 5]`", "`[True, True]`", "`25`"],
+    "correctIndex": 0,
+    "explanation": "The expression adds five to each source value, making a new two-item list. A tempting mistake is to add five as a separate third item, but the expression is evaluated once for each existing item."
+  },
+  {
+    "question": "Which comprehension keeps only values greater than 10 from `numbers`?",
+    "options": ["`[n if n > 10 for n in numbers]`", "`[n for n in numbers if n > 10]`", "`[n for n > 10 in numbers]`", "`{n for n in numbers}`"],
+    "correctIndex": 1,
+    "explanation": "The filter belongs after the `for` clause and keeps values that pass the condition. The tempting first option starts an if expression before the loop but has no else branch."
+  },
+  {
+    "question": "How many output values does `[\"pass\" if mark >= 50 else \"retry\" for mark in [45, 80]]` produce?",
+    "options": ["Zero", "One", "Two", "Three"],
+    "correctIndex": 2,
+    "explanation": "A conditional expression chooses a label for every source mark, so there are two results. The tempting answer is one because only one mark passes, but this form does not filter either mark out."
+  },
+  {
+    "question": "What collection type does `{name[0] for name in names}` create?",
+    "options": ["List", "Tuple", "Set", "Dictionary"],
+    "correctIndex": 2,
+    "explanation": "Braces with one expression and a `for` clause create a set comprehension. A dictionary is a tempting guess because it also uses braces, but a dictionary comprehension needs a key, a colon, and a value."
+  },
+  {
+    "question": "What does `{name: len(name) for name in names}` create?",
+    "options": ["A dictionary mapping each name to its length", "A list of names", "A set of lengths", "A tuple of pairs"],
+    "correctIndex": 0,
+    "explanation": "The expression before the colon is each key and the expression after it is the value, producing a dictionary. A set is tempting because the form uses braces, but sets do not use key-value colons."
+  },
+  {
+    "question": "What is the main effect of adding `if score >= 50` after the `for` clause in a list comprehension?",
+    "options": ["It selects which source items contribute results", "It creates two results for each item", "It sorts the result", "It changes the source list"],
+    "correctIndex": 0,
+    "explanation": "A filter includes only items that satisfy the condition. It is tempting to think this changes or sorts the original list, but the comprehension builds a separate result and does not sort it."
+  },
+  {
+    "question": "If two source values produce the same result in a set comprehension, how many copies of that result are in the set?",
+    "options": ["One", "Two", "None", "It depends on the source order"],
+    "correctIndex": 0,
+    "explanation": "A set stores unique members, so equal results appear once. A list comprehension would preserve both repeats, which is a tempting assumption to carry over."
+  },
+  {
+    "question": "When is a regular loop usually clearer than a comprehension?",
+    "options": ["When the transformation is one short expression", "When you need several statements or intermediate steps", "Whenever the source is a list", "Whenever the result is a list"],
+    "correctIndex": 1,
+    "explanation": "A regular loop gives space for several actions and named intermediate values. It is tempting to think comprehensions are always better because they are shorter, but clarity matters more than line count."
+  },
+  {
+    "question": "What happens with `[grade for score in scores]` if no variable named `grade` exists?",
+    "options": ["It returns each score", "It raises NameError", "It returns an empty list", "It raises KeyError"],
+    "correctIndex": 1,
+    "explanation": "The comprehension tries to evaluate `grade`, which has not been defined, so Python raises `NameError`. The tempting answer assumes the expression automatically uses the loop variable, but the names must match."
+  }
+]

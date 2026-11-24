@@ -1,0 +1,101 @@
+[
+  {
+    "question": "Which operator is used in Python to test whether two values are equal?",
+    "options": [
+      "=",
+      "==",
+      "===",
+      "!="
+    ],
+    "correctIndex": 1,
+    "explanation": "== is the equality comparison operator that returns True when both operands are equal. A single = is the assignment operator used to store values in variables. === is used in languages like JavaScript but does not exist in Python. != tests for inequality."
+  },
+  {
+    "question": "What is printed by the following code?\n\nx = 15\nif x > 10:\n    print('A')\nelif x > 5:\n    print('B')\nelse:\n    print('C')",
+    "options": [
+      "A",
+      "B",
+      "A and B",
+      "C"
+    ],
+    "correctIndex": 0,
+    "explanation": "Python evaluates an if-elif-else ladder sequentially from top to bottom and stops at the very first condition that evaluates to True. Because 15 > 10 is True, 'A' is printed and the rest of the chain is skipped entirely, even though 15 > 5 is also True."
+  },
+  {
+    "question": "What is the boolean result of evaluating (10 > 5) and (3 > 7)?",
+    "options": [
+      "True",
+      "False",
+      "None",
+      "SyntaxError"
+    ],
+    "correctIndex": 1,
+    "explanation": "The and operator requires both sides to be True. 10 > 5 is True, but 3 > 7 is False. Since one of the conditions is False, the entire and expression evaluates to False."
+  },
+  {
+    "question": "What does this code print?\n\nscore = 45\nif score >= 50 or score % 5 == 0:\n    print('Qualified')\nelse:\n    print('Disqualified')",
+    "options": [
+      "Disqualified",
+      "Qualified",
+      "SyntaxError",
+      "45"
+    ],
+    "correctIndex": 1,
+    "explanation": "The or operator evaluates to True if at least one of the conditions is True. While 45 >= 50 is False, 45 % 5 == 0 is True because 45 divides evenly by 5 with no remainder. Thus, the condition succeeds and 'Qualified' is printed."
+  },
+  {
+    "question": "What error is raised when running: grade = '90'; if grade >= 80: print('Honor Roll')?",
+    "options": [
+      "SyntaxError",
+      "TypeError",
+      "ValueError",
+      "NameError"
+    ],
+    "correctIndex": 1,
+    "explanation": "grade contains the string '90', while 80 is an integer. Python raises TypeError: '>=' not supported between instances of 'str' and 'int'. You must explicitly convert the string to a number using int(grade) before making numerical comparisons."
+  },
+  {
+    "question": "What does the following code display?\n\nitems = ''\nif items:\n    print('Cart has items')\nelse:\n    print('Cart is empty')",
+    "options": [
+      "Cart has items",
+      "Cart is empty",
+      "None",
+      "TypeError"
+    ],
+    "correctIndex": 1,
+    "explanation": "In Python, an empty string '' is falsy. When evaluated in a boolean context, it acts as False, causing execution to jump directly to the else block to print 'Cart is empty'."
+  },
+  {
+    "question": "What is short-circuit evaluation in Python logical expressions?",
+    "options": [
+      "Checking for syntax errors before running code",
+      "Stopping expression evaluation as soon as the final boolean result is certain",
+      "Automatically repairing indentation issues in nested blocks",
+      "Converting integers to booleans during comparisons"
+    ],
+    "correctIndex": 1,
+    "explanation": "Short-circuit evaluation means Python stops evaluating as soon as the outcome is guaranteed: in an or expression, if the first part is True, the rest is not evaluated. In an and expression, if the first part is False, Python stops immediately."
+  },
+  {
+    "question": "What does this code print?\n\nval = 8\nif not val < 10:\n    print('High')\nelse:\n    print('Low')",
+    "options": [
+      "High",
+      "Low",
+      "True",
+      "False"
+    ],
+    "correctIndex": 1,
+    "explanation": "val < 10 evaluates to True because 8 is less than 10. The not operator inverts True to False. Since the condition is False, the else block runs and prints 'Low'."
+  },
+  {
+    "question": "How does Python determine which lines of code belong inside an if statement?",
+    "options": [
+      "By enclosing the block in curly braces {}",
+      "By consistent indentation following the colon on the if line",
+      "By placing the block between begin and end keywords",
+      "By writing all statements on a single continuous line"
+    ],
+    "correctIndex": 1,
+    "explanation": "Python uses indentation (standard is 4 spaces) rather than curly braces or keywords to define blocks of code. All consecutively indented lines following the colon belong to that block."
+  }
+]

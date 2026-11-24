@@ -1,0 +1,56 @@
+[
+  {
+    "question": "In `def greet(name):`, what is `name`?",
+    "options": ["A parameter", "An argument", "A return value", "A function call"],
+    "correctIndex": 0,
+    "explanation": "`name` is the parameter named in the function definition. The tempting answer is argument, but an argument is the value supplied in a call, such as `greet(\"Ravi\")`."
+  },
+  {
+    "question": "In `greet(\"Ravi\")`, what is `\"Ravi\"`?",
+    "options": ["A parameter", "An argument", "The function body", "A return statement"],
+    "correctIndex": 1,
+    "explanation": "`\"Ravi\"` is the argument passed to the call and matched with the parameter. The tempting answer is parameter because both terms describe inputs, but only the definition contains parameters."
+  },
+  {
+    "question": "What does `return price + fee` do inside a function?",
+    "options": ["Displays the sum only", "Sends the sum back and ends the call", "Stores the sum in a global variable", "Runs the function again"],
+    "correctIndex": 1,
+    "explanation": "`return` makes the calculated sum the value of the function call and ends that call. `print` is the tempting mix-up because it displays a value but does not provide that value to the caller."
+  },
+  {
+    "question": "What value does a function produce if it reaches the end without a return statement?",
+    "options": ["0", "False", "None", "An empty string"],
+    "correctIndex": 2,
+    "explanation": "Python returns `None` when a function finishes without an explicit return. It is tempting to expect zero or an empty string, but Python does not invent a type-specific default."
+  },
+  {
+    "question": "What is the difference between `print(result)` and `return result`?",
+    "options": ["Print displays it; return gives it back to code", "They are interchangeable", "Print ends the function; return continues it", "Return writes it to the screen"],
+    "correctIndex": 0,
+    "explanation": "`print` is for visible output, while `return` makes a result available to the caller. The tempting choice treats them as synonyms because both can involve the same value."
+  },
+  {
+    "question": "What does `total = add(20, 5)` do if `add` returns the sum?",
+    "options": ["Stores 25 in total", "Prints 25 but stores None", "Stores the text \"25\"", "Calls add twice"],
+    "correctIndex": 0,
+    "explanation": "The function call evaluates to its returned value, 25, and the assignment stores that number in `total`. The tempting answer confuses return with print, which would show the value without assigning it."
+  },
+  {
+    "question": "What happens if `def label_box(color):` is called as `label_box()`?",
+    "options": ["It uses an empty string", "It raises TypeError because a required argument is missing", "It returns None", "It uses the word color"],
+    "correctIndex": 1,
+    "explanation": "The function requires one argument for `color`, so calling with none raises `TypeError`. The tempting answer assumes an omitted input becomes blank, but no default was defined."
+  },
+  {
+    "question": "What does `return name, score` return?",
+    "options": ["A tuple containing both values", "Two separate function results", "A list", "Only score"],
+    "correctIndex": 0,
+    "explanation": "Comma-separated values are packed into a tuple and returned together. The tempting answer says two results, but a function call has one result value here: the tuple."
+  },
+  {
+    "question": "If a function returns `True`, what can the caller do with that value?",
+    "options": ["Use it as a condition in an if statement", "Only print it", "It must be converted to text", "Nothing; booleans cannot be returned"],
+    "correctIndex": 0,
+    "explanation": "A returned boolean is a normal value and can control an `if` statement. Printing it is possible but not required; the tempting answer limits the value to display even though the caller can use it in logic."
+  }
+]

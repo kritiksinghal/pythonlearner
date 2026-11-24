@@ -1,0 +1,101 @@
+[
+  {
+    "question": "Which of the following expressions creates a valid single-element tuple containing the integer 42?",
+    "options": [
+      "(42)",
+      "(42,)",
+      "tuple[42]",
+      "tuple.single(42)"
+    ],
+    "correctIndex": 1,
+    "explanation": "A trailing comma is mandatory to distinguish a single-element tuple from parenthesized grouping. `(42)` is just the integer 42."
+  },
+  {
+    "question": "What happens when you try to execute `coordinates = (10, 20); coordinates[0] = 99`?",
+    "options": [
+      "The first element is updated to 99",
+      "Python creates a new tuple with the updated value",
+      "Python raises a TypeError because tuples are immutable",
+      "Python raises a ValueError"
+    ],
+    "correctIndex": 2,
+    "explanation": "Tuples are immutable; once created, item assignment is not supported and Python raises `TypeError: 'tuple' object does not support item assignment`."
+  },
+  {
+    "question": "What will `a` and `b` be after executing `a = 5; b = 10; a, b = b, a`?",
+    "options": [
+      "a = 5, b = 5",
+      "a = 10, b = 5",
+      "a = 10, b = 10",
+      "Python raises a SyntaxError"
+    ],
+    "correctIndex": 1,
+    "explanation": "Python evaluates the right-hand tuple `(b, a)` first, packaging `(10, 5)`, and then unpacks it into `a` and `b`, swapping their values cleanly."
+  },
+  {
+    "question": "What is the value of `tail` after running `head, *tail = (1, 2, 3, 4)`?",
+    "options": [
+      "(2, 3, 4)",
+      "[2, 3, 4]",
+      "4",
+      "[1, 2, 3]"
+    ],
+    "correctIndex": 1,
+    "explanation": "In extended iterable unpacking, the starred variable captures all remaining elements as a list: `[2, 3, 4]`."
+  },
+  {
+    "question": "Which method is available on a tuple object?",
+    "options": [
+      "append()",
+      "pop()",
+      "count()",
+      "sort()"
+    ],
+    "correctIndex": 2,
+    "explanation": "Tuples only have two methods: `count()` and `index()`. Mutating methods like `append()`, `pop()`, or `sort()` do not exist on tuples."
+  },
+  {
+    "question": "Why can a tuple of integers be used as a dictionary key while a list cannot?",
+    "options": [
+      "Tuples are smaller in memory than lists",
+      "Tuples are hashable and immutable, whereas lists are unhashable and mutable",
+      "Dictionary keys only accept parentheses",
+      "Lists can only store strings"
+    ],
+    "correctIndex": 1,
+    "explanation": "Dictionary keys must be hashable and have a fixed hash value across their lifetime. Immutable types like tuples of integers are hashable, whereas mutable lists are unhashable."
+  },
+  {
+    "question": "If a tuple contains a list: `data = (1, [2, 3])`, what happens when you run `data[1].append(4)`?",
+    "options": [
+      "Python raises TypeError immediately",
+      "The list inside the tuple is modified to [2, 3, 4]",
+      "The tuple duplicates itself",
+      "The list is converted into an immutable tuple"
+    ],
+    "correctIndex": 1,
+    "explanation": "The tuple's structure and references are immutable, but mutable objects referenced inside it (like a list) can still have their contents mutated."
+  },
+  {
+    "question": "What does `numbers = (10, 20, 30); numbers.index(20)` return?",
+    "options": [
+      "1",
+      "2",
+      "True",
+      "(1, 20)"
+    ],
+    "correctIndex": 0,
+    "explanation": "`tuple.index(x)` returns the zero-based index of the first occurrence of `x`. Here 20 is at index 1."
+  },
+  {
+    "question": "What is the return type of a function that ends with `return x, y`?",
+    "options": [
+      "list",
+      "tuple",
+      "generator",
+      "dict"
+    ],
+    "correctIndex": 1,
+    "explanation": "Returning multiple comma-separated values automatically packages them into a tuple."
+  }
+]

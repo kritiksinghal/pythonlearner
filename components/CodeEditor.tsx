@@ -13,9 +13,10 @@ import Editor from "@monaco-editor/react";
 interface Props {
   code: string;
   onChange: (value: string) => void;
+  height?: string;
 }
 
-export default function CodeEditor({ code, onChange }: Props) {
+export default function CodeEditor({ code, onChange, height = "350px" }: Props) {
   // Detect dark mode so we can tell Monaco which theme to use
   const [isDark, setIsDark] = useState(false);
 
@@ -33,7 +34,7 @@ export default function CodeEditor({ code, onChange }: Props) {
   return (
     <div className="overflow-hidden rounded-lg border border-border">
       <Editor
-        height="350px"
+        height={height}
         language="python"
         theme={isDark ? "vs-dark" : "light"}
         value={code}
@@ -49,7 +50,10 @@ export default function CodeEditor({ code, onChange }: Props) {
           padding: { top: 12, bottom: 12 },
         }}
         loading={
-          <div className="flex h-[350px] items-center justify-center text-muted">
+          <div
+            style={{ height }}
+            className="flex items-center justify-center text-muted"
+          >
             Loading editor…
           </div>
         }

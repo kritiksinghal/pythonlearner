@@ -1,8 +1,8 @@
 /*
  * /practice — Problem List Page
  *
- * Displays all available Python problems with track filtering.
- * Each card shows the problem title, track, difficulty, and links to /practice/[slug].
+ * Restyled with a technical ruled list layout (title, track, difficulty on one line per problem).
+ * No soft card grids. Clean hairline borders and plenty of space.
  */
 
 "use client";
@@ -22,86 +22,100 @@ export default function PracticeListPage() {
       : PROBLEMS.filter((p) => p.track === selectedTrack);
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10">
-      {/* Page Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">Practice Problems</h1>
-        <p className="mt-2 text-muted">
-          Strengthen your Python skills with hands-on challenges tested against
-          comprehensive hidden test cases.
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:py-16">
+      {/* Header */}
+      <div className="mb-10">
+        <div className="flex items-center gap-2 text-xs font-mono text-muted mb-2">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+          <span>CURATED CHALLENGES</span>
+        </div>
+        <h1 className="font-doto text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+          PRACTICE PROBLEMS
+        </h1>
+        <p className="mt-2 text-sm text-muted max-w-xl leading-relaxed">
+          Solve real coding challenges tested against 10–15 hidden test cases.
+          Runs entirely in your browser via Pyodide.
         </p>
       </div>
 
-      {/* Track Filter Buttons */}
-      <div className="mb-8 flex flex-wrap gap-2.5 border-b border-border pb-4">
+      {/* Filter Tabs */}
+      <div className="mb-8 flex flex-wrap gap-2">
         {TRACKS.map((track) => {
           const isActive = selectedTrack === track;
+          const count =
+            track === "All"
+              ? PROBLEMS.length
+              : PROBLEMS.filter((p) => p.track === track).length;
+
           return (
             <button
               key={track}
               onClick={() => setSelectedTrack(track)}
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+              className={`flex items-center gap-2 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors ${
                 isActive
-                  ? "bg-accent text-white"
-                  : "border border-border bg-surface text-muted hover:text-foreground"
+                  ? "border-foreground bg-foreground text-background"
+                  : "border-border bg-surface text-muted hover:text-foreground"
               }`}
             >
-              {track === "All" ? "All Tracks" : track}
-              <span className="ml-2 rounded-full bg-black/10 px-2 py-0.5 text-xs dark:bg-white/10">
-                {track === "All"
-                  ? PROBLEMS.length
-                  : PROBLEMS.filter((p) => p.track === track).length}
+              <span>{track === "All" ? "All Tracks" : track}</span>
+              <span
+                className={`rounded px-1.5 py-0.2 text-[10px] font-mono ${
+                  isActive
+                    ? "bg-background/20 text-background"
+                    : "bg-code-bg text-muted"
+                }`}
+              >
+                {count}
               </span>
             </button>
           );
         })}
       </div>
 
-      {/* Problem Cards Grid */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Ruled List of Problems */}
+      <div className="border-y border-border divide-y divide-border">
         {filteredProblems.map((problem) => (
           <Link
             key={problem.slug}
             href={`/practice/${problem.slug}`}
-            className="group flex flex-col justify-between rounded-xl border border-border bg-surface p-5 shadow-xs transition-all hover:border-accent hover:shadow-md"
+            className="group flex flex-col justify-between gap-3 py-4.5 px-3 transition-colors hover:bg-surface sm:flex-row sm:items-center sm:gap-6"
           >
-            <div>
-              {/* Badges: Track + Difficulty */}
-              <div className="flex items-center justify-between gap-2">
-                <span className="rounded bg-code-bg px-2.5 py-0.5 text-xs font-medium text-muted">
-                  {problem.track}
-                </span>
-
-                <span
-                  className={`rounded px-2 py-0.5 text-xs font-semibold ${
-                    problem.difficulty === "Easy"
-                      ? "bg-green-100 text-green-800 dark:bg-green-950/60 dark:text-green-300"
-                      : problem.difficulty === "Medium"
-                        ? "bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300"
-                        : "bg-red-100 text-red-800 dark:bg-red-950/60 dark:text-red-300"
-                  }`}
-                >
-                  {problem.difficulty}
+            {/* Left: Problem Title & Test Type */}
+            <div className="flex items-center gap-3 min-w-0">
+              <span className="hidden font-mono text-xs text-muted group-hover:text-accent sm:inline">
+                →
+              </span>
+              <div>
+                <h2 className="text-sm font-semibold tracking-tight text-foreground group-hover:text-foreground">
+                  {problem.title}
+                </h2>
+                <span className="font-mono text-[11px] text-muted">
+                  {problem.testType === "function" ? "function call" : "standard I/O"}
                 </span>
               </div>
-
-              {/* Title */}
-              <h2 className="mt-3 text-lg font-semibold tracking-tight text-foreground group-hover:text-accent">
-                {problem.title}
-              </h2>
-
-              {/* Short meta description */}
-              <p className="mt-1 line-clamp-2 text-xs text-muted">
-                {problem.description.replace(/[#*`_]/g, "").slice(0, 100)}…
-              </p>
             </div>
 
-            {/* Footer: test type and test case count */}
-            <div className="mt-4 flex items-center justify-between border-t border-border pt-3 text-xs text-muted">
-              <span>
-                {problem.testType === "function" ? "Function test" : "Standard I/O"}
+            {/* Right: Track name, test count, difficulty badge */}
+            <div className="flex items-center justify-between gap-4 sm:justify-end">
+              <span className="text-xs text-muted font-mono">
+                {problem.track}
               </span>
-              <span>{problem.tests.length} tests</span>
+
+              <span className="font-mono text-xs text-muted">
+                {problem.tests.length} tests
+              </span>
+
+              <span
+                className={`rounded border px-2 py-0.5 font-mono text-[11px] font-semibold ${
+                  problem.difficulty === "Easy"
+                    ? "border-green-200 bg-green-50/80 text-green-800 dark:border-green-900 dark:bg-green-950/40 dark:text-green-300"
+                    : problem.difficulty === "Medium"
+                      ? "border-amber-200 bg-amber-50/80 text-amber-800 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-300"
+                      : "border-red-200 bg-red-50/80 text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300"
+                }`}
+              >
+                {problem.difficulty}
+              </span>
             </div>
           </Link>
         ))}
