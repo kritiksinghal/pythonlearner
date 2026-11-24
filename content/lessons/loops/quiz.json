@@ -1,0 +1,101 @@
+[
+  {
+    "question": "What values does range(4) supply?",
+    "options": [
+      "1, 2, 3, 4",
+      "0, 1, 2, 3",
+      "0, 1, 2, 3, 4",
+      "Only 4"
+    ],
+    "explanation": "The range starts at zero and excludes its stop value. Option A incorrectly starts at one, while C includes the excluded stop.",
+    "correctIndex": 1
+  },
+  {
+    "question": "When does a while loop test its condition?",
+    "options": [
+      "After each body run only",
+      "Before each possible body run",
+      "Only once",
+      "After the program ends"
+    ],
+    "explanation": "Python checks before entering each round. Option A misses the initial check, and C would not describe repetition.",
+    "correctIndex": 1
+  },
+  {
+    "question": "What is the first index of a list?",
+    "options": [
+      "-1",
+      "0",
+      "1",
+      "The list length"
+    ],
+    "explanation": "List positions begin at zero. Option C is a common one-based counting mistake.",
+    "correctIndex": 1
+  },
+  {
+    "question": "What does a direct for loop over a dictionary visit?",
+    "options": [
+      "Only values",
+      "Keys",
+      "Key-value tuples",
+      "Indexes"
+    ],
+    "explanation": "Direct dictionary iteration supplies keys, which can be used to look up values. Option A describes a different operation.",
+    "correctIndex": 1
+  },
+  {
+    "question": "Which statement exits a loop immediately?",
+    "options": [
+      "continue",
+      "break",
+      "range",
+      "append"
+    ],
+    "explanation": "break ends the loop. continue skips the current iteration and then continues.",
+    "correctIndex": 1
+  },
+  {
+    "question": "What does continue do?",
+    "options": [
+      "Ends the entire program",
+      "Leaves the current loop permanently",
+      "Skips the rest of this iteration",
+      "Repeats the same body without checking"
+    ],
+    "explanation": "continue skips remaining statements in the current round and moves to the next round. Option B describes break.",
+    "correctIndex": 2
+  },
+  {
+    "question": "Why should a while loop usually update its condition variable?",
+    "options": [
+      "To make the loop finish when intended",
+      "To create a list",
+      "To change its indentation",
+      "To make range inclusive"
+    ],
+    "explanation": "An update can move the condition toward false, preventing endless repetition. The other choices are unrelated to while control.",
+    "correctIndex": 0
+  },
+  {
+    "question": "What does range(2, 6) include?",
+    "options": [
+      "2, 3, 4, 5",
+      "2, 3, 4, 5, 6",
+      "3, 4, 5, 6",
+      "Only 2 and 6"
+    ],
+    "explanation": "The start is included and the stop is excluded. Option B includes the stop incorrectly.",
+    "correctIndex": 0
+  },
+  {
+    "question": "What happens when code looks up a dictionary key that is absent?",
+    "options": [
+      "It returns the first value",
+      "It raises KeyError",
+      "It returns zero",
+      "It ends the loop"
+    ],
+    "explanation": "A missing key lookup raises KeyError. The other outcomes do not describe this lookup.",
+    "correctIndex": 1
+  }
+]

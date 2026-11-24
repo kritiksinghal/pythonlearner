@@ -1,0 +1,56 @@
+[
+  {
+    "question": "What is the base case in a recursive function?",
+    "options": ["The direct condition that ends further calls", "The function's first argument", "A loop inside the function", "The final print statement"],
+    "correctIndex": 0,
+    "explanation": "The base case gives an answer without another recursive call, so the chain can stop. A tempting wrong choice is the first argument: an argument is data, and it only stops recursion when the function checks it in a base case."
+  },
+  {
+    "question": "What does this print?\n\ndef count(n):\n    if n == 0:\n        return\n    print(n)\n    count(n - 1)\n\ncount(2)",
+    "options": ["2 then 1", "1 then 2", "2 only", "It never stops"],
+    "correctIndex": 0,
+    "explanation": "The function prints before calling itself with a smaller number, so 2 appears before 1. It then reaches zero and returns. A tempting wrong answer is reversed order, which would happen if printing were placed after the recursive call."
+  },
+  {
+    "question": "What value does factorial(3) return when factorial(0) returns 1 and each other call returns n * factorial(n - 1)?",
+    "options": ["6", "3", "0", "1"],
+    "correctIndex": 0,
+    "explanation": "The return values combine as 3 * 2 * 1 * 1, which is 6. A tempting wrong choice is 3 because the first call's argument is not itself the final result; it multiplies the smaller answer."
+  },
+  {
+    "question": "What is wrong with a recursive call that passes the same argument every time?",
+    "options": ["It may never reach the base case", "Python automatically turns it into a loop", "The base case runs first", "It returns an empty string"],
+    "correctIndex": 0,
+    "explanation": "If the argument does not change, the function may remain in the same state forever and eventually exceed Python's recursion limit. A tempting wrong choice is that Python optimizes the call into a loop; ordinary Python recursion does not do that."
+  },
+  {
+    "question": "What does sum_down(4) return if the base case returns 0 at zero and each call returns n + sum_down(n - 1)?",
+    "options": ["10", "4", "24", "0"],
+    "correctIndex": 0,
+    "explanation": "The function adds 4 + 3 + 2 + 1 + 0, giving 10. A tempting wrong answer is 24, which would multiply the values instead of adding them."
+  },
+  {
+    "question": "Which task is usually a clearer fit for a simple loop?",
+    "options": ["Adding each number from 1 through a large limit", "Walking a tree whose branches contain more branches", "Exploring each nested game choice", "Processing a recursively nested structure"],
+    "correctIndex": 0,
+    "explanation": "A loop can maintain one running total for a long linear sequence without building many nested calls. The other choices have a naturally nested shape that recursion may describe more directly."
+  },
+  {
+    "question": "What does the call stack track during recursion?",
+    "options": ["The unfinished calls and where each should continue", "Only the final printed output", "Every variable in the entire program forever", "The order of quiz answers"],
+    "correctIndex": 0,
+    "explanation": "Python keeps a frame for each active call, including its local state and return point. A tempting wrong answer is all variables forever; frames are removed as calls return."
+  },
+  {
+    "question": "What error can occur when recursive calls become too deeply nested?",
+    "options": ["RecursionError", "KeyError", "ImportError", "StopIteration"],
+    "correctIndex": 0,
+    "explanation": "Python raises RecursionError when the call depth exceeds its limit. A tempting wrong answer is StopIteration, which is associated with exhausted iterators rather than excessive recursive calls."
+  },
+  {
+    "question": "In a recursive character counter, why can an empty string be a useful base case?",
+    "options": ["It has no characters left to count", "It makes the string mutable", "It restarts the first call", "It converts text to a number"],
+    "correctIndex": 0,
+    "explanation": "Once the remaining text is empty, the count is directly zero and there is no smaller part to process. A tempting wrong answer is that it makes a string mutable; Python strings remain immutable."
+  }
+]
