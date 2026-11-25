@@ -70,7 +70,9 @@ const LESSONS_DIR = path.join(process.cwd(), "content/lessons");
 const CURRICULUM_FILE = path.join(process.cwd(), "content/CURRICULUM.md");
 
 /** YAML frontmatter parser handling strings, numbers, and lists without external dependencies */
-function parseFrontmatter(raw: string): { data: Record<string, any>; content: string } {
+type FrontmatterValue = string | number | boolean | string[];
+
+function parseFrontmatter(raw: string): { data: Record<string, FrontmatterValue>; content: string } {
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n([\s\S]*))?$/);
   if (!match) {
     return { data: {}, content: raw };
@@ -78,7 +80,7 @@ function parseFrontmatter(raw: string): { data: Record<string, any>; content: st
 
   const yamlText = match[1];
   const content = (match[2] || "").trim();
-  const data: Record<string, any> = {};
+  const data: Record<string, FrontmatterValue> = {};
 
   const lines = yamlText.split(/\r?\n/);
   let currentKey = "";
@@ -90,9 +92,6 @@ function parseFrontmatter(raw: string): { data: Record<string, any>; content: st
     // List item under currentKey
     if (line.startsWith("  - ") || line.startsWith("- ")) {
       if (currentKey) {
-        if (!Array.isArray(data[currentKey])) {
-          data[currentKey] = [];
-        }
         let itemVal = trimmed.replace(/^[-\s]+/, "").trim();
         if (
           (itemVal.startsWith('"') && itemVal.endsWith('"')) ||
@@ -100,7 +99,12 @@ function parseFrontmatter(raw: string): { data: Record<string, any>; content: st
         ) {
           itemVal = itemVal.slice(1, -1);
         }
-        data[currentKey].push(itemVal);
+        const existing = data[currentKey];
+        if (Array.isArray(existing)) {
+          existing.push(itemVal);
+        } else {
+          data[currentKey] = [itemVal];
+        }
       }
       continue;
     }
@@ -195,13 +199,13 @@ export function getAllLessons(): Lesson[] {
 
     lessons.push({
       slug,
-      title: data.title || slug,
-      curriculumTitle: data.curriculumTitle || undefined,
+      title: typeof data.title === "string" ? data.title : slug,
+      curriculumTitle: typeof data.curriculumTitle === "string" ? data.curriculumTitle : undefined,
       track: (data.track as "Python from zero" | "CS50P") || "Python from zero",
-      module: data.module || "General",
-      order: data.order || 99,
+      module: typeof data.module === "string" ? data.module : "General",
+      order: typeof data.order === "number" ? data.order : 99,
       level: (data.level as "Beginner" | "Intermediate" | "Advanced") || "Beginner",
-      summary: data.summary || "",
+      summary: typeof data.summary === "string" ? data.summary : "",
       prerequisites: Array.isArray(data.prerequisites) ? data.prerequisites : [],
       learningGoals: Array.isArray(data.learningGoals) ? data.learningGoals : [],
       relatedProblems: Array.isArray(data.relatedProblems) ? data.relatedProblems : [],

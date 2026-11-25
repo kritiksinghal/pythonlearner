@@ -354,6 +354,10 @@ clean_author = raw_author.strip().title()
 print('Sanitized author name:', clean_author)
 ```
 
+
+```output
+Sanitized author name: Arundhati Roy
+```
 :::solution Solution
 Chain the `.strip()` method to remove the outer whitespace and `.title()` to capitalize both the first and last names:
 
@@ -361,6 +365,10 @@ Chain the `.strip()` method to remove the outer whitespace and `.title()` to cap
 raw_author = '   arundhati roy   '
 clean_author = raw_author.strip().title()
 print('Sanitized author name:', clean_author)
+```
+
+```output
+Sanitized author name: Arundhati Roy
 ```
 :::
 
@@ -375,6 +383,10 @@ masked_card = '*' * 12 + digits_only[12:]
 print('Masked account number:', masked_card)
 ```
 
+
+```output
+Masked account number: ************9876
+```
 :::solution Solution
 Use `.replace('-', '')` to remove hyphens, then combine `'*' * 12` with the final four digits extracted via slice `[12:]`:
 
@@ -383,6 +395,10 @@ raw_card = '4532-8901-2345-9876'
 digits_only = raw_card.replace('-', '')
 masked_card = '*' * 12 + digits_only[12:]
 print('Masked account number:', masked_card)
+```
+
+```output
+Masked account number: ************9876
 ```
 :::
 
@@ -399,6 +415,11 @@ print('Occurrences of Python:', occurrences)
 print('Replaced first two:', replaced_text)
 ```
 
+
+```output
+Occurrences of Python: 3
+Replaced first two: Snake is powerful. Snake is fast. Python is friendly.
+```
 :::solution Solution
 Pass `target_word` to `.count()` to determine frequency, and pass the optional third argument `2` to `.replace()` to restrict replacement to the first two occurrences:
 
@@ -409,6 +430,11 @@ occurrences = paragraph.count(target_word)
 replaced_text = paragraph.replace(target_word, 'Snake', 2)
 print('Occurrences of Python:', occurrences)
 print('Replaced first two:', replaced_text)
+```
+
+```output
+Occurrences of Python: 3
+Replaced first two: Snake is powerful. Snake is fast. Python is friendly.
 ```
 :::
 

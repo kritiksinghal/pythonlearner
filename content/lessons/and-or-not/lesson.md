@@ -331,6 +331,10 @@ gets_discount = patron_age < 12 or patron_age >= 65
 print(f"Patron age {patron_age} gets discount:", gets_discount)
 ```
 
+
+```output
+Patron age 68 gets discount: True
+```
 :::solution Solution
 Combine the two age boundary conditions using the `or` operator:
 
@@ -338,6 +342,10 @@ Combine the two age boundary conditions using the `or` operator:
 patron_age = 68
 gets_discount = patron_age < 12 or patron_age >= 65
 print(f"Patron age {patron_age} gets discount:", gets_discount)
+```
+
+```output
+Patron age 68 gets discount: True
 ```
 :::
 
@@ -353,6 +361,10 @@ loan_approved = annual_income >= 50000 and credit_score >= 700 and not prior_def
 print("Mortgage loan approved:", loan_approved)
 ```
 
+
+```output
+Mortgage loan approved: True
+```
 :::solution Solution
 Join the two `>=` comparisons with `and` and invert the default flag using `not prior_default`:
 
@@ -362,6 +374,10 @@ credit_score = 740
 prior_default = False
 loan_approved = annual_income >= 50000 and credit_score >= 700 and not prior_default
 print("Mortgage loan approved:", loan_approved)
+```
+
+```output
+Mortgage loan approved: True
 ```
 :::
 
@@ -378,6 +394,10 @@ access_granted = password_valid and (biometric_ok or otp_ok) and not account_loc
 print("Portal access granted:", access_granted)
 ```
 
+
+```output
+Portal access granted: True
+```
 :::solution Solution
 Wrap `(biometric_ok or otp_ok)` in parentheses and combine with `password_valid` and `not account_locked` using `and`:
 
@@ -388,6 +408,10 @@ otp_ok = True
 account_locked = False
 access_granted = password_valid and (biometric_ok or otp_ok) and not account_locked
 print("Portal access granted:", access_granted)
+```
+
+```output
+Portal access granted: True
 ```
 :::
 

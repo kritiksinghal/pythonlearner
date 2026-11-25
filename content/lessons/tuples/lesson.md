@@ -326,6 +326,11 @@ print("Swapped latitude:", latitude)
 print("Swapped longitude:", longitude)
 ```
 
+
+```output
+Swapped latitude: 72.8777
+Swapped longitude: 19.076
+```
 :::solution Solution
 Unpack into `latitude, longitude`, then swap using `latitude, longitude = longitude, latitude`:
 
@@ -335,6 +340,11 @@ latitude, longitude = location
 latitude, longitude = longitude, latitude
 print("Swapped latitude:", latitude)
 print("Swapped longitude:", longitude)
+```
+
+```output
+Swapped latitude: 72.8777
+Swapped longitude: 19.076
 ```
 :::
 
@@ -349,6 +359,11 @@ print(f"Gold: {gold}, Silver: {silver}, Bronze: {bronze}")
 print("Runners-up:", others)
 ```
 
+
+```output
+Gold: Usain, Silver: Yohan, Bronze: Justin
+Runners-up: ['Tyson', 'Asafa']
+```
 :::solution Solution
 Use `gold, silver, bronze, *others = leaderboard`:
 
@@ -357,6 +372,11 @@ leaderboard = ("Usain", "Yohan", "Justin", "Tyson", "Asafa")
 gold, silver, bronze, *others = leaderboard
 print(f"Gold: {gold}, Silver: {silver}, Bronze: {bronze}")
 print("Runners-up:", others)
+```
+
+```output
+Gold: Usain, Silver: Yohan, Bronze: Justin
+Runners-up: ['Tyson', 'Asafa']
 ```
 :::
 
@@ -371,6 +391,10 @@ luminance = (0.299 * red) + (0.587 * green) + (0.114 * blue)
 print(f"Color: {forest_green} -> Perceived Luminance: {luminance:.1f}")
 ```
 
+
+```output
+Color: (34, 139, 34) -> Perceived Luminance: 95.6
+```
 :::solution Solution
 Unpack `red, green, blue` from the tuple, apply the weighted formula, and format with `:.1f`:
 
@@ -379,6 +403,10 @@ forest_green = (34, 139, 34)
 red, green, blue = forest_green
 luminance = (0.299 * red) + (0.587 * green) + (0.114 * blue)
 print(f"Color: {forest_green} -> Perceived Luminance: {luminance:.1f}")
+```
+
+```output
+Color: (34, 139, 34) -> Perceived Luminance: 95.6
 ```
 :::
 

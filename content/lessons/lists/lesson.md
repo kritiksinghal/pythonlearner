@@ -323,6 +323,10 @@ cart.insert(0, "apples")
 print("Updated shopping cart:", cart)
 ```
 
+
+```output
+Updated shopping cart: ['apples', 'milk', 'eggs', 'butter']
+```
 :::solution Solution
 Execute the methods in sequence and print the modified list:
 
@@ -332,6 +336,10 @@ cart.append("butter")
 cart.remove("bread")
 cart.insert(0, "apples")
 print("Updated shopping cart:", cart)
+```
+
+```output
+Updated shopping cart: ['apples', 'milk', 'eggs', 'butter']
 ```
 :::
 
@@ -351,6 +359,13 @@ print("Total marks:", total_marks)
 print(f"Class average: {average:.2f}")
 ```
 
+
+```output
+Highest mark: 91
+Lowest mark: 64
+Total marks: 478
+Class average: 79.67
+```
 :::solution Solution
 Use `max()`, `min()`, `sum()`, and `len()` to compute the metrics:
 
@@ -364,6 +379,13 @@ print("Highest mark:", highest)
 print("Lowest mark:", lowest)
 print("Total marks:", total_marks)
 print(f"Class average: {average:.2f}")
+```
+
+```output
+Highest mark: 91
+Lowest mark: 64
+Total marks: 478
+Class average: 79.67
 ```
 :::
 
@@ -382,6 +404,12 @@ print("Served:", served2)
 print("Remaining in queue:", queue)
 ```
 
+
+```output
+Served: Passenger 1
+Served: Passenger 2
+Remaining in queue: ['Passenger 3', 'Passenger 4', 'Passenger 5']
+```
 :::solution Solution
 Append new passengers, call `queue.pop(0)` to process the front of the line, and print the remaining list:
 
@@ -394,6 +422,12 @@ served2 = queue.pop(0)
 print("Served:", served1)
 print("Served:", served2)
 print("Remaining in queue:", queue)
+```
+
+```output
+Served: Passenger 1
+Served: Passenger 2
+Remaining in queue: ['Passenger 3', 'Passenger 4', 'Passenger 5']
 ```
 :::
 

@@ -285,6 +285,9 @@ Python reports `KeyError: 'pepper'` because `.remove()` expects the member to ex
 Create a set from a list with repeated genres. Print its members in alphabetical order.
 
 ```python run
+# Try the exercise above using this sample data.
+# Sample data: genres = ["soul", "pop", "soul", "indie"]
+# Write your code below and print the result
 ```
 
 :::solution
@@ -301,6 +304,9 @@ print(sorted(set(genres)))
 Make two sets of athletes. Print the athletes who attended both sessions.
 
 ```python run
+# Try the exercise above using this sample data.
+# Sample data: session_one = {"Meera", "Arjun", "Pia"}
+# Write your code below and print the result
 ```
 
 :::solution
@@ -318,6 +324,9 @@ print(sorted(session_one & session_two))
 Given sets of people who visited a museum on Saturday and Sunday, print those who visited exactly one day.
 
 ```python run
+# Try the exercise above using this sample data.
+# Sample data: saturday = {"Aarav", "Nina", "Om"}
+# Write your code below and print the result
 ```
 
 :::solution

@@ -338,6 +338,10 @@ km_per_liter = distance_km / fuel_liters
 print('Fuel efficiency (km/L):', km_per_liter)
 ```
 
+
+```output
+Fuel efficiency (km/L): 15.0
+```
 :::solution Solution
 Divide the total distance traveled by total liters consumed using the true division operator `/`:
 
@@ -346,6 +350,10 @@ distance_km = 450
 fuel_liters = 30
 km_per_liter = distance_km / fuel_liters
 print('Fuel efficiency (km/L):', km_per_liter)
+```
+
+```output
+Fuel efficiency (km/L): 15.0
 ```
 :::
 
@@ -365,6 +373,12 @@ print('100 notes:', notes_100)
 print('10 notes:', notes_10)
 ```
 
+
+```output
+500 notes: 3
+100 notes: 3
+10 notes: 7
+```
 :::solution Solution
 Use integer floor division `//` to determine the count of notes for each denomination, and modulo `%` to extract the remaining balance for the next lower note:
 
@@ -378,6 +392,12 @@ notes_10 = rem_after_100 // 10
 print('500 notes:', notes_500)
 print('100 notes:', notes_100)
 print('10 notes:', notes_10)
+```
+
+```output
+500 notes: 3
+100 notes: 3
+10 notes: 7
 ```
 :::
 
@@ -395,6 +415,11 @@ print('Maturity balance:', round(final_amount, 2))
 print('Compound interest profit:', round(profit_earned, 2))
 ```
 
+
+```output
+Maturity balance: 14693.28
+Compound interest profit: 4693.28
+```
 :::solution Solution
 Use `(1 + annual_rate) ** years` to compute the compound multiplier, multiply by principal, and round the final numbers:
 
@@ -406,6 +431,11 @@ final_amount = principal * ((1 + annual_rate) ** years)
 profit_earned = final_amount - principal
 print('Maturity balance:', round(final_amount, 2))
 print('Compound interest profit:', round(profit_earned, 2))
+```
+
+```output
+Maturity balance: 14693.28
+Compound interest profit: 4693.28
 ```
 :::
 

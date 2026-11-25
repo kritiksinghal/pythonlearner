@@ -26,8 +26,19 @@ export function generateStaticParams() {
   return lessons.map((l) => ({ slug: l.slug }));
 }
 
+export const dynamicParams = false;
+
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params;
+  const { lesson } = getLessonBySlug(slug);
+  return {
+    title: lesson ? `${lesson.title} | Python lesson` : "Python lesson",
+    description: lesson?.summary || "Read a structured Python lesson with examples and a quiz.",
+  };
 }
 
 async function LessonContent({ params }: PageProps) {
@@ -66,7 +77,7 @@ async function LessonContent({ params }: PageProps) {
       </div>
 
       {/* Desktop 2-column grid from 1024px up: 220px left TOC column + main reading column */}
-      <div className="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-12 items-start">
+      <div className="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-12 lg:items-stretch">
         {/* Left column: Sticky Table of Contents with solid background */}
         <div className="hidden lg:block">
           <LessonTableOfContents content={lesson.content} mode="desktop" />

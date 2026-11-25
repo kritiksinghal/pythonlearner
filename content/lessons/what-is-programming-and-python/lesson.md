@@ -307,6 +307,10 @@ total_cost = subtotal + (subtotal * tax_rate)
 print('Total bill:', total_cost)
 ```
 
+
+```output
+Total bill: 283.5
+```
 :::solution Solution
 Multiply item price by quantity to derive the subtotal, multiply the subtotal by tax rate to compute additional tax, and sum both values.
 
@@ -317,6 +321,10 @@ tax_rate = 0.05
 subtotal = item_price * quantity
 total_cost = subtotal + (subtotal * tax_rate)
 print('Total bill:', total_cost)
+```
+
+```output
+Total bill: 283.5
 ```
 :::
 
@@ -331,6 +339,10 @@ marathon_miles = distance_km * miles_conversion_factor
 print('Marathon distance in miles:', round(marathon_miles, 2))
 ```
 
+
+```output
+Marathon distance in miles: 26.22
+```
 :::solution Solution
 Multiply the distance in kilometers by the conversion factor and pass the product to `round(value, 2)`:
 
@@ -339,6 +351,10 @@ distance_km = 42.195
 miles_conversion_factor = 0.621371
 marathon_miles = distance_km * miles_conversion_factor
 print('Marathon distance in miles:', round(marathon_miles, 2))
+```
+
+```output
+Marathon distance in miles: 26.22
 ```
 :::
 
@@ -356,6 +372,11 @@ print('Interest earned:', simple_interest)
 print('Maturity amount:', total_maturity)
 ```
 
+
+```output
+Interest earned: 11250.0
+Maturity amount: 61250.0
+```
 :::solution Solution
 Multiply principal, rate, and time, divide by 100 to yield interest, then add the interest back to principal for total maturity value:
 
@@ -367,6 +388,11 @@ simple_interest = (principal * rate_percent * time_years) / 100
 total_maturity = principal + simple_interest
 print('Interest earned:', simple_interest)
 print('Maturity amount:', total_maturity)
+```
+
+```output
+Interest earned: 11250.0
+Maturity amount: 61250.0
 ```
 :::
 

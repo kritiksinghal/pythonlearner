@@ -13,15 +13,15 @@ import CodeEditor from "@/components/CodeEditor";
 import TestResults from "@/components/TestResults";
 import MarkdownView from "@/components/MarkdownView";
 import { usePyodide } from "@/lib/usePyodide";
-import type { Problem } from "@/lib/problems";
+import type { PublicProblem } from "@/lib/problems";
 
 interface Props {
-  problem: Omit<Problem, "referenceSolution">;
+  problem: PublicProblem;
 }
 
 export default function ProblemClient({ problem }: Props) {
   const [code, setCode] = useState(problem.starterCode);
-  const { isLoading, isRunning, runTests, results } = usePyodide();
+  const { isLoading, isRunning, loadError, retry, runTests, results } = usePyodide();
 
   // Trigger test runner in Web Worker
   const handleRun = () => {
@@ -101,6 +101,19 @@ export default function ProblemClient({ problem }: Props) {
               </span>
             )}
           </div>
+
+          {loadError && (
+            <div className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-border bg-surface p-4 text-sm text-muted" role="alert">
+              <p>{loadError}</p>
+              <button
+                type="button"
+                onClick={retry}
+                className="rounded-md bg-foreground px-4 py-2 text-xs font-medium text-background hover:opacity-90"
+              >
+                Retry Python
+              </button>
+            </div>
+          )}
 
           {/* Monaco Editor */}
           <CodeEditor code={code} onChange={setCode} height="340px" />

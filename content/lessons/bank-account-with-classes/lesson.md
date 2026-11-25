@@ -320,6 +320,12 @@ Sample session: at the action prompt enter `deposit`; at the amount prompt enter
 
 Test the two rejected cases separately: a non-positive amount and an amount larger than the balance. Also test a withdrawal exactly equal to the balance; it should leave the account at zero if that is your chosen rule.
 
+```python run
+# Try one improvement from the project list below.
+# Sample data: amount_cents = 1250, balance_cents = 5000
+# Write your code below and print the result
+```
+
 1. Add a method to transfer money between two accounts.
 2. Add a transaction message for accepted and rejected actions.
 3. Reject malformed amounts in the terminal interface with `try` and `except`.

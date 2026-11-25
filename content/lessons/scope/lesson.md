@@ -325,6 +325,9 @@ Python reports `NameError: name 'citty' is not defined`. Python does not guess t
 Create a function that defines a local variable for a song title and prints it. Call the function.
 
 ```python run
+# Try the exercise above using this sample data.
+# Sample data: title = "Paper Lanterns"
+# Write your code below and print the result
 ```
 
 :::solution
@@ -344,6 +347,9 @@ play_title()
 Create a top-level variable with a team name, then pass it to a function that prints a cheer using a parameter.
 
 ```python run
+# Try the exercise above using this sample data.
+# Sample data: team = "Fireflies"
+# Write your code below and print the result
 ```
 
 :::solution
@@ -364,6 +370,9 @@ cheer(team)
 Write a function that accepts a starting number of library books and a number borrowed, then returns how many remain. Store and print the returned value.
 
 ```python run
+# Try the exercise above using this sample data.
+# Sample data: starting_books = 28, borrowed_books = 6
+# Write your code below and print the result
 ```
 
 :::solution

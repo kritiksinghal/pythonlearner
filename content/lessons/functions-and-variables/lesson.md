@@ -398,6 +398,10 @@ badge = create_badge("  albert einstein  ", "physicist")
 print(badge)
 ```
 
+
+```output
+Albert Einstein - PHYSICIST
+```
 :::solution Solution
 Chaining `.strip()` and `.title()` standardizes user names regardless of extra whitespace, and an f-string joins the badge elements together cleanly.
 
@@ -409,6 +413,10 @@ def create_badge(full_name, title):
 
 badge = create_badge("  albert einstein  ", "physicist")
 print(badge)
+```
+
+```output
+Albert Einstein - PHYSICIST
 ```
 :::
 
@@ -426,6 +434,11 @@ print("Tip for 500 at 10%:", tip_10)
 print("Tip for 120 at 18%:", round(tip_18, 2))
 ```
 
+
+```output
+Tip for 500 at 10%: 50.0
+Tip for 120 at 18%: 21.6
+```
 :::solution Solution
 Multiplying the subtotal by `percent / 100` computes the exact tip amount, which `return` hands back to the caller for printing or total computation.
 
@@ -437,6 +450,11 @@ tip_10 = calculate_tip(500, 10)
 tip_18 = calculate_tip(120, 18)
 print("Tip for 500 at 10%:", tip_10)
 print("Tip for 120 at 18%:", round(tip_18, 2))
+```
+
+```output
+Tip for 500 at 10%: 50.0
+Tip for 120 at 18%: 21.6
 ```
 :::
 
@@ -454,6 +472,11 @@ print(convert_seconds(135))
 print(convert_seconds(3665))
 ```
 
+
+```output
+2 min 15 sec
+61 min 5 sec
+```
 :::solution Solution
 Floor division `//` extracts the full minutes, while modulo `%` determines the remaining seconds.
 
@@ -465,6 +488,11 @@ def convert_seconds(total_seconds):
 
 print(convert_seconds(135))
 print(convert_seconds(3665))
+```
+
+```output
+2 min 15 sec
+61 min 5 sec
 ```
 :::
 

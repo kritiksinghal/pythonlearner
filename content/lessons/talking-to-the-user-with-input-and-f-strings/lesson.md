@@ -307,6 +307,10 @@ fahrenheit = (celsius * 9 / 5) + 32
 print(f"{celsius}°C is equivalent to {fahrenheit:.1f}°F")
 ```
 
+
+```output
+28°C is equivalent to 82.4°F
+```
 :::solution Solution
 Cast `raw_temp` to `int`, compute `fahrenheit`, and interpolate both values using `{fahrenheit:.1f}`:
 
@@ -315,6 +319,10 @@ raw_temp = "28"
 celsius = int(raw_temp)
 fahrenheit = (celsius * 9 / 5) + 32
 print(f"{celsius}°C is equivalent to {fahrenheit:.1f}°F")
+```
+
+```output
+28°C is equivalent to 82.4°F
 ```
 :::
 
@@ -335,6 +343,11 @@ print(f"Grand Total: ₹{grand_total:,.2f}")
 print(f"Share Per Person: ₹{per_person:,.2f}")
 ```
 
+
+```output
+Grand Total: ₹3,850.00
+Share Per Person: ₹962.50
+```
 :::solution Solution
 Cast `raw_total` and `raw_tip_percent` to floats, cast `raw_people` to an integer, compute shares, and format with `:,.2f`:
 
@@ -349,6 +362,11 @@ grand_total = subtotal + (subtotal * (tip_pct / 100))
 per_person = grand_total / people
 print(f"Grand Total: ₹{grand_total:,.2f}")
 print(f"Share Per Person: ₹{per_person:,.2f}")
+```
+
+```output
+Grand Total: ₹3,850.00
+Share Per Person: ₹962.50
 ```
 :::
 
@@ -374,6 +392,18 @@ print(f"Total: {total_marks}/300 ({percentage:.2f}%)")
 print("=" * 30)
 ```
 
+
+```output
+==============================
+STUDENT REPORT: DEVIKA SHARMA
+------------------------------
+Math         :  92
+Science      :  88
+English      :  95
+------------------------------
+Total: 275/300 (91.67%)
+==============================
+```
 :::solution Solution
 Calculate sum and percentage, uppercase the student name, and use column width specifiers `:<12` and `:>3`:
 
@@ -393,6 +423,18 @@ print(f"{'English':<12} : {marks_english:>3}")
 print("-" * 30)
 print(f"Total: {total_marks}/300 ({percentage:.2f}%)")
 print("=" * 30)
+```
+
+```output
+==============================
+STUDENT REPORT: DEVIKA SHARMA
+------------------------------
+Math         :  92
+Science      :  88
+English      :  95
+------------------------------
+Total: 275/300 (91.67%)
+==============================
 ```
 :::
 

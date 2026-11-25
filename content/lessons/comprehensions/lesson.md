@@ -291,6 +291,9 @@ Python reports `ValueError: invalid literal for int() with base 10: 'x'`. The co
 Given a list of distances in kilometers, create a list with each value converted to meters by multiplying by 1000.
 
 ```python run
+# Try the exercise above using this sample data.
+# Sample data: distances_km = [1, 3, 5]
+# Write your code below and print the result
 ```
 
 :::solution
@@ -308,6 +311,9 @@ print(meters)
 Use a list comprehension to make a list containing only marks of 50 or more.
 
 ```python run
+# Try the exercise above using this sample data.
+# Sample data: marks = [48, 73, 50, 91]
+# Write your code below and print the result
 ```
 
 :::solution
@@ -325,6 +331,9 @@ print(passing)
 Given a list of book titles, create a dictionary that maps each title to the number of characters in it.
 
 ```python run
+# Try the exercise above using this sample data.
+# Sample data: titles = ["River Road", "Night Train", "Red Kite"]
+# Write your code below and print the result
 ```
 
 :::solution

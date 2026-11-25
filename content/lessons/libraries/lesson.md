@@ -164,7 +164,20 @@ import cowsay
 cowsay.cow("Welcome to the club")
 ```
 
-This code depends on the package being installed in the active Python environment. It is shown as an example from the notes and is not part of the browser runnable blocks.
+This code depends on the package being installed in the active Python environment. It is shown as an example from the notes and is not part of the browser runnable blocks. I installed cowsay 6.1 in a temporary Python 3.12.11 environment and ran it; its sample output was:
+
+```output
+  ___________________
+| Welcome to the club |
+  ===================
+                   \
+                    \
+                      ^__^
+                      (oo)\_______
+                      (__)\       )\/\
+                          ||----w |
+                          ||     ||
+```
 
 ### Recognize an API request
 
@@ -177,7 +190,7 @@ response = requests.get("https://example.invalid/search")
 print(response.json())
 ```
 
-The example highlights the roles: `requests` sends a request, and `json`-style response data can be read from the returned object. A real request needs a valid service address and may require query details. The exact response depends on that service; no fixed output is promised here.
+The example highlights the roles: `requests` sends a request, and `json`-style response data can be read from the returned object. A real request needs a valid service address and may require query details. The exact response depends on that service; no fixed output is promised here. **Sample only:** no request was sent because `example.invalid` is a reserved address and the lesson supplies neither a real API endpoint nor credentials.
 
 ### Make a small reusable module
 
@@ -278,6 +291,12 @@ A local file named `random.py` can interfere with importing the intended module.
 
 Import `choice` directly and pick from a short activity list.
 
+```python run
+# Try the exercise above using this sample data.
+# Sample data: activities = ["stretch", "skip", "jog"]
+# Write your code below and print the result
+```
+
 ```python
 from random import choice
 
@@ -315,6 +334,12 @@ print(statistics.mean(temperatures))
 ### Challenge: plan a command-line greeting
 
 Write a terminal script that expects exactly one name. Check the argument count before reading its first argument, then print a greeting.
+
+```python run
+# Try the exercise above using this sample data.
+# Sample data: name = "Nila"
+# Write your code below and print the result
+```
 
 ```bash
 python3 greeting.py Nila

@@ -407,6 +407,14 @@ def even_countdown(number):
 even_countdown(8)
 ```
 
+
+```output
+8
+6
+4
+2
+Done
+```
 :::
 
 ### Medium: add the numbers down to one
@@ -437,6 +445,10 @@ def sum_down(number):
 print(sum_down(5))
 ```
 
+
+```output
+15
+```
 :::
 
 ### Challenge: count a chosen character
@@ -469,6 +481,10 @@ def count_e(text):
 print(count_e("cheese"))
 ```
 
+
+```output
+3
+```
 :::
 
 ## Recap

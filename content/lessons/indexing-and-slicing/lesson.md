@@ -324,6 +324,10 @@ local_number = phone[8:]
 print(f"Country: {country_code}, Area: {area_code}, Line: {local_number}")
 ```
 
+
+```output
+Country: +91, Area: 022, Line: 26543210
+```
 :::solution Solution
 Use `phone[:3]` for country code, `phone[4:7]` for area code, and `phone[8:]` for local number:
 
@@ -333,6 +337,10 @@ country_code = phone[:3]
 area_code = phone[4:7]
 local_number = phone[8:]
 print(f"Country: {country_code}, Area: {area_code}, Line: {local_number}")
+```
+
+```output
+Country: +91, Area: 022, Line: 26543210
 ```
 :::
 
@@ -351,6 +359,12 @@ print("Page 2:", page2)
 print("Page 3:", page3)
 ```
 
+
+```output
+Page 1: ['L1', 'L2', 'L3', 'L4']
+Page 2: ['L5', 'L6', 'L7', 'L8']
+Page 3: ['L9', 'L10', 'L11', 'L12']
+```
 :::solution Solution
 Slice by increments of `page_size`: `[0:4]`, `[4:8]`, and `[8:12]`:
 
@@ -364,6 +378,12 @@ print("Page 1:", page1)
 print("Page 2:", page2)
 print("Page 3:", page3)
 ```
+
+```output
+Page 1: ['L1', 'L2', 'L3', 'L4']
+Page 2: ['L5', 'L6', 'L7', 'L8']
+Page 3: ['L9', 'L10', 'L11', 'L12']
+```
 :::
 
 ### Exercise 3 (challenge): Middle trimming and sub-list replacement
@@ -376,6 +396,10 @@ readings[1:4] = [200, 350]
 print("Healed sensor telemetry:", readings)
 ```
 
+
+```output
+Healed sensor telemetry: [100, 200, 350, 500]
+```
 :::solution Solution
 Assign `[200, 350]` directly to slice `readings[1:4]`:
 
@@ -383,6 +407,10 @@ Assign `[200, 350]` directly to slice `readings[1:4]`:
 readings = [100, 999, 999, 999, 500]
 readings[1:4] = [200, 350]
 print("Healed sensor telemetry:", readings)
+```
+
+```output
+Healed sensor telemetry: [100, 200, 350, 500]
 ```
 :::
 

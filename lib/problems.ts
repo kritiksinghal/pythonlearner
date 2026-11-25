@@ -10,8 +10,8 @@ import censorWords from "@/content/problems/censor-words.json";
 import groceryCalculator from "@/content/problems/grocery-calculator.json";
 
 export interface FunctionTestCase {
-  args: any[];
-  expected: any;
+  args: unknown[];
+  expected: unknown;
 }
 
 export interface StdioTestCase {
@@ -34,8 +34,9 @@ export interface Problem {
   tests: TestCase[];
 }
 
-// All registered problems in order
-export const PROBLEMS: Problem[] = [
+export type PublicProblem = Omit<Problem, "referenceSolution">;
+
+const rawProblems: Problem[] = [
   countVowels as Problem,
   findMaximum as Problem,
   greetingCard as Problem,
@@ -44,8 +45,17 @@ export const PROBLEMS: Problem[] = [
   groceryCalculator as Problem,
 ];
 
+// Keep reference solutions on the server side and never serialize them to a client component.
+export const PROBLEMS: PublicProblem[] = rawProblems.map(
+  (problem) => {
+    const publicProblem = { ...problem };
+    Reflect.deleteProperty(publicProblem, "referenceSolution");
+    return publicProblem;
+  }
+);
+
 /** Get all problems, optionally filtered by track */
-export function getProblems(track?: string): Problem[] {
+export function getProblems(track?: string): PublicProblem[] {
   if (!track || track === "All") {
     return PROBLEMS;
   }
@@ -53,6 +63,6 @@ export function getProblems(track?: string): Problem[] {
 }
 
 /** Find a problem by slug */
-export function getProblemBySlug(slug: string): Problem | undefined {
+export function getProblemBySlug(slug: string): PublicProblem | undefined {
   return PROBLEMS.find((p) => p.slug === slug);
 }

@@ -29,6 +29,8 @@ export type RunResult = { fatal: string } | TestResult[];
 export interface PyodideHook {
   isLoading: boolean;
   isRunning: boolean;
+  loadError: string | null;
+  retry: () => void;
   runTests: (
     code: string,
     testType: "function" | "stdio",
@@ -43,9 +45,11 @@ const TIMEOUT_MS = 5000; // 5-second limit per run
 export function usePyodide(): PyodideHook {
   const workerRef = useRef<Worker | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const loadTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isRunning, setIsRunning] = useState(false);
   const [results, setResults] = useState<RunResult | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   // Create (or re-create) the worker
   const spawnWorker = useCallback(() => {
@@ -56,11 +60,21 @@ export function usePyodide(): PyodideHook {
     const worker = new Worker("/pyodideWorker.js");
     workerRef.current = worker;
     setIsLoading(true);
+    setLoadError(null);
+    if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
+    loadTimeoutRef.current = setTimeout(() => {
+      worker.terminate();
+      if (workerRef.current === worker) workerRef.current = null;
+      setIsLoading(false);
+      setLoadError("Python is taking too long to load. Check your connection, then retry.");
+      setResults({ fatal: "Python is taking too long to load. Check your connection, then retry." });
+    }, 15000);
 
     worker.onmessage = (e: MessageEvent) => {
       const msg = e.data;
 
       if (msg.type === "ready") {
+        if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
         setIsLoading(false);
       }
 
@@ -71,31 +85,44 @@ export function usePyodide(): PyodideHook {
       }
 
       if (msg.type === "error") {
+        if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
         setResults({ fatal: msg.message });
         setIsRunning(false);
         setIsLoading(false);
+        setLoadError("Python could not load. Check your connection, then retry.");
       }
     };
 
-    worker.onerror = (err) => {
+    worker.onerror = () => {
+      if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       setResults({
-        fatal: "Worker error: " + (err.message || "Could not load Python worker."),
+        fatal: "Python could not load. Check your connection, then retry.",
       });
       setIsRunning(false);
       setIsLoading(false);
+      setLoadError("Python could not load. Check your connection, then retry.");
     };
 
     return worker;
   }, []);
 
+  const retry = useCallback(() => {
+    setResults(null);
+    setIsRunning(false);
+    setLoadError(null);
+    spawnWorker();
+  }, [spawnWorker]);
+
   // Spawn the worker on mount
   useEffect(() => {
-    spawnWorker();
+    const startTimer = setTimeout(spawnWorker, 0);
     return () => {
+      clearTimeout(startTimer);
       workerRef.current?.terminate();
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
     };
   }, [spawnWorker]);
 
@@ -133,5 +160,5 @@ export function usePyodide(): PyodideHook {
     [isLoading, spawnWorker]
   );
 
-  return { isLoading, isRunning, runTests, results };
+  return { isLoading, isRunning, loadError, retry, runTests, results };
 }

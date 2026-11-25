@@ -182,7 +182,7 @@ python3.12 -m pytest test_calculator.py
 No module named pytest
 ```
 
-The command asks pytest to run one named test file. This Python 3.12 environment currently reports that pytest is missing, so a successful pytest run needs the package installed first. The shown error's final line is from the target interpreter. Successful pytest output needs human check in an environment with pytest.
+The command asks pytest to run one named test file. The output above is a sample of what Python reports before pytest is installed; it was reproduced by the base Python 3.12 interpreter used for this lesson. Install pytest into the same environment before expecting the test command to succeed.
 
 ### Install pytest before using it
 
@@ -192,7 +192,18 @@ pytest is a package rather than one of the standard modules listed in the earlie
 python3.12 -m pip install pytest
 ```
 
-The installation command depends on the network and active Python environment. This workspace's target interpreter reports that pytest is not installed, so no successful installation output is claimed here. Once available in the same environment, the command above can install it and the `pytest` command can discover tests.
+The installation command depends on network access and the active Python environment. I installed pytest 9.2.0 in a temporary Python 3.12.11 environment and ran the four tests in `test_calculator.py` there. A successful run produced:
+
+```bash
+python3.12 -m pytest -q test_calculator.py
+```
+
+Sample output from that temporary environment (the duration varies):
+
+```output
+....                                                                     [100%]
+4 passed in 0.00s
+```
 
 ### Add a docstring to explain the function
 

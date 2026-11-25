@@ -13,6 +13,19 @@ export function generateStaticParams() {
   return PROBLEMS.map((p) => ({ slug: p.slug }));
 }
 
+export const dynamicParams = false;
+
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params;
+  const problem = getProblemBySlug(slug);
+  return {
+    title: problem ? `${problem.title} | Practice problem` : "Practice problem",
+    description: problem
+      ? `Practice ${problem.title} in Python and check your solution against ${problem.tests.length} test cases in your browser.`
+      : "Solve Python practice problems in your browser.",
+  };
+}
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -25,10 +38,7 @@ async function ProblemContent({ params }: PageProps) {
     notFound();
   }
 
-  // Omit referenceSolution so it is never exposed in client props
-  const { referenceSolution, ...safeProblem } = problem;
-
-  return <ProblemClient problem={safeProblem} />;
+  return <ProblemClient problem={problem} />;
 }
 
 export default function ProblemPage(props: PageProps) {

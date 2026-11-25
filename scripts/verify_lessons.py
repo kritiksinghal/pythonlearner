@@ -19,6 +19,7 @@ import sys
 import glob
 import os
 import re
+import ast
 import json
 import shutil
 import subprocess
@@ -102,6 +103,51 @@ def count_words(text_without_code):
     words = [w for w in cleaned.split() if w and not w.startswith("#")]
     return len(words)
 
+
+def find_exercises_without_starters(content):
+    """Return exercise headings whose solution callout has no runnable starter."""
+    issues = []
+    section = ""
+    exercise_heading = None
+    has_starter = False
+    in_fence = False
+    in_solution = False
+
+    for line_number, line in enumerate(content.splitlines(), start=1):
+        trimmed = line.strip()
+
+        if in_fence:
+            if trimmed == "```":
+                in_fence = False
+            continue
+
+        if trimmed.startswith("```"):
+            if section in ("try it yourself", "make it yourself") and trimmed == "```python run":
+                has_starter = True
+            in_fence = True
+            continue
+
+        if in_solution:
+            if trimmed == ":::":
+                in_solution = False
+                exercise_heading = None
+                has_starter = False
+            continue
+
+        if trimmed.startswith("## ") and not trimmed.startswith("### "):
+            section = trimmed[3:].strip().lower()
+            exercise_heading = None
+            has_starter = False
+        elif section in ("try it yourself", "make it yourself") and trimmed.startswith("### "):
+            exercise_heading = trimmed[4:].strip()
+            has_starter = False
+        elif section in ("try it yourself", "make it yourself") and trimmed.startswith(":::solution"):
+            if exercise_heading and not has_starter:
+                issues.append((line_number, exercise_heading))
+            in_solution = True
+
+    return issues
+
 def resolve_lesson_interpreter():
     configured = os.environ.get("LESSON_PYTHON", "python3.12")
     executable = shutil.which(configured)
@@ -149,6 +195,15 @@ def verify_error_examples(raw_content, lesson_slug, interpreter):
 
     for match in pattern.finditer(raw_content):
         code, expected_output = match.groups()
+        preceding = re.sub(r"```[\s\S]*?```", "", raw_content[:match.start()])
+        headings = re.findall(r"(?m)^## (?!#)(.+)$", preceding)
+        current_section = headings[-1].strip().lower() if headings else ""
+        if "try it yourself" in current_section or "make it yourself" in current_section:
+            try:
+                if not ast.parse(code).body:
+                    continue
+            except SyntaxError:
+                pass
         expected_lines = expected_output.rstrip().splitlines()
         if not expected_lines or not error_line_pattern.fullmatch(expected_lines[-1].strip()):
             continue
@@ -207,6 +262,13 @@ def verify_lessons(interpreter):
 
         with open(file_path, "r", encoding="utf-8") as f:
             raw_content = f.read()
+
+        for solution_line, exercise_heading in find_exercises_without_starters(raw_content):
+            total_failures += 1
+            print(
+                f"[FAIL] {lesson_slug} (line {solution_line}): "
+                f"Exercise '{exercise_heading}' has no ```python run starter before its :::solution"
+            )
 
         frontmatter, body = parse_frontmatter(raw_content)
         is_project = frontmatter.get("type") == "project"
@@ -326,6 +388,15 @@ def verify_lessons(interpreter):
                     i += 1
 
                 is_exercise_section = ("try it yourself" in current_section) or ("make it yourself" in current_section)
+
+                # Empty exercise starters are editable prompts, not examples to
+                # execute or compare against an output block.
+                if is_exercise_section:
+                    try:
+                        if not ast.parse(code).body:
+                            continue
+                    except SyntaxError:
+                        pass
 
                 # Check if immediately followed by ```output
                 if i < n and file_lines[i].strip().startswith("```output"):

@@ -360,6 +360,12 @@ Calling the async function creates a coroutine object. Close it in this inspecti
 
 Write an async function that returns a message after an async sleep, then execute it from a normal Python script with `asyncio.run()`.
 
+```python run
+# Try the exercise above using this sample data.
+# Sample data: delay_seconds = 0
+# Write your code below and print the result
+```
+
 ```python
 import asyncio
 

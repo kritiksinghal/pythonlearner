@@ -384,6 +384,10 @@ total = (pizza_price * pizza_count) + (drink_price * drink_count)
 print("Your bill:", total)
 ```
 
+
+```output
+Your bill: 940
+```
 :::solution Solution
 The total is `(350 * 2) + (80 * 3)` = `700 + 240` = `940`.
 
@@ -412,6 +416,10 @@ secs = total_seconds % 60
 print(mins, "minutes and", secs, "seconds")
 ```
 
+
+```output
+8 minutes and 20 seconds
+```
 :::solution Solution
 `500 // 60` = `8` (full minutes), `500 % 60` = `20` (leftover seconds).
 
@@ -442,6 +450,13 @@ print(type(c))
 print(type(d))
 ```
 
+
+```output
+<class 'int'>
+<class 'float'>
+<class 'str'>
+<class 'bool'>
+```
 :::solution Solution
 Even though `42`, `42.0`, and `"42"` look similar, they are three different types:
 

@@ -257,6 +257,12 @@ Save the game in a `.py` file and run it from a terminal. If you use both sample
 
 Change the questions while keeping every dictionary's keys consistent. Test a perfect run, a zero-score run, and a mixed run by changing the preset responses.
 
+```python run
+# Try one improvement from the project list below.
+# Sample data: responses = ["b", "a", "c"]
+# Write your code below and print the result
+```
+
 1. Add questions about weather, sports, art, or geography.
 2. Print a short explanation after each response.
 3. Reject answers outside the available letter choices.

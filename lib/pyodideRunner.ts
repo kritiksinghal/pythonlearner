@@ -43,17 +43,28 @@ function getWorker(): Worker {
           activeJob = null;
           cb(msg.data);
         }
+      } else if (msg.type === "error" && activeJob) {
+        clearTimeout(activeJob.timeoutId);
+        const cb = activeJob.callback;
+        activeJob = null;
+        readyCallbacks.length = 0;
+        worker?.terminate();
+        worker = null;
+        isReady = false;
+        cb({ fatal: "Python could not load. Check your connection, then retry." });
       }
     };
 
-    worker.onerror = (err) => {
+    worker.onerror = () => {
       if (activeJob) {
         clearTimeout(activeJob.timeoutId);
         const cb = activeJob.callback;
         activeJob = null;
-        cb({
-          fatal: "Worker error: " + (err.message || "Failed to execute worker."),
-        });
+        readyCallbacks.length = 0;
+        worker?.terminate();
+        worker = null;
+        isReady = false;
+        cb({ fatal: "Python could not load. Check your connection, then retry." });
       }
     };
   }
@@ -85,6 +96,7 @@ export function runPlainPython(
     try {
       const currentWorker = getWorker();
       const id = Math.random().toString(36).substring(2, 9);
+      const waitingForPython = !isReady;
 
       // 5-second timeout guard
       const timeoutId = setTimeout(() => {
@@ -94,9 +106,12 @@ export function runPlainPython(
             worker = null;
           }
           isReady = false;
+          readyCallbacks.length = 0;
           activeJob = null;
           resolve({
-            fatal: "Your code took too long. Check for an infinite loop.",
+            fatal: waitingForPython
+              ? "Python is taking too long to load. Check your connection, then retry."
+              : "Your code took too long. Check for an infinite loop, then retry.",
           });
         }
       }, 5000);
@@ -112,10 +127,23 @@ export function runPlainPython(
       } else {
         readyCallbacks.push(send);
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       resolve({
-        fatal: "Execution failed: " + (err?.message || "Unknown error"),
+        fatal: "Execution failed: " + (err instanceof Error ? err.message : "Unknown error"),
       });
     }
   });
+}
+
+export function resetPyodideWorker(): void {
+  worker?.terminate();
+  worker = null;
+  isReady = false;
+  readyCallbacks.length = 0;
+  if (activeJob) {
+    clearTimeout(activeJob.timeoutId);
+    const callback = activeJob.callback;
+    activeJob = null;
+    callback({ fatal: "Python worker restarted. Try running the code again." });
+  }
 }

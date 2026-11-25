@@ -6,15 +6,28 @@
  * b. Outlined pill labels (variables, loops, functions, tests, bugs, quiz) and tiny dots
  * c. Muted description
  * d. Dark rounded CTA button with yellow tile + text link to /practice
- * e. Facts row with Doto numerals (10-15 tests, 0 installs, 2 tracks)
+ * e. Facts row with counts calculated from the curriculum and problem files
  * f. Two-tone statement section with decorative HalftoneCanvas
  */
 
 import Link from "next/link";
 import DotGridGlyph from "@/components/DotGridGlyph";
 import HalftoneCanvas from "@/components/HalftoneCanvas";
+import { getAllLessons, getCurriculum } from "@/lib/lessons";
+import { getProblems } from "@/lib/problems";
+
+export const metadata = {
+  title: "Learn Python from zero to advanced",
+  description:
+    "Python from zero to advanced, with a full curriculum and a browser test runner that shows exactly which tests failed.",
+};
 
 export default function HomePage() {
+  const lessonCount = getAllLessons().length;
+  const trackCount = getCurriculum().filter((track) => track.totalCount > 0).length;
+  const testCounts = getProblems().map((problem) => problem.tests.length);
+  const testRange = `${Math.min(...testCounts)}–${Math.max(...testCounts)}`;
+
   return (
     <div className="mx-auto max-w-5xl px-4 py-16 sm:py-24">
       {/* ── Section A & B: Hero Lockup ── */}
@@ -74,8 +87,8 @@ export default function HomePage() {
 
         {/* ── Section C: Muted single-sentence summary ── */}
         <p className="mt-8 max-w-lg text-sm leading-relaxed text-muted sm:text-base">
-          Python from zero to advanced, with a tutor that tells you why your code
-          failed.
+          Python from zero to advanced, with a full curriculum and a browser test
+          runner that shows exactly which tests failed.
         </p>
 
         {/* ── Section D: Action Button & Text Link ── */}
@@ -107,27 +120,27 @@ export default function HomePage() {
           {/* Fact 1 */}
           <div className="flex flex-col items-center px-4">
             <span className="font-doto text-3xl font-extrabold text-foreground sm:text-4xl">
-              10–15
+              {lessonCount}
             </span>
             <span className="mt-1.5 text-xs text-muted max-w-[180px]">
-              hidden tests per problem
+              lessons across both tracks
             </span>
           </div>
 
           {/* Fact 2 */}
           <div className="flex flex-col items-center px-4">
             <span className="font-doto text-3xl font-extrabold text-foreground sm:text-4xl">
-              0
+              {testRange}
             </span>
             <span className="mt-1.5 text-xs text-muted max-w-[180px]">
-              installs, Python runs in your browser
+              tests per practice problem
             </span>
           </div>
 
           {/* Fact 3 */}
           <div className="flex flex-col items-center px-4">
             <span className="font-doto text-3xl font-extrabold text-foreground sm:text-4xl">
-              2
+              {trackCount}
             </span>
             <span className="mt-1.5 text-xs text-muted max-w-[180px]">
               tracks, Python from zero and CS50P
@@ -143,10 +156,11 @@ export default function HomePage() {
           <div className="lg:col-span-7">
             <p className="text-xl leading-relaxed tracking-tight sm:text-2xl">
               <span className="font-medium text-foreground">
-                A tutor that does not just say your code is wrong.{" "}
+              A useful failure points to the exact test.{" "}
               </span>
               <span className="text-muted">
-                It tells you which test failed, why, and what to change.
+                See which test failed, what output was expected, and what your
+                code returned.
               </span>
             </p>
           </div>

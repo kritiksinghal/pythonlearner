@@ -10,7 +10,7 @@
 
 import { useState } from "react";
 import CodeEditor from "./CodeEditor";
-import { runPlainPython } from "@/lib/pyodideRunner";
+import { resetPyodideWorker, runPlainPython } from "@/lib/pyodideRunner";
 
 interface Props {
   initialCode: string;
@@ -21,20 +21,28 @@ export default function RunnableCodeBlock({ initialCode }: Props) {
   const [isRunning, setIsRunning] = useState(false);
   const [output, setOutput] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [showRetry, setShowRetry] = useState(false);
 
   const handleRun = async () => {
     setIsRunning(true);
     setOutput(null);
     setError(null);
+    setShowRetry(false);
 
     const res = await runPlainPython(code);
     setIsRunning(false);
 
     if (res.fatal) {
       setError(res.fatal);
+      setShowRetry(/could not load|failed to load|taking too long to load/i.test(res.fatal));
     } else {
       setOutput(res.output ?? "(No output)");
     }
+  };
+
+  const handleRetry = () => {
+    resetPyodideWorker();
+    void handleRun();
   };
 
   return (
@@ -76,9 +84,20 @@ export default function RunnableCodeBlock({ initialCode }: Props) {
             Terminal Output
           </div>
           {error ? (
-            <pre className="rounded border border-red-300 bg-red-50 p-2 font-mono text-xs text-red-700 whitespace-pre-wrap dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-300">
-              ⚠️ {error}
-            </pre>
+            <div className="space-y-3">
+              <pre className="rounded border border-red-300 bg-red-50 p-2 font-mono text-xs text-red-700 whitespace-pre-wrap dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-300" role="alert">
+                ⚠️ {error}
+              </pre>
+              {showRetry && (
+                <button
+                  type="button"
+                  onClick={handleRetry}
+                  className="rounded-md bg-foreground px-4 py-2 text-xs font-medium text-background hover:opacity-90"
+                >
+                  Retry Python
+                </button>
+              )}
+            </div>
           ) : (
             <pre className="rounded border border-border bg-surface p-2 font-mono text-xs text-foreground whitespace-pre-wrap">
               {output}

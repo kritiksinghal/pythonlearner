@@ -275,6 +275,12 @@ The function `ending()` uses the inventory to choose a conclusion. The route bra
 
 Start by changing the story setting and items while keeping the same program shape. Then add one new state variable and make it affect an ending. Try these extensions in order:
 
+```python run
+# Try one improvement from the project list below.
+# Sample data: route = "gallery", inventory = ["brass key"]
+# Write your code below and print the result
+```
+
 1. Replace the observatory with a lighthouse, train station, or mountain cabin.
 2. Add a second item and require both items for a special ending.
 3. Add a third route with a distinct location and message.

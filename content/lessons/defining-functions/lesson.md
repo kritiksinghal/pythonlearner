@@ -319,6 +319,9 @@ Python reports `NameError: name 'notice' is not defined`. The function tries to 
 Define a function that prints a greeting for a school science fair, then call it once.
 
 ```python run
+# Try the exercise above using this sample data.
+# Sample data: event_name = "school science fair"
+# Write your code below and print the result
 ```
 
 :::solution
@@ -337,6 +340,9 @@ greet_fair_visitors()
 Define one function that prints a playlist section heading, then call it three times.
 
 ```python run
+# Try the exercise above using this sample data.
+# Sample data: sections = ["acoustic songs", "instrumentals", "final track"]
+# Write your code below and print the result
 ```
 
 :::solution
@@ -357,6 +363,9 @@ announce_section()
 Define one function that prints a study checklist and a `main()` function that prints a title before calling the checklist. Call `main()`.
 
 ```python run
+# Try the exercise above using this sample data.
+# Sample data: checklist = ["Review notes", "Take a break", "Practice"]
+# Write your code below and print the result
 ```
 
 :::solution

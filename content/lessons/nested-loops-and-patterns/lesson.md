@@ -316,6 +316,14 @@ for step in range(1, steps + 1):
     print("#" * step)
 ```
 
+
+```output
+#
+##
+###
+####
+#####
+```
 :::solution Solution
 Iterate `step` from 1 through 5 and multiply `'#'` by `step`:
 
@@ -323,6 +331,14 @@ Iterate `step` from 1 through 5 and multiply `'#'` by `step`:
 steps = 5
 for step in range(1, steps + 1):
     print("#" * step)
+```
+
+```output
+#
+##
+###
+####
+#####
 ```
 :::
 
@@ -338,6 +354,13 @@ for row in range(1, 5):
     print()
 ```
 
+
+```output
+  2   3   4   5 
+  3   4   5   6 
+  4   5   6   7 
+  5   6   7   8
+```
 :::solution Solution
 Loop over rows 1 to 4 and columns 1 to 4, printing `f"{row + col:>3}"` with `end=" "`, and call `print()` after each row:
 
@@ -347,6 +370,13 @@ for row in range(1, 5):
         addition_sum = row + col
         print(f"{addition_sum:>3}", end=" ")
     print()
+```
+
+```output
+  2   3   4   5 
+  3   4   5   6 
+  4   5   6   7 
+  5   6   7   8
 ```
 :::
 
@@ -365,6 +395,14 @@ for row in range(size):
     print()
 ```
 
+
+```output
+* * * * * 
+*       * 
+*       * 
+*       * 
+* * * * *
+```
 :::solution Solution
 Check if the current coordinate sits on the boundary (`row == 0 or row == size - 1 or col == 0 or col == size - 1`):
 
@@ -377,6 +415,14 @@ for row in range(size):
         else:
             print(" ", end=" ")
     print()
+```
+
+```output
+* * * * * 
+*       * 
+*       * 
+*       * 
+* * * * *
 ```
 :::
 

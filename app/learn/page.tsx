@@ -15,7 +15,7 @@ import Link from "next/link";
 import { getCurriculum } from "@/lib/lessons";
 
 export const metadata = {
-  title: "Python Lessons — PyLearner",
+  title: "Python lessons",
   description:
     "Structured Python curriculum from zero to advanced with interactive examples, module progression, and quizzes.",
 };

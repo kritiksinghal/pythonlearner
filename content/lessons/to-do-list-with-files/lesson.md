@@ -348,6 +348,12 @@ The interactive version asks for a task number and converts the response with `i
 
 Add one improvement at a time and keep the existing save format valid.
 
+```python run
+# Try one improvement from the project list below.
+# Sample data: tasks = [{"text": "Charge the recorder", "done": False}]
+# Write your code below and print the result
+```
+
 1. Add a `remove` action that deletes a selected task.
 2. Display a friendly message when there are no tasks.
 3. Reject blank descriptions and task numbers outside the displayed range.

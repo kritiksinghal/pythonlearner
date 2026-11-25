@@ -297,6 +297,12 @@ In the saved program, include the `add_expense()` helper before the interactive 
 
 Try each improvement only after you can add an entry, save it, restart, and load it again.
 
+```python run
+# Try one improvement from the project list below.
+# Sample data: expenses = [{"category": "food", "cents": 475}, {"category": "travel", "cents": 1299}]
+# Write your code below and print the result
+```
+
 1. Reject zero or negative amounts before saving.
 2. Print every saved description and its formatted amount.
 3. Calculate a separate total for each category.

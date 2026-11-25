@@ -377,6 +377,10 @@ else:
 print("Ticket price:", price)
 ```
 
+
+```output
+Ticket price: 250
+```
 :::solution Solution
 Because 15 is not under 12, the first check fails. The second check `age <= 17` succeeds, setting `price = 250`.
 
@@ -411,6 +415,11 @@ print("Delivery fee:", delivery_fee)
 print("Total payable:", order_total + delivery_fee)
 ```
 
+
+```output
+Delivery fee: 0
+Total payable: 650
+```
 :::solution Solution
 Using the `or` operator, `order_total >= 500` is `True`, so free delivery applies regardless of `is_vip`.
 
@@ -443,6 +452,10 @@ else:
     print(year, "is not a leap year.")
 ```
 
+
+```output
+2024 is a leap year.
+```
 :::solution Solution
 2024 is divisible by 4 (`2024 % 4 == 0`) and not divisible by 100 (`2024 % 100 != 0`), so the left expression produces `True`.
 

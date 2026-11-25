@@ -383,6 +383,10 @@ passed = score >= pass_mark
 print("Exam result passed:", passed)
 ```
 
+
+```output
+Exam result passed: True
+```
 :::solution Solution
 Use the greater-than-or-equal-to operator `>=`:
 
@@ -391,6 +395,10 @@ score = 68
 pass_mark = 50
 passed = score >= pass_mark
 print("Exam result passed:", passed)
+```
+
+```output
+Exam result passed: True
 ```
 :::
 
@@ -404,6 +412,10 @@ is_liquid = 0 <= water_temp <= 100
 print("Is liquid state:", is_liquid)
 ```
 
+
+```output
+Is liquid state: True
+```
 :::solution Solution
 Use chained comparison syntax `0 <= water_temp <= 100`:
 
@@ -411,6 +423,10 @@ Use chained comparison syntax `0 <= water_temp <= 100`:
 water_temp = 45
 is_liquid = 0 <= water_temp <= 100
 print("Is liquid state:", is_liquid)
+```
+
+```output
+Is liquid state: True
 ```
 :::
 
@@ -425,6 +441,10 @@ is_valid_len = 5 <= char_count <= 15
 print(f"Username '{username}' length ({char_count}) is valid:", is_valid_len)
 ```
 
+
+```output
+Username 'coder_pro' length (9) is valid: True
+```
 :::solution Solution
 Call `len(username)` and test with the chained comparison `5 <= char_count <= 15`:
 
@@ -433,6 +453,10 @@ username = "coder_pro"
 char_count = len(username)
 is_valid_len = 5 <= char_count <= 15
 print(f"Username '{username}' length ({char_count}) is valid:", is_valid_len)
+```
+
+```output
+Username 'coder_pro' length (9) is valid: True
 ```
 :::
 

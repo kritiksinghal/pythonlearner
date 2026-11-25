@@ -44,11 +44,11 @@ Use the `class` keyword followed by a name. The class body must contain a statem
 class PlayerCard:
     pass
 
-print(PlayerCard)
+print(PlayerCard.__name__)
 ```
 
 ```output
-<class '__main__.PlayerCard'>
+PlayerCard
 ```
 
 Python creates a class object named `PlayerCard`. The printed representation includes the class name and module. You normally use this class to create instances rather than print the class itself.

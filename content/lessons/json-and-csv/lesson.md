@@ -220,7 +220,7 @@ output = StringIO(newline="")
 writer = csv.writer(output)
 writer.writerow(["Station", "Visitors"])
 writer.writerow(["Lake, East", 208])
-print(output.getvalue(), end="")
+print("\n".join(output.getvalue().splitlines()), end="\n")
 ```
 
 ```output
@@ -228,7 +228,7 @@ Station,Visitors
 "Lake, East",208
 ```
 
-The writer inserts delimiters and quotes the first station value because it contains a comma. `StringIO` captures the output in memory; when writing a disk CSV file, open it with `newline=""` and pass the file object to `csv.writer`.
+The writer inserts delimiters and quotes the first station value because it contains a comma. `StringIO` captures the output in memory; `splitlines()` makes its line endings display consistently in this browser example. When writing a disk CSV file, open it with `newline=""` and pass the file object to `csv.writer`.
 
 The `newline=""` argument matters because CSV readers and writers manage line endings themselves. Without it, some platforms can introduce extra blank lines when writing. The comma is the default delimiter, but the module can use another one through its `delimiter` argument when the file follows a tab-separated or otherwise defined format. Never assume that every file with `.csv` in its name uses exactly the same dialect; inspect its documented structure.
 
@@ -244,7 +244,7 @@ output = StringIO(newline="")
 writer = csv.DictWriter(output, fieldnames=["title", "rating"])
 writer.writeheader()
 writer.writerow({"title": "Cloud Atlas", "rating": 5})
-print(output.getvalue(), end="")
+print("\n".join(output.getvalue().splitlines()), end="\n")
 ```
 
 ```output
@@ -252,7 +252,7 @@ title,rating
 Cloud Atlas,5
 ```
 
-`writeheader()` writes the column names first. Then `writerow()` takes a dictionary keyed by those names. Use a consistent schema so rows have the values your reader expects.
+`writeheader()` writes the column names first. Then `writerow()` takes a dictionary keyed by those names. `splitlines()` removes the CSV writer's line-ending characters before printing the captured text. Use a consistent schema so rows have the values your reader expects.
 
 ## What Python is doing behind the scenes
 

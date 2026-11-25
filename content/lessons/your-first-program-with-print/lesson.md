@@ -292,6 +292,10 @@ discount = 300
 print(item, 'Original Price:', price, 'Discount:', discount, 'Final:', price - discount, sep=' | ')
 ```
 
+
+```output
+Cricket Bat | Original Price: | 2400 | Discount: | 300 | Final: | 2100
+```
 :::solution Solution
 Pass the labels and mathematical calculation as distinct arguments separated by commas, setting `sep=' | '`:
 
@@ -300,6 +304,10 @@ item = 'Cricket Bat'
 price = 2400
 discount = 300
 print(item, 'Original Price:', price, 'Discount:', discount, 'Final:', price - discount, sep=' | ')
+```
+
+```output
+Cricket Bat | Original Price: | 2400 | Discount: | 300 | Final: | 2100
 ```
 :::
 
@@ -313,6 +321,10 @@ print('Step 2', end=' -> ')
 print('Complete!')
 ```
 
+
+```output
+Step 1 -> Step 2 -> Complete!
+```
 :::solution Solution
 Set `end=' -> '` on the first two print statements, leaving the third statement with the default newline:
 
@@ -320,6 +332,10 @@ Set `end=' -> '` on the first two print statements, leaving the third statement 
 print('Step 1', end=' -> ')
 print('Step 2', end=' -> ')
 print('Complete!')
+```
+
+```output
+Step 1 -> Step 2 -> Complete!
 ```
 :::
 
@@ -337,6 +353,16 @@ print('Total Due', 367.5, sep=': $')
 print('=' * 30)
 ```
 
+
+```output
+==============================
+RECEIPT #4092
+Stationery Pack: $350
+Sales Tax (5%): $17.5
+------------------------------
+Total Due: $367.5
+==============================
+```
 :::solution Solution
 Use `print('=' * 30)` for boundary rules, `sep=''` to join receipt numbers, and `sep=': $'` to format price labels:
 
@@ -348,6 +374,16 @@ print('Sales Tax (5%)', 17.5, sep=': $')
 print('-' * 30)
 print('Total Due', 367.5, sep=': $')
 print('=' * 30)
+```
+
+```output
+==============================
+RECEIPT #4092
+Stationery Pack: $350
+Sales Tax (5%): $17.5
+------------------------------
+Total Due: $367.5
+==============================
 ```
 :::
 

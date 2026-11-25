@@ -337,6 +337,9 @@ Python reports `TypeError: can only concatenate str (not "int") to str`. The fir
 Write a function that accepts a name and returns a greeting string. Print the result of calling it.
 
 ```python run
+# Try the exercise above using this sample data.
+# Sample data: name = "Pia"
+# Write your code below and print the result
 ```
 
 :::solution
@@ -355,6 +358,9 @@ print(greeting("Pia"))
 Write a function that accepts runs from two batters and returns their combined score.
 
 ```python run
+# Try the exercise above using this sample data.
+# Sample data: first_batter = 36, second_batter = 49
+# Write your code below and print the result
 ```
 
 :::solution
@@ -373,6 +379,9 @@ print(partnership(36, 49))
 Write a function that accepts a city and a departure time and returns one formatted ticket line. Call it twice and print both results.
 
 ```python run
+# Try the exercise above using this sample data.
+# Sample data: city = "Udaipur", departure_time = "08:20"
+# Write your code below and print the result
 ```
 
 :::solution

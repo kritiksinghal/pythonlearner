@@ -459,6 +459,14 @@ while n <= 15:
     n += 3
 ```
 
+
+```output
+3
+6
+9
+12
+15
+```
 :::solution Solution
 Initializing `n = 3` and incrementing by `3` on each pass prints `3`, `6`, `9`, `12`, and `15`.
 
@@ -491,6 +499,10 @@ while value >= 1:
 print("Reached under 1 in", steps, "steps. Final value:", value)
 ```
 
+
+```output
+Reached under 1 in 7 steps. Final value: 0.78125
+```
 :::solution Solution
 The values progress: 50.0 (step 1), 25.0 (step 2), 12.5 (step 3), 6.25 (step 4), 3.125 (step 5), 1.5625 (step 6), and 0.78125 (step 7). The loop terminates after 7 steps.
 
@@ -521,6 +533,10 @@ while num <= 20:
 print("Sum of even numbers 2 to 20:", even_sum)
 ```
 
+
+```output
+Sum of even numbers 2 to 20: 110
+```
 :::solution Solution
 Adding $2 + 4 + 6 + 8 + 10 + 12 + 14 + 16 + 18 + 20$ yields 110.
 

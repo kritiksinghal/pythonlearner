@@ -1,225 +1,120 @@
-# HANDOVER: Python learning website ("PyLearner")
+# HANDOVER: Python learning website (PyLearner)
 
-Updated 24 Nov 2026. Read this whole file before touching anything. It documents the project vision, the fixed stack, architecture, what is built and programmatically verified, what requires human visual checks, and exact next steps.
-
----
-
-## 1. Vision (do not drift from this)
-
-A free website where anyone can go from zero to advanced Python.
-
-1. **Lessons** (basics to advanced), explained so clearly that a complete beginner can follow, each with a quiz.
-2. **Practice area**: the user writes Python in an editor and the site runs it against 10–15 hidden test cases (like HackerRank), showing which tests failed with expected vs actual output.
-3. **AI tutor**: explains why a test failed, what is missing, how to improve. Later it becomes an agent that can search official Python docs, run code, and search the web.
-4. **Accounts and progress tracking.**
-
-Two tracks of content:
-- **"Python from zero"** (about 50 lessons across 9 modules M1–M9)
-- **"CS50P"** (10 lessons, one per CS50P week)
-
-Everything must be free to run. The owner (Kritik) is a beginner who wants strict, phase-by-phase work. **Do not add features, pages, libraries or refactors that the current phase did not ask for.** If you think something is missing, list it under "Suggestions" in your report and do not build it.
+Updated 25 Nov 2026. Read this whole file before touching the project. It records the product direction, fixed stack, working agreement, status, and next phase.
 
 ---
 
-## 2. Fixed Stack (do not change)
+## 1. Vision
 
-- **Framework**: Next.js (App Router, version 16) + TypeScript + Tailwind CSS
-- **Code Editor**: Monaco editor via `@monaco-editor/react`
-- **Execution Engine**: Python runs **ONLY** in the user's browser with Pyodide (v0.26.4, Python 3.12 runtime) inside a Web Worker (`public/pyodideWorker.js`). Never run user code on the server.
-- **Content Storage**: Lessons and practice problems are stored as static Markdown and JSON files in `/content`.
-- **Custom Markdown Renderer**: `MarkdownView` is a custom-built parser and renderer supporting GitHub alerts, tables, numbered/bulleted lists, custom callouts (`:::tip`, `:::warning`, `:::remember`, `:::deep`, `:::solution`), runnable code blocks (` ```python run `), and output blocks (` ```output `). No third-party Markdown packages (`marked`, `remark`, etc.) are allowed.
-- **Later Phases**: Supabase (auth, user progress tracking) and Gemini API (server routes only, API keys in `.env.local`).
+A free website where anyone can learn Python from zero to advanced.
+
+1. **Lessons:** a complete curriculum with quizzes, clear explanations, and runnable examples.
+2. **Practice:** learners write Python in an editor and run it against hidden test cases in their browser.
+3. **Clear failure feedback without AI: expected vs actual output for each failed test, plus a hand-written hint per test.**
+4. **Local progress:** progress is saved in the browser without accounts or a server-side profile.
+
+The tracks are **Python from zero** (50 lessons across 9 modules) and **CS50P** (10 lessons, one per week).
+
+The owner, Kritik, prefers strict phase-by-phase work. Do not add features, pages, libraries, or refactors outside the current phase. If an improvement is not requested, list it as a suggestion rather than building it.
 
 ---
 
-## 3. Working Agreement & Operating Rules
+## 2. Fixed stack
 
-1. **One phase at a time**: Every phase has an acceptance checklist.
-2. **Short plan first**: State the files to create or modify before building.
-3. **Keep code clean and simple**: Short explanatory comments for beginners.
-4. **Preserve prior working code**: Never delete or rewrite earlier code unless explicitly instructed.
-5. **Honesty rule**: If a visual or runtime aspect cannot be programmatically verified in the terminal, state **"needs human check"**—never claim PASS without concrete verification.
-6. **No secrets in commits**: `.env.local` is gitignored; never ask the user to paste API keys into chat.
-7. **Curriculum fidelity**: Every lesson must strictly follow `content/LESSON_STANDARD.md` and map to `content/CURRICULUM.md`.
+- **Framework:** Next.js App Router + TypeScript + Tailwind CSS.
+- **Code editor:** Monaco through `@monaco-editor/react`, loaded from a pinned HTTPS CDN only on routes that run code.
+- **Execution:** Pyodide 0.26.4 (Python 3.12) in the browser using a Web Worker. Never execute learner code on the server.
+- **Content:** lesson Markdown, quiz JSON, and problem JSON live under `/content`; pages that read them must be generated at build time.
+- **Markdown:** `MarkdownView` is a custom renderer for lesson content. Do not add a third-party Markdown renderer.
+- **Progress:** browser `localStorage`; no login or account service.
 
-### How to Run Locally
+---
+
+## 3. Working agreement
+
+1. Work on one phase at a time and follow its acceptance list.
+2. Before implementation, give a short plan naming the affected areas.
+3. Keep code direct and preserve working behavior unless the phase explicitly changes it.
+4. If visual or runtime behavior cannot be verified in a browser, say **needs human check**; never claim PASS without evidence.
+5. Never commit secrets.
+6. Lessons must follow `content/LESSON_STANDARD.md` and `content/CURRICULUM.md`.
+7. The project owner commits; do not run git commands.
+
+### How to run locally
 
 ```bash
-export PATH="$HOME/.local/node/bin:$PATH"   # Node path on mac environment
-cd ~/pythonlearner
-npm run dev                                 # Starts local dev server at http://localhost:3000
-LESSON_PYTHON="$HOME/Library/spyder-6/envs/spyder-runtime/bin/python3.12" python3 scripts/verify_lessons.py  # Verifies with Python 3.12.x; default is python3.12
+export PATH="$HOME/.local/node/bin:$PATH"
+npm run dev
+LESSON_PYTHON="$HOME/Library/spyder-6/envs/spyder-runtime/bin/python3.12" python3 scripts/verify_lessons.py
+node scripts/verify_in_pyodide.mjs
 ```
 
----
-
-## 4. Visual Identity & Design System
-
-- **Typography**:
-  - Headings & Accent Numbers: **Doto** (dot-matrix display font)
-  - Body & Reading Text: **Hanken Grotesk**
-  - Code & Console Output: **JetBrains Mono**
-- **Color Palette**:
-  - Paper: `#F7F8FA` (Light mode) / `#0E1116` (Dark mode)
-  - Ink: `#111418` (Light mode) / `#F7F8FA` (Dark mode)
-  - Accent Token: **Python Yellow** (`#FFC832`) for dots, active navigation indicators, and focus rings. (Never yellow text on white background).
-  - Status indicators: Green for passing tests, red for failing tests.
-  - **No blues**: Removed legacy blues/sky/indigo across the site.
-- **Layout**:
-  - Two-column grid on desktop ($\ge 1024\text{px}$): 220px sticky sidebar for table of contents + main content column with max 70ch reading width.
-  - Collapsible non-overlapping accordion table of contents on mobile ($< 1024\text{px}$).
-  - `scroll-margin-top` on headings prevents content from hiding beneath the sticky navbar.
+The development server is normally available at `http://localhost:3000`. Both lesson verification commands must pass before lesson work is considered complete.
 
 ---
 
-## 5. Current State of Development
+## 4. Visual identity
 
-| Phase | Description | Current Status |
+- **Typography:** Doto for headings and accent numbers; Hanken Grotesk for reading; JetBrains Mono for code and console output.
+- **Colors:** paper `#F7F8FA` / dark `#0E1116`; ink `#111418` / dark `#F7F8FA`; Python yellow `#FFC832` for dots, active indicators, and focus rings. Do not use yellow text on white.
+- **Status:** green for passing tests and red for failing tests.
+- **Palette:** no blue accents.
+- **Layout:** desktop lesson pages use a 220px contents rail and a reading column up to 70ch. Below 1024px the contents control stays in normal flow and collapses. Headings use scroll margin below the sticky navbar.
+
+---
+
+## 5. Current state and roadmap
+
+| Phase | Description | Status |
 |---|---|---|
-| **Phase 1** | Foundation (pages, navbar, footer, tokens, folder layout) | **DONE** |
-| **Phase 2** | Monaco editor + Pyodide Web Worker + test runner (5s timeout, readable errors) | **DONE** |
-| **Phase 3** | Practice system: `/practice`, `/practice/[slug]`, 6 initial problems, test runner | **DONE** (70 test cases verified with python3) |
-| **Phase 3.5** | Visual identity (Doto font, halftone canvas, dot-grid mark, ruled lists) | **DONE** |
-| **Phase 4** | Initial lesson & quiz infrastructure (`/learn`, `/learn/[slug]`, `QuizView`) | **DONE** |
-| **Phase 6A** | Curriculum map (`CURRICULUM.md`), lesson standard (`LESSON_STANDARD.md`), TOC component, callouts, `verify_lessons.py` | **DONE** |
-| **Polish Pass** | Visual identity fixes (Doto headings, yellow accents, TOC layout fixes, track counters) | **DONE** |
-| **Phase 6B (Python from zero lessons 1–25 + CS50P Week 1)** | 26 lessons complete and verified with Python 3.12.11 | **IN PROGRESS** (25 of 50 Python-from-zero lessons plus 1 of 10 CS50P lessons; 413 checks passing) |
-
-### Remaining Roadmap
-
-- **Phase 6B (Continuation)**: Complete remaining lessons in Module 5 (Recursion), Modules 6–9, and CS50P Weeks 2–10.
-- **Phase 5**: AI feedback on failed tests (Gemini server route `POST /api/tutor/feedback` with rate limiting and prompt guardrails).
-- **Phase 7**: User authentication and progress tracking with Supabase.
-- **Phase 8**: Re-chunk the Python 3.12 documentation for hybrid search (BM25 + embeddings + reranker); do not use the Python 3.15 chunks for lessons.
-- **Phase 9**: Autonomous AI Tutor agent (tutor selects between docs search, code execution, web search, and lesson content).
+| Foundation | Navigation, visual system, lesson and practice routes | Done |
+| Browser runner | Monaco, Pyodide worker, hidden tests, timeout and result display | Done; CDN retry UI implemented, behavior needs human check |
+| Curriculum | 50 Python-from-zero lessons and 10 CS50P lessons with quizzes | 60 lessons verified on Python 3.12.11 and Pyodide 0.26.4 |
+| F1 | Remove obsolete AI copy and routes, clean up, and make deployment-ready | Done; production build, lint, both lesson verifiers, static output and leak scans checked; browser checks need human check |
+| F2 | Add many more practice problems with hand-written hints | Planned |
+| F3 | Save progress in the browser with localStorage, without login | Planned |
+| F4 | Quality pass with real browser tests | Planned |
+| F5 | Final deployment check | Planned |
 
 ---
 
-## 6. Completed Lessons Inventory (26 Lessons Verified)
+## 6. Architecture map
 
-The first 25 Python-from-zero lessons and CS50P Week 1 pass the automated requirements in `content/LESSON_STANDARD.md` using Python 3.12.11. All runnable examples match their output blocks; all 19 documented error messages match Python 3.12.11.
-
-| # | Slug | Track | Module | Order | Word Count | Runnables | Quiz Qs | Verification |
-|---|---|---|---|---|---:|---:|---:|---|
-| 1 | `what-is-programming-and-python` | Python from zero | M1 Getting started | 1 | 2,028 | 17 | 9 | PASS |
-| 2 | `your-first-program-with-print` | Python from zero | M1 Getting started | 2 | 1,736 | 17 | 9 | PASS |
-| 3 | `variables-and-types` | Python from zero | M1 Getting started | 3 | 2,005 | 18 | 9 | PASS |
-| 4 | `numbers-and-math` | Python from zero | M1 Getting started | 4 | 1,830 | 17 | 9 | PASS |
-| 5 | `text-strings` | Python from zero | M1 Getting started | 5 | 1,827 | 17 | 9 | PASS |
-| 6 | `talking-to-the-user-with-input-and-f-strings` | Python from zero | M1 Getting started | 6 | 1,658 | 16 | 9 | PASS |
-| 7 | `true-false-and-comparisons` | Python from zero | M2 Making decisions | 7 | 1,503 | 18 | 9 | PASS |
-| 8 | `making-decisions-with-if` | Python from zero | M2 Making decisions | 8 | 1,929 | 16 | 9 | PASS |
-| 9 | `and-or-not` | Python from zero | M2 Making decisions | 9 | 1,952 | 17 | 9 | PASS |
-| 10 | `repeating-with-loops` | Python from zero | M3 Repeating | 10 | 1,540 | 19 | 9 | PASS |
-| 11 | `for-loops-and-range` | Python from zero | M3 Repeating | 11 | 1,733 | 16 | 9 | PASS |
-| 12 | `break-continue-and-loop-else` | Python from zero | M3 Repeating | 12 | 1,670 | 14 | 9 | PASS |
-| 13 | `nested-loops-and-patterns` | Python from zero | M3 Repeating | 13 | 1,683 | 16 | 9 | PASS |
-| 14 | `lists` | Python from zero | M4 Collections | 14 | 1,692 | 16 | 9 | PASS |
-| 15 | `indexing-and-slicing` | Python from zero | M4 Collections | 15 | 1,556 | 17 | 9 | PASS |
-| 16 | `tuples` | Python from zero | M4 Collections | 16 | 1,628 | 16 | 9 | PASS |
-| 17 | `dictionaries` | Python from zero | M4 Collections | 17 | 2,057 | 11 | 9 | PASS |
-| 18 | `sets` | Python from zero | M4 Collections | 18 | 1,711 | 11 | 9 | PASS |
-| 19 | `comprehensions` | Python from zero | M4 Collections | 19 | 1,709 | 11 | 9 | PASS |
-| 20 | `sorting-zip-and-enumerate` | Python from zero | M4 Collections | 20 | 1,580 | 12 | 9 | PASS |
-| 21 | `defining-functions` | Python from zero | M5 Functions | 21 | 1,574 | 11 | 9 | PASS |
-| 22 | `parameters-and-return-values` | Python from zero | M5 Functions | 22 | 1,617 | 12 | 9 | PASS |
-| 23 | `scope` | Python from zero | M5 Functions | 23 | 1,643 | 11 | 9 | PASS |
-| 24 | `default-keyword-args-and-kwargs` | Python from zero | M5 Functions | 24 | 1,602 | 11 | 9 | PASS |
-| 25 | `lambda-map-and-filter` | Python from zero | M5 Functions | 25 | 1,602 | 11 | 9 | PASS |
-| 26 | `functions-and-variables` | CS50P | Week 0 / 1 | 1 | 2,435 | 16 | 9 | PASS |
-
-**Automated Verification Status**: `LESSON_PYTHON="$HOME/Library/spyder-6/envs/spyder-runtime/bin/python3.12" python3 scripts/verify_lessons.py` produces `Error messages checked: 19` and `Summary: 413 checks passed, 0 warnings, 0 failures.`
+- `app/`: App Router pages and route metadata.
+- `components/`: navigation, custom Markdown, quiz, code editor, runner feedback, and visual elements.
+- `content/lessons/<slug>/`: lesson Markdown and quiz JSON.
+- `content/problems/`: problem definitions and test data. Reference solutions must never enter browser output.
+- `lib/lessons.ts`: lesson and curriculum file loader, used at build time for static routes.
+- `lib/problems.ts`: problem data loader and public problem metadata.
+- `public/pyodideWorker.js`: pinned Pyodide worker.
+- `scripts/verify_lessons.py`: Python 3.12 lesson verification.
+- `scripts/verify_in_pyodide.mjs`: lesson examples run through Pyodide 0.26.4.
 
 ---
 
-## 7. File Map & Project Architecture
+## 7. Verification and deployment requirements
 
-```
-pythonlearner/
-├── app/
-│   ├── globals.css                       # Design tokens, CSS variables, dark/light theme
-│   ├── layout.tsx                        # Root layout with fonts, Navbar, Footer
-│   ├── page.tsx                          # Landing page with halftone hero & feature grid
-│   ├── learn/
-│   │   ├── page.tsx                      # Lesson catalog grouped by track and module
-│   │   └── [slug]/page.tsx               # Dynamic lesson viewer with TOC, runnables & quiz
-│   ├── practice/
-│   │   ├── page.tsx                      # Practice problem listing with track filters
-│   │   └── [slug]/page.tsx               # Monaco editor, Pyodide runner & test suite
-│   └── test-markdown/page.tsx            # Test workbench for MarkdownView (delete before launch)
-├── components/
-│   ├── CodeEditor.tsx                    # Monaco editor wrapper with keybindings
-│   ├── DotGridGlyph.tsx                  # Doto decorative marks and visual accents
-│   ├── Footer.tsx                        # Global site footer
-│   ├── HalftoneCanvas.tsx                # Procedural halftone canvas background
-│   ├── LessonTableOfContents.tsx         # Sticky desktop TOC & mobile accordion
-│   ├── MarkdownView.tsx                  # Custom Markdown, table, alert & callout engine
-│   ├── Navbar.tsx                        # Sticky navigation bar with active route tokens
-│   ├── QuizView.tsx                      # Interactive multiple-choice quiz with explanations
-│   ├── RunnableCodeBlock.tsx             # Pyodide browser-runner with terminal output pane
-│   └── TestResults.tsx                   # Practice test execution reporter (expected vs actual)
-├── content/
-│   ├── CURRICULUM.md                     # Master track & module order for all 60 lessons
-│   ├── LESSON_STANDARD.md                # Self-enforcing lesson quality & structural standard
-│   ├── lessons/<slug>/
-│   │   ├── lesson.md                     # Lesson frontmatter & 9 structured sections
-│   │   └── quiz.json                     # 8–10 question quiz schema
-│   ├── problems/<slug>.json              # Practice problems, starter code, test suites
-│   └── source/
-│       ├── cs50p-notes/                  # CS50P Markdown notes from Notion (source for CS50P track)
-│       └── python-docs/                  # Target location for Python doc chunks (Phase 8)
-├── lib/
-│   ├── lessons.ts                        # Frontmatter parsing, reading time, curriculum mapping
-│   ├── problems.ts                       # Problem loader, test case isolation
-│   ├── pyodideRunner.ts                  # Worker messaging interface
-│   ├── pyodideWorker.ts                  # Worker initialization logic
-│   └── usePyodide.ts                     # React hook for browser-side Python execution
-├── public/
-│   └── pyodideWorker.js                  # Dedicated Web Worker hosting Pyodide 0.26.4
-└── scripts/
-    └── verify_lessons.py                 # Autonomous lesson verification test harness
-```
+- `LESSON_PYTHON` selects the lesson verifier's interpreter; it must report Python 3.12.x.
+- The verifier checks titles, sections, word counts, runnable outputs, error lines, and quiz schema.
+- The Pyodide verifier checks browser-compatible lesson examples against Pyodide 0.26.4.
+- Dynamic lesson and problem slugs must be enumerated at build time; content must not be read from `/content` at request time.
+- Production checks include clean install, build, lint, static route output, case-sensitive path checks, and ensuring no `referenceSolution` or source notes are in client assets.
 
 ---
 
-## 8. Standards, Rules & Verification Harness
+## 8. Known issues and human checks
 
-### Lesson Verification Harness (`scripts/verify_lessons.py`)
-
-The verification script enforces every dimension of `LESSON_STANDARD.md`:
-1. **Interpreter Check**: Uses `LESSON_PYTHON` (default `python3.12`), stops with a clear error if missing or not Python 3.12.x, and prints the version used.
-2. **Curriculum Title Check**: Ensures `curriculumTitle` exists in `content/CURRICULUM.md`.
-3. **Section Check**: Checks the nine standard `##` sections in order. Projects use their six project-specific section headings.
-4. **Word Count Check**: Counts outside code blocks, HTML tags, and callouts: 1,500+ words for standard lessons and 1,000+ for projects.
-5. **Runnable Examples**: Uses `runnableMin` when present (default 8; projects require at least 3) and runs examples with the validated Python 3.12 interpreter, comparing outputs character-for-character.
-6. **Error Message Check**: Runs Python code paired with an error output block and compares the final error line.
-7. **Project Support**: `type: project` requires "The goal", "What you will practice", "Plan", "Build it step by step", "The complete program", and "Make it yourself"; 1,000+ words; 3+ runnable examples; and a quiz of 5–8 questions.
-8. **Quiz Schema**: Standard quizzes contain 8–10 questions; project quizzes contain 5–8. Every question needs exactly four options and a valid `correctIndex`.
-9. **Documentation Version**: Do not use the Python 3.15 `chunks.jsonl` source for lesson facts. Lessons target Python 3.12; Phase 8 must re-chunk the Python 3.12 docs. That chunks file is currently missing from this checkout.
+- This chat had no browser surface available, so page appearance, custom 404/error pages, and offline/blocked CDN Retry behavior need human check in a real browser.
+- Visual checks remain for lesson contents layout at wide desktop, tablet, and mobile widths, and for light/dark active indicators.
+- Set `NEXT_PUBLIC_SITE_URL` to the production domain before deployment; the local build currently uses its localhost fallback.
+- Deployment domain and production environment settings must be confirmed by the owner before F5.
 
 ---
 
-## 9. Known Issues, Loose Ends & Human Check Items
+## 9. Next steps
 
-1. **Needs Human Check (Visual Layout)**:
-   - Confirm table of contents on `/learn/[slug]` does not overlap lesson text at 1440px (wide desktop), 1024px (tablet landscape), and 390px (mobile).
-   - Confirm active-nav dot and track indicators render in Python yellow (`#FFC832`) across light and dark modes.
-2. **Missing Source Material**:
-   - `content/source/python-docs/chunks.jsonl` is currently missing. If restored, it contains Python 3.15 documentation and must not be used as lesson source because lesson facts target Python 3.12. For Phase 8, re-chunk the Python 3.12 documentation to match the browser runtime.
-3. **Pre-Launch Cleanup**:
-   - `/test-markdown` route must be deleted before production release.
-   - Confirm `referenceSolution` in problem JSON files is never bundled into client payloads.
-
----
-
-## 10. Next Steps for Continuing Development
-
-When continuing in the next turn or chat, proceed directly with:
-
-1. **Finish Module 5 ("M5 Functions")**: Lesson 26, `recursion` (curriculumTitle: "Recursion", order 26).
-2. **Continue Module 6 ("M6 Errors, files, modules")**: Lessons 27–32.
-3. **Continue Module 7 ("M7 Objects")**: Lessons 33–37.
-4. **Continue Module 8 ("M8 Advanced")**: Lessons 38–45.
-5. **Continue Module 9 ("M9 Projects")**: Lessons 46–50.
-6. **Complete CS50P Track**: Lessons 2–10 (`conditionals`, `loops`, `exceptions`, `libraries`, `unit-tests`, `file-io`, `cs50p-regular-expressions`, `object-oriented-programming`, `et-cetera`).
-7. Run `LESSON_PYTHON="$HOME/Library/spyder-6/envs/spyder-runtime/bin/python3.12" python3 scripts/verify_lessons.py` across all completed lessons and confirm 100% pass rate.
+1. Finish F1 cleanup and deploy-readiness.
+2. F2: author more practice problems with a distinct hand-written hint for each test.
+3. F3: save lesson/practice progress in localStorage without login.
+4. F4: verify important flows in real browsers, including mobile and offline behavior.
+5. F5: check the final deployment configuration and production build.

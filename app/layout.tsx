@@ -24,9 +24,26 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PyLearner — Python from zero to advanced",
+  title: {
+    default: "PyLearner — Python from zero to advanced",
+    template: "%s | PyLearner",
+  },
   description:
-    "Write. Run. Learn. Python from zero to advanced with browser execution and targeted test feedback.",
+    "Learn Python from zero to advanced with a complete curriculum, quizzes, and browser-based practice.",
+  applicationName: "PyLearner",
+  openGraph: {
+    type: "website",
+    siteName: "PyLearner",
+    title: "PyLearner — Python from zero to advanced",
+    description:
+      "Learn Python with a full curriculum and browser-based practice problems.",
+  },
+  twitter: {
+    card: "summary",
+    title: "PyLearner — Python from zero to advanced",
+    description:
+      "Learn Python with a full curriculum and browser-based practice problems.",
+  },
 };
 
 export default function RootLayout({

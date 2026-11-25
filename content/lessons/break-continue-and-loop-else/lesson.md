@@ -303,6 +303,10 @@ for idx in range(len(product_ids)):
         break
 ```
 
+
+```output
+Product 305 found at index 2!
+```
 :::solution Solution
 Iterate across indices with `range(len(product_ids))` and execute `break` upon equality:
 
@@ -313,6 +317,10 @@ for idx in range(len(product_ids)):
     if product_ids[idx] == target:
         print(f"Product {target} found at index {idx}!")
         break
+```
+
+```output
+Product 305 found at index 2!
 ```
 :::
 
@@ -331,6 +339,13 @@ for bal in balances:
 print("Total solvent deposits: ₹", total_solvent, sep="")
 ```
 
+
+```output
+Approved positive balance: ₹1200
+Approved positive balance: ₹4500
+Approved positive balance: ₹2100
+Total solvent deposits: ₹7800
+```
 :::solution Solution
 Check `if bal < 0:` and call `continue`, summing remaining balances into `total_solvent`:
 
@@ -343,6 +358,13 @@ for bal in balances:
     total_solvent += bal
     print("Approved positive balance: ₹", bal, sep="")
 print("Total solvent deposits: ₹", total_solvent, sep="")
+```
+
+```output
+Approved positive balance: ₹1200
+Approved positive balance: ₹4500
+Approved positive balance: ₹2100
+Total solvent deposits: ₹7800
 ```
 :::
 
@@ -360,6 +382,10 @@ else:
     print(f"{test_val} is confirmed prime!")
 ```
 
+
+```output
+29 is confirmed prime!
+```
 :::solution Solution
 Loop over `range(2, test_val)` checking `test_val % factor == 0`, with an `else` block confirming primality:
 
@@ -371,6 +397,10 @@ for factor in range(2, test_val):
         break
 else:
     print(f"{test_val} is confirmed prime!")
+```
+
+```output
+29 is confirmed prime!
 ```
 :::
 
