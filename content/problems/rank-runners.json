@@ -1,0 +1,361 @@
+{
+  "slug": "rank-runners",
+  "title": "Rank Runners with Tie Breaks",
+  "track": "Python from zero",
+  "difficulty": "Advanced",
+  "testType": "function",
+  "functionName": "rank_runners",
+  "relatedLessons": [
+    "sorting-zip-and-enumerate",
+    "dictionaries"
+  ],
+  "description": "Each record is a dictionary with `name` and `seconds`. Return runner names sorted by ascending time; ties are ordered alphabetically by name. Do not modify the records.",
+  "starterCode": "def rank_runners(runners):\n    # Return names ordered by time, then alphabetically\n    pass\n",
+  "referenceSolution": "def rank_runners(runners):\n    ordered = sorted(runners, key=lambda runner: (runner[\"seconds\"], runner[\"name\"]))\n    return [runner[\"name\"] for runner in ordered]",
+  "solution": {
+    "code": "def rank_runners(runners):\n    ordered = sorted(runners, key=lambda runner: (runner[\"seconds\"], runner[\"name\"]))\n    return [runner[\"name\"] for runner in ordered]",
+    "explanation": "Sort by a tuple containing elapsed time and then runner name. Tuple ordering applies the name only when two times tie. Returning names keeps the output focused on the requested ranking."
+  },
+  "wrongSolutions": [
+    "def rank_runners(runners):\n    return [r[\"name\"] for r in sorted(runners,key=lambda r:r[\"seconds\"]) ]",
+    "def rank_runners(runners):\n    return [r[\"name\"] for r in sorted(runners,key=lambda r:r[\"name\"])]"
+  ],
+  "tests": [
+    {
+      "args": [
+        []
+      ],
+      "expected": [],
+      "hint": "An empty runner list returns no names."
+    },
+    {
+      "args": [
+        [
+          {
+            "name": "Mia",
+            "seconds": 12.4
+          }
+        ]
+      ],
+      "expected": [
+        "Mia"
+      ],
+      "hint": "A single runner needs no tie break."
+    },
+    {
+      "args": [
+        [
+          {
+            "name": "Zoe",
+            "seconds": 11
+          },
+          {
+            "name": "Ari",
+            "seconds": 10
+          }
+        ]
+      ],
+      "expected": [
+        "Ari",
+        "Zoe"
+      ],
+      "hint": "Lower time ranks first."
+    },
+    {
+      "args": [
+        [
+          {
+            "name": "Zoe",
+            "seconds": 10
+          },
+          {
+            "name": "Ari",
+            "seconds": 10
+          }
+        ]
+      ],
+      "expected": [
+        "Ari",
+        "Zoe"
+      ],
+      "hint": "Alphabetical order resolves equal times."
+    },
+    {
+      "args": [
+        [
+          {
+            "name": "Mia",
+            "seconds": 9
+          },
+          {
+            "name": "Ari",
+            "seconds": 9
+          },
+          {
+            "name": "Bo",
+            "seconds": 8
+          }
+        ]
+      ],
+      "expected": [
+        "Bo",
+        "Ari",
+        "Mia"
+      ],
+      "hint": "Apply time before name across several records."
+    },
+    {
+      "args": [
+        [
+          {
+            "name": "Éva",
+            "seconds": 7
+          },
+          {
+            "name": "Ada",
+            "seconds": 7
+          }
+        ]
+      ],
+      "expected": [
+        "Ada",
+        "Éva"
+      ],
+      "hint": "Names use Python string ordering."
+    },
+    {
+      "args": [
+        [
+          {
+            "name": "Sam",
+            "seconds": 0
+          },
+          {
+            "name": "Pat",
+            "seconds": 0
+          }
+        ]
+      ],
+      "expected": [
+        "Pat",
+        "Sam"
+      ],
+      "hint": "Zero is a valid elapsed time."
+    },
+    {
+      "args": [
+        [
+          {
+            "name": "Lee",
+            "seconds": 10.5
+          },
+          {
+            "name": "Kai",
+            "seconds": 10.25
+          }
+        ]
+      ],
+      "expected": [
+        "Kai",
+        "Lee"
+      ],
+      "hint": "Compare fractional times numerically."
+    },
+    {
+      "args": [
+        [
+          {
+            "name": "A",
+            "seconds": 2
+          },
+          {
+            "name": "A",
+            "seconds": 1
+          }
+        ]
+      ],
+      "expected": [
+        "A",
+        "A"
+      ],
+      "hint": "Both entries remain even when names match."
+    },
+    {
+      "args": [
+        [
+          {
+            "name": "0",
+            "seconds": 0
+          },
+          {
+            "name": "1",
+            "seconds": 1
+          },
+          {
+            "name": "2",
+            "seconds": 2
+          },
+          {
+            "name": "3",
+            "seconds": 3
+          },
+          {
+            "name": "4",
+            "seconds": 4
+          },
+          {
+            "name": "5",
+            "seconds": 5
+          },
+          {
+            "name": "6",
+            "seconds": 6
+          },
+          {
+            "name": "7",
+            "seconds": 0
+          },
+          {
+            "name": "8",
+            "seconds": 1
+          },
+          {
+            "name": "9",
+            "seconds": 2
+          },
+          {
+            "name": "10",
+            "seconds": 3
+          },
+          {
+            "name": "11",
+            "seconds": 4
+          },
+          {
+            "name": "12",
+            "seconds": 5
+          },
+          {
+            "name": "13",
+            "seconds": 6
+          },
+          {
+            "name": "14",
+            "seconds": 0
+          },
+          {
+            "name": "15",
+            "seconds": 1
+          },
+          {
+            "name": "16",
+            "seconds": 2
+          },
+          {
+            "name": "17",
+            "seconds": 3
+          },
+          {
+            "name": "18",
+            "seconds": 4
+          },
+          {
+            "name": "19",
+            "seconds": 5
+          },
+          {
+            "name": "20",
+            "seconds": 6
+          },
+          {
+            "name": "21",
+            "seconds": 0
+          },
+          {
+            "name": "22",
+            "seconds": 1
+          },
+          {
+            "name": "23",
+            "seconds": 2
+          },
+          {
+            "name": "24",
+            "seconds": 3
+          }
+        ]
+      ],
+      "expected": [
+        "0",
+        "14",
+        "21",
+        "7",
+        "1",
+        "15",
+        "22",
+        "8",
+        "16",
+        "2",
+        "23",
+        "9",
+        "10",
+        "17",
+        "24",
+        "3",
+        "11",
+        "18",
+        "4",
+        "12",
+        "19",
+        "5",
+        "13",
+        "20",
+        "6"
+      ],
+      "hint": "A larger tie-heavy list checks both sort keys."
+    },
+    {
+      "args": [
+        [
+          {
+            "name": "Zed",
+            "seconds": 100
+          },
+          {
+            "name": "Amy",
+            "seconds": 100
+          },
+          {
+            "name": "Max",
+            "seconds": 99
+          }
+        ]
+      ],
+      "expected": [
+        "Max",
+        "Amy",
+        "Zed"
+      ],
+      "hint": "Alphabetical ordering applies only within equal times."
+    },
+    {
+      "args": [
+        [
+          {
+            "name": "Bo",
+            "seconds": 4
+          },
+          {
+            "name": "Bo",
+            "seconds": 4
+          }
+        ]
+      ],
+      "expected": [
+        "Bo",
+        "Bo"
+      ],
+      "hint": "Do not collapse duplicate records."
+    }
+  ]
+}

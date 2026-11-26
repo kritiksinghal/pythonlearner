@@ -377,16 +377,12 @@ Result is None (is): True
 Given a student score `score = 68` and a passing mark `pass_mark = 50`, write a comparison statement that evaluates whether the student passed. Store the result in a boolean variable `passed` and print the outcome.
 
 ```python run
-score = 68
-pass_mark = 50
-passed = score >= pass_mark
-print("Exam result passed:", passed)
+# Complete the Exam passing threshold task.
+# Sample data: pass_mark = 50
+# Write your code below and print the result
 ```
 
 
-```output
-Exam result passed: True
-```
 :::solution Solution
 Use the greater-than-or-equal-to operator `>=`:
 
@@ -407,15 +403,12 @@ Exam result passed: True
 Water remains in liquid state at standard pressure between 0 degrees Celsius and 100 degrees Celsius inclusive. Given `water_temp = 45`, write a chained comparison that checks if `water_temp` is in the liquid range (`0 <= water_temp <= 100`), storing the result in `is_liquid` and printing it.
 
 ```python run
-water_temp = 45
-is_liquid = 0 <= water_temp <= 100
-print("Is liquid state:", is_liquid)
+# Complete the Liquid water temperature range task.
+# Sample data: water_temp = 45
+# Write your code below and print the result
 ```
 
 
-```output
-Is liquid state: True
-```
 :::solution Solution
 Use chained comparison syntax `0 <= water_temp <= 100`:
 
@@ -435,16 +428,12 @@ Is liquid state: True
 A web application requires usernames to be between 5 and 15 characters long inclusive. Given `username = "coder_pro"`, use `len()` inside a chained comparison to verify whether the username length satisfies the policy (`5 <= len(username) <= 15`), and print a clear boolean report.
 
 ```python run
-username = "coder_pro"
-char_count = len(username)
-is_valid_len = 5 <= char_count <= 15
-print(f"Username '{username}' length ({char_count}) is valid:", is_valid_len)
+# Complete the Username policy validation task.
+# Sample data: username = 'coder_pro'
+# Write your code below and print the result
 ```
 
 
-```output
-Username 'coder_pro' length (9) is valid: True
-```
 :::solution Solution
 Call `len(username)` and test with the chained comparison `5 <= char_count <= 15`:
 

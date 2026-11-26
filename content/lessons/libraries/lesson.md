@@ -292,10 +292,15 @@ A local file named `random.py` can interfere with importing the intended module.
 Import `choice` directly and pick from a short activity list.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the choose a warm-up activity task.
 # Sample data: activities = ["stretch", "skip", "jog"]
 # Write your code below and print the result
 ```
+
+
+
+:::solution
+The function returns one item from the supplied list. The lesson runner fixes the random result for verification; an ordinary run may choose another activity.
 
 ```python
 from random import choice
@@ -303,11 +308,6 @@ from random import choice
 activities = ["stretch", "skip", "jog"]
 print(choice(activities))
 ```
-
-:::solution
-
-The function returns one item from the supplied list. The lesson runner fixes the random result for verification; an ordinary run may choose another activity.
-
 :::
 
 ### Medium: calculate an average
@@ -315,20 +315,21 @@ The function returns one item from the supplied list. The lesson runner fixes th
 Use the standard library to compute the average of a set of temperatures.
 
 ```python run
+# Complete the calculate an average task.
+# Sample data: temperatures = [22, 26, 24]
+# Write your code below and print the result
+```
+
+
+:::solution
+`statistics.mean` calculates the arithmetic mean from the list and returns 24.
+
+```python
 import statistics
 
 temperatures = [22, 26, 24]
 print(statistics.mean(temperatures))
 ```
-
-```output
-24
-```
-
-:::solution
-
-`statistics.mean` calculates the arithmetic mean from the list and returns 24.
-
 :::
 
 ### Challenge: plan a command-line greeting
@@ -336,7 +337,7 @@ print(statistics.mean(temperatures))
 Write a terminal script that expects exactly one name. Check the argument count before reading its first argument, then print a greeting.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the plan a command-line greeting task.
 # Sample data: name = "Nila"
 # Write your code below and print the result
 ```
@@ -347,9 +348,16 @@ hello, Nila
 ```
 
 :::solution
-
 Import `sys`, check that `len(sys.argv)` is 2, and then print `sys.argv[1]`. If the count differs, call `sys.exit` with a short usage message.
 
+```python
+import sys
+
+sys.argv = ["greeting.py", "Nila"]
+if len(sys.argv) != 2:
+    raise SystemExit("Usage: python greeting.py NAME")
+print(f"hello, {sys.argv[1]}")
+```
 :::
 
 ## Recap

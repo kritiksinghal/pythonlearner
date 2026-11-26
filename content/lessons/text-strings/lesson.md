@@ -349,15 +349,12 @@ Score: 98
 A book catalog database received the messy string `raw_author = '   arundhati roy   '`. Write a script that removes all leading and trailing whitespace and transforms the name into proper title casing (`'Arundhati Roy'`), then prints the result.
 
 ```python run
-raw_author = '   arundhati roy   '
-clean_author = raw_author.strip().title()
-print('Sanitized author name:', clean_author)
+# Complete the Clean and standardize author name task.
+# Sample data: raw_author = '   arundhati roy   ', clean_author = raw_author.strip().title()
+# Write your code below and print the result
 ```
 
 
-```output
-Sanitized author name: Arundhati Roy
-```
 :::solution Solution
 Chain the `.strip()` method to remove the outer whitespace and `.title()` to capitalize both the first and last names:
 
@@ -377,16 +374,12 @@ Sanitized author name: Arundhati Roy
 To protect customer privacy, an e-commerce checkout screen must display only the final four digits of a payment card number, replacing all preceding digits with asterisks. Given `raw_card = '4532-8901-2345-9876'`, remove the hyphens and generate a masked string showing 12 asterisks followed by the last 4 digits (`'************9876'`).
 
 ```python run
-raw_card = '4532-8901-2345-9876'
-digits_only = raw_card.replace('-', '')
-masked_card = '*' * 12 + digits_only[12:]
-print('Masked account number:', masked_card)
+# Complete the Masking payment card digits task.
+# Sample data: raw_card = '4532-8901-2345-9876', digits_only = raw_card.replace('-', '')
+# Write your code below and print the result
 ```
 
 
-```output
-Masked account number: ************9876
-```
 :::solution Solution
 Use `.replace('-', '')` to remove hyphens, then combine `'*' * 12` with the final four digits extracted via slice `[12:]`:
 
@@ -407,19 +400,12 @@ Masked account number: ************9876
 Given the passage `paragraph = 'Python is powerful. Python is fast. Python is friendly.'`, count how many times the word `'Python'` appears. Then, use `.replace(old, new, count)` to substitute only the first two occurrences of `'Python'` with `'Snake'`, leaving the third occurrence unchanged. Print both the count and the transformed text.
 
 ```python run
-paragraph = 'Python is powerful. Python is fast. Python is friendly.'
-target_word = 'Python'
-occurrences = paragraph.count(target_word)
-replaced_text = paragraph.replace(target_word, 'Snake', 2)
-print('Occurrences of Python:', occurrences)
-print('Replaced first two:', replaced_text)
+# Complete the Word frequency and selective replacement task.
+# Sample data: paragraph = 'Python is powerful. Python is fast. Python is friendly.', target_word = 'Python'
+# Write your code below and print the result
 ```
 
 
-```output
-Occurrences of Python: 3
-Replaced first two: Snake is powerful. Snake is fast. Python is friendly.
-```
 :::solution Solution
 Pass `target_word` to `.count()` to determine frequency, and pass the optional third argument `2` to `.replace()` to restrict replacement to the first two occurrences:
 

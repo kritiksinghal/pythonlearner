@@ -14,9 +14,10 @@ import { resetPyodideWorker, runPlainPython } from "@/lib/pyodideRunner";
 
 interface Props {
   initialCode: string;
+  title?: string;
 }
 
-export default function RunnableCodeBlock({ initialCode }: Props) {
+export default function RunnableCodeBlock({ initialCode, title = "Interactive Example" }: Props) {
   const [code, setCode] = useState(initialCode.trim());
   const [isRunning, setIsRunning] = useState(false);
   const [output, setOutput] = useState<string | null>(null);
@@ -51,7 +52,7 @@ export default function RunnableCodeBlock({ initialCode }: Props) {
       <div className="flex items-center justify-between border-b border-border bg-code-bg/40 px-3.5 py-1.5 text-xs font-mono">
         <span className="flex items-center gap-1.5 text-muted">
           <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-          <span>Interactive Example</span>
+          <span>{title}</span>
         </span>
         <span className="text-[10px] text-muted">editable</span>
       </div>

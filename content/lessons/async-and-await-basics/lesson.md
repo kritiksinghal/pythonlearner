@@ -313,6 +313,16 @@ A blocking operation can stop the event loop from running other tasks. Prefer an
 Define an async function and use `inspect` to check its kind.
 
 ```python run
+# Complete the identify a coroutine function task.
+# Sample data: delay_seconds = 0, message = "First serve"
+# Write your code below and print the result
+```
+
+
+:::solution
+An async def statement creates a coroutine function. `inspect.iscoroutinefunction()` reports that status without running it.
+
+```python
 import inspect
 
 async def start_match():
@@ -320,15 +330,6 @@ async def start_match():
 
 print(inspect.iscoroutinefunction(start_match))
 ```
-
-```output
-True
-```
-
-:::solution
-
-An async def statement creates a coroutine function. `inspect.iscoroutinefunction()` reports that status without running it.
-
 :::
 
 ### Medium: inspect a coroutine object
@@ -336,6 +337,16 @@ An async def statement creates a coroutine function. `inspect.iscoroutinefunctio
 Call an async function, check the returned object, then close it because this example does not await it.
 
 ```python run
+# Complete the inspect a coroutine object task.
+# Sample data: pending = read_result()
+# Write your code below and print the result
+```
+
+
+:::solution
+Calling the async function creates a coroutine object. Close it in this inspection-only example; real work should be awaited or scheduled.
+
+```python
 import inspect
 
 async def read_result():
@@ -345,15 +356,6 @@ pending = read_result()
 print(inspect.iscoroutine(pending))
 pending.close()
 ```
-
-```output
-True
-```
-
-:::solution
-
-Calling the async function creates a coroutine object. Close it in this inspection-only example; real work should be awaited or scheduled.
-
 :::
 
 ### Challenge: run a coroutine in a terminal
@@ -361,10 +363,22 @@ Calling the async function creates a coroutine object. Close it in this inspecti
 Write an async function that returns a message after an async sleep, then execute it from a normal Python script with `asyncio.run()`.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the run a coroutine in a terminal task.
 # Sample data: delay_seconds = 0
 # Write your code below and print the result
 ```
+
+
+
+Run in a terminal:
+
+```bash
+python3.12 async_practice.py
+```
+
+
+:::solution
+The top-level `asyncio.run()` starts the loop and runs the coroutine to completion. Inside the coroutine, await pauses at the async sleep before returning the message.
 
 ```python
 import asyncio
@@ -375,21 +389,6 @@ async def finish_practice():
 
 print(asyncio.run(finish_practice()))
 ```
-
-Run in a terminal:
-
-```bash
-python3.12 async_practice.py
-```
-
-```output
-Practice complete
-```
-
-:::solution
-
-The top-level `asyncio.run()` starts the loop and runs the coroutine to completion. Inside the coroutine, await pauses at the async sleep before returning the message.
-
 :::
 
 ## Recap

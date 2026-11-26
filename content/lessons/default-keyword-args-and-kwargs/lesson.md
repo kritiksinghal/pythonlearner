@@ -310,12 +310,14 @@ Python reports `TypeError: print_reservation() got an unexpected keyword argumen
 Write a function that accepts a bill and a tip amount defaulting to 10. Print the result with both the default and a custom tip.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Add a default tip task.
 # Sample data: bill = 80
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Add a default tip” by using the provided sample values and producing the requested result.
+
 
 ```python
 def bill_total(bill, tip=10):
@@ -332,12 +334,14 @@ print(bill_total(180, tip=25))
 Write a function with `city` and `transport` parameters. Call it using keyword arguments in reverse order.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Label keyword settings task.
 # Sample data: city = "Jaipur", transport = "train"
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Label keyword settings” by using the provided sample values and producing the requested result.
+
 
 ```python
 def travel_note(city, transport):
@@ -353,12 +357,14 @@ travel_note(transport="train", city="Bhopal")
 Write a function that accepts extra positional scores and returns their total. Call it with four values.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Accept any number of scores task.
 # Sample data: scores = (72, 88, 91, 65)
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Accept any number of scores” by using the provided sample values and producing the requested result.
+
 
 ```python
 def total_scores(*scores):

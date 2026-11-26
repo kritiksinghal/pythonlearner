@@ -52,5 +52,9 @@
       "input": "Ice Cream: 5.99\nCones: 2.01\ndone",
       "expectedOutput": "ICE CREAM: $5.99\nCONES: $2.01\nTOTAL: $8.00"
     }
-  ]
+  ],
+  "solution": {
+    "code": "total = 0.0\nwhile True:\n    try:\n        line = input().strip()\n    except EOFError:\n        break\n    if line.lower() == \"done\":\n        break\n    if not line:\n        continue\n    item, price_str = line.split(\":\")\n    item = item.strip().upper()\n    price = float(price_str.strip())\n    total += price\n    print(f\"{item}: ${price:.2f}\")\nprint(f\"TOTAL: ${total:.2f}\")\n",
+    "explanation": "The loop reads item lines until it sees done and converts each price to a number. It prints each uppercase item with two decimal places while adding its price to the running total. The final line reports the formatted total, including zero when no items were entered."
+  }
 }

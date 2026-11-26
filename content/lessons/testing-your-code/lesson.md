@@ -337,21 +337,22 @@ A test covers only its chosen input and assertion. Add cases that distinguish pl
 Use an assertion to check that minutes convert to two hours and five remaining minutes.
 
 ```python run
+# Complete the check a conversion task.
+# Sample data: minutes = 125
+# Write your code below and print the result
+```
+
+
+:::solution
+The tuple compares both returned values in one assertion. The example passes because 125 minutes contains two full hours and five minutes.
+
+```python
 def split_minutes(total):
     return total // 60, total % 60
 
 assert split_minutes(125) == (2, 5)
 print("Time conversion passed")
 ```
-
-```output
-Time conversion passed
-```
-
-:::solution
-
-The tuple compares both returned values in one assertion. The example passes because 125 minutes contains two full hours and five minutes.
-
 :::
 
 ### Medium: test a boundary
@@ -359,6 +360,16 @@ The tuple compares both returned values in one assertion. The example passes bec
 Check that a temperature warning begins at 30 degrees, not below.
 
 ```python run
+# Complete the test a boundary task.
+# Sample data: warning_threshold = 30, test_temperatures = [29, 30]
+# Write your code below and print the result
+```
+
+
+:::solution
+The two assertions distinguish `>=` from `>`. Testing the threshold itself catches a common comparison error.
+
+```python
 def warning(temp):
     return temp >= 30
 
@@ -366,15 +377,6 @@ assert warning(29) is False
 assert warning(30) is True
 print("Boundary checks passed")
 ```
-
-```output
-Boundary checks passed
-```
-
-:::solution
-
-The two assertions distinguish `>=` from `>`. Testing the threshold itself catches a common comparison error.
-
 :::
 
 ### Challenge: test an exception
@@ -382,6 +384,16 @@ The two assertions distinguish `>=` from `>`. Testing the threshold itself catch
 Write a unittest case that verifies a function rejects an empty username with `ValueError`.
 
 ```python run
+# Complete the test an exception task.
+# Sample data: username = ""
+# Write your code below and print the result
+```
+
+
+:::solution
+`assertRaises(ValueError)` passes when the call raises that exception type. If it returns normally, the test fails.
+
+```python
 import unittest
 
 def validate_username(name):
@@ -399,15 +411,6 @@ result = unittest.TestResult()
 suite.run(result)
 print(result.wasSuccessful())
 ```
-
-```output
-True
-```
-
-:::solution
-
-`assertRaises(ValueError)` passes when the call raises that exception type. If it returns normally, the test fails.
-
 :::
 
 ## Recap

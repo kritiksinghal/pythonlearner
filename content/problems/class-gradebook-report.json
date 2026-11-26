@@ -1,0 +1,653 @@
+{
+  "slug": "class-gradebook-report",
+  "title": "Build a Gradebook Report",
+  "track": "Python from zero",
+  "difficulty": "Advanced",
+  "testType": "function",
+  "functionName": "grade_report",
+  "relatedLessons": [
+    "classes-and-objects",
+    "dictionaries"
+  ],
+  "description": "Each record is `[student_name, score]`. Use a `GradeBook` class to collect scores and return a dictionary mapping each student to their average score. Keep insertion-independent dictionary results and return `{}` for no records.",
+  "starterCode": "def grade_report(records):\n    # Return average score per student using a GradeBook class\n    pass\n",
+  "referenceSolution": "class GradeBook:\n    def __init__(self):\n        self.scores = {}\n\n    def add(self, name, score):\n        self.scores.setdefault(name, []).append(score)\n\n    def averages(self):\n        return {name: sum(values) / len(values) for name, values in self.scores.items()}\n\ndef grade_report(records):\n    book = GradeBook()\n    for name, score in records:\n        book.add(name, score)\n    return book.averages()",
+  "solution": {
+    "code": "class GradeBook:\n    def __init__(self):\n        self.scores = {}\n\n    def add(self, name, score):\n        self.scores.setdefault(name, []).append(score)\n\n    def averages(self):\n        return {name: sum(values) / len(values) for name, values in self.scores.items()}\n\ndef grade_report(records):\n    book = GradeBook()\n    for name, score in records:\n        book.add(name, score)\n    return book.averages()",
+    "explanation": "A small GradeBook class owns each student’s list of grades and calculates its average. The wrapper adds records to the book and returns a report dictionary. Empty input produces an empty report, and repeated students share one record."
+  },
+  "wrongSolutions": [
+    "def grade_report(records):\n    return {name:score for name,score in records}",
+    "def grade_report(records):\n    return {name:sum(score for n,score in records if n==name) for name,score in records}"
+  ],
+  "tests": [
+    {
+      "args": [
+        []
+      ],
+      "expected": {},
+      "hint": "An empty record list produces an empty report."
+    },
+    {
+      "args": [
+        [
+          [
+            "Ari",
+            80
+          ]
+        ]
+      ],
+      "expected": {
+        "Ari": 80.0
+      },
+      "hint": "One score is also that student’s average."
+    },
+    {
+      "args": [
+        [
+          [
+            "Ari",
+            80
+          ],
+          [
+            "Bo",
+            90
+          ]
+        ]
+      ],
+      "expected": {
+        "Ari": 80.0,
+        "Bo": 90.0
+      },
+      "hint": "Keep separate student records."
+    },
+    {
+      "args": [
+        [
+          [
+            "Ari",
+            80
+          ],
+          [
+            "Ari",
+            100
+          ]
+        ]
+      ],
+      "expected": {
+        "Ari": 90.0
+      },
+      "hint": "Average repeated scores for one student."
+    },
+    {
+      "args": [
+        [
+          [
+            "Ari",
+            70
+          ],
+          [
+            "Bo",
+            80
+          ],
+          [
+            "Ari",
+            90
+          ]
+        ]
+      ],
+      "expected": {
+        "Ari": 80.0,
+        "Bo": 80.0
+      },
+      "hint": "Interleaved names still accumulate correctly."
+    },
+    {
+      "args": [
+        [
+          [
+            "Zero",
+            0
+          ],
+          [
+            "Zero",
+            100
+          ]
+        ]
+      ],
+      "expected": {
+        "Zero": 50.0
+      },
+      "hint": "Include zero in the average."
+    },
+    {
+      "args": [
+        [
+          [
+            "A",
+            1
+          ],
+          [
+            "B",
+            2
+          ],
+          [
+            "C",
+            3
+          ]
+        ]
+      ],
+      "expected": {
+        "A": 1.0,
+        "B": 2.0,
+        "C": 3.0
+      },
+      "hint": "Each single-score average remains its score."
+    },
+    {
+      "args": [
+        [
+          [
+            "Ada",
+            95
+          ],
+          [
+            "Ada",
+            85
+          ],
+          [
+            "Ada",
+            90
+          ]
+        ]
+      ],
+      "expected": {
+        "Ada": 90.0
+      },
+      "hint": "Three scores use their arithmetic mean."
+    },
+    {
+      "args": [
+        [
+          [
+            "a",
+            10
+          ],
+          [
+            "A",
+            20
+          ]
+        ]
+      ],
+      "expected": {
+        "a": 10.0,
+        "A": 20.0
+      },
+      "hint": "Names are case-sensitive keys."
+    },
+    {
+      "args": [
+        [
+          [
+            "X",
+            100
+          ],
+          [
+            "Y",
+            50
+          ],
+          [
+            "X",
+            0
+          ],
+          [
+            "Y",
+            100
+          ]
+        ]
+      ],
+      "expected": {
+        "X": 50.0,
+        "Y": 75.0
+      },
+      "hint": "Track interleaved records independently."
+    },
+    {
+      "args": [
+        [
+          [
+            "S0",
+            0
+          ],
+          [
+            "S1",
+            1
+          ],
+          [
+            "S2",
+            2
+          ],
+          [
+            "S3",
+            3
+          ],
+          [
+            "S4",
+            4
+          ],
+          [
+            "S5",
+            5
+          ],
+          [
+            "S6",
+            6
+          ],
+          [
+            "S7",
+            7
+          ],
+          [
+            "S8",
+            8
+          ],
+          [
+            "S9",
+            9
+          ],
+          [
+            "S0",
+            10
+          ],
+          [
+            "S1",
+            11
+          ],
+          [
+            "S2",
+            12
+          ],
+          [
+            "S3",
+            13
+          ],
+          [
+            "S4",
+            14
+          ],
+          [
+            "S5",
+            15
+          ],
+          [
+            "S6",
+            16
+          ],
+          [
+            "S7",
+            17
+          ],
+          [
+            "S8",
+            18
+          ],
+          [
+            "S9",
+            19
+          ],
+          [
+            "S0",
+            20
+          ],
+          [
+            "S1",
+            21
+          ],
+          [
+            "S2",
+            22
+          ],
+          [
+            "S3",
+            23
+          ],
+          [
+            "S4",
+            24
+          ],
+          [
+            "S5",
+            25
+          ],
+          [
+            "S6",
+            26
+          ],
+          [
+            "S7",
+            27
+          ],
+          [
+            "S8",
+            28
+          ],
+          [
+            "S9",
+            29
+          ],
+          [
+            "S0",
+            30
+          ],
+          [
+            "S1",
+            31
+          ],
+          [
+            "S2",
+            32
+          ],
+          [
+            "S3",
+            33
+          ],
+          [
+            "S4",
+            34
+          ],
+          [
+            "S5",
+            35
+          ],
+          [
+            "S6",
+            36
+          ],
+          [
+            "S7",
+            37
+          ],
+          [
+            "S8",
+            38
+          ],
+          [
+            "S9",
+            39
+          ],
+          [
+            "S0",
+            40
+          ],
+          [
+            "S1",
+            41
+          ],
+          [
+            "S2",
+            42
+          ],
+          [
+            "S3",
+            43
+          ],
+          [
+            "S4",
+            44
+          ],
+          [
+            "S5",
+            45
+          ],
+          [
+            "S6",
+            46
+          ],
+          [
+            "S7",
+            47
+          ],
+          [
+            "S8",
+            48
+          ],
+          [
+            "S9",
+            49
+          ],
+          [
+            "S0",
+            50
+          ],
+          [
+            "S1",
+            51
+          ],
+          [
+            "S2",
+            52
+          ],
+          [
+            "S3",
+            53
+          ],
+          [
+            "S4",
+            54
+          ],
+          [
+            "S5",
+            55
+          ],
+          [
+            "S6",
+            56
+          ],
+          [
+            "S7",
+            57
+          ],
+          [
+            "S8",
+            58
+          ],
+          [
+            "S9",
+            59
+          ],
+          [
+            "S0",
+            60
+          ],
+          [
+            "S1",
+            61
+          ],
+          [
+            "S2",
+            62
+          ],
+          [
+            "S3",
+            63
+          ],
+          [
+            "S4",
+            64
+          ],
+          [
+            "S5",
+            65
+          ],
+          [
+            "S6",
+            66
+          ],
+          [
+            "S7",
+            67
+          ],
+          [
+            "S8",
+            68
+          ],
+          [
+            "S9",
+            69
+          ],
+          [
+            "S0",
+            70
+          ],
+          [
+            "S1",
+            71
+          ],
+          [
+            "S2",
+            72
+          ],
+          [
+            "S3",
+            73
+          ],
+          [
+            "S4",
+            74
+          ],
+          [
+            "S5",
+            75
+          ],
+          [
+            "S6",
+            76
+          ],
+          [
+            "S7",
+            77
+          ],
+          [
+            "S8",
+            78
+          ],
+          [
+            "S9",
+            79
+          ],
+          [
+            "S0",
+            80
+          ],
+          [
+            "S1",
+            81
+          ],
+          [
+            "S2",
+            82
+          ],
+          [
+            "S3",
+            83
+          ],
+          [
+            "S4",
+            84
+          ],
+          [
+            "S5",
+            85
+          ],
+          [
+            "S6",
+            86
+          ],
+          [
+            "S7",
+            87
+          ],
+          [
+            "S8",
+            88
+          ],
+          [
+            "S9",
+            89
+          ],
+          [
+            "S0",
+            90
+          ],
+          [
+            "S1",
+            91
+          ],
+          [
+            "S2",
+            92
+          ],
+          [
+            "S3",
+            93
+          ],
+          [
+            "S4",
+            94
+          ],
+          [
+            "S5",
+            95
+          ],
+          [
+            "S6",
+            96
+          ],
+          [
+            "S7",
+            97
+          ],
+          [
+            "S8",
+            98
+          ],
+          [
+            "S9",
+            99
+          ]
+        ]
+      ],
+      "expected": {
+        "S0": 45.0,
+        "S1": 46.0,
+        "S2": 47.0,
+        "S3": 48.0,
+        "S4": 49.0,
+        "S5": 50.0,
+        "S6": 51.0,
+        "S7": 52.0,
+        "S8": 53.0,
+        "S9": 54.0
+      },
+      "hint": "A larger list checks repeated accumulation."
+    },
+    {
+      "args": [
+        [
+          [
+            "Student",
+            7
+          ],
+          [
+            "Student",
+            8
+          ]
+        ]
+      ],
+      "expected": {
+        "Student": 7.5
+      },
+      "hint": "A fractional average should not be rounded."
+    }
+  ]
+}

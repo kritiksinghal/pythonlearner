@@ -346,21 +346,21 @@ Name the shape in plain language before adding symbols. For example, state “tw
 Require exactly four digits.
 
 ```python run
+# Complete the check a short locker code task.
+# Sample data: locker_code = "6391"
+# Write your code below and print the result
+```
+
+
+:::solution
+The first code contains four digits. The second contains only three, so it does not fit the required shape.
+
+```python
 import re
 
 print(bool(re.fullmatch(r"\d{4}", "6391")))
 print(bool(re.fullmatch(r"\d{4}", "639")))
 ```
-
-```output
-True
-False
-```
-
-:::solution
-
-The first code contains four digits. The second contains only three, so it does not fit the required shape.
-
 :::
 
 ### Medium: collect the set numbers
@@ -368,19 +368,20 @@ The first code contains four digits. The second contains only three, so it does 
 Extract all digit groups from a line describing a match.
 
 ```python run
+# Complete the collect the set numbers task.
+# Sample data: match_line = "Match 3-2, 6-1"
+# Write your code below and print the result
+```
+
+
+:::solution
+`findall` returns each consecutive run of digits in order, including set numbers and point totals.
+
+```python
 import re
 
 print(re.findall(r"\d+", "Set 2: 11 points, set 3: 9 points"))
 ```
-
-```output
-['2', '11', '3', '9']
-```
-
-:::solution
-
-`findall` returns each consecutive run of digits in order, including set numbers and point totals.
-
 :::
 
 ### Challenge: change a roster name order
@@ -388,6 +389,16 @@ print(re.findall(r"\d+", "Set 2: 11 points, set 3: 9 points"))
 Capture a surname and given name separated by a comma, then print the given name first.
 
 ```python run
+# Complete the change a roster name order task.
+# Sample data: match = re.fullmatch('(.+), (.+)', 'Das, Kabir')
+# Write your code below and print the result
+```
+
+
+:::solution
+The two groups capture the text on either side of the comma. Printing them in reverse order changes the display while preserving both pieces.
+
+```python
 import re
 
 match = re.fullmatch(r"(.+), (.+)", "Das, Kabir")
@@ -397,15 +408,6 @@ if match:
 else:
     print("Use surname, given name")
 ```
-
-```output
-Kabir Das
-```
-
-:::solution
-
-The two groups capture the text on either side of the comma. Printing them in reverse order changes the display while preserving both pieces.
-
 :::
 
 ## Recap

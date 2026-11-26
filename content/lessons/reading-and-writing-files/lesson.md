@@ -285,20 +285,21 @@ Relative paths use the current working directory, which depends on how you start
 Use `StringIO` to practice reading a line and removing its newline.
 
 ```python run
+# Complete the read a line from memory task.
+# Sample data: practice = StringIO('serve\nreturn\n')
+# Write your code below and print the result
+```
+
+
+:::solution
+`next(practice)` reads the next line from the stream. Calling `strip()` removes its line ending for display.
+
+```python
 from io import StringIO
 
 practice = StringIO("serve\nreturn\n")
 print(next(practice).strip())
 ```
-
-```output
-serve
-```
-
-:::solution
-
-`next(practice)` reads the next line from the stream. Calling `strip()` removes its line ending for display.
-
 :::
 
 ### Medium: write multiple lines
@@ -306,6 +307,16 @@ serve
 Write two lines to a memory stream and show the resulting text.
 
 ```python run
+# Complete the write multiple lines task.
+# Sample data: board = StringIO()
+# Write your code below and print the result
+```
+
+
+:::solution
+Each `write()` adds the provided characters. The newline characters split the entries onto separate lines.
+
+```python
 from io import StringIO
 
 board = StringIO()
@@ -313,16 +324,6 @@ board.write("North 2\n")
 board.write("South 1\n")
 print(board.getvalue(), end="")
 ```
-
-```output
-North 2
-South 1
-```
-
-:::solution
-
-Each `write()` adds the provided characters. The newline characters split the entries onto separate lines.
-
 :::
 
 ### Challenge: choose append behavior
@@ -330,6 +331,16 @@ Each `write()` adds the provided characters. The newline characters split the en
 Move to the end of an in-memory log, add a new line, then show both entries.
 
 ```python run
+# Complete the choose append behavior task.
+# Sample data: log = StringIO('Song: Dawn Chorus\n')
+# Write your code below and print the result
+```
+
+
+:::solution
+Seeking to the end positions the stream for another write. For a disk file, append mode `"a"` provides this behavior.
+
+```python
 from io import StringIO
 
 log = StringIO("Song: Dawn Chorus\n")
@@ -337,16 +348,6 @@ log.seek(0, 2)
 log.write("Song: Long Way Home\n")
 print(log.getvalue(), end="")
 ```
-
-```output
-Song: Dawn Chorus
-Song: Long Way Home
-```
-
-:::solution
-
-Seeking to the end positions the stream for another write. For a disk file, append mode `"a"` provides this behavior.
-
 :::
 
 ## Recap

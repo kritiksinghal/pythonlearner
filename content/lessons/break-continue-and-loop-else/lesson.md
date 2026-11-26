@@ -295,18 +295,12 @@ How to fix it: ensure any logging or cleanup required for skipped iterations occ
 Write a search program that inspects a list of product IDs: `product_ids = [101, 204, 305, 408, 512]`. Search for the target ID `305`. When found, print `f"Product {target} found at index {idx}!"` and immediately `break` out of the loop.
 
 ```python run
-product_ids = [101, 204, 305, 408, 512]
-target = 305
-for idx in range(len(product_ids)):
-    if product_ids[idx] == target:
-        print(f"Product {target} found at index {idx}!")
-        break
+# Complete the Early exit linear search task.
+# Sample data: product_ids = [101, 204, 305, 408, 512], target = 305
+# Write your code below and print the result
 ```
 
 
-```output
-Product 305 found at index 2!
-```
 :::solution Solution
 Iterate across indices with `range(len(product_ids))` and execute `break` upon equality:
 
@@ -329,23 +323,12 @@ Product 305 found at index 2!
 Given a list of bank account balances `balances = [1200, -350, 4500, -80, 2100]`, calculate the sum of strictly positive accounts, skipping negative balances using `continue`. Print each approved balance as it is processed and display the final total.
 
 ```python run
-balances = [1200, -350, 4500, -80, 2100]
-total_solvent = 0
-for bal in balances:
-    if bal < 0:
-        continue
-    total_solvent += bal
-    print("Approved positive balance: ₹", bal, sep="")
-print("Total solvent deposits: ₹", total_solvent, sep="")
+# Complete the Ignoring negative numbers with `continue` task.
+# Sample data: balances = [1200, -350, 4500, -80, 2100]
+# Write your code below and print the result
 ```
 
 
-```output
-Approved positive balance: ₹1200
-Approved positive balance: ₹4500
-Approved positive balance: ₹2100
-Total solvent deposits: ₹7800
-```
 :::solution Solution
 Check `if bal < 0:` and call `continue`, summing remaining balances into `total_solvent`:
 
@@ -373,19 +356,12 @@ Total solvent deposits: ₹7800
 Given an integer `test_val = 29`, use a `for ... else` loop to test whether any integer between `2` and `test_val - 1` divides `test_val` evenly. If a factor is discovered, print the factor and `break`. If the loop finishes without finding any factor, let the `else` block confirm that `test_val` is prime.
 
 ```python run
-test_val = 29
-for factor in range(2, test_val):
-    if test_val % factor == 0:
-        print(f"{test_val} is composite (divisible by {factor})")
-        break
-else:
-    print(f"{test_val} is confirmed prime!")
+# Complete the Composite number factorization check task.
+# Sample data: test_val = 29
+# Write your code below and print the result
 ```
 
 
-```output
-29 is confirmed prime!
-```
 :::solution Solution
 Loop over `range(2, test_val)` checking `test_val % factor == 0`, with an `else` block confirming primality:
 

@@ -326,15 +326,12 @@ Precedence order from highest to lowest: `not` $\rightarrow$ `and` $\rightarrow$
 A cinema offers discounted tickets to patrons who are children under 12 **or** senior citizens aged 65 and above. Given `patron_age = 68`, write an `or` comparison that evaluates whether the patron qualifies for the concession rate, storing the result in `gets_discount` and printing it.
 
 ```python run
-patron_age = 68
-gets_discount = patron_age < 12 or patron_age >= 65
-print(f"Patron age {patron_age} gets discount:", gets_discount)
+# Complete the Movie ticket concession discount task.
+# Sample data: patron_age = 68
+# Write your code below and print the result
 ```
 
 
-```output
-Patron age 68 gets discount: True
-```
 :::solution Solution
 Combine the two age boundary conditions using the `or` operator:
 
@@ -354,17 +351,12 @@ Patron age 68 gets discount: True
 A financial institution approves mortgage applicants if their annual income is at least `50000` **and** their credit score is at least `700` **and** they have **not** suffered a prior loan default. Given `annual_income = 62000`, `credit_score = 740`, and `prior_default = False`, write an expression that evaluates loan eligibility into `loan_approved` and prints the outcome.
 
 ```python run
-annual_income = 62000
-credit_score = 740
-prior_default = False
-loan_approved = annual_income >= 50000 and credit_score >= 700 and not prior_default
-print("Mortgage loan approved:", loan_approved)
+# Complete the Home mortgage loan approval task.
+# Sample data: annual_income = 62000, credit_score = 740
+# Write your code below and print the result
 ```
 
 
-```output
-Mortgage loan approved: True
-```
 :::solution Solution
 Join the two `>=` comparisons with `and` and invert the default flag using `not prior_default`:
 
@@ -386,18 +378,12 @@ Mortgage loan approved: True
 A secure cloud portal grants access to an administrator if they provide a valid password **and** either a biometric fingerprint verification **or** a valid one-time security code, provided their account has **not** been temporarily locked. Given `password_valid = True`, `biometric_ok = False`, `otp_ok = True`, and `account_locked = False`, use parentheses to model this security policy into `access_granted` and print the result.
 
 ```python run
-password_valid = True
-biometric_ok = False
-otp_ok = True
-account_locked = False
-access_granted = password_valid and (biometric_ok or otp_ok) and not account_locked
-print("Portal access granted:", access_granted)
+# Complete the Two-factor security authentication task.
+# Sample data: password_valid = True, otp_ok = True
+# Write your code below and print the result
 ```
 
 
-```output
-Portal access granted: True
-```
 :::solution Solution
 Wrap `(biometric_ok or otp_ok)` in parentheses and combine with `password_valid` and `not account_locked` using `and`:
 

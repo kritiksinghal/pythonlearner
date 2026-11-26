@@ -298,7 +298,7 @@ In the saved program, include the `add_expense()` helper before the interactive 
 Try each improvement only after you can add an entry, save it, restart, and load it again.
 
 ```python run
-# Try one improvement from the project list below.
+# Calculate the total cents for each expense category.
 # Sample data: expenses = [{"category": "food", "cents": 475}, {"category": "travel", "cents": 1299}]
 # Write your code below and print the result
 ```
@@ -314,3 +314,23 @@ Test the amount formatter with 0, a value below 100, and a value above 10000 cen
 JSON is text, so you can inspect `expenses.json` in a text editor. Do not hand-edit a value without keeping valid JSON syntax: strings need quotes, commas separate fields, and braces and brackets must be balanced. The `json` module should create the file content in normal use.
 
 Reference: Python documentation, json — JSON encoder and decoder
+
+:::solution
+Use a dictionary keyed by category and add each expense amount to its running total. `dict.get` starts a category at zero the first time it appears.
+
+```python
+def category_totals(expenses):
+    totals = {}
+    for expense in expenses:
+        category = expense["category"]
+        totals[category] = totals.get(category, 0) + expense["cents"]
+    return totals
+
+expenses = [
+    {"category": "food", "cents": 475},
+    {"category": "travel", "cents": 1299},
+    {"category": "food", "cents": 225},
+]
+print(category_totals(expenses))
+```
+:::

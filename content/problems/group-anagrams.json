@@ -1,0 +1,123 @@
+{
+  "slug": "group-anagrams",
+  "title": "Group Words by Anagram",
+  "track": "Python from zero",
+  "difficulty": "Hard",
+  "testType": "function",
+  "functionName": "group_anagrams",
+  "description": "Group words that are anagrams of one another. Return a list of groups in the order each group first appears in the input. Keep words inside each group in their original order. Matching is case-sensitive.\n\nFor example, `[\"eat\", \"tea\", \"tan\", \"ate\"]` becomes `[[\"eat\", \"tea\", \"ate\"], [\"tan\"]]`. Return an empty list for empty input.",
+  "starterCode": "def group_anagrams(words):\n    # Group anagrams while preserving first-seen group and word order\n    pass\n",
+  "referenceSolution": "def group_anagrams(words):\n    groups = {}\n    for word in words:\n        key = tuple(sorted(word))\n        groups.setdefault(key, []).append(word)\n    return list(groups.values())\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ]
+      ],
+      "expected": [
+        [
+          "eat",
+          "tea",
+          "ate"
+        ],
+        [
+          "tan",
+          "nat"
+        ],
+        [
+          "bat"
+        ]
+      ]
+    },
+    {
+      "args": [
+        []
+      ],
+      "expected": []
+    },
+    {
+      "args": [
+        [
+          "",
+          ""
+        ]
+      ],
+      "expected": [
+        [
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "args": [
+        [
+          "Ab",
+          "ba",
+          "ab",
+          "BA"
+        ]
+      ],
+      "expected": [
+        [
+          "Ab"
+        ],
+        [
+          "ba",
+          "ab"
+        ],
+        [
+          "BA"
+        ]
+      ]
+    },
+    {
+      "args": [
+        [
+          "listen",
+          "silent",
+          "enlist",
+          "google"
+        ]
+      ],
+      "expected": [
+        [
+          "listen",
+          "silent",
+          "enlist"
+        ],
+        [
+          "google"
+        ]
+      ]
+    },
+    {
+      "args": [
+        [
+          "a",
+          "b",
+          "a"
+        ]
+      ],
+      "expected": [
+        [
+          "a",
+          "a"
+        ],
+        [
+          "b"
+        ]
+      ]
+    }
+  ],
+  "solution": {
+    "code": "def group_anagrams(words):\n    groups = {}\n    for word in words:\n        key = tuple(sorted(word))\n        groups.setdefault(key, []).append(word)\n    return list(groups.values())\n",
+    "explanation": "Sorting the letters of a word creates a shared key for its anagrams. Store words in a dictionary under that key, appending them in input order. Dictionary insertion order preserves the order in which groups first appear."
+  }
+}

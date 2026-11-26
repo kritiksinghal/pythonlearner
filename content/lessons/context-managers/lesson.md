@@ -339,6 +339,16 @@ Treat the managed value as valid only during the with block unless its documenta
 Create a manager that prints a start message before the block and a finish message afterward.
 
 ```python run
+# Complete the mark the start and end task.
+# Sample data: opening_message = "Warm-up begins", closing_message = "Warm-up ends"
+# Write your code below and print the result
+```
+
+
+:::solution
+The code before yield runs on entry, the block runs next, and the finally suite runs during cleanup.
+
+```python
 from contextlib import contextmanager
 
 @contextmanager
@@ -352,17 +362,6 @@ def warmup():
 with warmup():
     print("Stretch")
 ```
-
-```output
-Warm-up begins
-Stretch
-Warm-up ends
-```
-
-:::solution
-
-The code before yield runs on entry, the block runs next, and the finally suite runs during cleanup.
-
 :::
 
 ### Medium: provide a value
@@ -370,6 +369,16 @@ The code before yield runs on entry, the block runs next, and the finally suite 
 Use `__enter__` to provide a practice room name to the block.
 
 ```python run
+# Complete the provide a value task.
+# Sample data: room_name = "Room C"
+# Write your code below and print the result
+```
+
+
+:::solution
+The block variable receives the return value from `__enter__`. The exit method runs after the block.
+
+```python
 class ChangingRoom:
     def __enter__(self):
         return "Room C"
@@ -380,16 +389,6 @@ class ChangingRoom:
 with ChangingRoom() as room:
     print(room)
 ```
-
-```output
-Room C
-Room released
-```
-
-:::solution
-
-The block variable receives the return value from `__enter__`. The exit method runs after the block.
-
 :::
 
 ### Challenge: restore a setting
@@ -397,6 +396,16 @@ The block variable receives the return value from `__enter__`. The exit method r
 Use a context manager to temporarily change a display label and restore the previous label.
 
 ```python run
+# Complete the restore a setting task.
+# Sample data: display_label = 'standard'
+# Write your code below and print the result
+```
+
+
+:::solution
+Save the previous value, change it before yield, then restore it in finally so both normal and exceptional exits clean up.
+
+```python
 from contextlib import contextmanager
 
 display_label = "standard"
@@ -415,16 +424,6 @@ with show_as("festival"):
     print(display_label)
 print(display_label)
 ```
-
-```output
-festival
-standard
-```
-
-:::solution
-
-Save the previous value, change it before yield, then restore it in finally so both normal and exceptional exits clean up.
-
 :::
 
 ## Recap

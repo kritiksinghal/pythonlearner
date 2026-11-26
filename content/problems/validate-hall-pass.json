@@ -1,0 +1,109 @@
+{
+  "slug": "validate-hall-pass",
+  "title": "Validate a Hall Pass Code",
+  "track": "Python from zero",
+  "difficulty": "Advanced",
+  "testType": "function",
+  "functionName": "valid_hall_pass",
+  "relatedLessons": [
+    "regular-expressions",
+    "cs50p-regular-expressions"
+  ],
+  "description": "Return `True` only when a code contains exactly two uppercase ASCII letters, a hyphen, and four digits (for example, `AB-0427`). Reject all other strings.",
+  "starterCode": "def valid_hall_pass(code):\n    # Return True only for the complete AA-0000 format\n    pass\n",
+  "referenceSolution": "import re\n\ndef valid_hall_pass(code):\n    return re.fullmatch(r\"[A-Z]{2}-[0-9]{4}\", code) is not None",
+  "solution": {
+    "code": "import re\n\ndef valid_hall_pass(code):\n    return re.fullmatch(r\"[A-Z]{2}-[0-9]{4}\", code) is not None",
+    "explanation": "Use re.fullmatch with two uppercase letters, a hyphen, and four digits. Full matching rejects extra prefixes, suffixes, spaces, or wrong case. Returning a Boolean keeps validation separate from display."
+  },
+  "wrongSolutions": [
+    "def valid_hall_pass(code):\n    import re\n    return re.match(r\"[A-Z]{2}-[0-9]{4}\",code) is not None",
+    "def valid_hall_pass(code):\n    import re\n    return re.fullmatch(r\"[A-Z]{2}-\\d{3,5}\",code) is not None"
+  ],
+  "tests": [
+    {
+      "args": [
+        "AB-0427"
+      ],
+      "expected": true,
+      "hint": "Check a valid code with a leading zero."
+    },
+    {
+      "args": [
+        "XY-1234"
+      ],
+      "expected": true,
+      "hint": "Letters and digits may use any allowed values."
+    },
+    {
+      "args": [
+        "ab-1234"
+      ],
+      "expected": false,
+      "hint": "The letters must be uppercase."
+    },
+    {
+      "args": [
+        "A-1234"
+      ],
+      "expected": false,
+      "hint": "Exactly two letters are required."
+    },
+    {
+      "args": [
+        "ABC-1234"
+      ],
+      "expected": false,
+      "hint": "An extra letter makes the entire string invalid."
+    },
+    {
+      "args": [
+        "AB-123"
+      ],
+      "expected": false,
+      "hint": "The digit section needs four digits."
+    },
+    {
+      "args": [
+        "AB-12345"
+      ],
+      "expected": false,
+      "hint": "The digit section cannot be longer than four."
+    },
+    {
+      "args": [
+        "AB1234"
+      ],
+      "expected": false,
+      "hint": "The hyphen is required."
+    },
+    {
+      "args": [
+        "AB-12X4"
+      ],
+      "expected": false,
+      "hint": "Every trailing character must be a digit."
+    },
+    {
+      "args": [
+        " AB-1234"
+      ],
+      "expected": false,
+      "hint": "Leading whitespace is not allowed."
+    },
+    {
+      "args": [
+        "AB-1234\n"
+      ],
+      "expected": false,
+      "hint": "Trailing whitespace is not allowed."
+    },
+    {
+      "args": [
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-1234"
+      ],
+      "expected": false,
+      "hint": "Full matching should reject a very long invalid prefix."
+    }
+  ]
+}

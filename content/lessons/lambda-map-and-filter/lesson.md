@@ -284,12 +284,14 @@ Python reports `AttributeError: 'int' object has no attribute 'upper'`. The item
 Use `map()` and a lambda to multiply every number of minutes by 60. Print the resulting list.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Convert minutes to seconds task.
 # Sample data: minutes = [2, 5, 8]
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Convert minutes to seconds” by using the provided sample values and producing the requested result.
+
 
 ```python
 minutes = [2, 5, 8]
@@ -304,12 +306,14 @@ print(seconds)
 Use `filter()` to keep song lengths under 200 seconds.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Keep short songs task.
 # Sample data: durations = [185, 214, 172, 206]
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Keep short songs” by using the provided sample values and producing the requested result.
+
 
 ```python
 durations = [185, 214, 172, 206]
@@ -324,12 +328,14 @@ print(short_songs)
 Write a function that adds 5 points to a mark, then use `map()` to apply it to three marks.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Apply a named function with `map()` task.
 # Sample data: marks = [66, 74, 89]
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Apply a named function with `map()`” by using the provided sample values and producing the requested result.
+
 
 ```python
 def add_bonus(mark):

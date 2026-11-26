@@ -1,0 +1,111 @@
+{
+  "slug": "top-k-frequent-words",
+  "title": "Top K Frequent Words",
+  "track": "Python from zero",
+  "difficulty": "Hard",
+  "testType": "function",
+  "functionName": "top_k_frequent_words",
+  "description": "Return the `k` most frequent words from a list. Sort by descending frequency; when frequencies tie, sort alphabetically. Words are case-sensitive. If `k` is zero or negative, return an empty list.\n\nFor example, `top_k_frequent_words([\"pear\", \"fig\", \"pear\", \"fig\", \"plum\"], 2)` returns `[\"fig\", \"pear\"]` because the two most common words tie and alphabetical order breaks the tie.",
+  "starterCode": "def top_k_frequent_words(words, k):\n    # Return the k most frequent words with alphabetical tie-breaking\n    pass\n",
+  "referenceSolution": "from collections import Counter\n\ndef top_k_frequent_words(words, k):\n    if k <= 0:\n        return []\n    counts = Counter(words)\n    return sorted(counts, key=lambda word: (-counts[word], word))[:k]\n",
+  "tests": [
+    {
+      "args": [
+        [
+          "pear",
+          "fig",
+          "pear",
+          "fig",
+          "plum"
+        ],
+        2
+      ],
+      "expected": [
+        "fig",
+        "pear"
+      ]
+    },
+    {
+      "args": [
+        [
+          "i",
+          "love",
+          "python",
+          "i",
+          "love",
+          "coding"
+        ],
+        2
+      ],
+      "expected": [
+        "i",
+        "love"
+      ]
+    },
+    {
+      "args": [
+        [
+          "only"
+        ],
+        1
+      ],
+      "expected": [
+        "only"
+      ]
+    },
+    {
+      "args": [
+        [
+          "a",
+          "b",
+          "c"
+        ],
+        0
+      ],
+      "expected": []
+    },
+    {
+      "args": [
+        [
+          "b",
+          "a",
+          "b",
+          "a",
+          "c",
+          "c"
+        ],
+        3
+      ],
+      "expected": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    {
+      "args": [
+        [
+          "A",
+          "a",
+          "A"
+        ],
+        5
+      ],
+      "expected": [
+        "A",
+        "a"
+      ]
+    },
+    {
+      "args": [
+        [],
+        4
+      ],
+      "expected": []
+    }
+  ],
+  "solution": {
+    "code": "from collections import Counter\n\ndef top_k_frequent_words(words, k):\n    if k <= 0:\n        return []\n    counts = Counter(words)\n    return sorted(counts, key=lambda word: (-counts[word], word))[:k]\n",
+    "explanation": "Count each word, then sort unique words by descending count and alphabetical order. The tuple key makes the tie-break explicit. Slice the ordered list to return at most k words."
+  }
+}

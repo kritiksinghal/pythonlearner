@@ -7,17 +7,20 @@ type ListingProblem = {
   slug: string;
   title: string;
   track: "Python from zero" | "CS50P";
-  difficulty: "Easy" | "Medium" | "Hard";
+  difficulty: "Easy" | "Medium" | "Hard" | "Advanced";
   testType: "function" | "stdio";
   testCount: number;
 };
 
 export default function PracticeListClient({ problems }: { problems: ListingProblem[] }) {
   const [selectedTrack, setSelectedTrack] = useState<string>("All");
+  const [selectedDifficulty, setSelectedDifficulty] = useState<string>("All");
   const tracks = ["All", ...Array.from(new Set(problems.map((problem) => problem.track)))];
-  const filteredProblems = selectedTrack === "All"
-    ? problems
-    : problems.filter((problem) => problem.track === selectedTrack);
+  const difficulties = ["All", "Easy", "Medium", "Hard", "Advanced"];
+  const filteredProblems = problems.filter((problem) =>
+    (selectedTrack === "All" || problem.track === selectedTrack) &&
+    (selectedDifficulty === "All" || problem.difficulty === selectedDifficulty)
+  );
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:py-16">
@@ -63,6 +66,33 @@ export default function PracticeListClient({ problems }: { problems: ListingProb
         })}
       </div>
 
+      <div className="mb-8 flex flex-wrap gap-2" aria-label="Filter by difficulty">
+        {difficulties.map((difficulty) => {
+          const isActive = selectedDifficulty === difficulty;
+          const count = difficulty === "All"
+            ? problems.length
+            : problems.filter((problem) => problem.difficulty === difficulty).length;
+          return (
+            <button
+              key={difficulty}
+              onClick={() => setSelectedDifficulty(difficulty)}
+              className={`flex items-center gap-2 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors ${
+                isActive
+                  ? "border-foreground bg-foreground text-background"
+                  : "border-border bg-surface text-muted hover:text-foreground"
+              }`}
+            >
+              <span>{difficulty === "All" ? "All Difficulties" : difficulty}</span>
+              <span className={`rounded px-1.5 py-0.2 font-mono text-[10px] ${
+                isActive ? "bg-background/20 text-background" : "bg-code-bg text-muted"
+              }`}>
+                {count}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
       <div className="divide-y divide-border border-y border-border">
         {filteredProblems.map((problem) => (
           <Link
@@ -85,9 +115,11 @@ export default function PracticeListClient({ problems }: { problems: ListingProb
               <span className={`rounded border px-2 py-0.5 font-mono text-[11px] font-semibold ${
                 problem.difficulty === "Easy"
                   ? "border-green-200 bg-green-50/80 text-green-800 dark:border-green-900 dark:bg-green-950/40 dark:text-green-300"
-                  : problem.difficulty === "Medium"
+                : problem.difficulty === "Medium"
                     ? "border-amber-200 bg-amber-50/80 text-amber-800 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-300"
-                    : "border-red-200 bg-red-50/80 text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300"
+                    : problem.difficulty === "Hard"
+                      ? "border-red-200 bg-red-50/80 text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300"
+                      : "border-purple-200 bg-purple-50/80 text-purple-800 dark:border-purple-900 dark:bg-purple-950/40 dark:text-purple-300"
               }`}>
                 {problem.difficulty}
               </span>

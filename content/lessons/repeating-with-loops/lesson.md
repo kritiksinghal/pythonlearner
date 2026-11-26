@@ -453,20 +453,12 @@ This subtle bug creates an infinite loop. When `count` reaches `2`, the `continu
 Write a while loop that starts at 3 and prints multiples of 3 up to and including 15.
 
 ```python run
-n = 3
-while n <= 15:
-    print(n)
-    n += 3
+# Complete the Print multiples of 3 task.
+# Sample data: n = 3
+# Write your code below and print the result
 ```
 
 
-```output
-3
-6
-9
-12
-15
-```
 :::solution Solution
 Initializing `n = 3` and incrementing by `3` on each pass prints `3`, `6`, `9`, `12`, and `15`.
 
@@ -491,18 +483,12 @@ while n <= 15:
 Start with `value = 100`. Use a while loop to repeatedly divide `value` by `2` as long as `value >= 1`. Count how many division steps occur and print the result.
 
 ```python run
-value = 100
-steps = 0
-while value >= 1:
-    value /= 2
-    steps += 1
-print("Reached under 1 in", steps, "steps. Final value:", value)
+# Complete the Halving numbers until below 1 task.
+# Sample data: value = 100
+# Write your code below and print the result
 ```
 
 
-```output
-Reached under 1 in 7 steps. Final value: 0.78125
-```
 :::solution Solution
 The values progress: 50.0 (step 1), 25.0 (step 2), 12.5 (step 3), 6.25 (step 4), 3.125 (step 5), 1.5625 (step 6), and 0.78125 (step 7). The loop terminates after 7 steps.
 
@@ -525,18 +511,12 @@ Reached under 1 in 7 steps. Final value: 0.78125
 Compute the sum of all even numbers from 2 up to 20 ($2 + 4 + 6 + \dots + 20$) using a while loop and an accumulator variable.
 
 ```python run
-num = 2
-even_sum = 0
-while num <= 20:
-    even_sum += num
-    num += 2
-print("Sum of even numbers 2 to 20:", even_sum)
+# Complete the Sum of even numbers up to 20 task.
+# Sample data: num = 2
+# Write your code below and print the result
 ```
 
 
-```output
-Sum of even numbers 2 to 20: 110
-```
 :::solution Solution
 Adding $2 + 4 + 6 + 8 + 10 + 12 + 14 + 16 + 18 + 20$ yields 110.
 

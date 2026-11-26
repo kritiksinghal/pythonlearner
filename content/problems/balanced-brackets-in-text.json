@@ -1,0 +1,108 @@
+{
+  "slug": "balanced-brackets-in-text",
+  "title": "Check Brackets Outside Quotes",
+  "track": "Python from zero",
+  "difficulty": "Advanced",
+  "testType": "function",
+  "functionName": "brackets_balanced",
+  "relatedLessons": [
+    "text-strings"
+  ],
+  "description": "Return whether `()`, `[]`, and `{}` are correctly balanced. Ignore bracket characters inside single- or double-quoted strings. Backslash escapes the next character inside a quoted string. Other characters are allowed.",
+  "starterCode": "def brackets_balanced(text):\n    # Check bracket pairs while respecting quoted text\n    pass\n",
+  "referenceSolution": "def brackets_balanced(text):\n    pairs = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    openings = set(pairs.values())\n    stack = []\n    quote = None\n    escaped = False\n    for character in text:\n        if quote:\n            if escaped:\n                escaped = False\n            elif character == \"\\\\\":\n                escaped = True\n            elif character == quote:\n                quote = None\n            continue\n        if character in (\"'\", '\"'):\n            quote = character\n        elif character in openings:\n            stack.append(character)\n        elif character in pairs:\n            if not stack or stack.pop() != pairs[character]:\n                return False\n    return not stack and quote is None",
+  "solution": {
+    "code": "def brackets_balanced(text):\n    pairs = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    openings = set(pairs.values())\n    stack = []\n    quote = None\n    escaped = False\n    for character in text:\n        if quote:\n            if escaped:\n                escaped = False\n            elif character == \"\\\\\":\n                escaped = True\n            elif character == quote:\n                quote = None\n            continue\n        if character in (\"'\", '\"'):\n            quote = character\n        elif character in openings:\n            stack.append(character)\n        elif character in pairs:\n            if not stack or stack.pop() != pairs[character]:\n                return False\n    return not stack and quote is None",
+    "explanation": "Track open brackets with a stack, while quote and escape state tells the scanner when bracket characters are part of string text. Each closing bracket must match the newest unmatched opener. The final stack and quote state must both be empty."
+  },
+  "wrongSolutions": [
+    "def brackets_balanced(text):\n    opens=[]\n    for ch in text:\n        if ch in \"([{\": opens.append(ch)\n        elif ch in \")]}\":\n            if not opens:return False\n            opens.pop()\n    return not opens",
+    "def brackets_balanced(text):\n    return text.count(\"(\")==text.count(\")\") and text.count(\"[\")==text.count(\"]\") and text.count(\"{\")==text.count(\"}\")"
+  ],
+  "tests": [
+    {
+      "args": [
+        ""
+      ],
+      "expected": true,
+      "hint": "No brackets or quotes are balanced."
+    },
+    {
+      "args": [
+        "()"
+      ],
+      "expected": true,
+      "hint": "A matching pair closes the most recent opener."
+    },
+    {
+      "args": [
+        "([]{})"
+      ],
+      "expected": true,
+      "hint": "Different bracket types can nest."
+    },
+    {
+      "args": [
+        "([)]"
+      ],
+      "expected": false,
+      "hint": "Closing brackets must match the latest opener."
+    },
+    {
+      "args": [
+        "((("
+      ],
+      "expected": false,
+      "hint": "Every opening bracket needs a close."
+    },
+    {
+      "args": [
+        ")))"
+      ],
+      "expected": false,
+      "hint": "A close with no opener is invalid."
+    },
+    {
+      "args": [
+        "print(\"[\")"
+      ],
+      "expected": true,
+      "hint": "Brackets inside a quoted string are ignored."
+    },
+    {
+      "args": [
+        "text with ) inside"
+      ],
+      "expected": false,
+      "hint": "This closing bracket has no matching opening bracket."
+    },
+    {
+      "args": [
+        "'unterminated"
+      ],
+      "expected": false,
+      "hint": "An unclosed quote makes the input invalid."
+    },
+    {
+      "args": [
+        "\"escaped quote: \\\" and []\""
+      ],
+      "expected": true,
+      "hint": "An escaped quote does not end the string."
+    },
+    {
+      "args": [
+        "{\"key\": [1, 2]}"
+      ],
+      "expected": true,
+      "hint": "Brackets in structured text balance normally."
+    },
+    {
+      "args": [
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx(aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa)"
+      ],
+      "expected": true,
+      "hint": "A long surrounding text should not affect a balanced pair."
+    }
+  ]
+}

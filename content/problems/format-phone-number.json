@@ -9,18 +9,87 @@
   "starterCode": "def format_phone(raw):\n    # Extract digits and return (XXX) XXX-XXXX or None\n    pass\n",
   "referenceSolution": "def format_phone(raw):\n    digits = [ch for ch in str(raw) if ch.isdigit()]\n    if len(digits) != 10:\n        return None\n    area = \"\".join(digits[:3])\n    mid = \"\".join(digits[3:6])\n    last = \"\".join(digits[6:])\n    return f\"({area}) {mid}-{last}\"\n",
   "tests": [
-    { "args": ["555-123-4567"], "expected": "(555) 123-4567" },
-    { "args": ["5551234567"], "expected": "(555) 123-4567" },
-    { "args": ["(800) 555-0199"], "expected": "(800) 555-0199" },
-    { "args": ["800.555.0199"], "expected": "(800) 555-0199" },
-    { "args": ["call me at 123-456-7890 please"], "expected": "(123) 456-7890" },
-    { "args": ["12345"], "expected": null },
-    { "args": ["12345678901"], "expected": null },
-    { "args": [""], "expected": null },
-    { "args": ["no digits here!"], "expected": null },
-    { "args": ["+1 (555) 012-3456"], "expected": null },
-    { "args": ["000-000-0000"], "expected": "(000) 000-0000" },
-    { "args": ["987 654 3210"], "expected": "(987) 654-3210" },
-    { "args": ["--8--0--0--1--2--3--4--5--6--7--"], "expected": "(800) 123-4567" }
-  ]
+    {
+      "args": [
+        "555-123-4567"
+      ],
+      "expected": "(555) 123-4567"
+    },
+    {
+      "args": [
+        "5551234567"
+      ],
+      "expected": "(555) 123-4567"
+    },
+    {
+      "args": [
+        "(800) 555-0199"
+      ],
+      "expected": "(800) 555-0199"
+    },
+    {
+      "args": [
+        "800.555.0199"
+      ],
+      "expected": "(800) 555-0199"
+    },
+    {
+      "args": [
+        "call me at 123-456-7890 please"
+      ],
+      "expected": "(123) 456-7890"
+    },
+    {
+      "args": [
+        "12345"
+      ],
+      "expected": null
+    },
+    {
+      "args": [
+        "12345678901"
+      ],
+      "expected": null
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": null
+    },
+    {
+      "args": [
+        "no digits here!"
+      ],
+      "expected": null
+    },
+    {
+      "args": [
+        "+1 (555) 012-3456"
+      ],
+      "expected": null
+    },
+    {
+      "args": [
+        "000-000-0000"
+      ],
+      "expected": "(000) 000-0000"
+    },
+    {
+      "args": [
+        "987 654 3210"
+      ],
+      "expected": "(987) 654-3210"
+    },
+    {
+      "args": [
+        "--8--0--0--1--2--3--4--5--6--7--"
+      ],
+      "expected": "(800) 123-4567"
+    }
+  ],
+  "solution": {
+    "code": "def format_phone(raw):\n    digits = [ch for ch in str(raw) if ch.isdigit()]\n    if len(digits) != 10:\n        return None\n    area = \"\".join(digits[:3])\n    mid = \"\".join(digits[3:6])\n    last = \"\".join(digits[6:])\n    return f\"({area}) {mid}-{last}\"\n",
+    "explanation": "A comprehension keeps only digit characters from the input. The function checks for exactly ten digits before slicing the area code, middle three digits, and final four digits. It returns None when the count is invalid."
+  }
 }

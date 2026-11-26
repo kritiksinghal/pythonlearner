@@ -291,12 +291,14 @@ Python reports `ValueError: invalid literal for int() with base 10: 'x'`. The co
 Given a list of distances in kilometers, create a list with each value converted to meters by multiplying by 1000.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Convert distances task.
 # Sample data: distances_km = [1, 3, 5]
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Convert distances” by using the provided sample values and producing the requested result.
+
 
 ```python
 kilometers = [1, 3, 5]
@@ -311,12 +313,14 @@ print(meters)
 Use a list comprehension to make a list containing only marks of 50 or more.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Keep passing marks task.
 # Sample data: marks = [48, 73, 50, 91]
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Keep passing marks” by using the provided sample values and producing the requested result.
+
 
 ```python
 marks = [48, 73, 50, 91]
@@ -331,12 +335,14 @@ print(passing)
 Given a list of book titles, create a dictionary that maps each title to the number of characters in it.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Map books to page counts task.
 # Sample data: titles = ["River Road", "Night Train", "Red Kite"]
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Map books to page counts” by using the provided sample values and producing the requested result.
+
 
 ```python
 titles = ["River Road", "Night Train", "Red Kite"]

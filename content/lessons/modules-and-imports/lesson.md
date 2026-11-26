@@ -290,19 +290,20 @@ Python includes a standard library, but packages from third parties require sepa
 Use `math` to find the square root of 144.
 
 ```python run
+# Complete the import a complete module task.
+# Sample data: number = 144
+# Write your code below and print the result
+```
+
+
+:::solution
+Import `math`, then access `sqrt` through the module name. This keeps the origin of the function clear.
+
+```python
 import math
 
 print(math.sqrt(144))
 ```
-
-```output
-12.0
-```
-
-:::solution
-
-Import `math`, then access `sqrt` through the module name. This keeps the origin of the function clear.
-
 :::
 
 ### Medium: import one selected function
@@ -310,20 +311,21 @@ Import `math`, then access `sqrt` through the module name. This keeps the origin
 Use `statistics.median` by importing just `median`, then find the middle score.
 
 ```python run
+# Complete the import one selected function task.
+# Sample data: marks = [71, 94, 83, 86, 78]
+# Write your code below and print the result
+```
+
+
+:::solution
+The statement binds `median` in the current module, so call `median(marks)` directly.
+
+```python
 from statistics import median
 
 marks = [71, 94, 83, 86, 78]
 print(median(marks))
 ```
-
-```output
-83
-```
-
-:::solution
-
-The statement binds `median` in the current module, so call `median(marks)` directly.
-
 :::
 
 ### Challenge: give the module a clear alias
@@ -331,20 +333,21 @@ The statement binds `median` in the current module, so call `median(marks)` dire
 Alias `datetime` as `dt`, create a date, and print its weekday number.
 
 ```python run
+# Complete the give the module a clear alias task.
+# Sample data: concert = dt.date(2026, 6, 20)
+# Write your code below and print the result
+```
+
+
+:::solution
+The alias `dt` refers to the imported module. A date's `weekday()` method returns a number from zero for Monday through six for Sunday.
+
+```python
 import datetime as dt
 
 concert = dt.date(2026, 6, 20)
 print(concert.weekday())
 ```
-
-```output
-5
-```
-
-:::solution
-
-The alias `dt` refers to the imported module. A date's `weekday()` method returns a number from zero for Monday through six for Sunday.
-
 :::
 
 ## Recap

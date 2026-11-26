@@ -337,12 +337,14 @@ Python reports `TypeError: can only concatenate str (not "int") to str`. The fir
 Write a function that accepts a name and returns a greeting string. Print the result of calling it.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Return a greeting task.
 # Sample data: name = "Pia"
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Return a greeting” by using the provided sample values and producing the requested result.
+
 
 ```python
 def greeting(name):
@@ -358,12 +360,14 @@ print(greeting("Pia"))
 Write a function that accepts runs from two batters and returns their combined score.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Calculate a cricket total task.
 # Sample data: first_batter = 36, second_batter = 49
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Calculate a cricket total” by using the provided sample values and producing the requested result.
+
 
 ```python
 def partnership(first_batter, second_batter):
@@ -379,12 +383,14 @@ print(partnership(36, 49))
 Write a function that accepts a city and a departure time and returns one formatted ticket line. Call it twice and print both results.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Return a ticket label task.
 # Sample data: city = "Udaipur", departure_time = "08:20"
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Return a ticket label” by using the provided sample values and producing the requested result.
+
 
 ```python
 def ticket_line(city, time):

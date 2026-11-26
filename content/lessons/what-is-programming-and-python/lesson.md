@@ -299,18 +299,12 @@ Calculated speed: 50.0
 Write a script that calculates the total cost of purchasing `6` units of an organic beverage priced at `45` rupees each, applying a `5%` tax rate (`0.05`). Compute the subtotal, calculate tax, and print the final invoice total.
 
 ```python run
-item_price = 45
-quantity = 6
-tax_rate = 0.05
-subtotal = item_price * quantity
-total_cost = subtotal + (subtotal * tax_rate)
-print('Total bill:', total_cost)
+# Complete the Grocery invoice subtotal task.
+# Sample data: item_price = 45, quantity = 6
+# Write your code below and print the result
 ```
 
 
-```output
-Total bill: 283.5
-```
 :::solution Solution
 Multiply item price by quantity to derive the subtotal, multiply the subtotal by tax rate to compute additional tax, and sum both values.
 
@@ -333,16 +327,12 @@ Total bill: 283.5
 A standard marathon course covers exactly `42.195` kilometers. Write a program that converts this distance into miles using the conversion factor `1 kilometer = 0.621371 miles`. Round the resulting mileage to two decimal places before printing.
 
 ```python run
-distance_km = 42.195
-miles_conversion_factor = 0.621371
-marathon_miles = distance_km * miles_conversion_factor
-print('Marathon distance in miles:', round(marathon_miles, 2))
+# Complete the Marathon distance converter task.
+# Sample data: distance_km = 42.195, miles_conversion_factor = 0.621371
+# Write your code below and print the result
 ```
 
 
-```output
-Marathon distance in miles: 26.22
-```
 :::solution Solution
 Multiply the distance in kilometers by the conversion factor and pass the product to `round(value, 2)`:
 
@@ -363,20 +353,12 @@ Marathon distance in miles: 26.22
 Write a script that calculates simple interest on a principal deposit of `50000` currency units invested at an annual interest rate of `7.5%` for `3` years. Use the formula `interest = (principal * rate * time) / 100`, calculate the total maturity balance (`principal + interest`), and print both metrics clearly.
 
 ```python run
-principal = 50000
-rate_percent = 7.5
-time_years = 3
-simple_interest = (principal * rate_percent * time_years) / 100
-total_maturity = principal + simple_interest
-print('Interest earned:', simple_interest)
-print('Maturity amount:', total_maturity)
+# Complete the Simple interest financial maturity task.
+# Sample data: principal = 50000, rate_percent = 7.5
+# Write your code below and print the result
 ```
 
 
-```output
-Interest earned: 11250.0
-Maturity amount: 61250.0
-```
 :::solution Solution
 Multiply principal, rate, and time, divide by 100 to yield interest, then add the interest back to principal for total maturity value:
 

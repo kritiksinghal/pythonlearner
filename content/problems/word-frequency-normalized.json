@@ -1,0 +1,147 @@
+{
+  "slug": "word-frequency-normalized",
+  "title": "Normalized Word Frequencies",
+  "track": "Python from zero",
+  "difficulty": "Advanced",
+  "testType": "function",
+  "functionName": "word_frequencies",
+  "relatedLessons": [
+    "text-strings",
+    "regular-expressions",
+    "dictionaries"
+  ],
+  "description": "Count words in text without regard to capitalization. A word may contain ASCII letters or digits, with one apostrophe inside it (for example, `can't`). Ignore punctuation and return a dictionary mapping normalized words to counts.",
+  "starterCode": "def word_frequencies(text):\n    # Return lowercase word counts, including contractions\n    pass\n",
+  "referenceSolution": "import re\n\ndef word_frequencies(text):\n    words = re.findall(r\"[A-Za-z0-9]+(?:'[A-Za-z0-9]+)?\", text.casefold())\n    counts = {}\n    for word in words:\n        counts[word] = counts.get(word, 0) + 1\n    return counts",
+  "solution": {
+    "code": "import re\n\ndef word_frequencies(text):\n    words = re.findall(r\"[A-Za-z0-9]+(?:'[A-Za-z0-9]+)?\", text.casefold())\n    counts = {}\n    for word in words:\n        counts[word] = counts.get(word, 0) + 1\n    return counts",
+    "explanation": "A regular expression extracts words and contractions, then casefold normalizes capitalization. Counting the tokens in a dictionary combines words that differ only by case. Punctuation and whitespace do not become tokens."
+  },
+  "wrongSolutions": [
+    "def word_frequencies(text):\n    words=text.split()\n    return {w:words.count(w) for w in set(words)}",
+    "def word_frequencies(text):\n    import re\n    return {w:1 for w in re.findall(r\"[A-Za-z0-9]+\",text)}"
+  ],
+  "tests": [
+    {
+      "args": [
+        ""
+      ],
+      "expected": {},
+      "hint": "No tokens produce an empty mapping."
+    },
+    {
+      "args": [
+        "Python"
+      ],
+      "expected": {
+        "python": 1
+      },
+      "hint": "Normalize uppercase letters."
+    },
+    {
+      "args": [
+        "Go go GO!"
+      ],
+      "expected": {
+        "go": 3
+      },
+      "hint": "Case variants count as the same word."
+    },
+    {
+      "args": [
+        "can't cant"
+      ],
+      "expected": {
+        "can't": 1,
+        "cant": 1
+      },
+      "hint": "An apostrophe inside a token stays with the word."
+    },
+    {
+      "args": [
+        "red, blue; red."
+      ],
+      "expected": {
+        "red": 2,
+        "blue": 1
+      },
+      "hint": "Punctuation separates tokens."
+    },
+    {
+      "args": [
+        "123 123a a123"
+      ],
+      "expected": {
+        "123": 1,
+        "123a": 1,
+        "a123": 1
+      },
+      "hint": "Digits may appear in tokens."
+    },
+    {
+      "args": [
+        "A_B A-B"
+      ],
+      "expected": {
+        "a": 2,
+        "b": 2
+      },
+      "hint": "Underscores and hyphens are separators."
+    },
+    {
+      "args": [
+        "rock'n'roll rock'n roll"
+      ],
+      "expected": {
+        "rock'n": 2,
+        "roll": 2
+      },
+      "hint": "The pattern permits a single internal apostrophe."
+    },
+    {
+      "args": [
+        "  spaced   words  "
+      ],
+      "expected": {
+        "spaced": 1,
+        "words": 1
+      },
+      "hint": "Repeated whitespace does not create empty words."
+    },
+    {
+      "args": [
+        "The quick brown fox jumps over the lazy dog"
+      ],
+      "expected": {
+        "the": 2,
+        "quick": 1,
+        "brown": 1,
+        "fox": 1,
+        "jumps": 1,
+        "over": 1,
+        "lazy": 1,
+        "dog": 1
+      },
+      "hint": "Count each normalized occurrence in a sentence."
+    },
+    {
+      "args": [
+        "éclair Eclair"
+      ],
+      "expected": {
+        "clair": 1,
+        "eclair": 1
+      },
+      "hint": "Only ASCII letters are included by this specification."
+    },
+    {
+      "args": [
+        "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word "
+      ],
+      "expected": {
+        "word": 500
+      },
+      "hint": "This larger string should be counted in one pass."
+    }
+  ]
+}

@@ -285,12 +285,14 @@ Python reports `KeyError: 'pepper'` because `.remove()` expects the member to ex
 Create a set from a list with repeated genres. Print its members in alphabetical order.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Remove repeated song genres task.
 # Sample data: genres = ["soul", "pop", "soul", "indie"]
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Remove repeated song genres” by using the provided sample values and producing the requested result.
+
 
 ```python
 genres = ["soul", "pop", "soul", "indie"]
@@ -304,12 +306,14 @@ print(sorted(set(genres)))
 Make two sets of athletes. Print the athletes who attended both sessions.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Compare two practice groups task.
 # Sample data: session_one = {"Meera", "Arjun", "Pia"}
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Compare two practice groups” by using the provided sample values and producing the requested result.
+
 
 ```python
 session_one = {"Meera", "Arjun", "Pia"}
@@ -324,12 +328,14 @@ print(sorted(session_one & session_two))
 Given sets of people who visited a museum on Saturday and Sunday, print those who visited exactly one day.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Find a one-day visitor task.
 # Sample data: saturday = {"Aarav", "Nina", "Om"}
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Find a one-day visitor” by using the provided sample values and producing the requested result.
+
 
 ```python
 saturday = {"Aarav", "Nina", "Om"}

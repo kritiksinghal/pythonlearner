@@ -317,17 +317,12 @@ Type of single_slice: <class 'list'>
 Given a standardized landline phone number `phone = "+91-022-26543210"`, use slicing to extract the country code (`+91`), the city area code (`022`), and the local line number (`26543210`). Print each component labeled with f-strings.
 
 ```python run
-phone = "+91-022-26543210"
-country_code = phone[:3]
-area_code = phone[4:7]
-local_number = phone[8:]
-print(f"Country: {country_code}, Area: {area_code}, Line: {local_number}")
+# Complete the Phone number area code extraction task.
+# Sample data: phone = '+91-022-26543210'
+# Write your code below and print the result
 ```
 
 
-```output
-Country: +91, Area: 022, Line: 26543210
-```
 :::solution Solution
 Use `phone[:3]` for country code, `phone[4:7]` for area code, and `phone[8:]` for local number:
 
@@ -349,22 +344,12 @@ Country: +91, Area: 022, Line: 26543210
 Given an inventory list of 12 laptops `laptops = ["L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9", "L10", "L11", "L12"]` and a page size of `4`, write slicing expressions that extract and print Page 1 (items 0 to 4), Page 2 (items 4 to 8), and Page 3 (items 8 to 12).
 
 ```python run
-laptops = ["L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9", "L10", "L11", "L12"]
-page_size = 4
-page1 = laptops[0:4]
-page2 = laptops[4:8]
-page3 = laptops[8:12]
-print("Page 1:", page1)
-print("Page 2:", page2)
-print("Page 3:", page3)
+# Complete the Search result pagination task.
+# Sample data: laptops = ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'L10', 'L11', 'L12'], page_size = 4
+# Write your code below and print the result
 ```
 
 
-```output
-Page 1: ['L1', 'L2', 'L3', 'L4']
-Page 2: ['L5', 'L6', 'L7', 'L8']
-Page 3: ['L9', 'L10', 'L11', 'L12']
-```
 :::solution Solution
 Slice by increments of `page_size`: `[0:4]`, `[4:8]`, and `[8:12]`:
 
@@ -391,15 +376,12 @@ Page 3: ['L9', 'L10', 'L11', 'L12']
 Given an array of sensor telemetry `readings = [100, 999, 999, 999, 500]`, where the middle three values represent corrupted sensor spikes, use a single slice assignment statement `readings[1:4] = ...` to replace all three corrupted values with the two valid interpolated values `[200, 350]`. Print the healed array.
 
 ```python run
-readings = [100, 999, 999, 999, 500]
-readings[1:4] = [200, 350]
-print("Healed sensor telemetry:", readings)
+# Complete the Middle trimming and sub-list replacement task.
+# Sample data: readings = [100, 999, 999, 999, 500]
+# Write your code below and print the result
 ```
 
 
-```output
-Healed sensor telemetry: [100, 200, 350, 500]
-```
 :::solution Solution
 Assign `[200, 350]` directly to slice `readings[1:4]`:
 

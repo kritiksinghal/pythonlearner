@@ -1,0 +1,108 @@
+{
+  "slug": "longest-palindrome-length",
+  "title": "Longest Palindromic Substring Length",
+  "track": "Python from zero",
+  "difficulty": "Advanced",
+  "testType": "function",
+  "functionName": "longest_palindrome_length",
+  "relatedLessons": [
+    "text-strings"
+  ],
+  "description": "Return the length of the longest contiguous substring that reads the same from left to right and right to left. Matching is case-sensitive. Empty input returns zero.",
+  "starterCode": "def longest_palindrome_length(text):\n    # Return the longest palindromic substring length\n    pass\n",
+  "referenceSolution": "def longest_palindrome_length(text):\n    longest = 0\n    for center in range(len(text)):\n        for left, right in ((center, center), (center, center + 1)):\n            while left >= 0 and right < len(text) and text[left] == text[right]:\n                longest = max(longest, right - left + 1)\n                left -= 1\n                right += 1\n    return longest",
+  "solution": {
+    "code": "def longest_palindrome_length(text):\n    longest = 0\n    for center in range(len(text)):\n        for left, right in ((center, center), (center, center + 1)):\n            while left >= 0 and right < len(text) and text[left] == text[right]:\n                longest = max(longest, right - left + 1)\n                left -= 1\n                right += 1\n    return longest",
+    "explanation": "Expand outward from every character and every gap between characters. Each expansion measures one palindrome and stops at the first mismatch. The longest measured span is the answer."
+  },
+  "wrongSolutions": [
+    "def longest_palindrome_length(text):\n    return len(text)",
+    "def longest_palindrome_length(text):\n    best = 0\n    for start in range(len(text)):\n        for end in range(start + 1, len(text) + 1):\n            candidate = text[start:end]\n            if len(candidate) % 2 == 0 and candidate == candidate[::-1]:\n                best = max(best, len(candidate))\n    return best"
+  ],
+  "tests": [
+    {
+      "args": [
+        ""
+      ],
+      "expected": 0,
+      "hint": "No characters means no palindrome."
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": 1,
+      "hint": "A single character is a palindrome."
+    },
+    {
+      "args": [
+        "babad"
+      ],
+      "expected": 3,
+      "hint": "Either length-three center palindrome is acceptable."
+    },
+    {
+      "args": [
+        "cbbd"
+      ],
+      "expected": 2,
+      "hint": "Even-length palindromes center between characters."
+    },
+    {
+      "args": [
+        "racecar"
+      ],
+      "expected": 7,
+      "hint": "The whole string can be the longest palindrome."
+    },
+    {
+      "args": [
+        "abcdef"
+      ],
+      "expected": 1,
+      "hint": "Without matching neighbors the longest span is one."
+    },
+    {
+      "args": [
+        "aaaa"
+      ],
+      "expected": 4,
+      "hint": "A repeated string forms a full palindrome."
+    },
+    {
+      "args": [
+        "abccbaX"
+      ],
+      "expected": 6,
+      "hint": "A palindrome can stop before the last character."
+    },
+    {
+      "args": [
+        "Aa"
+      ],
+      "expected": 1,
+      "hint": "Matching is case-sensitive."
+    },
+    {
+      "args": [
+        "forgeeksskeegfor"
+      ],
+      "expected": 10,
+      "hint": "Expand through a longer even-centered palindrome."
+    },
+    {
+      "args": [
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "expected": 100,
+      "hint": "Repeated characters form a long palindrome."
+    },
+    {
+      "args": [
+        "abcba#defed"
+      ],
+      "expected": 5,
+      "hint": "The two separated five-character palindromes do not combine."
+    }
+  ]
+}

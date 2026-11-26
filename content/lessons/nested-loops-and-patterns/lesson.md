@@ -311,19 +311,12 @@ How to fix it: always calculate the total operation count ($M \times N$) before 
 Write a nested loop (or outer loop with string multiplication) that prints a 5-step staircase of hashes `#`, starting with 1 hash on the first line and finishing with 5 hashes on the fifth line.
 
 ```python run
-steps = 5
-for step in range(1, steps + 1):
-    print("#" * step)
+# Complete the Star staircase pattern task.
+# Sample data: steps = 5
+# Write your code below and print the result
 ```
 
 
-```output
-#
-##
-###
-####
-#####
-```
 :::solution Solution
 Iterate `step` from 1 through 5 and multiply `'#'` by `step`:
 
@@ -347,20 +340,12 @@ for step in range(1, steps + 1):
 Using nested `for` loops, construct a 4x4 addition grid where each coordinate displays the sum of its row and column numbers (`row + col`), with `row` running 1 to 4 and `col` running 1 to 4. Align each number within a 3-character space (`:>3`).
 
 ```python run
-for row in range(1, 5):
-    for col in range(1, 5):
-        addition_sum = row + col
-        print(f"{addition_sum:>3}", end=" ")
-    print()
+# Complete the 4x4 Addition lookup grid task.
+# Sample data: end=" "
+# Write your code below and print the result
 ```
 
 
-```output
-  2   3   4   5 
-  3   4   5   6 
-  4   5   6   7 
-  5   6   7   8
-```
 :::solution Solution
 Loop over rows 1 to 4 and columns 1 to 4, printing `f"{row + col:>3}"` with `end=" "`, and call `print()` after each row:
 
@@ -385,24 +370,12 @@ for row in range(1, 5):
 Write a program that prints a 5x5 hollow square border of asterisks. The first row and last row must be completely filled with asterisks (`* * * * *`), while the middle rows must have an asterisk at the first and last column with spaces in between (`*       *`).
 
 ```python run
-size = 5
-for row in range(size):
-    for col in range(size):
-        if row == 0 or row == size - 1 or col == 0 or col == size - 1:
-            print("*", end=" ")
-        else:
-            print(" ", end=" ")
-    print()
+# Complete the Hollow square border pattern task.
+# Sample data: size = 5
+# Write your code below and print the result
 ```
 
 
-```output
-* * * * * 
-*       * 
-*       * 
-*       * 
-* * * * *
-```
 :::solution Solution
 Check if the current coordinate sits on the boundary (`row == 0 or row == size - 1 or col == 0 or col == size - 1`):
 

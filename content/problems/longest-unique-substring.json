@@ -1,0 +1,65 @@
+{
+  "slug": "longest-unique-substring",
+  "title": "Longest Unique Substring",
+  "track": "Python from zero",
+  "difficulty": "Hard",
+  "testType": "function",
+  "functionName": "longest_unique_substring",
+  "description": "Return the length of the longest contiguous substring that contains no repeated characters. The comparison is case-sensitive, and the empty string has length `0`.\n\nAim for a linear-time solution. For example, `\"dvdf\"` has answer `3` because `\"vdf\"` is the longest substring with unique characters.",
+  "starterCode": "def longest_unique_substring(text):\n    # Return the longest length with no repeated characters\n    pass\n",
+  "referenceSolution": "def longest_unique_substring(text):\n    last_seen = {}\n    start = 0\n    longest = 0\n    for index, character in enumerate(text):\n        if character in last_seen and last_seen[character] >= start:\n            start = last_seen[character] + 1\n        last_seen[character] = index\n        longest = max(longest, index - start + 1)\n    return longest\n",
+  "tests": [
+    {
+      "args": [
+        "abcabcbb"
+      ],
+      "expected": 3
+    },
+    {
+      "args": [
+        "bbbbb"
+      ],
+      "expected": 1
+    },
+    {
+      "args": [
+        "pwwkew"
+      ],
+      "expected": 3
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": 0
+    },
+    {
+      "args": [
+        "dvdf"
+      ],
+      "expected": 3
+    },
+    {
+      "args": [
+        "aA"
+      ],
+      "expected": 2
+    },
+    {
+      "args": [
+        "abba"
+      ],
+      "expected": 2
+    },
+    {
+      "args": [
+        "anviaj"
+      ],
+      "expected": 5
+    }
+  ],
+  "solution": {
+    "code": "def longest_unique_substring(text):\n    last_seen = {}\n    start = 0\n    longest = 0\n    for index, character in enumerate(text):\n        if character in last_seen and last_seen[character] >= start:\n            start = last_seen[character] + 1\n        last_seen[character] = index\n        longest = max(longest, index - start + 1)\n    return longest\n",
+    "explanation": "A sliding window tracks the current substring with unique characters. When a character repeats inside the window, move the start just past its previous position. Update the best length as each character is processed."
+  }
+}

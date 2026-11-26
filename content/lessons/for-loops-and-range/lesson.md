@@ -343,25 +343,12 @@ How to fix it: if you need to skip steps dynamically, use a `while` loop (as cov
 Write a program that uses a `for` loop with `range(1, 11)` to print the multiplication table for the number `7` (from $7 \times 1 = 7$ up to $7 \times 10 = 70$), formatted using an f-string.
 
 ```python run
-multiplier = 7
-for step in range(1, 11):
-    product = multiplier * step
-    print(f"{multiplier} x {step} = {product}")
+# Complete the Multiplication table generator task.
+# Sample data: multiplier = 7
+# Write your code below and print the result
 ```
 
 
-```output
-7 x 1 = 7
-7 x 2 = 14
-7 x 3 = 21
-7 x 4 = 28
-7 x 5 = 35
-7 x 6 = 42
-7 x 7 = 49
-7 x 8 = 56
-7 x 9 = 63
-7 x 10 = 70
-```
 :::solution Solution
 Iterate from 1 through 10 using `range(1, 11)` and multiply by 7:
 
@@ -391,18 +378,12 @@ for step in range(1, 11):
 Given the phrase `sentence = "Coding in Python is deeply rewarding"`, write a `for` loop that iterates through every character, checks if the lowercase character is a vowel (`ch in "aeiou"`), and accumulates the count into `vowel_count`. Print the final tally.
 
 ```python run
-sentence = "Coding in Python is deeply rewarding"
-vowel_count = 0
-for char in sentence:
-    if char.lower() in "aeiou":
-        vowel_count += 1
-print(f"Total vowels found: {vowel_count}")
+# Complete the Vowel counter in a sentence task.
+# Sample data: sentence = 'Coding in Python is deeply rewarding'
+# Write your code below and print the result
 ```
 
 
-```output
-Total vowels found: 10
-```
 :::solution Solution
 Traverse `sentence` directly, convert each character to lowercase, test with `in "aeiou"`, and increment `vowel_count`:
 
@@ -425,26 +406,12 @@ Total vowels found: 10
 Using a `for` loop and `range()`, calculate the sum of the squares ($i^2$) of all odd numbers between `1` and `15` inclusive ($1^2 + 3^2 + 5^2 + \dots + 15^2$). Print each term as it is calculated and display the final sum.
 
 ```python run
-total_odd_squares = 0
-for odd_num in range(1, 16, 2):
-    square = odd_num ** 2
-    total_odd_squares += square
-    print(f"{odd_num}^2 = {square:>3} (Running sum: {total_odd_squares})")
-print("Final total of odd squares:", total_odd_squares)
+# Complete the Sum of odd squares task.
+# Sample data: total_odd_squares = 0
+# Write your code below and print the result
 ```
 
 
-```output
-1^2 =   1 (Running sum: 1)
-3^2 =   9 (Running sum: 10)
-5^2 =  25 (Running sum: 35)
-7^2 =  49 (Running sum: 84)
-9^2 =  81 (Running sum: 165)
-11^2 = 121 (Running sum: 286)
-13^2 = 169 (Running sum: 455)
-15^2 = 225 (Running sum: 680)
-Final total of odd squares: 680
-```
 :::solution Solution
 Use `range(1, 16, 2)` to generate odd integers, square each with `** 2`, and accumulate the sum:
 

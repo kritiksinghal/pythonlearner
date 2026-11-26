@@ -1,6 +1,6 @@
 # HANDOVER: Python learning website (PyLearner)
 
-Updated 25 Nov 2026. Read this whole file before touching the project. It records the product direction, fixed stack, working agreement, status, and next phase.
+Updated 27 Nov 2026. Read this whole file before touching the project. It records the product direction, fixed stack, working agreement, status, and next phase.
 
 ---
 
@@ -82,7 +82,7 @@ The development server is normally available at `http://localhost:3000`. Both le
 | Browser runner | Monaco, Pyodide worker, hidden tests, timeout and result display | Done; CDN retry UI implemented, behavior needs human check |
 | Curriculum | 50 Python-from-zero lessons and 10 CS50P lessons with quizzes | 60 lessons verified on Python 3.12.11 and Pyodide 0.26.4 |
 | F1 | Remove obsolete AI copy and routes, clean up, and make deployment-ready | Done; production build, lint, both lesson verifiers, static output and leak scans checked; browser checks need human check |
-| F2 | Add many more practice problems with hand-written hints | Planned |
+| F2 | Add more practice problems with hand-written hints and collapsed solutions | Done; 15 Advanced problems added |
 | F3 | Save progress in the browser with localStorage, without login | Planned |
 | F4 | Quality pass with real browser tests | Planned |
 | F5 | Final deployment check | Planned |
@@ -94,11 +94,12 @@ The development server is normally available at `http://localhost:3000`. Both le
 - `app/`: App Router pages and route metadata.
 - `components/`: navigation, custom Markdown, quiz, code editor, runner feedback, and visual elements.
 - `content/lessons/<slug>/`: lesson Markdown and quiz JSON.
-- `content/problems/`: problem definitions and test data. Reference solutions must never enter browser output.
+- `content/problems/`: problem definitions, public solution dropdown content, private reference solutions, wrong solutions, and test data. Only the `solution` field may reach the client; `referenceSolution` and `wrongSolutions` must never appear in client assets.
 - `lib/lessons.ts`: lesson and curriculum file loader, used at build time for static routes.
 - `lib/problems.ts`: problem data loader and public problem metadata.
 - `public/pyodideWorker.js`: pinned Pyodide worker.
 - `scripts/verify_lessons.py`: Python 3.12 lesson verification.
+- `scripts/verify_problems.py`: Python 3.12 problem schema, solution, test, and distractor verification.
 - `scripts/verify_in_pyodide.mjs`: lesson examples run through Pyodide 0.26.4.
 
 ---
@@ -109,13 +110,25 @@ The development server is normally available at `http://localhost:3000`. Both le
 - The verifier checks titles, sections, word counts, runnable outputs, error lines, and quiz schema.
 - The Pyodide verifier checks browser-compatible lesson examples against Pyodide 0.26.4.
 - Dynamic lesson and problem slugs must be enumerated at build time; content must not be read from `/content` at request time.
-- Production checks include clean install, build, lint, static route output, case-sensitive path checks, and ensuring no `referenceSolution` or source notes are in client assets.
+- Practice problem pages send the learner-facing `solution` object only. The `referenceSolution` and `wrongSolutions` fields stay server-side.
+- After `npm run build`, verify the client asset leak scan with:
+
+  ```bash
+  if rg -n 'referenceSolution|wrongSolutions' .next/static; then
+    echo "Problem answer leak found in client assets"
+    exit 1
+  else
+    echo "No referenceSolution or wrongSolutions in client assets; solution is allowed"
+  fi
+  ```
+
+- Production checks include clean install, build, lint, static route output, case-sensitive path checks, and confirming the client asset leak scan reports zero hits for `referenceSolution` and `wrongSolutions`. The public `solution` field is allowed.
 
 ---
 
 ## 8. Known issues and human checks
 
-- This chat had no browser surface available, so page appearance, custom 404/error pages, and offline/blocked CDN Retry behavior need human check in a real browser.
+- Browser visual and runtime checks for page appearance, custom 404/error pages, offline/blocked CDN Retry, blank exercise editors, the collapsed practice solution disclosure, difficulty filter, related lesson links, and failure hints need human check. In this workspace, `npm run dev` could not bind to port 3000 (`EPERM`), so no browser preview was available.
 - Visual checks remain for lesson contents layout at wide desktop, tablet, and mobile widths, and for light/dark active indicators.
 - Set `NEXT_PUBLIC_SITE_URL` to the production domain before deployment; the local build currently uses its localhost fallback.
 - Deployment domain and production environment settings must be confirmed by the owner before F5.

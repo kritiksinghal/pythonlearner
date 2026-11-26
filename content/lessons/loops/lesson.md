@@ -315,21 +315,20 @@ Use `break` when the repetition should finish. Use `continue` when only the curr
 Use a `for` loop to visit each drill in order.
 
 ```python run
+# Complete the print a practice rotation task.
+# Sample data: drills = ['serve', 'footwork', 'return']
+# Write your code below and print the result
+```
+
+
+:::solution
+The loop receives each list item as `drill`. The body prints once for each item, in list order.
+
+```python
 drills = ["serve", "footwork", "return"]
 for drill in drills:
     print("Next drill:", drill)
 ```
-
-```output
-Next drill: serve
-Next drill: footwork
-Next drill: return
-```
-
-:::solution
-
-The loop receives each list item as `drill`. The body prints once for each item, in list order.
-
 :::
 
 ### Medium: count down to a song cue
@@ -337,24 +336,22 @@ The loop receives each list item as `drill`. The body prints once for each item,
 Use a `while` loop that updates its counter each round.
 
 ```python run
+# Complete the count down to a song cue task.
+# Sample data: seconds = 3
+# Write your code below and print the result
+```
+
+
+:::solution
+Each pass subtracts one until the condition becomes false. The final message sits after the loop, so it appears once the countdown ends.
+
+```python
 seconds = 3
 while seconds > 0:
     print(seconds)
     seconds -= 1
 print("Play")
 ```
-
-```output
-3
-2
-1
-Play
-```
-
-:::solution
-
-Each pass subtracts one until the condition becomes false. The final message sits after the loop, so it appears once the countdown ends.
-
 :::
 
 ### Challenge: find a player's team
@@ -362,6 +359,16 @@ Each pass subtracts one until the condition becomes false. The final message sit
 Loop through a dictionary's keys and stop after the requested player is found.
 
 ```python run
+# Complete the find a player's team task.
+# Sample data: teams = {'Sana': 'Falcons', 'Rohan': 'Tigers', 'Leela': 'Owls'}, search_name = 'Rohan'
+# Write your code below and print the result
+```
+
+
+:::solution
+The loop visits each dictionary key. When it matches `search_name`, the program prints that key's value and exits the loop.
+
+```python
 teams = {"Sana": "Falcons", "Rohan": "Tigers", "Leela": "Owls"}
 search_name = "Rohan"
 for player in teams:
@@ -369,15 +376,6 @@ for player in teams:
         print(teams[player])
         break
 ```
-
-```output
-Tigers
-```
-
-:::solution
-
-The loop visits each dictionary key. When it matches `search_name`, the program prints that key's value and exits the loop.
-
 :::
 
 ## Recap

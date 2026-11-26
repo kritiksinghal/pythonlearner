@@ -313,6 +313,16 @@ Equality and ordering are separate behaviors. Defining `__eq__` does not explain
 Define `__str__` for a `Badge` that returns its color.
 
 ```python run
+# Complete the readable output task.
+# Sample data: badge_color = "gold"
+# Write your code below and print the result
+```
+
+
+:::solution
+`print()` uses the returned string from `__str__`. The method returns text instead of printing internally.
+
+```python
 class Badge:
     def __init__(self, color):
         self.color = color
@@ -322,15 +332,6 @@ class Badge:
 
 print(Badge("silver"))
 ```
-
-```output
-silver badge
-```
-
-:::solution
-
-`print()` uses the returned string from `__str__`. The method returns text instead of printing internally.
-
 :::
 
 ### Medium: support `len()`
@@ -338,6 +339,16 @@ silver badge
 Implement `__len__` for a shelf containing three records.
 
 ```python run
+# Complete the support `len()` task.
+# Sample data: records = ["score", "date", "venue"]
+# Write your code below and print the result
+```
+
+
+:::solution
+The special method returns the internal list length as an integer, which lets the caller use `len()`.
+
+```python
 class Shelf:
     def __init__(self, records):
         self.records = records
@@ -347,15 +358,6 @@ class Shelf:
 
 print(len(Shelf(["A", "B", "C"])))
 ```
-
-```output
-3
-```
-
-:::solution
-
-The special method returns the internal list length as an integer, which lets the caller use `len()`.
-
 :::
 
 ### Challenge: compare two distances
@@ -363,6 +365,16 @@ The special method returns the internal list length as an integer, which lets th
 Implement `__lt__` so two `TrackLength` objects compare by kilometers.
 
 ```python run
+# Complete the compare two distances task.
+# Sample data: distances_km = [2.5, 10, 0.75]
+# Write your code below and print the result
+```
+
+
+:::solution
+The method compares the stored numeric values and returns the resulting Boolean.
+
+```python
 class TrackLength:
     def __init__(self, kilometers):
         self.kilometers = kilometers
@@ -372,15 +384,6 @@ class TrackLength:
 
 print(TrackLength(3) < TrackLength(5))
 ```
-
-```output
-True
-```
-
-:::solution
-
-The method compares the stored numeric values and returns the resulting Boolean.
-
 :::
 
 ## Recap

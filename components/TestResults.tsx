@@ -19,6 +19,7 @@ interface Props {
   totalTests: number;
   testType: "function" | "stdio";
   functionName?: string;
+  hints?: string[];
 }
 
 export default function TestResults({
@@ -26,6 +27,7 @@ export default function TestResults({
   totalTests,
   testType,
   functionName,
+  hints = [],
 }: Props) {
   // Before any test run
   if (!results) {
@@ -104,6 +106,12 @@ export default function TestResults({
                 </span>
               )}
             </div>
+
+              {!r.ok && hints[i] && (
+                <p className="mt-2 text-xs leading-relaxed text-muted">
+                  <span className="font-semibold text-foreground">Hint: </span>{hints[i]}
+                </p>
+              )}
 
             {/* Test details */}
             <div className="mt-2.5 space-y-2 font-mono text-xs">

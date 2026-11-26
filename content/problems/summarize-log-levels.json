@@ -1,0 +1,284 @@
+{
+  "slug": "summarize-log-levels",
+  "title": "Summarize Valid Log Lines",
+  "track": "Python from zero",
+  "difficulty": "Advanced",
+  "testType": "function",
+  "functionName": "summarize_log_levels",
+  "relatedLessons": [
+    "regular-expressions",
+    "dictionaries"
+  ],
+  "description": "Count valid lines by log level. A valid line has the form `YYYY-MM-DD [LEVEL] message`, where LEVEL is INFO, WARN, or ERROR and message is non-empty. Ignore malformed lines and return all three levels with zero counts when absent.",
+  "starterCode": "def summarize_log_levels(lines):\n    # Return counts for INFO, WARN, and ERROR\n    pass\n",
+  "referenceSolution": "import re\n\ndef summarize_log_levels(lines):\n    counts = {\"INFO\": 0, \"WARN\": 0, \"ERROR\": 0}\n    pattern = re.compile(r\"\\d{4}-\\d{2}-\\d{2} \\[(INFO|WARN|ERROR)\\] .+\")\n    for line in lines:\n        match = pattern.fullmatch(line)\n        if match:\n            counts[match.group(1)] += 1\n    return counts",
+  "solution": {
+    "code": "import re\n\ndef summarize_log_levels(lines):\n    counts = {\"INFO\": 0, \"WARN\": 0, \"ERROR\": 0}\n    pattern = re.compile(r\"\\d{4}-\\d{2}-\\d{2} \\[(INFO|WARN|ERROR)\\] .+\")\n    for line in lines:\n        match = pattern.fullmatch(line)\n        if match:\n            counts[match.group(1)] += 1\n    return counts",
+    "explanation": "Match each complete line against the expected date, level, and message shape. Count only valid lines and ignore malformed entries. The regex anchors prevent a valid fragment from making an invalid line count."
+  },
+  "wrongSolutions": [
+    "def summarize_log_levels(lines):\n    return {level:sum(level in line for line in lines) for level in (\"INFO\",\"WARN\",\"ERROR\")}",
+    "def summarize_log_levels(lines):\n    import re\n    return {level:len(re.findall(level,\"\\n\".join(lines))) for level in (\"INFO\",\"WARN\",\"ERROR\")}"
+  ],
+  "tests": [
+    {
+      "args": [
+        []
+      ],
+      "expected": {
+        "INFO": 0,
+        "WARN": 0,
+        "ERROR": 0
+      },
+      "hint": "Return all levels even when there are no lines."
+    },
+    {
+      "args": [
+        [
+          "2026-01-02 [INFO] ready"
+        ]
+      ],
+      "expected": {
+        "INFO": 1,
+        "WARN": 0,
+        "ERROR": 0
+      },
+      "hint": "Count a valid INFO entry."
+    },
+    {
+      "args": [
+        [
+          "2026-01-02 [WARN] low battery"
+        ]
+      ],
+      "expected": {
+        "INFO": 0,
+        "WARN": 1,
+        "ERROR": 0
+      },
+      "hint": "Count the matched level only."
+    },
+    {
+      "args": [
+        [
+          "2026-01-02 [ERROR] failed"
+        ]
+      ],
+      "expected": {
+        "INFO": 0,
+        "WARN": 0,
+        "ERROR": 1
+      },
+      "hint": "An ERROR entry increments its own counter."
+    },
+    {
+      "args": [
+        [
+          "2026-01-02 [INFO] a",
+          "2026-01-03 [INFO] b",
+          "2026-01-04 [WARN] c"
+        ]
+      ],
+      "expected": {
+        "INFO": 2,
+        "WARN": 1,
+        "ERROR": 0
+      },
+      "hint": "Several valid levels can appear together."
+    },
+    {
+      "args": [
+        [
+          "bad line",
+          "2026-01-02 [INFO] ok"
+        ]
+      ],
+      "expected": {
+        "INFO": 1,
+        "WARN": 0,
+        "ERROR": 0
+      },
+      "hint": "Ignore a malformed line and keep processing."
+    },
+    {
+      "args": [
+        [
+          "2026-1-02 [INFO] bad"
+        ]
+      ],
+      "expected": {
+        "INFO": 0,
+        "WARN": 0,
+        "ERROR": 0
+      },
+      "hint": "Month and day each require two digits."
+    },
+    {
+      "args": [
+        [
+          "2026-01-02 [DEBUG] hidden"
+        ]
+      ],
+      "expected": {
+        "INFO": 0,
+        "WARN": 0,
+        "ERROR": 0
+      },
+      "hint": "DEBUG is outside the accepted level set."
+    },
+    {
+      "args": [
+        [
+          "2026-01-02 [INFO] "
+        ]
+      ],
+      "expected": {
+        "INFO": 0,
+        "WARN": 0,
+        "ERROR": 0
+      },
+      "hint": "A message must contain at least one character."
+    },
+    {
+      "args": [
+        [
+          "x2026-01-02 [INFO] extra"
+        ]
+      ],
+      "expected": {
+        "INFO": 0,
+        "WARN": 0,
+        "ERROR": 0
+      },
+      "hint": "Anchoring rejects extra leading text."
+    },
+    {
+      "args": [
+        [
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x",
+          "2026-01-02 [ERROR] x"
+        ]
+      ],
+      "expected": {
+        "INFO": 0,
+        "WARN": 0,
+        "ERROR": 100
+      },
+      "hint": "A larger batch should count every valid record."
+    },
+    {
+      "args": [
+        [
+          "2026-01-02 [INFO] x",
+          "2026-01-02 [INFO] x",
+          "broken",
+          "2026-01-02 [WARN] y"
+        ]
+      ],
+      "expected": {
+        "INFO": 2,
+        "WARN": 1,
+        "ERROR": 0
+      },
+      "hint": "Identical lines still count as separate events."
+    }
+  ]
+}

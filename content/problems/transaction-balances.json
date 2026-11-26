@@ -1,0 +1,105 @@
+{
+  "slug": "transaction-balances",
+  "title": "Reconcile an Account Ledger",
+  "track": "Python from zero",
+  "difficulty": "Hard",
+  "testType": "function",
+  "functionName": "reconcile_balances",
+  "description": "Given a non-negative starting balance and valid transactions in their recorded order, return the balance after each transaction. Each transaction is a pair `[kind, amount]`: `\"deposit\"` adds the amount, and `\"withdrawal\"` subtracts it. The data guarantees that every kind is recognized, every amount is non-negative, and the account never goes below zero. Do not mutate the transaction list.\n\nFor example, starting at `20` with a deposit of `5` followed by a withdrawal of `8` returns `[25, 17]`.",
+  "starterCode": "def reconcile_balances(starting_balance, transactions):\n    # Return each running balance, or raise ValueError for invalid entries\n    pass\n",
+  "referenceSolution": "def reconcile_balances(starting_balance, transactions):\n    balance = starting_balance\n    history = []\n    for kind, amount in transactions:\n        if kind == \"deposit\":\n            balance += amount\n        else:\n            balance -= amount\n        history.append(balance)\n    return history\n",
+  "tests": [
+    {
+      "args": [
+        20,
+        [
+          [
+            "deposit",
+            5
+          ],
+          [
+            "withdrawal",
+            8
+          ]
+        ]
+      ],
+      "expected": [
+        25,
+        17
+      ]
+    },
+    {
+      "args": [
+        0,
+        []
+      ],
+      "expected": []
+    },
+    {
+      "args": [
+        10,
+        [
+          [
+            "withdrawal",
+            10
+          ],
+          [
+            "deposit",
+            3
+          ]
+        ]
+      ],
+      "expected": [
+        0,
+        3
+      ]
+    },
+    {
+      "args": [
+        100,
+        [
+          [
+            "withdrawal",
+            10
+          ],
+          [
+            "withdrawal",
+            20
+          ],
+          [
+            "deposit",
+            5
+          ]
+        ]
+      ],
+      "expected": [
+        90,
+        70,
+        75
+      ]
+    },
+    {
+      "args": [
+        7,
+        [
+          [
+            "deposit",
+            0
+          ],
+          [
+            "withdrawal",
+            0
+          ]
+        ]
+      ],
+      "expected": [
+        7,
+        7
+      ]
+    }
+  ],
+  "solution": {
+    "code": "def reconcile_balances(starting_balance, transactions):\n    balance = starting_balance\n    history = []\n    for kind, amount in transactions:\n        if kind == \"deposit\":\n            balance += amount\n        else:\n            balance -= amount\n        history.append(balance)\n    return history\n",
+    "explanation": "Start with the supplied balance and process transactions in order. Deposits add cents and withdrawals subtract them, and each updated balance is appended to the history. The function does not modify the transaction input."
+  }
+}

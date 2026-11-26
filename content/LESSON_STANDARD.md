@@ -10,10 +10,10 @@ Sections, in this order, as ## headings:
 5. What Python is doing behind the scenes (a table tracing variable values step by step, where it helps)
 6. Common mistakes (3-5; each shows the broken code, the REAL error message copied from running it, and the fix)
 7. Cheat sheet (a table)
-8. Try it yourself (3 exercises: easy, medium, challenge; each a runnable block; each with a :::solution block)
+8. Try it yourself (3 exercises: easy, medium, challenge; each has a comment-only blank editor and a collapsed :::solution block containing the full answer and a short explanation)
 9. Recap (5 bullets)
 Examples: Usually 8-12 runnable examples per lesson; use the configured minimum for browser-limited lessons and projects. Make examples realistic (prices, marks, names, games), never foo/bar.
-Runnable blocks (```python run) must be followed by an ```output block with the exact output. They cannot use input(), the network, threads, or external packages. Show such code in plain ```python blocks with a sample session.
+Runnable blocks (```python run) outside exercise sections must be followed by an ```output block with the exact output. In "Try it yourself" and "Make it yourself", each exercise starter contains only comment lines: one instruction, a sample-data comment, and `# Write your code below and print the result`. No output block is attached to a starter; the full answer and a short explanation stay in the collapsed :::solution block. Runnable blocks cannot use input(), the network, threads, or external packages. Show such code in plain ```python blocks with a sample session.
 Quiz: 8-10 questions mixing "what does this code print", concepts, and find-the-bug. Every explanation says why the right answer is right and why the most tempting wrong answer is wrong.
 Accuracy: every runnable output and every error message must come from actually running Python 3.12. Facts must come from the Python 3.12 documentation at `docs.python.org/3.12`; never use newer Python documentation. Do not copy text from books or courses. CS50P lessons: use my notes as the source, rewrite in your own words, credit "Based on Harvard's CS50P" at the end.
 Verification: `scripts/verify_lessons.py` runs code with the executable named by `LESSON_PYTHON` (default: `python3.12`). It must stop if that executable is missing or is not Python 3.12.x.

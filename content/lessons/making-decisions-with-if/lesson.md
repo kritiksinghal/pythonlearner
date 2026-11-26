@@ -367,20 +367,12 @@ Python refuses to order a string against a number because their formats are inco
 Write a program that determines a ticket price based on age: under 12 pays 150, ages 12 through 17 pays 250, and 18 or older pays 350. Test it with an age of 15.
 
 ```python run
-age = 15
-if age < 12:
-    price = 150
-elif age <= 17:
-    price = 250
-else:
-    price = 350
-print("Ticket price:", price)
+# Complete the Movie theater ticket pricing task.
+# Sample data: age = 15
+# Write your code below and print the result
 ```
 
 
-```output
-Ticket price: 250
-```
 :::solution Solution
 Because 15 is not under 12, the first check fails. The second check `age <= 17` succeeds, setting `price = 250`.
 
@@ -405,21 +397,12 @@ Ticket price: 250
 A store offers free delivery (fee of 0) if the order total is 500 or more, or if the customer has VIP status. Otherwise, delivery costs 50. Given an order of 650 by a non-VIP customer, calculate the fee and total payable.
 
 ```python run
-order_total = 650
-is_vip = False
-if order_total >= 500 or is_vip:
-    delivery_fee = 0
-else:
-    delivery_fee = 50
-print("Delivery fee:", delivery_fee)
-print("Total payable:", order_total + delivery_fee)
+# Complete the Free delivery calculation task.
+# Sample data: order_total = 650, is_vip = False
+# Write your code below and print the result
 ```
 
 
-```output
-Delivery fee: 0
-Total payable: 650
-```
 :::solution Solution
 Using the `or` operator, `order_total >= 500` is `True`, so free delivery applies regardless of `is_vip`.
 
@@ -445,17 +428,12 @@ Total payable: 650
 A year is a leap year if it is divisible by 4, except end-of-century years which must also be divisible by 400. Write a program checking whether 2024 is a leap year.
 
 ```python run
-year = 2024
-if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
-    print(year, "is a leap year.")
-else:
-    print(year, "is not a leap year.")
+# Complete the Leap year checker task.
+# Sample data: year = 2024
+# Write your code below and print the result
 ```
 
 
-```output
-2024 is a leap year.
-```
 :::solution Solution
 2024 is divisible by 4 (`2024 % 4 == 0`) and not divisible by 100 (`2024 % 100 != 0`), so the left expression produces `True`.
 

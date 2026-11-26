@@ -301,21 +301,22 @@ Bad text for integer conversion raises `ValueError`, while an incompatible type 
 Handle a non-integer value with a specific exception type.
 
 ```python run
+# Complete the convert a delivery count task.
+# Sample data: raw = 'twelve'
+# Write your code below and print the result
+```
+
+
+:::solution
+`int` cannot convert the word to an integer, so it raises `ValueError` and the handler prints the requested guidance.
+
+```python
 raw = "twelve"
 try:
     packages = int(raw)
 except ValueError:
     print("Enter a whole number of packages")
 ```
-
-```output
-Enter a whole number of packages
-```
-
-:::solution
-
-`int` cannot convert the word to an integer, so it raises `ValueError` and the handler prints the requested guidance.
-
 :::
 
 ### Medium: process a valid mark
@@ -323,6 +324,16 @@ Enter a whole number of packages
 Use an `else` suite for work that should happen only after conversion succeeds.
 
 ```python run
+# Complete the process a valid mark task.
+# Sample data: raw_mark = '88'
+# Write your code below and print the result
+```
+
+
+:::solution
+The text converts successfully. Python skips `except` and runs `else` with the integer value.
+
+```python
 raw_mark = "88"
 try:
     mark = int(raw_mark)
@@ -331,15 +342,6 @@ except ValueError:
 else:
     print("Recorded mark:", mark)
 ```
-
-```output
-Recorded mark: 88
-```
-
-:::solution
-
-The text converts successfully. Python skips `except` and runs `else` with the integer value.
-
 :::
 
 ### Challenge: validate an age range
@@ -347,6 +349,16 @@ The text converts successfully. Python skips `except` and runs `else` with the i
 Raise a `ValueError` for an age outside the stated range and catch it at the call site.
 
 ```python run
+# Complete the validate an age range task.
+# Sample data: age = 15, invalid_age = 130
+# Write your code below and print the result
+```
+
+
+:::solution
+The condition is true for 135, so the function raises rather than returning an invalid value. The caller catches that particular exception and prints its message.
+
+```python
 def checked_age(age):
     if age < 0 or age > 120:
         raise ValueError("Age is outside the allowed range")
@@ -357,15 +369,6 @@ try:
 except ValueError as error:
     print(error)
 ```
-
-```output
-Age is outside the allowed range
-```
-
-:::solution
-
-The condition is true for 135, so the function raises rather than returning an invalid value. The caller catches that particular exception and prints its message.
-
 :::
 
 ## Recap

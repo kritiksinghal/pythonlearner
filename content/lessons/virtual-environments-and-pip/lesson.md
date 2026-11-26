@@ -258,19 +258,20 @@ The name used by `pip install` can differ from the name used by `import`. Read t
 Read the version tuple in a Python 3.12 interpreter and print its major and minor components.
 
 ```python run
+# Complete the identify the requested Python version task.
+# Sample data: version_info = (3, 12, 0)
+# Write your code below and print the result
+```
+
+
+:::solution
+`sys.version_info` stores the running interpreter version. The major and minor fields produce the stable `3.12` form.
+
+```python
 import sys
 
 print(f"{sys.version_info.major}.{sys.version_info.minor}")
 ```
-
-```output
-3.12
-```
-
-:::solution
-
-`sys.version_info` stores the running interpreter version. The major and minor fields produce the stable `3.12` form.
-
 :::
 
 ### Medium: write down a project command sequence
@@ -278,6 +279,16 @@ print(f"{sys.version_info.major}.{sys.version_info.minor}")
 Print the commands you would run to create and populate an environment. Run each command in a terminal when setting up a real project.
 
 ```python run
+# Complete the write down a project command sequence task.
+# Sample data: steps = ['python3.12 -m venv .venv', 'source .venv/bin/activate', 'python -m pip install rich']
+# Write your code below and print the result
+```
+
+
+:::solution
+The list represents a setup plan. Python prints the command strings; it does not execute them. Run them in the appropriate terminal to create and use an environment.
+
+```python
 steps = [
     "python3.12 -m venv .venv",
     "source .venv/bin/activate",
@@ -286,17 +297,6 @@ steps = [
 for step in steps:
     print(step)
 ```
-
-```output
-python3.12 -m venv .venv
-source .venv/bin/activate
-python -m pip install rich
-```
-
-:::solution
-
-The list represents a setup plan. Python prints the command strings; it does not execute them. Run them in the appropriate terminal to create and use an environment.
-
 :::
 
 ### Challenge: explain why module-form pip is safer
@@ -304,20 +304,20 @@ The list represents a setup plan. Python prints the command strings; it does not
 Build a command string using the same interpreter name for running a script and pip.
 
 ```python run
+# Complete the explain why module-form pip is safer task.
+# Sample data: python_name = 'python'
+# Write your code below and print the result
+```
+
+
+:::solution
+Both commands begin with the same `python` executable. That keeps pip associated with the interpreter that will run the project.
+
+```python
 python_name = "python"
 print(f"{python_name} -m pip install package_name")
 print(f"{python_name} app.py")
 ```
-
-```output
-python -m pip install package_name
-python app.py
-```
-
-:::solution
-
-Both commands begin with the same `python` executable. That keeps pip associated with the interpreter that will run the project.
-
 :::
 
 ## Recap

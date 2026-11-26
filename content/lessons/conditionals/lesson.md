@@ -506,21 +506,22 @@ If a value matches both a specific case and a broad case, the first true branch 
 Print a warning when rainfall is at least 20 millimeters.
 
 ```python run
+# Complete the compare the rainfall task.
+# Sample data: rainfall = 24
+# Write your code below and print the result
+```
+
+
+:::solution
+The stored value is greater than or equal to 20, so the first branch runs. A smaller value would use the else branch.
+
+```python
 rainfall = 24
 if rainfall >= 20:
     print("Heavy rain alert")
 else:
     print("No heavy rain alert")
 ```
-
-```output
-Heavy rain alert
-```
-
-:::solution
-
-The stored value is greater than or equal to 20, so the first branch runs. A smaller value would use the else branch.
-
 :::
 
 ### Medium: check a range
@@ -528,21 +529,22 @@ The stored value is greater than or equal to 20, so the first branch runs. A sma
 Print a message when the practice room temperature is between 19 and 24 degrees, inclusive.
 
 ```python run
+# Complete the check a range task.
+# Sample data: room_temperature = 21
+# Write your code below and print the result
+```
+
+
+:::solution
+The chained comparison includes both boundaries, and 21 is inside that range.
+
+```python
 room_temperature = 21
 if 19 <= room_temperature <= 24:
     print("Comfortable for practice")
 else:
     print("Adjust the room")
 ```
-
-```output
-Comfortable for practice
-```
-
-:::solution
-
-The chained comparison includes both boundaries, and 21 is inside that range.
-
 :::
 
 ### Challenge: match a fixed command
@@ -550,6 +552,16 @@ The chained comparison includes both boundaries, and 21 is inside that range.
 Use `match` to respond to a short control-room command and include a catch-all.
 
 ```python run
+# Complete the match a fixed command task.
+# Sample data: command = 'pause'
+# Write your code below and print the result
+```
+
+
+:::solution
+The `pause` value matches the second case, which groups two accepted spellings. Other values reach the catch-all case.
+
+```python
 command = "pause"
 match command:
     case "play":
@@ -560,15 +572,6 @@ match command:
         result = "Unknown command"
 print(result)
 ```
-
-```output
-Music pauses
-```
-
-:::solution
-
-The `pause` value matches the second case, which groups two accepted spellings. Other values reach the catch-all case.
-
 :::
 
 ## Recap

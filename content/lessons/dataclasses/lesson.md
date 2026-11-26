@@ -350,6 +350,16 @@ The generated initializer follows field order, and required parameters cannot fo
 Create a dataclass for a film with a title and year.
 
 ```python run
+# Complete the define a data record task.
+# Sample data: title = "Cloud Harbor", year = 2024
+# Write your code below and print the result
+```
+
+
+:::solution
+Annotate the fields and decorate the class. The generated representation shows their names and values.
+
+```python
 from dataclasses import dataclass
 
 @dataclass
@@ -359,15 +369,6 @@ class Film:
 
 print(Film("Soft Thunder", 2021))
 ```
-
-```output
-Film(title='Soft Thunder', year=2021)
-```
-
-:::solution
-
-Annotate the fields and decorate the class. The generated representation shows their names and values.
-
 :::
 
 ### Medium: use a fresh collection
@@ -375,6 +376,16 @@ Annotate the fields and decorate the class. The generated representation shows t
 Create two dataclass instances with separate lists of ingredients.
 
 ```python run
+# Complete the use a fresh collection task.
+# Sample data: berry = Smoothie('berry'), citrus = Smoothie('citrus')
+# Write your code below and print the result
+```
+
+
+:::solution
+The factory creates a new list for each smoothie, so appending to one does not affect the other.
+
+```python
 from dataclasses import dataclass, field
 
 @dataclass
@@ -388,16 +399,6 @@ berry.ingredients.append("oats")
 print(berry.ingredients)
 print(citrus.ingredients)
 ```
-
-```output
-['oats']
-[]
-```
-
-:::solution
-
-The factory creates a new list for each smoothie, so appending to one does not affect the other.
-
 :::
 
 ### Challenge: freeze a record
@@ -405,6 +406,16 @@ The factory creates a new list for each smoothie, so appending to one does not a
 Define a frozen dataclass for a game coordinate and read its row.
 
 ```python run
+# Complete the freeze a record task.
+# Sample data: spot = GridSpot(5, 2)
+# Write your code below and print the result
+```
+
+
+:::solution
+The frozen option prevents ordinary reassignment, while reading the fields remains allowed.
+
+```python
 from dataclasses import dataclass
 
 @dataclass(frozen=True)
@@ -415,15 +426,6 @@ class GridSpot:
 spot = GridSpot(5, 2)
 print(spot.row)
 ```
-
-```output
-5
-```
-
-:::solution
-
-The frozen option prevents ordinary reassignment, while reading the fields remains allowed.
-
 :::
 
 ## Recap

@@ -294,22 +294,22 @@ If you alter five lines and the program works, you have not learned which assump
 The operation below raises an exception. Catch it and print its type name and message.
 
 ```python run
+# Complete the inspect the type task.
+# Sample data: left_value = 12, right_value = " runs"
+# Write your code below and print the result
+```
+
+
+:::solution
+The runnable block already shows the solution: inspect the caught exception using `type(problem).__name__` and print `problem` for its message. A fix for the original operation could convert the integer with `str(12)` or format it in a string.
+
+```python
 try:
     print(12 + " runs")
 except TypeError as problem:
     print(type(problem).__name__)
     print(problem)
 ```
-
-```output
-TypeError
-unsupported operand type(s) for +: 'int' and 'str'
-```
-
-:::solution
-
-The runnable block already shows the solution: inspect the caught exception using `type(problem).__name__` and print `problem` for its message. A fix for the original operation could convert the integer with `str(12)` or format it in a string.
-
 :::
 
 ### Medium: find a valid index
@@ -317,19 +317,20 @@ The runnable block already shows the solution: inspect the caught exception usin
 Make the index safe for the two-item list and print the second item.
 
 ```python run
+# Complete the find a valid index task.
+# Sample data: players = ['Ravi', 'Noor']
+# Write your code below and print the result
+```
+
+
+:::solution
+The list has positions zero and one, so `index = 1` selects its second value. If the index came from changing input, check that it remains below `len(players)` before indexing.
+
+```python
 players = ["Ravi", "Noor"]
 index = 1
 print(players[index])
 ```
-
-```output
-Noor
-```
-
-:::solution
-
-The list has positions zero and one, so `index = 1` selects its second value. If the index came from changing input, check that it remains below `len(players)` before indexing.
-
 :::
 
 ### Challenge: make the input visible
@@ -337,21 +338,21 @@ The list has positions zero and one, so `index = 1` selects its second value. If
 Trim the whitespace from the text, then display both original and cleaned values with `repr()`.
 
 ```python run
+# Complete the make the input visible task.
+# Sample data: label = '  practice  ', clean_label = label.strip()
+# Write your code below and print the result
+```
+
+
+:::solution
+`strip()` creates a string without surrounding whitespace. `repr()` shows the spaces in the original value so the change is easy to inspect.
+
+```python
 label = "  practice  "
 clean_label = label.strip()
 print(repr(label))
 print(repr(clean_label))
 ```
-
-```output
-'  practice  '
-'practice'
-```
-
-:::solution
-
-`strip()` creates a string without surrounding whitespace. `repr()` shows the spaces in the original value so the change is easy to inspect.
-
 :::
 
 ## Recap

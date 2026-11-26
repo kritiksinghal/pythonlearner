@@ -310,6 +310,16 @@ Generators do not support list-style indexing or repeated traversal. Use a list 
 Write a generator that yields three strings and print them in a loop.
 
 ```python run
+# Complete the yield three team names task.
+# Sample data: team_names = ["Falcons", "Tigers", "Owls"]
+# Write your code below and print the result
+```
+
+
+:::solution
+Each `yield` makes one name available. The for loop requests each name until the generator ends.
+
+```python
 def teams():
     yield "Falcons"
     yield "Tigers"
@@ -318,17 +328,6 @@ def teams():
 for team in teams():
     print(team)
 ```
-
-```output
-Falcons
-Tigers
-Owls
-```
-
-:::solution
-
-Each `yield` makes one name available. The for loop requests each name until the generator ends.
-
 :::
 
 ### Medium: generate doubled values
@@ -336,19 +335,20 @@ Each `yield` makes one name available. The for loop requests each name until the
 Use a generator expression to double each value and print the values as a list.
 
 ```python run
+# Complete the generate doubled values task.
+# Sample data: numbers = [3, 5, 8]
+# Write your code below and print the result
+```
+
+
+:::solution
+The generator expression calculates each doubled number when `list()` requests the next value.
+
+```python
 numbers = [3, 5, 8]
 doubled = (number * 2 for number in numbers)
 print(list(doubled))
 ```
-
-```output
-[6, 10, 16]
-```
-
-:::solution
-
-The generator expression calculates each doubled number when `list()` requests the next value.
-
 :::
 
 ### Challenge: make a running sequence
@@ -356,21 +356,22 @@ The generator expression calculates each doubled number when `list()` requests t
 Create a generator that yields the first four multiples of seven.
 
 ```python run
+# Complete the make a running sequence task.
+# Sample data: first_multiple = 7, count = 4
+# Write your code below and print the result
+```
+
+
+:::solution
+The loop computes one multiple per iteration and yields it. `list()` collects the four generated values for this small example.
+
+```python
 def multiples_of_seven():
     for multiplier in range(1, 5):
         yield multiplier * 7
 
 print(list(multiples_of_seven()))
 ```
-
-```output
-[7, 14, 21, 28]
-```
-
-:::solution
-
-The loop computes one multiple per iteration and yields it. `list()` collects the four generated values for this small example.
-
 :::
 
 ## Recap

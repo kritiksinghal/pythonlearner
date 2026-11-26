@@ -335,6 +335,16 @@ Inheritance suggests that a child is a specialized parent. If two objects only s
 Create a child class `MorningNote` that inherits a greeting method and call it.
 
 ```python run
+# Complete the inherit a greeting task.
+# Sample data: greeting = "Good morning"
+# Write your code below and print the result
+```
+
+
+:::solution
+The child class names `Note` as its parent. It inherits the `greeting()` method without defining a replacement.
+
+```python
 class Note:
     def greeting(self):
         return "Hello"
@@ -344,15 +354,6 @@ class MorningNote(Note):
 
 print(MorningNote().greeting())
 ```
-
-```output
-Hello
-```
-
-:::solution
-
-The child class names `Note` as its parent. It inherits the `greeting()` method without defining a replacement.
-
 :::
 
 ### Medium: override a method
@@ -360,6 +361,16 @@ The child class names `Note` as its parent. It inherits the `greeting()` method 
 Create a child `Piano` that overrides the parent's sound description.
 
 ```python run
+# Complete the override a method task.
+# Sample data: instrument = "piano", sound = "soft notes"
+# Write your code below and print the result
+```
+
+
+:::solution
+The method with the same name in `Piano` overrides the parent version for Piano instances.
+
+```python
 class Instrument:
     def sound(self):
         return "Music"
@@ -370,15 +381,6 @@ class Piano(Instrument):
 
 print(Piano().sound())
 ```
-
-```output
-Soft chords
-```
-
-:::solution
-
-The method with the same name in `Piano` overrides the parent version for Piano instances.
-
 :::
 
 ### Challenge: extend initialization
@@ -386,6 +388,16 @@ The method with the same name in `Piano` overrides the parent version for Piano 
 Create a child class for a `FestivalPass` that reuses the parent's name setup and adds an access zone.
 
 ```python run
+# Complete the extend initialization task.
+# Sample data: entry = FestivalPass('Meera', 'stage')
+# Write your code below and print the result
+```
+
+
+:::solution
+The child's initializer calls the parent's initializer for the shared holder data, then stores its own zone attribute.
+
+```python
 class Pass:
     def __init__(self, holder):
         self.holder = holder
@@ -398,15 +410,6 @@ class FestivalPass(Pass):
 entry = FestivalPass("Meera", "stage")
 print(entry.holder, entry.zone)
 ```
-
-```output
-Meera stage
-```
-
-:::solution
-
-The child's initializer calls the parent's initializer for the shared holder data, then stores its own zone attribute.
-
 :::
 
 ## Recap

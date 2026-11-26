@@ -276,7 +276,7 @@ The function `ending()` uses the inventory to choose a conclusion. The route bra
 Start by changing the story setting and items while keeping the same program shape. Then add one new state variable and make it affect an ending. Try these extensions in order:
 
 ```python run
-# Try one improvement from the project list below.
+# Use the route and inventory to choose the story ending.
 # Sample data: route = "gallery", inventory = ["brass key"]
 # Write your code below and print the result
 ```
@@ -292,3 +292,20 @@ As you extend the story, keep a small table of possible state values and outcome
 Do not add random events until you can test the fixed routes. Randomness makes the output change between runs and can hide a bug. The `random` module was introduced in **A tour of the standard library**; one sentence about it is enough for this project.
 
 Reference: Python documentation, More Control Flow Tools
+
+:::solution
+Use the route and inventory as inputs to choose an ending. Checking for the key inside the gallery branch makes the new state affect the story.
+
+```python
+def describe_route(route, inventory):
+    if route == "gallery" and "brass key" in inventory:
+        return "The brass key opens the gallery cabinet."
+    if route == "gallery":
+        return "The gallery cabinet is locked."
+    return "You return to the observatory."
+
+route = "gallery"
+inventory = ["brass key"]
+print(describe_route(route, inventory))
+```
+:::

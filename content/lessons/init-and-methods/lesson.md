@@ -321,6 +321,16 @@ Python recognizes the exact special name `__init__`. A spelling such as `_init_`
 Create a `Song` with a title and print the title.
 
 ```python run
+# Complete the initialize a song task.
+# Sample data: track = Song('Silver Kite')
+# Write your code below and print the result
+```
+
+
+:::solution
+The initializer receives the title and stores it on the instance as `self.title`.
+
+```python
 class Song:
     def __init__(self, title):
         self.title = title
@@ -328,15 +338,6 @@ class Song:
 track = Song("Silver Kite")
 print(track.title)
 ```
-
-```output
-Silver Kite
-```
-
-:::solution
-
-The initializer receives the title and stores it on the instance as `self.title`.
-
 :::
 
 ### Medium: calculate a score bonus
@@ -344,6 +345,16 @@ The initializer receives the title and stores it on the instance as `self.title`
 Create a player with a score and a method that returns the score plus a bonus.
 
 ```python run
+# Complete the calculate a score bonus task.
+# Sample data: player = Player(76)
+# Write your code below and print the result
+```
+
+
+:::solution
+The method uses the object's stored score and the temporary bonus argument, then returns their sum.
+
+```python
 class Player:
     def __init__(self, score):
         self.score = score
@@ -354,15 +365,6 @@ class Player:
 player = Player(76)
 print(player.with_bonus(8))
 ```
-
-```output
-84
-```
-
-:::solution
-
-The method uses the object's stored score and the temporary bonus argument, then returns their sum.
-
 :::
 
 ### Challenge: update a reading streak
@@ -370,6 +372,16 @@ The method uses the object's stored score and the temporary bonus argument, then
 Create a counter with a starting streak and a method that adds one day.
 
 ```python run
+# Complete the update a reading streak task.
+# Sample data: streak = ReadingStreak(6)
+# Write your code below and print the result
+```
+
+
+:::solution
+The method increments `self.days` on the calling instance. The print reads the updated attribute.
+
+```python
 class ReadingStreak:
     def __init__(self, days):
         self.days = days
@@ -381,15 +393,6 @@ streak = ReadingStreak(6)
 streak.add_day()
 print(streak.days)
 ```
-
-```output
-7
-```
-
-:::solution
-
-The method increments `self.days` on the calling instance. The print reads the updated attribute.
-
 :::
 
 ## Recap

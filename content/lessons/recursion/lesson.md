@@ -376,25 +376,15 @@ A recursion depth error on large input does not always mean the base case is wro
 Write a recursive function that prints `8`, `6`, `4`, and `2`, then prints `Done`. The base case should stop before the next value becomes zero.
 
 ```python run
-def even_countdown(number):
-    if number <= 0:
-        print("Done")
-        return
-    print(number)
-    even_countdown(number - 2)
-
-even_countdown(8)
+# Complete the count down by twos task.
+# Sample data: starting_number = 8
+# Write your code below and print the result
 ```
 
-```output
-8
-6
-4
-2
-Done
-```
 
 :::solution
+The solution completes “count down by twos” by using the provided sample values and producing the requested result.
+
 
 ```python run
 def even_countdown(number):
@@ -422,19 +412,15 @@ Done
 Create a function that returns the sum from the given positive integer down to one. Use `0` as the base result for an input of zero.
 
 ```python run
-def sum_down(number):
-    if number == 0:
-        return 0
-    return number + sum_down(number - 1)
-
-print(sum_down(5))
+# Complete the add the numbers down to one task.
+# Sample data: starting_number = 5
+# Write your code below and print the result
 ```
 
-```output
-15
-```
 
 :::solution
+The solution completes “add the numbers down to one” by using the provided sample values and producing the requested result.
+
 
 ```python run
 def sum_down(number):
@@ -456,20 +442,15 @@ print(sum_down(5))
 Write a recursive function that counts how many times `e` appears in a word. It should return zero when the text is empty.
 
 ```python run
-def count_e(text):
-    if text == "":
-        return 0
-    first_match = 1 if text[0] == "e" else 0
-    return first_match + count_e(text[1:])
-
-print(count_e("cheese"))
+# Complete the count a chosen character task.
+# Sample data: first_match = 1
+# Write your code below and print the result
 ```
 
-```output
-3
-```
 
 :::solution
+The solution completes “count a chosen character” by using the provided sample values and producing the requested result.
+
 
 ```python run
 def count_e(text):

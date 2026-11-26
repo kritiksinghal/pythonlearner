@@ -332,16 +332,12 @@ Calculated sum: 15
 A commuter travels `450` kilometers on a road trip using `30` liters of fuel. Write a script that calculates fuel efficiency in kilometers per liter (`km / liters`) and prints the result.
 
 ```python run
-distance_km = 450
-fuel_liters = 30
-km_per_liter = distance_km / fuel_liters
-print('Fuel efficiency (km/L):', km_per_liter)
+# Complete the Vehicle fuel economy task.
+# Sample data: distance_km = 450, fuel_liters = 30
+# Write your code below and print the result
 ```
 
 
-```output
-Fuel efficiency (km/L): 15.0
-```
 :::solution Solution
 Divide the total distance traveled by total liters consumed using the true division operator `/`:
 
@@ -362,23 +358,12 @@ Fuel efficiency (km/L): 15.0
 An ATM needs to dispense `1870` rupees using the minimum number of banknotes. Using the denominations `500`, `100`, and `10`, write a program that uses `//` and `%` to calculate how many 500-rupee notes, 100-rupee notes, and 10-rupee notes must be dispensed.
 
 ```python run
-total_rupees = 1870
-notes_500 = total_rupees // 500
-rem_after_500 = total_rupees % 500
-notes_100 = rem_after_500 // 100
-rem_after_100 = rem_after_500 % 100
-notes_10 = rem_after_100 // 10
-print('500 notes:', notes_500)
-print('100 notes:', notes_100)
-print('10 notes:', notes_10)
+# Complete the ATM currency note breakdown task.
+# Sample data: total_rupees = 1870
+# Write your code below and print the result
 ```
 
 
-```output
-500 notes: 3
-100 notes: 3
-10 notes: 7
-```
 :::solution Solution
 Use integer floor division `//` to determine the count of notes for each denomination, and modulo `%` to extract the remaining balance for the next lower note:
 
@@ -406,20 +391,12 @@ print('10 notes:', notes_10)
 Write a program that calculates compound interest on an investment of `10000` dollars invested at an annual interest rate of `8%` (`0.08`) for `5` years. The formula for the maturity balance is $A = P 	imes (1 + r)^t$. Calculate the total maturity balance and the pure profit earned ($A - P$), rounding both figures to two decimal places.
 
 ```python run
-principal = 10000
-annual_rate = 0.08
-years = 5
-final_amount = principal * ((1 + annual_rate) ** years)
-profit_earned = final_amount - principal
-print('Maturity balance:', round(final_amount, 2))
-print('Compound interest profit:', round(profit_earned, 2))
+# Complete the Compound investment growth task.
+# Sample data: principal = 10000, annual_rate = 0.08
+# Write your code below and print the result
 ```
 
 
-```output
-Maturity balance: 14693.28
-Compound interest profit: 4693.28
-```
 :::solution Solution
 Use `(1 + annual_rate) ** years` to compute the compound multiplier, multiply by principal, and round the final numbers:
 

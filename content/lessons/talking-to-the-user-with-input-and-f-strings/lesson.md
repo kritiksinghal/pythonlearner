@@ -301,16 +301,12 @@ Score: 95
 Given a simulated temperature string `raw_temp = "28"` (in Celsius), convert it to an integer, calculate Fahrenheit using the formula `(celsius * 9 / 5) + 32`, and print a formatted summary showing one decimal place: `28°C is equivalent to 82.4°F`.
 
 ```python run
-raw_temp = "28"
-celsius = int(raw_temp)
-fahrenheit = (celsius * 9 / 5) + 32
-print(f"{celsius}°C is equivalent to {fahrenheit:.1f}°F")
+# Complete the Temperature conversion display task.
+# Sample data: raw_temp = '28'
+# Write your code below and print the result
 ```
 
 
-```output
-28°C is equivalent to 82.4°F
-```
 :::solution Solution
 Cast `raw_temp` to `int`, compute `fahrenheit`, and interpolate both values using `{fahrenheit:.1f}`:
 
@@ -331,23 +327,12 @@ print(f"{celsius}°C is equivalent to {fahrenheit:.1f}°F")
 Write a script that processes three simulated input strings: `raw_total = "3500"`, `raw_people = "4"`, and `raw_tip_percent = "10"`. Calculate the total tip amount, the grand bill total (`subtotal + tip`), and the per-person share (`grand_total / people`). Display the grand total and individual share with rupee symbols `₹`, thousands commas, and two decimal places.
 
 ```python run
-raw_total = "3500"
-raw_people = "4"
-raw_tip_percent = "10"
-subtotal = float(raw_total)
-people = int(raw_people)
-tip_pct = float(raw_tip_percent)
-grand_total = subtotal + (subtotal * (tip_pct / 100))
-per_person = grand_total / people
-print(f"Grand Total: ₹{grand_total:,.2f}")
-print(f"Share Per Person: ₹{per_person:,.2f}")
+# Complete the Restaurant bill splitter task.
+# Sample data: raw_total = '3500', raw_people = '4'
+# Write your code below and print the result
 ```
 
 
-```output
-Grand Total: ₹3,850.00
-Share Per Person: ₹962.50
-```
 :::solution Solution
 Cast `raw_total` and `raw_tip_percent` to floats, cast `raw_people` to an integer, compute shares, and format with `:,.2f`:
 
@@ -375,35 +360,12 @@ Share Per Person: ₹962.50
 Given a student name `student_name = "Devika Sharma"` and exam marks `marks_math = 92`, `marks_science = 88`, and `marks_english = 95`, generate a formatted report card with boundary lines `'=' * 30`, left-aligned subject names (`:<12`), right-aligned marks (`:>3`), total marks out of 300, and overall percentage rounded to two decimal places.
 
 ```python run
-student_name = "Devika Sharma"
-marks_math = 92
-marks_science = 88
-marks_english = 95
-total_marks = marks_math + marks_science + marks_english
-percentage = (total_marks / 300) * 100
-print("=" * 30)
-print(f"STUDENT REPORT: {student_name.upper()}")
-print("-" * 30)
-print(f"{'Math':<12} : {marks_math:>3}")
-print(f"{'Science':<12} : {marks_science:>3}")
-print(f"{'English':<12} : {marks_english:>3}")
-print("-" * 30)
-print(f"Total: {total_marks}/300 ({percentage:.2f}%)")
-print("=" * 30)
+# Complete the Academic report card generator task.
+# Sample data: student_name = 'Devika Sharma', marks_math = 92
+# Write your code below and print the result
 ```
 
 
-```output
-==============================
-STUDENT REPORT: DEVIKA SHARMA
-------------------------------
-Math         :  92
-Science      :  88
-English      :  95
-------------------------------
-Total: 275/300 (91.67%)
-==============================
-```
 :::solution Solution
 Calculate sum and percentage, uppercase the student name, and use column width specifiers `:<12` and `:>3`:
 

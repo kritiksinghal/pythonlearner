@@ -290,12 +290,14 @@ Python reports `IndexError: list index out of range` on the second pass, because
 Use `sorted()` to make a new list of temperatures from lowest to highest.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Sort temperatures task.
 # Sample data: temperatures = [31, 24, 29, 27]
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Sort temperatures” by using the provided sample values and producing the requested result.
+
 
 ```python
 temperatures = [31, 24, 29, 27]
@@ -309,12 +311,14 @@ print(sorted(temperatures))
 Use `zip()` to print each team's name next to its score.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Pair teams and scores task.
 # Sample data: teams = ["Falcons", "Tigers", "Comets"]
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Pair teams and scores” by using the provided sample values and producing the requested result.
+
 
 ```python
 teams = ["Falcons", "Tigers", "Comets"]
@@ -330,12 +334,14 @@ for team, score in zip(teams, scores):
 Use `enumerate()` to print each track with a number starting at one.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Number a playlist task.
 # Sample data: playlist = ["Dawn Drive", "Blue Kite", "Last Train"]
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Number a playlist” by using the provided sample values and producing the requested result.
+
 
 ```python
 playlist = ["Dawn Drive", "Blue Kite", "Last Train"]

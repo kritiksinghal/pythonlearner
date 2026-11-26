@@ -278,20 +278,23 @@ Names with a leading underscore are usually implementation details. Prefer publi
 Use `statistics.median()` to find the middle of three music ratings.
 
 ```python run
-import statistics
-
-ratings = [4, 5, 2]
-print(statistics.median(ratings))
+# Complete the calculate a median task.
+# Sample data: ratings = [4, 5, 2]
+# Write your code below and print the result
 ```
 
-```output
-4
-```
 
 :::solution
 
 Import `statistics` and call `median()` with the ratings. The middle of the ordered values 2, 4, and 5 is 4.
 
+
+```python
+import statistics
+
+ratings = [4, 5, 2]
+print(statistics.median(ratings))
+```
 :::
 
 ### Medium: count repeated colors
@@ -299,20 +302,23 @@ Import `statistics` and call `median()` with the ratings. The middle of the orde
 Use `Counter` to print how often `green` occurs in a list.
 
 ```python run
-from collections import Counter
-
-colors = ["green", "gold", "green", "red"]
-print(Counter(colors)["green"])
+# Complete the count repeated colors task.
+# Sample data: colors = ['green', 'gold', 'green', 'red']
+# Write your code below and print the result
 ```
 
-```output
-2
-```
 
 :::solution
 
 `Counter(colors)` creates a mapping of each color to its frequency. Looking up `green` returns two.
 
+
+```python
+from collections import Counter
+
+colors = ["green", "gold", "green", "red"]
+print(Counter(colors)["green"])
+```
 :::
 
 ### Challenge: inspect a date
@@ -320,20 +326,23 @@ print(Counter(colors)["green"])
 Create a date for a match and print its ISO representation.
 
 ```python run
-import datetime
-
-match_day = datetime.date(2026, 4, 11)
-print(match_day.isoformat())
+# Complete the inspect a date task.
+# Sample data: match_day = datetime.date(2026, 4, 11)
+# Write your code below and print the result
 ```
 
-```output
-2026-04-11
-```
 
 :::solution
 
 Construct a `date` with year, month, and day, then call `isoformat()` for a standard date string.
 
+
+```python
+import datetime
+
+match_day = datetime.date(2026, 4, 11)
+print(match_day.isoformat())
+```
 :::
 
 ## Recap

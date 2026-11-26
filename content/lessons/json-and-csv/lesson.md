@@ -312,20 +312,21 @@ Values such as sets and custom objects need a deliberate conversion. Convert the
 Parse a JSON string containing a game name and print the value.
 
 ```python run
+# Complete the read a JSON value task.
+# Sample data: game = json.loads('{"name": "Sky Sprint", "levels": 4}')
+# Write your code below and print the result
+```
+
+
+:::solution
+`loads()` converts the JSON object into a dictionary, and the `name` key retrieves the game title.
+
+```python
 import json
 
 game = json.loads('{"name": "Sky Sprint", "levels": 4}')
 print(game["name"])
 ```
-
-```output
-Sky Sprint
-```
-
-:::solution
-
-`loads()` converts the JSON object into a dictionary, and the `name` key retrieves the game title.
-
 :::
 
 ### Medium: read CSV with headers
@@ -333,6 +334,16 @@ Sky Sprint
 Use `DictReader` to print each player's name and convert their score to an integer.
 
 ```python run
+# Complete the read CSV with headers task.
+# Sample data: text = 'name,score\nAsha,81\nImran,92\n'
+# Write your code below and print the result
+```
+
+
+:::solution
+DictReader maps each row to column names. The `score` value is a string, so call `int()` before using it as a number.
+
+```python
 import csv
 from io import StringIO
 
@@ -340,16 +351,6 @@ text = "name,score\nAsha,81\nImran,92\n"
 for row in csv.DictReader(StringIO(text)):
     print(row["name"], int(row["score"]))
 ```
-
-```output
-Asha 81
-Imran 92
-```
-
-:::solution
-
-DictReader maps each row to column names. The `score` value is a string, so call `int()` before using it as a number.
-
 :::
 
 ### Challenge: encode a Python dictionary
@@ -357,23 +358,21 @@ DictReader maps each row to column names. The `score` value is a string, so call
 Turn a small event dictionary into readable JSON.
 
 ```python run
+# Complete the encode a Python dictionary task.
+# Sample data: event = {'name': 'Night Run', 'distance_km': 5}
+# Write your code below and print the result
+```
+
+
+:::solution
+`dumps()` serializes the dictionary to JSON text. `indent=2` adds whitespace so the structure is easy to inspect.
+
+```python
 import json
 
 event = {"name": "Night Run", "distance_km": 5}
 print(json.dumps(event, indent=2))
 ```
-
-```output
-{
-  "name": "Night Run",
-  "distance_km": 5
-}
-```
-
-:::solution
-
-`dumps()` serializes the dictionary to JSON text. `indent=2` adds whitespace so the structure is easy to inspect.
-
 :::
 
 ## Recap

@@ -1,0 +1,263 @@
+{
+  "slug": "ordered-common-items",
+  "title": "Ordered Unique Intersection",
+  "track": "Python from zero",
+  "difficulty": "Advanced",
+  "testType": "function",
+  "functionName": "ordered_intersection",
+  "relatedLessons": [
+    "sets",
+    "dictionaries"
+  ],
+  "description": "Return the unique values that appear in both input lists, in the order of their first appearance in `left`. Values are strings.",
+  "starterCode": "def ordered_intersection(left, right):\n    # Return shared values once, following left-side order\n    pass\n",
+  "referenceSolution": "def ordered_intersection(left, right):\n    right_values = set(right)\n    seen = set()\n    result = []\n    for value in left:\n        if value in right_values and value not in seen:\n            result.append(value)\n            seen.add(value)\n    return result",
+  "solution": {
+    "code": "def ordered_intersection(left, right):\n    right_values = set(right)\n    seen = set()\n    result = []\n    for value in left:\n        if value in right_values and value not in seen:\n            result.append(value)\n            seen.add(value)\n    return result",
+    "explanation": "Build a set from the right side for fast membership checks, then scan the left side. A second set prevents repeated results while the list preserves the left side’s order. The second set also avoids adding the same match twice."
+  },
+  "wrongSolutions": [
+    "def ordered_intersection(left, right):\n    return sorted(set(left) & set(right))",
+    "def ordered_intersection(left,right):\n    return [x for x in left if x in right]"
+  ],
+  "tests": [
+    {
+      "args": [
+        [],
+        []
+      ],
+      "expected": [],
+      "hint": "No left-side values means no output."
+    },
+    {
+      "args": [
+        [
+          "a"
+        ],
+        [
+          "a"
+        ]
+      ],
+      "expected": [
+        "a"
+      ],
+      "hint": "A shared value appears once."
+    },
+    {
+      "args": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "b",
+          "a"
+        ]
+      ],
+      "expected": [
+        "a",
+        "b"
+      ],
+      "hint": "Follow left order rather than right order."
+    },
+    {
+      "args": [
+        [
+          "a",
+          "a",
+          "b",
+          "a"
+        ],
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "expected": [
+        "a",
+        "b"
+      ],
+      "hint": "Repeated left values appear only once."
+    },
+    {
+      "args": [
+        [
+          "x",
+          "y"
+        ],
+        [
+          "z"
+        ]
+      ],
+      "expected": [],
+      "hint": "Disjoint lists have an empty intersection."
+    },
+    {
+      "args": [
+        [
+          "c",
+          "b",
+          "a"
+        ],
+        [
+          "a",
+          "c"
+        ]
+      ],
+      "expected": [
+        "c",
+        "a"
+      ],
+      "hint": "Membership does not reorder the left list."
+    },
+    {
+      "args": [
+        [
+          "A",
+          "a"
+        ],
+        [
+          "a"
+        ]
+      ],
+      "expected": [
+        "a"
+      ],
+      "hint": "String matching is case-sensitive."
+    },
+    {
+      "args": [
+        [
+          "one",
+          "two",
+          "three"
+        ],
+        [
+          "three",
+          "two"
+        ]
+      ],
+      "expected": [
+        "two",
+        "three"
+      ],
+      "hint": "Skip values absent on the right."
+    },
+    {
+      "args": [
+        [
+          "k",
+          "k",
+          "m",
+          "m"
+        ],
+        [
+          "m"
+        ]
+      ],
+      "expected": [
+        "m"
+      ],
+      "hint": "Repeated shared values remain unique."
+    },
+    {
+      "args": [
+        [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29"
+        ],
+        [
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+          "31",
+          "32",
+          "33",
+          "34",
+          "35",
+          "36",
+          "37",
+          "38",
+          "39"
+        ]
+      ],
+      "expected": [
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29"
+      ],
+      "hint": "This larger case checks membership and order."
+    },
+    {
+      "args": [
+        [
+          "first",
+          "middle",
+          "last"
+        ],
+        [
+          "last",
+          "first"
+        ]
+      ],
+      "expected": [
+        "first",
+        "last"
+      ],
+      "hint": "The right-side order is intentionally different."
+    },
+    {
+      "args": [
+        [
+          "only-left"
+        ],
+        []
+      ],
+      "expected": [],
+      "hint": "An empty right side has no matches."
+    }
+  ]
+}

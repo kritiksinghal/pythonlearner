@@ -284,21 +284,22 @@ An assertion tells you that the observed behavior differs from an expectation. R
 Write and check a function that doubles a distance reading.
 
 ```python run
+# Complete the test a distance conversion task.
+# Sample data: distance = 8
+# Write your code below and print the result
+```
+
+
+:::solution
+The function returns twice the supplied number, and the assertion checks the expected result for 8.
+
+```python
 def double_distance(distance):
     return distance * 2
 
 assert double_distance(8) == 16
 print("distance check passed")
 ```
-
-```output
-distance check passed
-```
-
-:::solution
-
-The function returns twice the supplied number, and the assertion checks the expected result for 8.
-
 :::
 
 ### Medium: include zero and a negative value
@@ -306,6 +307,16 @@ The function returns twice the supplied number, and the assertion checks the exp
 Check a function on two values that are not both typical positive inputs.
 
 ```python run
+# Complete the include zero and a negative value task.
+# Sample data: distances = [0, -3]
+# Write your code below and print the result
+```
+
+
+:::solution
+The tests explicitly cover zero and a negative number, so both cases are checked rather than inferred from a positive input.
+
+```python
 def absolute_square(value):
     return value * value
 
@@ -313,15 +324,6 @@ assert absolute_square(0) == 0
 assert absolute_square(-4) == 16
 print("boundary checks passed")
 ```
-
-```output
-boundary checks passed
-```
-
-:::solution
-
-The tests explicitly cover zero and a negative number, so both cases are checked rather than inferred from a positive input.
-
 :::
 
 ### Challenge: separate calculation and display
@@ -329,21 +331,22 @@ The tests explicitly cover zero and a negative number, so both cases are checked
 Write a function that returns a total, then test the function without prompting.
 
 ```python run
+# Complete the separate calculation and display task.
+# Sample data: prices = [12, 8, 5]
+# Write your code below and print the result
+```
+
+
+:::solution
+The calculation accepts values as arguments and returns a result. A separate main function could prompt and print, while this assertion checks the logic directly.
+
+```python
 def total_with_fee(price, fee):
     return price + fee
 
 assert total_with_fee(240, 18) == 258
 print("fee calculation checked")
 ```
-
-```output
-fee calculation checked
-```
-
-:::solution
-
-The calculation accepts values as arguments and returns a result. A separate main function could prompt and print, while this assertion checks the logic directly.
-
 :::
 
 ## Recap

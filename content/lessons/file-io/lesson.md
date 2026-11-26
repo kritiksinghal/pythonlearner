@@ -293,22 +293,22 @@ Handle that case near the read operation rather than assuming that a previous ru
 Write a short two-line note and read it back.
 
 ```python run
+# Complete the save a rehearsal note task.
+# Sample data: end=""
+# Write your code below and print the result
+```
+
+
+:::solution
+The program writes both strings with line endings, then reads and prints the resulting text.
+
+```python
 with open("cs50p-io-rehearsal.txt", "w") as file:
     file.write("Doors open at six\n")
     file.write("Soundcheck at five\n")
 with open("cs50p-io-rehearsal.txt") as file:
     print(file.read(), end="")
 ```
-
-```output
-Doors open at six
-Soundcheck at five
-```
-
-:::solution
-
-The program writes both strings with line endings, then reads and prints the resulting text.
-
 :::
 
 ### Medium: append another result
@@ -316,6 +316,16 @@ The program writes both strings with line endings, then reads and prints the res
 Create a starting entry and append one more without replacing the first.
 
 ```python run
+# Complete the append another result task.
+# Sample data: end=""
+# Write your code below and print the result
+```
+
+
+:::solution
+The append mode preserves the first saved line and adds the second at the end.
+
+```python
 with open("cs50p-io-rounds2.txt", "w") as file:
     file.write("Round one\n")
 with open("cs50p-io-rounds2.txt", "a") as file:
@@ -323,16 +333,6 @@ with open("cs50p-io-rounds2.txt", "a") as file:
 with open("cs50p-io-rounds2.txt") as file:
     print(file.read(), end="")
 ```
-
-```output
-Round one
-Round two
-```
-
-:::solution
-
-The append mode preserves the first saved line and adds the second at the end.
-
 :::
 
 ### Challenge: read a CSV table
@@ -340,6 +340,16 @@ The append mode preserves the first saved line and adds the second at the end.
 Create a tiny CSV roster, then read each row using its column names.
 
 ```python run
+# Complete the read a CSV table task.
+# Sample data: roster_csv = "name,score\nAsha,92\nBo,85"
+# Write your code below and print the result
+```
+
+
+:::solution
+The header row supplies the dictionary keys. The loop reads the data row and prints the requested fields.
+
+```python
 import csv
 
 with open("cs50p-io-roster.csv", "w") as file:
@@ -349,15 +359,6 @@ with open("cs50p-io-roster.csv") as file:
     for row in csv.DictReader(file):
         print(row["player"], "-", row["position"])
 ```
-
-```output
-Noor - keeper
-```
-
-:::solution
-
-The header row supplies the dictionary keys. The loop reads the data row and prints the requested fields.
-
 :::
 
 ## Recap

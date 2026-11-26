@@ -316,17 +316,12 @@ How to fix it: iterate over a copy of the list (`for item in my_list.copy():`) o
 Create a list named `cart = ["milk", "bread", "eggs"]`. Perform the following sequence of operations: append `"butter"` to the cart, remove `"bread"` using `.remove()`, insert `"apples"` at index `0`, and print the final contents of the cart.
 
 ```python run
-cart = ["milk", "bread", "eggs"]
-cart.append("butter")
-cart.remove("bread")
-cart.insert(0, "apples")
-print("Updated shopping cart:", cart)
+# Complete the Shopping inventory manager task.
+# Sample data: cart = ['milk', 'bread', 'eggs']
+# Write your code below and print the result
 ```
 
 
-```output
-Updated shopping cart: ['apples', 'milk', 'eggs', 'butter']
-```
 :::solution Solution
 Execute the methods in sequence and print the modified list:
 
@@ -348,24 +343,12 @@ Updated shopping cart: ['apples', 'milk', 'eggs', 'butter']
 Given a list of student exam marks `marks = [72, 85, 91, 64, 78, 88]`, calculate and print the highest score, the lowest score, the total sum of all marks, and the class average rounded to two decimal places.
 
 ```python run
-marks = [72, 85, 91, 64, 78, 88]
-highest = max(marks)
-lowest = min(marks)
-total_marks = sum(marks)
-average = total_marks / len(marks)
-print("Highest mark:", highest)
-print("Lowest mark:", lowest)
-print("Total marks:", total_marks)
-print(f"Class average: {average:.2f}")
+# Complete the Examination score analyzer task.
+# Sample data: marks = [72, 85, 91, 64, 78, 88]
+# Write your code below and print the result
 ```
 
 
-```output
-Highest mark: 91
-Lowest mark: 64
-Total marks: 478
-Class average: 79.67
-```
 :::solution Solution
 Use `max()`, `min()`, `sum()`, and `len()` to compute the metrics:
 
@@ -394,22 +377,12 @@ Class average: 79.67
 Simulate an airport check-in desk service queue. Initialize `queue = ["Passenger 1", "Passenger 2", "Passenger 3"]`. Add two new arrivals (`"Passenger 4"` and `"Passenger 5"`) using `.append()`. Then, simulate serving the first two passengers in order by calling `.pop(0)` twice, printing each passenger as they are served. Finally, display the remaining queue.
 
 ```python run
-queue = ["Passenger 1", "Passenger 2", "Passenger 3"]
-queue.append("Passenger 4")
-queue.append("Passenger 5")
-served1 = queue.pop(0)
-served2 = queue.pop(0)
-print("Served:", served1)
-print("Served:", served2)
-print("Remaining in queue:", queue)
+# Complete the Customer service queue simulator task.
+# Sample data: queue = ['Passenger 1', 'Passenger 2', 'Passenger 3'], served1 = queue.pop(0)
+# Write your code below and print the result
 ```
 
 
-```output
-Served: Passenger 1
-Served: Passenger 2
-Remaining in queue: ['Passenger 3', 'Passenger 4', 'Passenger 5']
-```
 :::solution Solution
 Append new passengers, call `queue.pop(0)` to process the front of the line, and print the remaining list:
 

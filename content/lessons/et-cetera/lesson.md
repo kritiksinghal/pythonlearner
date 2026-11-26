@@ -375,18 +375,19 @@ Functions can read a global, but assigning to it requires the `global` keyword a
 Remove repeated labels and print the remaining values in sorted order.
 
 ```python run
+# Complete the list unique instrument names task.
+# Sample data: instruments = ['lyre', 'frame drum', 'lyre', 'shawm']
+# Write your code below and print the result
+```
+
+
+:::solution
+The set removes the repeated lyre label, and sorted returns the unique names in predictable order.
+
+```python
 instruments = ["lyre", "frame drum", "lyre", "shawm"]
 print(sorted(set(instruments)))
 ```
-
-```output
-['frame drum', 'lyre', 'shawm']
-```
-
-:::solution
-
-The set removes the repeated lyre label, and sorted returns the unique names in predictable order.
-
 :::
 
 ### Medium: number each route stop
@@ -394,20 +395,19 @@ The set removes the repeated lyre label, and sorted returns the unique names in 
 Use enumerate with a start value of one.
 
 ```python run
+# Complete the number each route stop task.
+# Sample data: start=1
+# Write your code below and print the result
+```
+
+
+:::solution
+Each iteration supplies both a counter and a stop name. The selected start value makes the display begin at one.
+
+```python
 for number, stop in enumerate(["Ferry", "Market", "Library"], start=1):
     print(f"{number}: {stop}")
 ```
-
-```output
-1: Ferry
-2: Market
-3: Library
-```
-
-:::solution
-
-Each iteration supplies both a counter and a stop name. The selected start value makes the display begin at one.
-
 :::
 
 ### Challenge: generate a countdown
@@ -415,6 +415,16 @@ Each iteration supplies both a counter and a stop name. The selected start value
 Write a generator that yields three rehearsal cues one at a time.
 
 ```python run
+# Complete the generate a countdown task.
+# Sample data: cues = ["Ready", "Set", "Serve"]
+# Write your code below and print the result
+```
+
+
+:::solution
+Each yield provides the current number and pauses. Converting the generator to a list requests each remaining value until the generator finishes.
+
+```python
 def cues(start):
     while start > 0:
         yield start
@@ -422,15 +432,6 @@ def cues(start):
 
 print(list(cues(3)))
 ```
-
-```output
-[3, 2, 1]
-```
-
-:::solution
-
-Each yield provides the current number and pauses. Converting the generator to a list requests each remaining value until the generator finishes.
-
 :::
 
 ## Recap

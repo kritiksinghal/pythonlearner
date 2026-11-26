@@ -69,6 +69,8 @@ export default function MarkdownView({ content }: Props) {
   let match: RegExpExecArray | null;
 
   while ((match = blockRegex.exec(content)) !== null) {
+    const priorHeadings = content.slice(0, match.index).match(/^##\s+[^\r\n]+/gm);
+    const inTryItYourself = priorHeadings?.at(-1)?.slice(3).trim().toLowerCase() === "try it yourself";
     const textBefore = content.slice(lastIndex, match.index).trim();
     if (textBefore) {
       elements.push(...renderTextBlocks(textBefore, elements.length));
@@ -79,13 +81,23 @@ export default function MarkdownView({ content }: Props) {
       const tag = (match[1] || "").trim().toLowerCase();
       const codeSnippet = match[2].trimEnd();
 
-      if (tag === "python run" || tag.endsWith("run")) {
+      if (inTryItYourself && (tag === "python run" || tag.endsWith("run"))) {
+        elements.push(
+          <RunnableCodeBlock
+            key={`exercise-${elements.length}`}
+            initialCode=""
+            title="Your Turn"
+          />
+        );
+      } else if (tag === "python run" || tag.endsWith("run")) {
         elements.push(
           <RunnableCodeBlock
             key={`run-${elements.length}`}
             initialCode={codeSnippet}
           />
         );
+      } else if (tag === "output" && inTryItYourself) {
+        // Keep expected answers out of view until the learner opens the solution.
       } else if (tag === "output") {
         elements.push(
           <div

@@ -258,7 +258,7 @@ Save the game in a `.py` file and run it from a terminal. If you use both sample
 Change the questions while keeping every dictionary's keys consistent. Test a perfect run, a zero-score run, and a mixed run by changing the preset responses.
 
 ```python run
-# Try one improvement from the project list below.
+# Add questions and check a perfect, zero-score, and mixed round.
 # Sample data: responses = ["b", "a", "c"]
 # Write your code below and print the result
 ```
@@ -276,3 +276,22 @@ Think about what should happen after a wrong answer. This version displays the c
 A future version could shuffle questions or save high scores, but those additions introduce new concerns: random output is harder to verify, and saving requires a file format. Keep this first version focused on asking, checking, and scoring correctly. Preset tests make each expected outcome repeatable while you debug.
 
 Reference: Python documentation, Data Structures
+
+:::solution
+Keep each question's keys consistent, pair each question with one preset response, and compare normalized letters. The loop accumulates the points and prints a repeatable score.
+
+```python
+questions = [
+    {"prompt": "Which instrument marks silence?", "choices": ["rest", "scale", "chord", "key"], "answer": "a"},
+    {"prompt": "Which instrument has six strings?", "choices": ["violin", "guitar", "flute", "trumpet"], "answer": "b"},
+]
+responses = ["a", "d"]
+score = 0
+for question, response in zip(questions, responses):
+    print(question["prompt"])
+    print(" | ".join(question["choices"]))
+    if response.strip().lower() == question["answer"]:
+        score += 1
+print(f"Final score: {score}/{len(questions)}")
+```
+:::

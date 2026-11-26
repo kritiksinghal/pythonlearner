@@ -12,6 +12,7 @@ import Link from "next/link";
 import CodeEditor from "@/components/CodeEditor";
 import TestResults from "@/components/TestResults";
 import MarkdownView from "@/components/MarkdownView";
+import SolutionDisclosure from "./SolutionDisclosure";
 import { usePyodide } from "@/lib/usePyodide";
 import type { PublicProblem } from "@/lib/problems";
 
@@ -61,7 +62,9 @@ export default function ProblemClient({ problem }: Props) {
                     ? "border-green-200 bg-green-50/80 text-green-800 dark:border-green-900 dark:bg-green-950/40 dark:text-green-300"
                     : problem.difficulty === "Medium"
                       ? "border-amber-200 bg-amber-50/80 text-amber-800 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-300"
-                      : "border-red-200 bg-red-50/80 text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300"
+                      : problem.difficulty === "Hard"
+                        ? "border-red-200 bg-red-50/80 text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300"
+                        : "border-purple-200 bg-purple-50/80 text-purple-800 dark:border-purple-900 dark:bg-purple-950/40 dark:text-purple-300"
                 }`}
               >
                 {problem.difficulty}
@@ -73,7 +76,24 @@ export default function ProblemClient({ problem }: Props) {
           <div className="mt-5">
             <MarkdownView content={problem.description} />
           </div>
-
+          {problem.relatedLessons && problem.relatedLessons.length > 0 && (
+            <div className="mt-6 border-t border-border pt-4">
+              <h2 className="mb-2 text-[10px] font-mono font-semibold uppercase tracking-wider text-muted">
+                Related lessons
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {problem.relatedLessons.map((slug) => (
+                  <Link
+                    key={slug}
+                    href={`/learn/${slug}`}
+                    className="rounded border border-border bg-code-bg/60 px-2 py-1 text-xs text-foreground hover:border-muted"
+                  >
+                    {slug.split("-").map((word) => word[0]?.toUpperCase() + word.slice(1)).join(" ")}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
           {/* Test mode summary */}
           <div className="mt-8 rounded-md border border-border bg-code-bg/60 p-3 text-xs text-muted font-mono">
             <span className="font-semibold text-foreground">Target: </span>
@@ -152,8 +172,10 @@ export default function ProblemClient({ problem }: Props) {
               totalTests={problem.tests.length}
               testType={problem.testType}
               functionName={problem.functionName}
+              hints={problem.tests.map((test) => test.hint || "")}
             />
           </div>
+          <SolutionDisclosure solution={problem.solution} />
         </section>
       </div>
     </div>

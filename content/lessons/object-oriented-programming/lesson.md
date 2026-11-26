@@ -385,6 +385,16 @@ Inside a setter for `room`, assigning to `self.room` calls the setter again. Sto
 Store a title and return it from a method.
 
 ```python run
+# Complete the create a reading object task.
+# Sample data: book_title = "A Field of Stars"
+# Write your code below and print the result
+```
+
+
+:::solution
+The constructor saves the title on the instance. The method reads that attribute and returns a heading.
+
+```python
 class FieldNote:
     def __init__(self, title):
         self.title = title
@@ -394,15 +404,6 @@ class FieldNote:
 
 print(FieldNote("Tidal pools").heading())
 ```
-
-```output
-Note: Tidal pools
-```
-
-:::solution
-
-The constructor saves the title on the instance. The method reads that attribute and returns a heading.
-
 :::
 
 ### Medium: validate a shelf label
@@ -410,6 +411,16 @@ The constructor saves the title on the instance. The method reads that attribute
 Use a property setter to reject an empty label.
 
 ```python run
+# Complete the validate a shelf label task.
+# Sample data: shelf_label = "Science"
+# Write your code below and print the result
+```
+
+
+:::solution
+The setter checks the value before storing it in a separate internal attribute.
+
+```python
 class Shelf:
     def __init__(self, label):
         self.label = label
@@ -426,15 +437,6 @@ class Shelf:
 
 print(Shelf("Fiction").label)
 ```
-
-```output
-Fiction
-```
-
-:::solution
-
-The setter checks the value before storing it in a separate internal attribute.
-
 :::
 
 ### Challenge: extend a base class
@@ -442,6 +444,16 @@ The setter checks the value before storing it in a separate internal attribute.
 Create a `Mineral` class and a child that adds its color while reusing the parent's name setup.
 
 ```python run
+# Complete the extend a base class task.
+# Sample data: sample = Quartz('Quartz', 'smoky')
+# Write your code below and print the result
+```
+
+
+:::solution
+The child initializer delegates the shared name setup to the parent, then stores its additional color attribute.
+
+```python
 class Mineral:
     def __init__(self, name):
         self.name = name
@@ -454,15 +466,6 @@ class Quartz(Mineral):
 sample = Quartz("Quartz", "smoky")
 print(sample.name, sample.color)
 ```
-
-```output
-Quartz smoky
-```
-
-:::solution
-
-The child initializer delegates the shared name setup to the parent, then stores its additional color attribute.
-
 :::
 
 ## Recap

@@ -297,12 +297,14 @@ Python reports `AttributeError: 'dict' object has no attribute 'append'`. Add or
 Create a dictionary of two players' cricket runs. Print one player's name and score in a sentence.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Show a player's score task.
 # Sample data: runs = {"Tara": 27, "Ishan": 41}
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Show a player's score” by using the provided sample values and producing the requested result.
+
 
 ```python
 runs = {"Tara": 27, "Ishan": 41}
@@ -316,12 +318,14 @@ print(f"Ishan scored {runs['Ishan']} runs.")
 Start with temperatures for two cities. Add a third city, update one reading, and print the final dictionary.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Update a weather reading task.
 # Sample data: temperatures = {"Delhi": 33, "Shimla": 19}
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Update a weather reading” by using the provided sample values and producing the requested result.
+
 
 ```python
 temperatures = {"Delhi": 33, "Shimla": 19}
@@ -337,12 +341,14 @@ print(temperatures)
 Given a list of genres, build a dictionary that records how many times each genre appears. Print the count for each genre.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Count music genres task.
 # Sample data: genres = ["jazz", "pop", "jazz", "rock", "pop"]
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Count music genres” by using the provided sample values and producing the requested result.
+
 
 ```python
 genres = ["jazz", "pop", "jazz", "rock", "pop", "jazz"]

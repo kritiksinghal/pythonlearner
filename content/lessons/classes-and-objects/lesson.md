@@ -304,6 +304,16 @@ A class attribute is shared when instances look it up. Put player-specific score
 Create a `Book` instance, assign its title, and print it.
 
 ```python run
+# Complete the create a book object task.
+# Sample data: library_book = Book()
+# Write your code below and print the result
+```
+
+
+:::solution
+Define the class, create an instance with parentheses, then assign and read its `title` attribute.
+
+```python
 class Book:
     pass
 
@@ -311,15 +321,6 @@ library_book = Book()
 library_book.title = "A Field of Stars"
 print(library_book.title)
 ```
-
-```output
-A Field of Stars
-```
-
-:::solution
-
-Define the class, create an instance with parentheses, then assign and read its `title` attribute.
-
 :::
 
 ### Medium: keep separate team values
@@ -327,6 +328,16 @@ Define the class, create an instance with parentheses, then assign and read its 
 Create two instances with different colors and print the colors separately.
 
 ```python run
+# Complete the keep separate team values task.
+# Sample data: home = Jersey(), away = Jersey()
+# Write your code below and print the result
+```
+
+
+:::solution
+Each instance receives its own `color` attribute. The two values remain separate even though the instances share one class.
+
+```python
 class Jersey:
     pass
 
@@ -337,16 +348,6 @@ away.color = "cream"
 print(home.color)
 print(away.color)
 ```
-
-```output
-maroon
-cream
-```
-
-:::solution
-
-Each instance receives its own `color` attribute. The two values remain separate even though the instances share one class.
-
 :::
 
 ### Challenge: collect objects in a list
@@ -354,6 +355,16 @@ Each instance receives its own `color` attribute. The two values remain separate
 Create two `Game` instances with names, store them in a list, and print each name.
 
 ```python run
+# Complete the collect objects in a list task.
+# Sample data: games = []
+# Write your code below and print the result
+```
+
+
+:::solution
+Each loop creates an instance and assigns a name, then appends it to the list. A second loop reads the attribute from each object.
+
+```python
 class Game:
     pass
 
@@ -366,16 +377,6 @@ for name in ["Cloud Hop", "Castle Rally"]:
 for game in games:
     print(game.name)
 ```
-
-```output
-Cloud Hop
-Castle Rally
-```
-
-:::solution
-
-Each loop creates an instance and assigns a name, then appends it to the list. A second loop reads the attribute from each object.
-
 :::
 
 ## Recap

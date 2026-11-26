@@ -1,0 +1,644 @@
+{
+  "slug": "aggregate-sales-by-store",
+  "title": "Aggregate Sales by Store",
+  "track": "Python from zero",
+  "difficulty": "Advanced",
+  "testType": "function",
+  "functionName": "sales_by_store",
+  "relatedLessons": [
+    "dictionaries",
+    "comprehensions"
+  ],
+  "description": "Each sale is a pair `[store_name, cents]`. Return a dictionary containing the sum of cents for every store. Preserve stores with zero-value sales.",
+  "starterCode": "def sales_by_store(sales):\n    # Return total cents grouped by store\n    pass\n",
+  "referenceSolution": "def sales_by_store(sales):\n    totals = {}\n    for store, cents in sales:\n        totals[store] = totals.get(store, 0) + cents\n    return totals",
+  "solution": {
+    "code": "def sales_by_store(sales):\n    totals = {}\n    for store, cents in sales:\n        totals[store] = totals.get(store, 0) + cents\n    return totals",
+    "explanation": "Accumulate each sale into a dictionary entry keyed by store. get supplies zero for the first sale, and later records add to the same running total. The input records remain unchanged."
+  },
+  "wrongSolutions": [
+    "def sales_by_store(sales):\n    return {store:cents for store,cents in sales}",
+    "def sales_by_store(sales):\n    totals = {}\n    for store, cents in sales:\n        totals.setdefault(store, cents)\n    return totals"
+  ],
+  "tests": [
+    {
+      "args": [
+        []
+      ],
+      "expected": {},
+      "hint": "No sales produce an empty dictionary."
+    },
+    {
+      "args": [
+        [
+          [
+            "North",
+            100
+          ]
+        ]
+      ],
+      "expected": {
+        "North": 100
+      },
+      "hint": "Create one total for the first store."
+    },
+    {
+      "args": [
+        [
+          [
+            "North",
+            100
+          ],
+          [
+            "South",
+            250
+          ]
+        ]
+      ],
+      "expected": {
+        "North": 100,
+        "South": 250
+      },
+      "hint": "Keep separate totals by key."
+    },
+    {
+      "args": [
+        [
+          [
+            "North",
+            100
+          ],
+          [
+            "North",
+            50
+          ]
+        ]
+      ],
+      "expected": {
+        "North": 150
+      },
+      "hint": "Add repeated store records."
+    },
+    {
+      "args": [
+        [
+          [
+            "Zero",
+            0
+          ]
+        ]
+      ],
+      "expected": {
+        "Zero": 0
+      },
+      "hint": "A zero-value sale still creates a store entry."
+    },
+    {
+      "args": [
+        [
+          [
+            "B",
+            20
+          ],
+          [
+            "A",
+            10
+          ],
+          [
+            "B",
+            5
+          ]
+        ]
+      ],
+      "expected": {
+        "A": 10,
+        "B": 25
+      },
+      "hint": "Dictionary equality does not depend on insertion order."
+    },
+    {
+      "args": [
+        [
+          [
+            "West",
+            -5
+          ],
+          [
+            "West",
+            10
+          ]
+        ]
+      ],
+      "expected": {
+        "West": 5
+      },
+      "hint": "Signed corrections contribute to the total."
+    },
+    {
+      "args": [
+        [
+          [
+            "Cafe",
+            125
+          ],
+          [
+            "Cafe",
+            125
+          ],
+          [
+            "Cafe",
+            250
+          ]
+        ]
+      ],
+      "expected": {
+        "Cafe": 500
+      },
+      "hint": "Several sales for one store accumulate."
+    },
+    {
+      "args": [
+        [
+          [
+            "a",
+            1
+          ],
+          [
+            "b",
+            2
+          ],
+          [
+            "c",
+            3
+          ]
+        ]
+      ],
+      "expected": {
+        "a": 1,
+        "b": 2,
+        "c": 3
+      },
+      "hint": "Each distinct store gets its own entry."
+    },
+    {
+      "args": [
+        [
+          [
+            "North",
+            10
+          ],
+          [
+            "north",
+            20
+          ]
+        ]
+      ],
+      "expected": {
+        "North": 10,
+        "north": 20
+      },
+      "hint": "Store names are case-sensitive."
+    },
+    {
+      "args": [
+        [
+          [
+            "S0",
+            0
+          ],
+          [
+            "S1",
+            1
+          ],
+          [
+            "S2",
+            2
+          ],
+          [
+            "S3",
+            3
+          ],
+          [
+            "S4",
+            4
+          ],
+          [
+            "S5",
+            5
+          ],
+          [
+            "S6",
+            6
+          ],
+          [
+            "S7",
+            7
+          ],
+          [
+            "S8",
+            8
+          ],
+          [
+            "S0",
+            9
+          ],
+          [
+            "S1",
+            10
+          ],
+          [
+            "S2",
+            11
+          ],
+          [
+            "S3",
+            12
+          ],
+          [
+            "S4",
+            13
+          ],
+          [
+            "S5",
+            14
+          ],
+          [
+            "S6",
+            15
+          ],
+          [
+            "S7",
+            16
+          ],
+          [
+            "S8",
+            17
+          ],
+          [
+            "S0",
+            18
+          ],
+          [
+            "S1",
+            19
+          ],
+          [
+            "S2",
+            20
+          ],
+          [
+            "S3",
+            21
+          ],
+          [
+            "S4",
+            22
+          ],
+          [
+            "S5",
+            23
+          ],
+          [
+            "S6",
+            24
+          ],
+          [
+            "S7",
+            25
+          ],
+          [
+            "S8",
+            26
+          ],
+          [
+            "S0",
+            27
+          ],
+          [
+            "S1",
+            28
+          ],
+          [
+            "S2",
+            29
+          ],
+          [
+            "S3",
+            30
+          ],
+          [
+            "S4",
+            31
+          ],
+          [
+            "S5",
+            32
+          ],
+          [
+            "S6",
+            33
+          ],
+          [
+            "S7",
+            34
+          ],
+          [
+            "S8",
+            35
+          ],
+          [
+            "S0",
+            36
+          ],
+          [
+            "S1",
+            37
+          ],
+          [
+            "S2",
+            38
+          ],
+          [
+            "S3",
+            39
+          ],
+          [
+            "S4",
+            40
+          ],
+          [
+            "S5",
+            41
+          ],
+          [
+            "S6",
+            42
+          ],
+          [
+            "S7",
+            43
+          ],
+          [
+            "S8",
+            44
+          ],
+          [
+            "S0",
+            45
+          ],
+          [
+            "S1",
+            46
+          ],
+          [
+            "S2",
+            47
+          ],
+          [
+            "S3",
+            48
+          ],
+          [
+            "S4",
+            49
+          ],
+          [
+            "S5",
+            50
+          ],
+          [
+            "S6",
+            51
+          ],
+          [
+            "S7",
+            52
+          ],
+          [
+            "S8",
+            53
+          ],
+          [
+            "S0",
+            54
+          ],
+          [
+            "S1",
+            55
+          ],
+          [
+            "S2",
+            56
+          ],
+          [
+            "S3",
+            57
+          ],
+          [
+            "S4",
+            58
+          ],
+          [
+            "S5",
+            59
+          ],
+          [
+            "S6",
+            60
+          ],
+          [
+            "S7",
+            61
+          ],
+          [
+            "S8",
+            62
+          ],
+          [
+            "S0",
+            63
+          ],
+          [
+            "S1",
+            64
+          ],
+          [
+            "S2",
+            65
+          ],
+          [
+            "S3",
+            66
+          ],
+          [
+            "S4",
+            67
+          ],
+          [
+            "S5",
+            68
+          ],
+          [
+            "S6",
+            69
+          ],
+          [
+            "S7",
+            70
+          ],
+          [
+            "S8",
+            71
+          ],
+          [
+            "S0",
+            72
+          ],
+          [
+            "S1",
+            73
+          ],
+          [
+            "S2",
+            74
+          ],
+          [
+            "S3",
+            75
+          ],
+          [
+            "S4",
+            76
+          ],
+          [
+            "S5",
+            77
+          ],
+          [
+            "S6",
+            78
+          ],
+          [
+            "S7",
+            79
+          ],
+          [
+            "S8",
+            80
+          ],
+          [
+            "S0",
+            81
+          ],
+          [
+            "S1",
+            82
+          ],
+          [
+            "S2",
+            83
+          ],
+          [
+            "S3",
+            84
+          ],
+          [
+            "S4",
+            85
+          ],
+          [
+            "S5",
+            86
+          ],
+          [
+            "S6",
+            87
+          ],
+          [
+            "S7",
+            88
+          ],
+          [
+            "S8",
+            89
+          ],
+          [
+            "S0",
+            90
+          ],
+          [
+            "S1",
+            91
+          ],
+          [
+            "S2",
+            92
+          ],
+          [
+            "S3",
+            93
+          ],
+          [
+            "S4",
+            94
+          ],
+          [
+            "S5",
+            95
+          ],
+          [
+            "S6",
+            96
+          ],
+          [
+            "S7",
+            97
+          ],
+          [
+            "S8",
+            98
+          ],
+          [
+            "S0",
+            99
+          ]
+        ]
+      ],
+      "expected": {
+        "S0": 594,
+        "S1": 506,
+        "S2": 517,
+        "S3": 528,
+        "S4": 539,
+        "S5": 550,
+        "S6": 561,
+        "S7": 572,
+        "S8": 583
+      },
+      "hint": "A larger list checks repeated updates efficiently."
+    },
+    {
+      "args": [
+        [
+          [
+            "A",
+            1
+          ],
+          [
+            "B",
+            0
+          ],
+          [
+            "A",
+            0
+          ]
+        ]
+      ],
+      "expected": {
+        "A": 1,
+        "B": 0
+      },
+      "hint": "Do not drop a key when a later amount is zero."
+    }
+  ]
+}

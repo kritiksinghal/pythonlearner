@@ -376,18 +376,12 @@ class = "Biology"
 You ordered 2 pizzas at 350 each and 3 drinks at 80 each. Store each in a variable, calculate the total, and print it.
 
 ```python run
-pizza_price = 350
-pizza_count = 2
-drink_price = 80
-drink_count = 3
-total = (pizza_price * pizza_count) + (drink_price * drink_count)
-print("Your bill:", total)
+# Complete the Calculate a restaurant bill task.
+# Sample data: pizza_price = 350, pizza_count = 2
+# Write your code below and print the result
 ```
 
 
-```output
-Your bill: 940
-```
 :::solution Solution
 The total is `(350 * 2) + (80 * 3)` = `700 + 240` = `940`.
 
@@ -410,16 +404,12 @@ Your bill: 940
 Take the number `500` (seconds) and use `//` and `%` to print how many full minutes and how many remaining seconds that is.
 
 ```python run
-total_seconds = 500
-mins = total_seconds // 60
-secs = total_seconds % 60
-print(mins, "minutes and", secs, "seconds")
+# Complete the Convert seconds to minutes and seconds task.
+# Sample data: total_seconds = 500
+# Write your code below and print the result
 ```
 
 
-```output
-8 minutes and 20 seconds
-```
 :::solution Solution
 `500 // 60` = `8` (full minutes), `500 % 60` = `20` (leftover seconds).
 
@@ -440,23 +430,12 @@ print(mins, "minutes and", secs, "seconds")
 For each value below, predict the type, then verify it with `type()`. Store `42`, `42.0`, `"42"`, and `True` in four different variables and print the type of each.
 
 ```python run
-a = 42
-b = 42.0
-c = "42"
-d = True
-print(type(a))
-print(type(b))
-print(type(c))
-print(type(d))
+# Complete the Type detective task.
+# Sample data: a = 42, b = 42.0
+# Write your code below and print the result
 ```
 
 
-```output
-<class 'int'>
-<class 'float'>
-<class 'str'>
-<class 'bool'>
-```
 :::solution Solution
 Even though `42`, `42.0`, and `"42"` look similar, they are three different types:
 

@@ -349,7 +349,7 @@ The interactive version asks for a task number and converts the response with `i
 Add one improvement at a time and keep the existing save format valid.
 
 ```python run
-# Try one improvement from the project list below.
+# Display numbered tasks with a marker for completed items.
 # Sample data: tasks = [{"text": "Charge the recorder", "done": False}]
 # Write your code below and print the result
 ```
@@ -367,3 +367,20 @@ The project currently stores one task per line, so task text containing a newlin
 Before adding more actions, verify the complete cycle: start with no file, add a task, start the program again, list it, mark it done, and start it once more. This catches problems that a single in-memory run cannot show. Look at the saved marker after the last run and confirm it is `[x]`. If you change the task text format, create a fresh test file or write a small migration rather than leaving old lines in a format the parser no longer understands.
 
 Reference: Python documentation, Reading and Writing Files
+
+:::solution
+Handle the empty list before looping, then use `enumerate` to number each task. The completion flag controls the marker while the task text stays unchanged.
+
+```python
+def display_tasks(tasks):
+    if not tasks:
+        print("No tasks yet.")
+        return
+    for number, task in enumerate(tasks, start=1):
+        marker = "[x]" if task["done"] else "[ ]"
+        print(f"{number}. {marker} {task['text']}")
+
+tasks = [{"text": "Charge the recorder", "done": False}]
+display_tasks(tasks)
+```
+:::

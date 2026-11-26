@@ -48,5 +48,9 @@
       "input": "Participant 42\n12",
       "expectedOutput": "Hello, Participant 42!\nNext year you will be 13 years old."
     }
-  ]
+  ],
+  "solution": {
+    "code": "name = input().strip()\nage = int(input().strip())\nprint(f\"Hello, {name}!\")\nprint(f\"Next year you will be {age + 1} years old.\")\n",
+    "explanation": "The script reads the name as text and converts the age input to an integer. An f-string inserts the name and calculated age into the requested lines. Stripping input removes accidental surrounding whitespace."
+  }
 }

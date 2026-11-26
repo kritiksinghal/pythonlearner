@@ -323,20 +323,21 @@ A default can keep a program usable, but it can also disguise missing or corrupt
 Try converting a short phrase to an integer. Catch `ValueError` and show a friendly prompt.
 
 ```python run
+# Complete the catch a conversion problem task.
+# Sample data: raw_laps = "several"
+# Write your code below and print the result
+```
+
+
+:::solution
+The `int()` operation raises `ValueError`, so the handler displays the prompt. If the text were a valid integer string, execution would continue without entering the except suite.
+
+```python
 try:
     laps = int("several")
 except ValueError:
     print("Please enter the lap count as digits")
 ```
-
-```output
-Please enter the lap count as digits
-```
-
-:::solution
-
-The `int()` operation raises `ValueError`, so the handler displays the prompt. If the text were a valid integer string, execution would continue without entering the except suite.
-
 :::
 
 ### Medium: report success separately
@@ -344,6 +345,16 @@ The `int()` operation raises `ValueError`, so the handler displays the prompt. I
 Use `else` to print a message only when converting the score succeeds.
 
 ```python run
+# Complete the report success separately task.
+# Sample data: raw_score = "88"
+# Write your code below and print the result
+```
+
+
+:::solution
+The try suite completes, so the except suite is skipped and the else suite prints the saved score.
+
+```python
 try:
     score = int("96")
 except ValueError:
@@ -351,15 +362,6 @@ except ValueError:
 else:
     print(f"Saved score: {score}")
 ```
-
-```output
-Saved score: 96
-```
-
-:::solution
-
-The try suite completes, so the except suite is skipped and the else suite prints the saved score.
-
 :::
 
 ### Challenge: handle invalid positions
@@ -367,21 +369,22 @@ The try suite completes, so the except suite is skipped and the else suite print
 Use `try` and `except` to print either the selected song or a clear message for an invalid position.
 
 ```python run
+# Complete the handle invalid positions task.
+# Sample data: songs = ['Orbit', 'Paper Moon']
+# Write your code below and print the result
+```
+
+
+:::solution
+The index three is outside the two-item list. The `IndexError` handler catches that expected condition and prints a message that describes the choice problem.
+
+```python
 songs = ["Orbit", "Paper Moon"]
 try:
     print(songs[3])
 except IndexError:
     print("No song at that position")
 ```
-
-```output
-No song at that position
-```
-
-:::solution
-
-The index three is outside the two-item list. The `IndexError` handler catches that expected condition and prints a message that describes the choice problem.
-
 :::
 
 ## Recap

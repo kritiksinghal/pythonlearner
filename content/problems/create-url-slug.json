@@ -1,0 +1,109 @@
+{
+  "slug": "create-url-slug",
+  "title": "Create a URL Slug",
+  "track": "Python from zero",
+  "difficulty": "Advanced",
+  "testType": "function",
+  "functionName": "create_slug",
+  "relatedLessons": [
+    "text-strings",
+    "regular-expressions"
+  ],
+  "description": "Convert text to a lowercase URL slug. Treat any run of characters other than ASCII letters and digits as one hyphen, then remove hyphens from the start and end.",
+  "starterCode": "def create_slug(text):\n    # Return a lowercase slug with single hyphen separators\n    pass\n",
+  "referenceSolution": "import re\n\ndef create_slug(text):\n    return re.sub(r\"[^a-z0-9]+\", \"-\", text.lower()).strip(\"-\")",
+  "solution": {
+    "code": "import re\n\ndef create_slug(text):\n    return re.sub(r\"[^a-z0-9]+\", \"-\", text.lower()).strip(\"-\")",
+    "explanation": "Lowercase the text, replace every run of non-ASCII letters and digits with one hyphen, and trim edge hyphens. A regex handles punctuation, whitespace, and repeated separators consistently. This makes repeated punctuation behave consistently."
+  },
+  "wrongSolutions": [
+    "def create_slug(text):\n    return text.lower().replace(\" \",\"-\")",
+    "def create_slug(text):\n    import re\n    return re.sub(r\"[^a-z0-9]\", \"-\", text.lower()).strip(\"-\")"
+  ],
+  "tests": [
+    {
+      "args": [
+        ""
+      ],
+      "expected": "",
+      "hint": "Empty text remains empty."
+    },
+    {
+      "args": [
+        "Python"
+      ],
+      "expected": "python",
+      "hint": "Lowercase ordinary letters."
+    },
+    {
+      "args": [
+        "Hello World"
+      ],
+      "expected": "hello-world",
+      "hint": "Whitespace separates words with a hyphen."
+    },
+    {
+      "args": [
+        "  Many   Spaces  "
+      ],
+      "expected": "many-spaces",
+      "hint": "Collapse repeated whitespace into one separator."
+    },
+    {
+      "args": [
+        "a---b"
+      ],
+      "expected": "a-b",
+      "hint": "Runs of punctuation produce one hyphen."
+    },
+    {
+      "args": [
+        "C++: Basics"
+      ],
+      "expected": "c-basics",
+      "hint": "Remove punctuation while keeping word boundaries."
+    },
+    {
+      "args": [
+        "--start-and-end--"
+      ],
+      "expected": "start-and-end",
+      "hint": "Strip separators at both edges."
+    },
+    {
+      "args": [
+        "version 3.12"
+      ],
+      "expected": "version-3-12",
+      "hint": "Periods are separators in this slug rule."
+    },
+    {
+      "args": [
+        "A_B.C"
+      ],
+      "expected": "a-b-c",
+      "hint": "Underscores and periods use the same separator."
+    },
+    {
+      "args": [
+        "123 Main St."
+      ],
+      "expected": "123-main-st",
+      "hint": "Digits remain in the slug."
+    },
+    {
+      "args": [
+        "éclair cafe"
+      ],
+      "expected": "clair-cafe",
+      "hint": "The rule intentionally retains ASCII letters only."
+    },
+    {
+      "args": [
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      ],
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "hint": "A long input should remain linear in its length."
+    }
+  ]
+}

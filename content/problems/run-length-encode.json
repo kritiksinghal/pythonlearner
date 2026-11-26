@@ -1,0 +1,227 @@
+{
+  "slug": "run-length-encode",
+  "title": "Run-Length Encode Text",
+  "track": "Python from zero",
+  "difficulty": "Advanced",
+  "testType": "function",
+  "functionName": "run_length_encode",
+  "relatedLessons": [
+    "text-strings"
+  ],
+  "description": "Return a list of `[character, count]` pairs representing each consecutive run in the input string. Preserve character case and order. Empty input returns an empty list.",
+  "starterCode": "def run_length_encode(text):\n    # Return each consecutive character run and its length\n    pass\n",
+  "referenceSolution": "def run_length_encode(text):\n    if not text:\n        return []\n    encoded = []\n    current = text[0]\n    count = 1\n    for character in text[1:]:\n        if character == current:\n            count += 1\n        else:\n            encoded.append([current, count])\n            current = character\n            count = 1\n    encoded.append([current, count])\n    return encoded",
+  "solution": {
+    "code": "def run_length_encode(text):\n    if not text:\n        return []\n    encoded = []\n    current = text[0]\n    count = 1\n    for character in text[1:]:\n        if character == current:\n            count += 1\n        else:\n            encoded.append([current, count])\n            current = character\n            count = 1\n    encoded.append([current, count])\n    return encoded",
+    "explanation": "Scan characters from left to right while tracking the current run and its length. When the character changes, append the completed run and start the next one. The final run is added after the loop."
+  },
+  "wrongSolutions": [
+    "def run_length_encode(text):\n    return [[ch,text.count(ch)] for ch in set(text)]",
+    "def run_length_encode(text):\n    return [[ch,1] for ch in text]"
+  ],
+  "tests": [
+    {
+      "args": [
+        ""
+      ],
+      "expected": [],
+      "hint": "Empty input has no runs."
+    },
+    {
+      "args": [
+        "a"
+      ],
+      "expected": [
+        [
+          "a",
+          1
+        ]
+      ],
+      "hint": "One character forms a run of length one."
+    },
+    {
+      "args": [
+        "aaaa"
+      ],
+      "expected": [
+        [
+          "a",
+          4
+        ]
+      ],
+      "hint": "All identical characters form one run."
+    },
+    {
+      "args": [
+        "aaabbc"
+      ],
+      "expected": [
+        [
+          "a",
+          3
+        ],
+        [
+          "b",
+          2
+        ],
+        [
+          "c",
+          1
+        ]
+      ],
+      "hint": "Close a run when the character changes."
+    },
+    {
+      "args": [
+        "abca"
+      ],
+      "expected": [
+        [
+          "a",
+          1
+        ],
+        [
+          "b",
+          1
+        ],
+        [
+          "c",
+          1
+        ],
+        [
+          "a",
+          1
+        ]
+      ],
+      "hint": "A repeated character separated by others starts a new run."
+    },
+    {
+      "args": [
+        "Aaa"
+      ],
+      "expected": [
+        [
+          "A",
+          1
+        ],
+        [
+          "a",
+          2
+        ]
+      ],
+      "hint": "Run matching is case-sensitive."
+    },
+    {
+      "args": [
+        "112233"
+      ],
+      "expected": [
+        [
+          "1",
+          2
+        ],
+        [
+          "2",
+          2
+        ],
+        [
+          "3",
+          2
+        ]
+      ],
+      "hint": "Digits are ordinary characters."
+    },
+    {
+      "args": [
+        "  x "
+      ],
+      "expected": [
+        [
+          " ",
+          2
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          " ",
+          1
+        ]
+      ],
+      "hint": "Spaces are preserved and counted."
+    },
+    {
+      "args": [
+        "🙂🙂🙂x"
+      ],
+      "expected": [
+        [
+          "🙂",
+          3
+        ],
+        [
+          "x",
+          1
+        ]
+      ],
+      "hint": "Unicode characters can be grouped as Python characters."
+    },
+    {
+      "args": [
+        "abab"
+      ],
+      "expected": [
+        [
+          "a",
+          1
+        ],
+        [
+          "b",
+          1
+        ],
+        [
+          "a",
+          1
+        ],
+        [
+          "b",
+          1
+        ]
+      ],
+      "hint": "Alternating text creates single-character runs."
+    },
+    {
+      "args": [
+        "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      ],
+      "expected": [
+        [
+          "z",
+          250
+        ]
+      ],
+      "hint": "A long repeated run has one output pair."
+    },
+    {
+      "args": [
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbc"
+      ],
+      "expected": [
+        [
+          "a",
+          120
+        ],
+        [
+          "b",
+          80
+        ],
+        [
+          "c",
+          1
+        ]
+      ],
+      "hint": "Large adjacent groups should keep exact counts."
+    }
+  ]
+}

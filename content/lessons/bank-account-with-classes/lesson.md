@@ -321,7 +321,7 @@ Sample session: at the action prompt enter `deposit`; at the amount prompt enter
 Test the two rejected cases separately: a non-positive amount and an amount larger than the balance. Also test a withdrawal exactly equal to the balance; it should leave the account at zero if that is your chosen rule.
 
 ```python run
-# Try one improvement from the project list below.
+# Transfer cents between accounts without changing either on rejection.
 # Sample data: amount_cents = 1250, balance_cents = 5000
 # Write your code below and print the result
 ```
@@ -337,3 +337,26 @@ When adding a transfer, avoid subtracting from the first account until the secon
 The integer-cents model keeps this example straightforward, but it is not a complete financial system. Real products need exact currency rules, durable records, security, and audit controls. This project is for practicing object state and methods only.
 
 Reference: Python documentation, Classes
+
+:::solution
+Check the amount before changing either account, then update both balances together. The method returns `False` for an invalid transfer and leaves both balances unchanged.
+
+```python
+class BankAccount:
+    def __init__(self, owner, balance_cents=0):
+        self.owner = owner
+        self.balance_cents = balance_cents
+
+    def transfer_to(self, other, amount_cents):
+        if amount_cents <= 0 or amount_cents > self.balance_cents:
+            return False
+        self.balance_cents -= amount_cents
+        other.balance_cents += amount_cents
+        return True
+
+source = BankAccount("Mira", 5000)
+target = BankAccount("Aman", 1200)
+print(source.transfer_to(target, 1250))
+print(source.balance_cents, target.balance_cents)
+```
+:::

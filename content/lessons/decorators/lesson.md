@@ -327,6 +327,16 @@ Without `functools.wraps`, tools may see the wrapper's name and documentation in
 Write a decorator that prints `Loading forecast` before calling the wrapped function.
 
 ```python run
+# Complete the announce a call task.
+# Sample data: forecast_message = "Forecast ready"
+# Write your code below and print the result
+```
+
+
+:::solution
+The decorator returns a wrapper that prints first, calls the original function, and returns its result.
+
+```python
 def announce(function):
     def wrapper():
         print("Loading forecast")
@@ -339,16 +349,6 @@ def forecast():
 
 print(forecast())
 ```
-
-```output
-Loading forecast
-Cloudy
-```
-
-:::solution
-
-The decorator returns a wrapper that prints first, calls the original function, and returns its result.
-
 :::
 
 ### Medium: forward an argument
@@ -356,6 +356,16 @@ The decorator returns a wrapper that prints first, calls the original function, 
 Make a wrapper that prints `Saving` and still returns the wrapped function's value.
 
 ```python run
+# Complete the forward an argument task.
+# Sample data: value = 42
+# Write your code below and print the result
+```
+
+
+:::solution
+The wrapper forwards the count through `*args`, then returns the original function's string.
+
+```python
 def saving(function):
     def wrapper(*args, **kwargs):
         print("Saving")
@@ -368,16 +378,6 @@ def save_playlist(count):
 
 print(save_playlist(8))
 ```
-
-```output
-Saving
-Saved 8 tracks
-```
-
-:::solution
-
-The wrapper forwards the count through `*args`, then returns the original function's string.
-
 :::
 
 ### Challenge: preserve the function name
@@ -385,6 +385,16 @@ The wrapper forwards the count through `*args`, then returns the original functi
 Use `wraps` in a decorator and check the decorated function's name.
 
 ```python run
+# Complete the preserve the function name task.
+# Sample data: function_name = "greet"
+# Write your code below and print the result
+```
+
+
+:::solution
+`@wraps(function)` copies the original function's identifying metadata to the wrapper, so its public name remains `river_level`.
+
+```python
 from functools import wraps
 
 def preserve(function):
@@ -399,15 +409,6 @@ def river_level():
 
 print(river_level.__name__)
 ```
-
-```output
-river_level
-```
-
-:::solution
-
-`@wraps(function)` copies the original function's identifying metadata to the wrapper, so its public name remains `river_level`.
-
 :::
 
 ## Recap

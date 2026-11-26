@@ -9,17 +9,81 @@
   "starterCode": "def count_vowels(text):\n    # Count and return the number of vowels in text\n    pass\n",
   "referenceSolution": "def count_vowels(text):\n    vowels = set(\"aeiouAEIOU\")\n    return sum(1 for ch in text if ch in vowels)\n",
   "tests": [
-    { "args": ["hello"], "expected": 2 },
-    { "args": ["python"], "expected": 1 },
-    { "args": ["sky"], "expected": 0 },
-    { "args": [""], "expected": 0 },
-    { "args": ["aeiou"], "expected": 5 },
-    { "args": ["AEIOU"], "expected": 5 },
-    { "args": ["Beautiful Day!"], "expected": 6 },
-    { "args": ["12345!@#$%^&*()"], "expected": 0 },
-    { "args": ["rhythm"], "expected": 0 },
-    { "args": ["The quick brown fox jumps over the lazy dog"], "expected": 11 },
-    { "args": ["AAA eee III ooo UUU"], "expected": 15 },
-    { "args": ["   spaces   around   "], "expected": 5 }
-  ]
+    {
+      "args": [
+        "hello"
+      ],
+      "expected": 2
+    },
+    {
+      "args": [
+        "python"
+      ],
+      "expected": 1
+    },
+    {
+      "args": [
+        "sky"
+      ],
+      "expected": 0
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expected": 0
+    },
+    {
+      "args": [
+        "aeiou"
+      ],
+      "expected": 5
+    },
+    {
+      "args": [
+        "AEIOU"
+      ],
+      "expected": 5
+    },
+    {
+      "args": [
+        "Beautiful Day!"
+      ],
+      "expected": 6
+    },
+    {
+      "args": [
+        "12345!@#$%^&*()"
+      ],
+      "expected": 0
+    },
+    {
+      "args": [
+        "rhythm"
+      ],
+      "expected": 0
+    },
+    {
+      "args": [
+        "The quick brown fox jumps over the lazy dog"
+      ],
+      "expected": 11
+    },
+    {
+      "args": [
+        "AAA eee III ooo UUU"
+      ],
+      "expected": 15
+    },
+    {
+      "args": [
+        "   spaces   around   "
+      ],
+      "expected": 5
+    }
+  ],
+  "solution": {
+    "code": "def count_vowels(text):\n    vowels = set(\"aeiouAEIOU\")\n    return sum(1 for ch in text if ch in vowels)\n",
+    "explanation": "The function checks each character against a set of lowercase and uppercase vowels. A generator expression contributes one for each match, and sum totals them. This handles empty strings without a special case."
+  }
 }

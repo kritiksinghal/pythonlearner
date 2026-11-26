@@ -389,19 +389,12 @@ The parameter `name` has no default value, so Python demands an argument. Callin
 Write a function called `create_badge(full_name, title)` that cleans `full_name` using `.strip().title()`, converts `title` to uppercase with `.strip().upper()`, and returns a single formatted string in the pattern `"Name - TITLE"`. Test it with `"  albert einstein  "` and `"physicist"`.
 
 ```python run
-def create_badge(full_name, title):
-    cleaned_name = full_name.strip().title()
-    cleaned_title = title.strip().upper()
-    return f"{cleaned_name} - {cleaned_title}"
-
-badge = create_badge("  albert einstein  ", "physicist")
-print(badge)
+# Complete the Badge generator function task.
+# Sample data: badge = create_badge('  albert einstein  ', 'physicist')
+# Write your code below and print the result
 ```
 
 
-```output
-Albert Einstein - PHYSICIST
-```
 :::solution Solution
 Chaining `.strip()` and `.title()` standardizes user names regardless of extra whitespace, and an f-string joins the badge elements together cleanly.
 
@@ -425,20 +418,12 @@ Albert Einstein - PHYSICIST
 Write a function named `calculate_tip(bill_amount, percent)` that accepts the bill subtotal and a tip percentage, calculates the tip amount, and returns it. Test it with a 500 bill at 10% and a 120 bill at 18%.
 
 ```python run
-def calculate_tip(bill_amount, percent):
-    return bill_amount * (percent / 100)
-
-tip_10 = calculate_tip(500, 10)
-tip_18 = calculate_tip(120, 18)
-print("Tip for 500 at 10%:", tip_10)
-print("Tip for 120 at 18%:", round(tip_18, 2))
+# Complete the Tip calculation function task.
+# Sample data: tip_10 = calculate_tip(500, 10), tip_18 = calculate_tip(120, 18)
+# Write your code below and print the result
 ```
 
 
-```output
-Tip for 500 at 10%: 50.0
-Tip for 120 at 18%: 21.6
-```
 :::solution Solution
 Multiplying the subtotal by `percent / 100` computes the exact tip amount, which `return` hands back to the caller for printing or total computation.
 
@@ -463,20 +448,12 @@ Tip for 120 at 18%: 21.6
 Write a function `convert_seconds(total_seconds)` that converts a total count of seconds into minutes and leftover seconds using `//` and `%`, returning a formatted string like `"2 min 15 sec"`. Test it with `135` and `3665` seconds.
 
 ```python run
-def convert_seconds(total_seconds):
-    minutes = total_seconds // 60
-    seconds = total_seconds % 60
-    return f"{minutes} min {seconds} sec"
-
-print(convert_seconds(135))
-print(convert_seconds(3665))
+# Complete the Seconds to minutes converter function task.
+# Sample data: total_seconds = 135, other_seconds = 3665
+# Write your code below and print the result
 ```
 
 
-```output
-2 min 15 sec
-61 min 5 sec
-```
 :::solution Solution
 Floor division `//` extracts the full minutes, while modulo `%` determines the remaining seconds.
 

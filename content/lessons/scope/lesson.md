@@ -325,12 +325,14 @@ Python reports `NameError: name 'citty' is not defined`. Python does not guess t
 Create a function that defines a local variable for a song title and prints it. Call the function.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Keep a value local task.
 # Sample data: title = "Paper Lanterns"
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Keep a value local” by using the provided sample values and producing the requested result.
+
 
 ```python
 def play_title():
@@ -347,12 +349,14 @@ play_title()
 Create a top-level variable with a team name, then pass it to a function that prints a cheer using a parameter.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Pass a global value into a function task.
 # Sample data: team = "Fireflies"
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Pass a global value into a function” by using the provided sample values and producing the requested result.
+
 
 ```python
 team = "Fireflies"
@@ -370,12 +374,14 @@ cheer(team)
 Write a function that accepts a starting number of library books and a number borrowed, then returns how many remain. Store and print the returned value.
 
 ```python run
-# Try the exercise above using this sample data.
+# Complete the Return a changed value task.
 # Sample data: starting_books = 28, borrowed_books = 6
 # Write your code below and print the result
 ```
 
 :::solution
+The solution completes “Return a changed value” by using the provided sample values and producing the requested result.
+
 
 ```python
 def books_remaining(total, borrowed):

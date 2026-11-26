@@ -319,21 +319,22 @@ Nested or quoted formats have rules that are easy to miss with a pattern. Use `j
 Use a regex to find the first group of digits in a message.
 
 ```python run
+# Complete the find digits task.
+# Sample data: message = 'Level 27 unlocked'
+# Write your code below and print the result
+```
+
+
+:::solution
+`\d+` matches a run of one or more digits, and `group()` returns the matched text.
+
+```python
 import re
 
 message = "Level 27 unlocked"
 match = re.search(r"\d+", message)
 print(match.group())
 ```
-
-```output
-27
-```
-
-:::solution
-
-`\d+` matches a run of one or more digits, and `group()` returns the matched text.
-
 :::
 
 ### Medium: validate a room code
@@ -341,19 +342,20 @@ print(match.group())
 Check that a code is one uppercase letter followed by two digits.
 
 ```python run
+# Complete the validate a room code task.
+# Sample data: room_code = "A42"
+# Write your code below and print the result
+```
+
+
+:::solution
+The character class accepts one uppercase letter, and `\d{2}` requires exactly two digits. fullmatch rejects extra characters.
+
+```python
 import re
 
 print(re.fullmatch(r"[A-Z]\d{2}", "H08") is not None)
 ```
-
-```output
-True
-```
-
-:::solution
-
-The character class accepts one uppercase letter, and `\d{2}` requires exactly two digits. fullmatch rejects extra characters.
-
 :::
 
 ### Challenge: capture a time
@@ -361,22 +363,22 @@ The character class accepts one uppercase letter, and `\d{2}` requires exactly t
 Capture the hour and minute from a string in `HH:MM` form.
 
 ```python run
+# Complete the capture a time task.
+# Sample data: match = re.fullmatch('(?P<hour>\\d{2}):(?P<minute>\\d{2})', '07:35')
+# Write your code below and print the result
+```
+
+
+:::solution
+Named groups capture each two-digit part. The fullmatch requires the whole text to fit the pattern.
+
+```python
 import re
 
 match = re.fullmatch(r"(?P<hour>\d{2}):(?P<minute>\d{2})", "07:35")
 print(match.group("hour"))
 print(match.group("minute"))
 ```
-
-```output
-07
-35
-```
-
-:::solution
-
-Named groups capture each two-digit part. The fullmatch requires the whole text to fit the pattern.
-
 :::
 
 ## Recap

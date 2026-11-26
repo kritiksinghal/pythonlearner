@@ -278,20 +278,21 @@ An alias like `Data` may hide what values it describes. Choose a name such as `L
 Add a string parameter and return annotation to a greeting function.
 
 ```python run
+# Complete the annotate a greeting task.
+# Sample data: name = "Mira"
+# Write your code below and print the result
+```
+
+
+:::solution
+Annotate the parameter with `str` and the result with `-> str`. The function still returns ordinary text.
+
+```python
 def greet(name: str) -> str:
     return f"Good luck, {name}!"
 
 print(greet("Ira"))
 ```
-
-```output
-Good luck, Ira!
-```
-
-:::solution
-
-Annotate the parameter with `str` and the result with `-> str`. The function still returns ordinary text.
-
 :::
 
 ### Medium: annotate a score mapping
@@ -299,20 +300,21 @@ Annotate the parameter with `str` and the result with `-> str`. The function sti
 Write a function that returns the score for a named team.
 
 ```python run
+# Complete the annotate a score mapping task.
+# Sample data: team_scores = {"Falcons": 7}, team_name = "Falcons"
+# Write your code below and print the result
+```
+
+
+:::solution
+The dictionary hint describes string keys and integer values. The return annotation says the lookup produces an integer.
+
+```python
 def team_score(scores: dict[str, int], team: str) -> int:
     return scores[team]
 
 print(team_score({"Comets": 5, "Waves": 3}, "Comets"))
 ```
-
-```output
-5
-```
-
-:::solution
-
-The dictionary hint describes string keys and integer values. The return annotation says the lookup produces an integer.
-
 :::
 
 ### Challenge: express a missing result
@@ -320,6 +322,16 @@ The dictionary hint describes string keys and integer values. The return annotat
 Annotate a function that returns an item label when it exists and `None` otherwise.
 
 ```python run
+# Complete the express a missing result task.
+# Sample data: badges = {4: "bronze", 7: "gold"}
+# Write your code below and print the result
+```
+
+
+:::solution
+The union `str | None` communicates both possible results. Callers should check for `None` before using the value as a string.
+
+```python
 def find_badge(code: int) -> str | None:
     badges = {4: "bronze", 7: "gold"}
     return badges.get(code)
@@ -327,16 +339,6 @@ def find_badge(code: int) -> str | None:
 print(find_badge(7))
 print(find_badge(10))
 ```
-
-```output
-gold
-None
-```
-
-:::solution
-
-The union `str | None` communicates both possible results. Callers should check for `None` before using the value as a string.
-
 :::
 
 ## Recap
