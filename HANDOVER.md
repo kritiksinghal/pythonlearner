@@ -45,6 +45,17 @@ The owner, Kritik, prefers strict phase-by-phase work. Do not add features, page
 ```bash
 export PATH="$HOME/.local/node/bin:$PATH"
 npm run dev
+```
+
+Production builds run the CSS output guard automatically after Next.js finishes:
+
+```bash
+npm run build
+```
+
+Keep `package-lock.json` intact when installing across platforms. It includes the optional Linux x64 GNU packages for Tailwind Oxide and Lightning CSS that Vercel needs, even when the lockfile was generated on macOS.
+
+```bash
 LESSON_PYTHON="$HOME/Library/spyder-6/envs/spyder-runtime/bin/python3.12" python3 scripts/verify_lessons.py
 node scripts/verify_in_pyodide.mjs
 ```

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
+    "postbuild": "node scripts/check_css.mjs",
     "start": "next start",
     "lint": "eslint"
   },
