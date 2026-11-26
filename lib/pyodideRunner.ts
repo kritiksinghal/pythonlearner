@@ -90,7 +90,8 @@ export function isPyodideReady(): boolean {
  * Enforces a strict 5-second timeout.
  */
 export function runPlainPython(
-  code: string
+  code: string,
+  stdin = ""
 ): Promise<{ output?: string; fatal?: string }> {
   return new Promise((resolve) => {
     try {
@@ -119,7 +120,7 @@ export function runPlainPython(
       activeJob = { id, callback: resolve, timeoutId };
 
       const send = () => {
-        currentWorker.postMessage({ type: "run_plain", id, code });
+        currentWorker.postMessage({ type: "run_plain", id, code, stdin });
       };
 
       if (isReady) {

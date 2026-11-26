@@ -58,7 +58,11 @@ Keep `package-lock.json` intact when installing across platforms. It includes th
 ```bash
 LESSON_PYTHON="$HOME/Library/spyder-6/envs/spyder-runtime/bin/python3.12" python3 scripts/verify_lessons.py
 node scripts/verify_in_pyodide.mjs
+LESSON_PYTHON="$HOME/Library/spyder-6/envs/spyder-runtime/bin/python3.12" python3 scripts/verify_problems.py
+npm run build
 ```
+
+`verify_in_pyodide.mjs` also runs stdin self-tests by extracting and loading the same `PLAIN_RUNNER_PY` helper embedded in `public/pyodideWorker.js`.
 
 The development server is normally available at `http://localhost:3000`. Both lesson verification commands must pass before lesson work is considered complete.
 
@@ -79,7 +83,7 @@ The development server is normally available at `http://localhost:3000`. Both le
 | Phase | Description | Status |
 |---|---|---|
 | Foundation | Navigation, visual system, lesson and practice routes | Done |
-| Browser runner | Monaco, Pyodide worker, hidden tests, timeout and result display | Done; CDN retry UI implemented, behavior needs human check |
+| Browser runner | Monaco, Pyodide worker, hidden tests, timeout and result display | Done; plain-run stdin self-tested in Pyodide, browser behavior needs human check |
 | Curriculum | 50 Python-from-zero lessons and 10 CS50P lessons with quizzes | 60 lessons verified on Python 3.12.11 and Pyodide 0.26.4 |
 | F1 | Remove obsolete AI copy and routes, clean up, and make deployment-ready | Done; production build, lint, both lesson verifiers, static output and leak scans checked; browser checks need human check |
 | F2 | Add more practice problems with hand-written hints and collapsed solutions | Done; 15 Advanced problems added |
@@ -109,6 +113,7 @@ The development server is normally available at `http://localhost:3000`. Both le
 - `LESSON_PYTHON` selects the lesson verifier's interpreter; it must report Python 3.12.x.
 - The verifier checks titles, sections, word counts, runnable outputs, error lines, and quiz schema.
 - The Pyodide verifier checks browser-compatible lesson examples against Pyodide 0.26.4.
+- Plain lesson and practice runs accept pre-entered stdin, one line per `input()` call; the worker prints input prompts and echoed lines as a terminal transcript. `run`/function and stdio test modes retain their existing behavior.
 - Dynamic lesson and problem slugs must be enumerated at build time; content must not be read from `/content` at request time.
 - Practice problem pages send the learner-facing `solution` object only. The `referenceSolution` and `wrongSolutions` fields stay server-side.
 - After `npm run build`, verify the client asset leak scan with:
@@ -128,7 +133,7 @@ The development server is normally available at `http://localhost:3000`. Both le
 
 ## 8. Known issues and human checks
 
-- Browser visual and runtime checks for page appearance, custom 404/error pages, offline/blocked CDN Retry, blank exercise editors, the collapsed practice solution disclosure, difficulty filter, related lesson links, and failure hints need human check. In this workspace, `npm run dev` could not bind to port 3000 (`EPERM`), so no browser preview was available.
+- Browser visual and runtime checks for page appearance, custom 404/error pages, offline/blocked CDN Retry, blank exercise editors, the collapsed practice solution disclosure, difficulty filter, related lesson links, failure hints, the conditional lesson Input box, practice stdin panel, terminal transcript, and Ctrl/Cmd+Enter shortcuts need human check. In this workspace, `npm run dev` could not bind to port 3000 (`EPERM`), so no browser preview was available.
 - Visual checks remain for lesson contents layout at wide desktop, tablet, and mobile widths, and for light/dark active indicators.
 - Set `NEXT_PUBLIC_SITE_URL` to the production domain before deployment; the local build currently uses its localhost fallback.
 - Deployment domain and production environment settings must be confirmed by the owner before F5.

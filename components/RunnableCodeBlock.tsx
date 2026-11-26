@@ -8,7 +8,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import CodeEditor from "./CodeEditor";
 import { resetPyodideWorker, runPlainPython } from "@/lib/pyodideRunner";
 
@@ -23,14 +23,18 @@ export default function RunnableCodeBlock({ initialCode, title = "Interactive Ex
   const [output, setOutput] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showRetry, setShowRetry] = useState(false);
+  const [stdin, setStdin] = useState("");
+  const needsInput = /\binput\s*\(|\bsys\s*\.\s*stdin\b/.test(code);
+  const inputId = useId();
+  const blockRef = useRef<HTMLDivElement>(null);
 
-  const handleRun = async () => {
+  const handleRun = useCallback(async () => {
     setIsRunning(true);
     setOutput(null);
     setError(null);
     setShowRetry(false);
 
-    const res = await runPlainPython(code);
+    const res = await runPlainPython(code, stdin);
     setIsRunning(false);
 
     if (res.fatal) {
@@ -39,7 +43,19 @@ export default function RunnableCodeBlock({ initialCode, title = "Interactive Ex
     } else {
       setOutput(res.output ?? "(No output)");
     }
-  };
+  }, [code, stdin]);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
+        if (!blockRef.current?.contains(document.activeElement)) return;
+        event.preventDefault();
+        void handleRun();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [handleRun]);
 
   const handleRetry = () => {
     resetPyodideWorker();
@@ -47,7 +63,7 @@ export default function RunnableCodeBlock({ initialCode, title = "Interactive Ex
   };
 
   return (
-    <div className="my-6 overflow-hidden rounded-md border border-border bg-surface">
+    <div ref={blockRef} className="my-6 overflow-hidden rounded-md border border-border bg-surface">
       {/* Block Header */}
       <div className="flex items-center justify-between border-b border-border bg-code-bg/40 px-3.5 py-1.5 text-xs font-mono">
         <span className="flex items-center gap-1.5 text-muted">
@@ -61,6 +77,22 @@ export default function RunnableCodeBlock({ initialCode, title = "Interactive Ex
       <div className="p-1.5">
         <CodeEditor code={code} onChange={setCode} height="140px" />
       </div>
+
+      {needsInput && (
+        <div className="border-t border-border px-3.5 py-3">
+          <label htmlFor={inputId} className="mb-1.5 block text-[10px] font-mono uppercase tracking-wider text-muted">
+            Input: one line for each input() call
+          </label>
+          <textarea
+            id={inputId}
+            value={stdin}
+            onChange={(event) => setStdin(event.target.value)}
+            placeholder={'Asha\n42'}
+            rows={2}
+            className="w-full resize-y rounded border border-border bg-surface p-2 font-mono text-xs text-foreground placeholder:text-muted/70 focus:outline-none focus:ring-1 focus:ring-accent"
+          />
+        </div>
+      )}
 
       {/* Action Bar */}
       <div className="flex items-center justify-between border-t border-border bg-code-bg/30 px-3.5 py-2">

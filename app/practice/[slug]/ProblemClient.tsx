@@ -7,7 +7,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import CodeEditor from "@/components/CodeEditor";
 import TestResults from "@/components/TestResults";
@@ -22,17 +22,31 @@ interface Props {
 
 export default function ProblemClient({ problem }: Props) {
   const [code, setCode] = useState(problem.starterCode);
-  const { isLoading, isRunning, loadError, retry, runTests, results } = usePyodide();
+  const [stdin, setStdin] = useState("");
+  const { isLoading, isRunning, isPlainRunning, loadError, retry, runTests, results, runPlain, plainResult } = usePyodide();
 
   // Trigger test runner in Web Worker
-  const handleRun = () => {
+  const handleRun = useCallback(() => {
     runTests(
       code,
       problem.testType,
       problem.functionName || "",
       JSON.stringify(problem.tests)
     );
-  };
+  }, [code, problem.testType, problem.functionName, problem.tests, runTests]);
+
+  const handleRunCode = () => runPlain(code, stdin);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
+        event.preventDefault();
+        handleRun();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [handleRun]);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:py-14">
@@ -139,10 +153,10 @@ export default function ProblemClient({ problem }: Props) {
           <CodeEditor code={code} onChange={setCode} height="340px" />
 
           {/* Action Bar */}
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={handleRun}
-              disabled={isLoading || isRunning}
+              disabled={isLoading || isRunning || isPlainRunning}
               className="inline-flex items-center gap-2.5 rounded-md bg-foreground px-5 py-2 text-xs font-medium text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
@@ -151,16 +165,52 @@ export default function ProblemClient({ problem }: Props) {
                   ? "Loading Python…"
                   : isRunning
                     ? "Running tests…"
-                    : "Run Tests"}
+                    : "Run tests"}
               </span>
             </button>
 
-            {isRunning && (
+            <button
+              type="button"
+              onClick={handleRunCode}
+              disabled={isLoading || isRunning || isPlainRunning}
+              className="inline-flex items-center gap-2.5 rounded-md border border-border bg-surface px-5 py-2 text-xs font-medium text-foreground transition-opacity hover:border-muted disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              <span>{isPlainRunning ? "Running…" : "Run"}</span>
+            </button>
+
+            {(isRunning || isPlainRunning) && (
               <span className="text-xs font-mono text-muted">
-                Testing against hidden cases…
+                {isRunning ? "Testing against hidden cases…" : "Running your code…"}
               </span>
             )}
           </div>
+
+          <details open className="rounded-md border border-border bg-surface">
+            <summary className="cursor-pointer px-3.5 py-2.5 text-xs font-mono font-semibold text-muted">
+              Input <span className="font-normal">(one line for each input() call)</span>
+            </summary>
+            <div className="border-t border-border p-3">
+              <label htmlFor="practice-stdin" className="sr-only">Input: one line for each input() call</label>
+              <textarea
+                id="practice-stdin"
+                value={stdin}
+                onChange={(event) => setStdin(event.target.value)}
+                placeholder={'Asha\n42'}
+                rows={3}
+                className="w-full resize-y rounded border border-border bg-code-bg/60 p-2 font-mono text-xs text-foreground placeholder:text-muted/70 focus:outline-none focus:ring-1 focus:ring-accent"
+              />
+            </div>
+          </details>
+
+          {plainResult && (
+            <div className="rounded-md border border-border bg-code-bg/40 p-3" aria-live="polite">
+              <div className="mb-1 text-[10px] font-mono uppercase tracking-wider text-muted">Output</div>
+              <pre className={`rounded border p-2 font-mono text-xs whitespace-pre-wrap ${plainResult.fatal ? "border-red-300 bg-red-50 text-red-700 dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-300" : "border-border bg-surface text-foreground"}`}>
+                {plainResult.fatal ? `⚠️ ${plainResult.fatal}` : plainResult.output}
+              </pre>
+            </div>
+          )}
 
           {/* Test results panel below */}
           <div className="border-t border-border pt-4">

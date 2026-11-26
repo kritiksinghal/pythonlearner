@@ -22,9 +22,17 @@ export interface RunWorkerMessage {
   testsJson: string;
 }
 
+export interface RunPlainWorkerMessage {
+  type: "run_plain";
+  id?: string;
+  code: string;
+  stdin?: string;
+}
+
 export type WorkerResponse =
   | { type: "ready" }
   | { type: "result"; data: RunResult }
+  | { type: "plain_result"; id?: string; data: { output?: string; fatal?: string } }
   | { type: "error"; message: string };
 
 export { usePyodide } from "./usePyodide";

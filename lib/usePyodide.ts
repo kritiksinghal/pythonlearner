@@ -24,11 +24,13 @@ export interface TestResult {
 
 /** What the worker sends back: either an array of results, or a fatal error */
 export type RunResult = { fatal: string } | TestResult[];
+export type PlainRunResult = { output?: string; fatal?: string } | null;
 
 /** What our hook exposes to the page */
 export interface PyodideHook {
   isLoading: boolean;
   isRunning: boolean;
+  isPlainRunning: boolean;
   loadError: string | null;
   retry: () => void;
   runTests: (
@@ -38,6 +40,8 @@ export interface PyodideHook {
     testsJson: string
   ) => void;
   results: RunResult | null;
+  plainResult: PlainRunResult;
+  runPlain: (code: string, stdin: string) => void;
 }
 
 const TIMEOUT_MS = 5000; // 5-second limit per run
@@ -48,7 +52,9 @@ export function usePyodide(): PyodideHook {
   const loadTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isRunning, setIsRunning] = useState(false);
+  const [isPlainRunning, setIsPlainRunning] = useState(false);
   const [results, setResults] = useState<RunResult | null>(null);
+  const [plainResult, setPlainResult] = useState<PlainRunResult>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
 
   // Create (or re-create) the worker
@@ -84,11 +90,18 @@ export function usePyodide(): PyodideHook {
         setIsRunning(false);
       }
 
+      if (msg.type === "plain_result") {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        setPlainResult(msg.data);
+        setIsPlainRunning(false);
+      }
+
       if (msg.type === "error") {
         if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
         setResults({ fatal: msg.message });
         setIsRunning(false);
+        setIsPlainRunning(false);
         setIsLoading(false);
         setLoadError("Python could not load. Check your connection, then retry.");
       }
@@ -101,6 +114,7 @@ export function usePyodide(): PyodideHook {
         fatal: "Python could not load. Check your connection, then retry.",
       });
       setIsRunning(false);
+      setIsPlainRunning(false);
       setIsLoading(false);
       setLoadError("Python could not load. Check your connection, then retry.");
     };
@@ -111,6 +125,7 @@ export function usePyodide(): PyodideHook {
   const retry = useCallback(() => {
     setResults(null);
     setIsRunning(false);
+    setIsPlainRunning(false);
     setLoadError(null);
     spawnWorker();
   }, [spawnWorker]);
@@ -160,5 +175,20 @@ export function usePyodide(): PyodideHook {
     [isLoading, spawnWorker]
   );
 
-  return { isLoading, isRunning, loadError, retry, runTests, results };
+  const runPlain = useCallback((code: string, stdin: string) => {
+    if (!workerRef.current || isLoading) return;
+
+    setIsPlainRunning(true);
+    setPlainResult(null);
+    timeoutRef.current = setTimeout(() => {
+      workerRef.current?.terminate();
+      setPlainResult({ fatal: "Your code took too long. Check for an infinite loop." });
+      setIsPlainRunning(false);
+      spawnWorker();
+    }, TIMEOUT_MS);
+
+    workerRef.current.postMessage({ type: "run_plain", code, stdin });
+  }, [isLoading, spawnWorker]);
+
+  return { isLoading, isRunning, isPlainRunning, loadError, retry, runTests, results, runPlain, plainResult };
 }

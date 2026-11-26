@@ -4,10 +4,10 @@
  * Supports:
  * 1. "function" testType (calls a function with arguments and checks return value)
  * 2. "stdio" testType (redirects sys.stdin / sys.stdout, checks printed output)
- * 3. "run_plain" message (runs arbitrary code block and returns printed output or error)
+ * 3. "run_plain" message (runs arbitrary code block with optional stdin)
  *
  * Messages IN  → { type: "run", code, testType, functionName, testsJson }
- *                { type: "run_plain", id, code }
+ *                { type: "run_plain", id, code, stdin? }
  * Messages OUT → { type: "ready" }
  *                { type: "result", data }
  *                { type: "plain_result", id, data }
@@ -22,7 +22,7 @@ const PYODIDE_CDN_BASE = "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/";
 importScripts(PYODIDE_CDN_BASE + "pyodide.js");
 
 // Python helper for both test runner and plain code execution
-const RUNNER_PY = `
+const TEST_RUNNER_PY = `
 import json, sys, io
 
 def run_tests(code, test_type, func_name, tests_json):
@@ -103,32 +103,61 @@ def run_tests(code, test_type, func_name, tests_json):
 
     return json.dumps({"fatal": f"Unknown testType: {test_type}"})
 
-def run_plain_code(code):
-    old_in = sys.stdin
-    old_out = sys.stdout
-    old_err = sys.stderr
-    sys.stdin = io.StringIO("")
+`;
+
+const PLAIN_RUNNER_PY = String.raw`
+import builtins
+import io
+import json
+import sys
+
+class InputExhaustedError(Exception):
+    def __init__(self, line):
+        self.line = line
+        super().__init__(line)
+
+def run_plain_code(code, stdin_text=""):
+    old_in, old_out, old_err = sys.stdin, sys.stdout, sys.stderr
+    old_input = builtins.input
+    sys.stdin = io.StringIO(stdin_text)
     sys.stdout = io.StringIO()
     sys.stderr = io.StringIO()
-    ns = {}
+    namespace = {}
+
+    def learner_input(prompt=""):
+        if prompt:
+            print(prompt, end="", file=sys.stdout)
+        line = sys.stdin.readline()
+        if line == "":
+            caller_line = sys._getframe(1).f_lineno
+            raise InputExhaustedError(caller_line)
+        print(line.rstrip("\r\n"), file=sys.stdout)
+        return line.rstrip("\r\n")
+
+    builtins.input = learner_input
     try:
         compiled = compile(code, "<user_code>", "exec")
-        exec(compiled, ns)
-        out = sys.stdout.getvalue()
-        err = sys.stderr.getvalue()
-        total_out = out + (("\\n" + err) if err else "")
-        return json.dumps({"output": total_out.rstrip() if total_out else "(No output printed)"})
-    except SyntaxError as e:
-        line_info = f" on line {e.lineno}" if e.lineno else ""
-        return json.dumps({"fatal": f"SyntaxError{line_info}: {e.msg}"})
-    except EOFError:
-        return json.dumps({"fatal": "EOFError: input() is not supported in this example block."})
-    except BaseException as e:
-        return json.dumps({"fatal": f"{type(e).__name__}: {e}"})
+        exec(compiled, namespace)
+        output, error_output = sys.stdout.getvalue(), sys.stderr.getvalue()
+        combined = output + (("\n" + error_output) if error_output else "")
+        return json.dumps({"output": combined.rstrip() if combined else "(No output printed)"})
+    except SyntaxError as error:
+        line_info = f" on line {error.lineno}" if error.lineno else ""
+        return json.dumps({"fatal": f"SyntaxError{line_info}: {error.msg}"})
+    except InputExhaustedError as error:
+        message = "Your program asked for more input than you typed in the Input box. Add one line for each input() call."
+        return json.dumps({"fatal": f"{message} (line {error.line})"})
+    except BaseException as error:
+        line_info = ""
+        traceback = error.__traceback__
+        while traceback and traceback.tb_next:
+            traceback = traceback.tb_next
+        if traceback and traceback.tb_frame.f_code.co_filename == "<user_code>":
+            line_info = f" on line {traceback.tb_lineno}"
+        return json.dumps({"fatal": f"{type(error).__name__}{line_info}: {error}"})
     finally:
-        sys.stdin = old_in
-        sys.stdout = old_out
-        sys.stderr = old_err
+        builtins.input = old_input
+        sys.stdin, sys.stdout, sys.stderr = old_in, old_out, old_err
 `;
 
 let pyodide = null;
@@ -138,7 +167,8 @@ async function init() {
     pyodide = await loadPyodide({
       indexURL: PYODIDE_CDN_BASE,
     });
-    pyodide.runPython(RUNNER_PY);
+    pyodide.runPython(TEST_RUNNER_PY);
+    pyodide.runPython(PLAIN_RUNNER_PY);
     self.postMessage({ type: "ready" });
   } catch (err) {
     self.postMessage({
@@ -167,10 +197,11 @@ self.onmessage = async (e) => {
       });
     }
   } else if (e.data.type === "run_plain") {
-    const { id, code } = e.data;
+    const { id, code, stdin = "" } = e.data;
     try {
       pyodide.globals.set("PLAIN_CODE", code);
-      const raw = pyodide.runPython(`run_plain_code(PLAIN_CODE)`);
+      pyodide.globals.set("PLAIN_STDIN", stdin);
+      const raw = pyodide.runPython(`run_plain_code(PLAIN_CODE, PLAIN_STDIN)`);
       const data = JSON.parse(raw);
       self.postMessage({ type: "plain_result", id, data });
     } catch (err) {

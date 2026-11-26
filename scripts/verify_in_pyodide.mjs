@@ -7,31 +7,11 @@ const root = resolve(import.meta.dirname, '..');
 const lessonsDir = join(root, 'content', 'lessons');
 const timeoutMs = 5000;
 
-// This mirrors run_plain_code in public/pyodideWorker.js: empty stdin and
-// namespace, stdout followed by stderr, trailing whitespace removed, and the
-// same fatal error text / no-output message shown by the browser runner.
-const runnerCode = `
-import io, json, sys
-def run_plain_code(code):
-    old_in, old_out, old_err = sys.stdin, sys.stdout, sys.stderr
-    sys.stdin, sys.stdout, sys.stderr = io.StringIO(""), io.StringIO(), io.StringIO()
-    ns = {}
-    try:
-        compiled = compile(code, "<user_code>", "exec")
-        exec(compiled, ns)
-        out, err = sys.stdout.getvalue(), sys.stderr.getvalue()
-        total_out = out + (("\\n" + err) if err else "")
-        return {"output": total_out.rstrip() if total_out else "(No output printed)"}
-    except SyntaxError as e:
-        line_info = f" on line {e.lineno}" if e.lineno else ""
-        return {"fatal": f"SyntaxError{line_info}: {e.msg}"}
-    except EOFError:
-        return {"fatal": "EOFError: input() is not supported in this example block."}
-    except BaseException as e:
-        return {"fatal": f"{type(e).__name__}: {e}"}
-    finally:
-        sys.stdin, sys.stdout, sys.stderr = old_in, old_out, old_err
-`;
+// Extract the exact shared Python helper embedded in the browser worker.
+const browserWorkerSource = readFileSync(join(root, 'public', 'pyodideWorker.js'), 'utf8');
+const runnerMatch = browserWorkerSource.match(/const PLAIN_RUNNER_PY = String\.raw`([\s\S]*?)`;/);
+if (!runnerMatch) throw new Error('Could not find PLAIN_RUNNER_PY in public/pyodideWorker.js');
+const runnerCode = runnerMatch[1];
 
 const workerSource = `
 const { parentPort } = require('node:worker_threads');
@@ -39,10 +19,11 @@ const { loadPyodide } = require('pyodide');
 (async () => {
   const pyodide = await loadPyodide();
   pyodide.runPython(${JSON.stringify(runnerCode)});
-  parentPort.on('message', ({ id, code }) => {
+  parentPort.on('message', ({ id, code, stdin = '' }) => {
     try {
       pyodide.globals.set('PLAIN_CODE', code);
-      const result = JSON.parse(pyodide.runPython('json.dumps(run_plain_code(PLAIN_CODE))'));
+      pyodide.globals.set('PLAIN_STDIN', stdin);
+      const result = JSON.parse(pyodide.runPython('run_plain_code(PLAIN_CODE, PLAIN_STDIN)'));
       parentPort.postMessage({ id, result });
     } catch (error) {
       parentPort.postMessage({ id, result: { fatal: error?.message ?? 'Execution failed' } });
@@ -106,7 +87,7 @@ function waitReady(worker) {
   });
 }
 
-function execute(worker, id, code) {
+function execute(worker, id, code, stdin = '') {
   return new Promise((resolveResult, rejectResult) => {
     const timer = setTimeout(() => rejectResult(new Error('Timed out after 5 seconds')), timeoutMs);
     const onMessage = (message) => {
@@ -116,7 +97,7 @@ function execute(worker, id, code) {
       resolveResult(message.result);
     };
     worker.on('message', onMessage);
-    worker.postMessage({ id, code });
+    worker.postMessage({ id, code, stdin });
   });
 }
 
@@ -181,4 +162,124 @@ for (const lesson of lessons) {
 }
 
 console.log(`\nPyodide lesson blocks: ${passCount} passed, ${failCount} failed (${blockCount} total).`);
-process.exitCode = failCount ? 1 : 0;
+
+let stdinWorker = startWorker();
+let stdinChecks = 0;
+let stdinFailures = 0;
+try {
+  await waitReady(stdinWorker);
+  const cases = [
+    {
+      name: 'two input calls and terminal transcript',
+      code: 'name = input("Name: ")\nage = input("Age: ")\nprint(f"{name} is {age}")',
+      stdin: 'Asha\n12',
+      expected: { output: 'Name: Asha\nAge: 12\nAsha is 12' },
+    },
+    {
+      name: 'integer input arithmetic',
+      code: 'a = int(input())\nb = int(input())\nprint(a + b)',
+      stdin: '19\n23',
+      expected: { output: '19\n23\n42' },
+    },
+    {
+      name: 'read input until done',
+      code: 'total = 0\nwhile True:\n    value = input()\n    if value == "done":\n        break\n    total += int(value)\nprint(total)',
+      stdin: '3\n8\ndone',
+      expected: { output: '3\n8\ndone\n11' },
+    },
+    {
+      name: 'friendly input exhaustion with source line',
+      code: 'first = input()\nsecond = input()\nprint(first, second)',
+      stdin: 'only-one',
+      expected: { fatal: 'Your program asked for more input than you typed in the Input box. Add one line for each input() call. (line 2)' },
+    },
+    {
+      name: 'sys.stdin.read',
+      code: 'import sys\nprint(sys.stdin.read().upper())',
+      stdin: 'hello\nworld',
+      expected: { output: 'HELLO\nWORLD' },
+    },
+    {
+      name: 'unused input lines are allowed',
+      code: 'print(input())',
+      stdin: 'used\nunused',
+      expected: { output: 'used\nused' },
+    },
+    {
+      name: 'sys.stdin.readline',
+      code: 'import sys\nprint(sys.stdin.readline().strip())',
+      stdin: 'first\nsecond',
+      expected: { output: 'first' },
+    },
+    {
+      name: 'sys.stdin.readlines',
+      code: 'import sys\nprint(len(sys.stdin.readlines()))',
+      stdin: 'first\nsecond\nthird',
+      expected: { output: '3' },
+    },
+    {
+      name: 'iterate over sys.stdin',
+      code: 'import sys\nfor line in sys.stdin:\n    print(line.strip().upper())',
+      stdin: 'north\nsouth',
+      expected: { output: 'NORTH\nSOUTH' },
+    },
+  ];
+  for (let index = 0; index < cases.length; index += 1) {
+    const test = cases[index];
+    stdinChecks += 1;
+    const actual = await execute(stdinWorker, `stdin-${index}`, test.code, test.stdin);
+    if (JSON.stringify(actual) === JSON.stringify(test.expected)) {
+      console.log(`[PASS] stdin: ${test.name}`);
+    } else {
+      stdinFailures += 1;
+      console.error(`[FAIL] stdin: ${test.name}: expected ${JSON.stringify(test.expected)}, got ${JSON.stringify(actual)}`);
+    }
+  }
+
+  stdinChecks += 1;
+  const stateCheck = await execute(stdinWorker, 'stdin-state-1', 'learner_secret = 42\nprint(learner_secret)');
+  const afterStateCheck = await execute(stdinWorker, 'stdin-state-2', 'print(learner_secret)');
+  if (stateCheck.output === '42' && afterStateCheck.fatal === "NameError on line 1: name 'learner_secret' is not defined") {
+    console.log('[PASS] stdin: user variables do not leak across runs');
+  } else {
+    stdinFailures += 1;
+    console.error(`[FAIL] stdin: run isolation: got ${JSON.stringify([stateCheck, afterStateCheck])}`);
+  }
+
+  stdinChecks += 1;
+  try {
+    await execute(stdinWorker, 'stdin-timeout', 'input("Ready: ")\nwhile True:\n    pass', 'yes');
+    stdinFailures += 1;
+    console.error('[FAIL] stdin: infinite loop did not time out');
+  } catch (error) {
+    if (error.message === 'Timed out after 5 seconds') console.log('[PASS] stdin: infinite loop reaches the 5-second timeout');
+    else {
+      stdinFailures += 1;
+      console.error(`[FAIL] stdin: unexpected timeout error: ${error.message}`);
+    }
+  }
+
+  await stdinWorker.terminate();
+  stdinWorker = startWorker();
+  await waitReady(stdinWorker);
+  stdinChecks += 1;
+  try {
+    await execute(stdinWorker, 'plain-timeout', 'while True:\n    pass');
+    stdinFailures += 1;
+    console.error('[FAIL] plain run: infinite loop without input did not time out');
+  } catch (error) {
+    if (error.message === 'Timed out after 5 seconds') console.log('[PASS] plain run: infinite loop without input reaches the 5-second timeout');
+    else {
+      stdinFailures += 1;
+      console.error(`[FAIL] plain run: unexpected timeout error: ${error.message}`);
+    }
+  }
+} catch (error) {
+  stdinFailures += 1;
+  console.error(`[FAIL] stdin self-tests: ${error.stack ?? error.message}`);
+} finally {
+  await stdinWorker.terminate();
+}
+
+console.log(`Stdin self-tests: ${stdinChecks - stdinFailures} passed, ${stdinFailures} failed (${stdinChecks} total).`);
+process.exitCode = failCount || stdinFailures ? 1 : 0;
