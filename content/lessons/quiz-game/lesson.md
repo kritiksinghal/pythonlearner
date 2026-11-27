@@ -16,7 +16,6 @@ learningGoals:
   - "Test a round with preset responses"
 relatedProblems: []
 ---
-
 ## The goal
 
 Build a small multiple-choice quiz game about music. The game displays a prompt and choices, checks the player's letter, adds a point for a correct response, and prints a final score. Browser runnable examples use preset answers so the verifier can run them without waiting for interactive input. A plain Python block later shows how to collect a real answer with `input()` and includes a sample session.
@@ -257,10 +256,27 @@ Save the game in a `.py` file and run it from a terminal. If you use both sample
 
 Change the questions while keeping every dictionary's keys consistent. Test a perfect run, a zero-score run, and a mixed run by changing the preset responses.
 
+
+:::tip Hint
+Use the lesson idea about quiz game. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+responses = ['b', 'a', 'c']
+```
+
+```expected
+Which instrument marks silence?
+rest | scale | chord | key
+Which instrument has six strings?
+violin | guitar | flute | trumpet
+Final score: 1/2
+```
+
 ```python run
-# Add questions and check a perfect, zero-score, and mixed round.
-# Sample data: responses = ["b", "a", "c"]
-# Write your code below and print the result
+# Complete the Make It Yourself task.
+responses = ['b', 'a', 'c']
+# Write your code below
 ```
 
 1. Add questions about weather, sports, art, or geography.
@@ -281,6 +297,7 @@ Reference: Python documentation, Data Structures
 Keep each question's keys consistent, pair each question with one preset response, and compare normalized letters. The loop accumulates the points and prints a repeatable score.
 
 ```python
+responses = ['b', 'a', 'c']
 questions = [
     {"prompt": "Which instrument marks silence?", "choices": ["rest", "scale", "chord", "key"], "answer": "a"},
     {"prompt": "Which instrument has six strings?", "choices": ["violin", "guitar", "flute", "trumpet"], "answer": "b"},

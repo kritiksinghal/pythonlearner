@@ -22,7 +22,6 @@ learningGoals:
   - "Structure complex business rules using parentheses to override default operator precedence."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How Python uses plain English keywords **`and`**, **`or`**, and **`not`** rather than cryptic symbols like `&&`, `||`, and `!`.
@@ -317,18 +316,31 @@ User is authenticated cleanly
 | `not (A and B)` | Either `not A` or `not B` is true | De Morgan's 1st Law |
 | `not (A or B)` | Both `not A` and `not B` are true | De Morgan's 2nd Law |
 
-Precedence order from highest to lowest: `not` $\rightarrow$ `and` $\rightarrow$ `or`. Parentheses `()` override all.
+Precedence order from highest to lowest: `not` → `and` → `or`. Parentheses `()` override all.
 
 ## Try it yourself
 
 ### Exercise 1 (easy): Movie ticket concession discount
 
-A cinema offers discounted tickets to patrons who are children under 12 **or** senior citizens aged 65 and above. Given `patron_age = 68`, write an `or` comparison that evaluates whether the patron qualifies for the concession rate, storing the result in `gets_discount` and printing it.
+Use `patron_age` to check whether the patron is under 12 or at least 65. Store the result in `gets_discount`. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about and or not. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+patron_age = 68
+```
+
+```expected
+Patron age 68 gets discount: True
+```
 
 ```python run
-# Complete the Movie ticket concession discount task.
-# Sample data: patron_age = 68
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Movie ticket concession discount task.
+patron_age = 68
+# Write your code below
 ```
 
 
@@ -348,12 +360,29 @@ Patron age 68 gets discount: True
 
 ### Exercise 2 (medium): Home mortgage loan approval
 
-A financial institution approves mortgage applicants if their annual income is at least `50000` **and** their credit score is at least `700` **and** they have **not** suffered a prior loan default. Given `annual_income = 62000`, `credit_score = 740`, and `prior_default = False`, write an expression that evaluates loan eligibility into `loan_approved` and prints the outcome.
+Use `annual_income`, `credit_score`, and `prior_default` to decide whether the loan is approved. Store the result in `loan_approved`. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about and or not. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+annual_income = 62000
+credit_score = 740
+prior_default = False
+```
+
+```expected
+Mortgage loan approved: True
+```
 
 ```python run
-# Complete the Home mortgage loan approval task.
-# Sample data: annual_income = 62000, credit_score = 740
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): Home mortgage loan approval task.
+annual_income = 62000
+credit_score = 740
+prior_default = False
+# Write your code below
 ```
 
 
@@ -375,12 +404,31 @@ Mortgage loan approved: True
 
 ### Exercise 3 (challenge): Two-factor security authentication
 
-A secure cloud portal grants access to an administrator if they provide a valid password **and** either a biometric fingerprint verification **or** a valid one-time security code, provided their account has **not** been temporarily locked. Given `password_valid = True`, `biometric_ok = False`, `otp_ok = True`, and `account_locked = False`, use parentheses to model this security policy into `access_granted` and print the result.
+Use `password_valid`, `biometric_ok`, `otp_ok`, and `account_locked` to decide access. Store the result in `access_granted`. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about and or not. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+password_valid = True
+otp_ok = True
+biometric_ok = False
+account_locked = False
+```
+
+```expected
+Portal access granted: True
+```
 
 ```python run
-# Complete the Two-factor security authentication task.
-# Sample data: password_valid = True, otp_ok = True
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Two-factor security authentication task.
+password_valid = True
+otp_ok = True
+biometric_ok = False
+account_locked = False
+# Write your code below
 ```
 
 
@@ -389,8 +437,8 @@ Wrap `(biometric_ok or otp_ok)` in parentheses and combine with `password_valid`
 
 ```python run
 password_valid = True
-biometric_ok = False
 otp_ok = True
+biometric_ok = False
 account_locked = False
 access_granted = password_valid and (biometric_ok or otp_ok) and not account_locked
 print("Portal access granted:", access_granted)

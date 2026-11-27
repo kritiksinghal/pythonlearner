@@ -15,7 +15,6 @@ learningGoals:
   - "Explain that annotations do not automatically validate runtime values"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What a **type hint** communicates in Python code
@@ -275,12 +274,25 @@ An alias like `Data` may hide what values it describes. Choose a name such as `L
 
 ### Easy: annotate a greeting
 
-Add a string parameter and return annotation to a greeting function.
+Use `name` as the sample data. Add a string parameter and return annotation to a greeting function.
+
+
+:::tip Hint
+Use the lesson idea about type hints. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+name = 'Mira'
+```
+
+```expected
+Good luck, Ira!
+```
 
 ```python run
-# Complete the annotate a greeting task.
-# Sample data: name = "Mira"
-# Write your code below and print the result
+# Complete the Easy: annotate a greeting task.
+name = 'Mira'
+# Write your code below
 ```
 
 
@@ -288,6 +300,7 @@ Add a string parameter and return annotation to a greeting function.
 Annotate the parameter with `str` and the result with `-> str`. The function still returns ordinary text.
 
 ```python
+name = 'Mira'
 def greet(name: str) -> str:
     return f"Good luck, {name}!"
 
@@ -297,12 +310,27 @@ print(greet("Ira"))
 
 ### Medium: annotate a score mapping
 
-Write a function that returns the score for a named team.
+Use `team_scores` and `team_name` as the sample data. Write a function that returns the score for a named team. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about type hints. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+team_scores = {'Falcons': 7}
+team_name = 'Falcons'
+```
+
+```expected
+5
+```
 
 ```python run
-# Complete the annotate a score mapping task.
-# Sample data: team_scores = {"Falcons": 7}, team_name = "Falcons"
-# Write your code below and print the result
+# Complete the Medium: annotate a score mapping task.
+team_scores = {'Falcons': 7}
+team_name = 'Falcons'
+# Write your code below
 ```
 
 
@@ -310,6 +338,8 @@ Write a function that returns the score for a named team.
 The dictionary hint describes string keys and integer values. The return annotation says the lookup produces an integer.
 
 ```python
+team_scores = {'Falcons': 7}
+team_name = 'Falcons'
 def team_score(scores: dict[str, int], team: str) -> int:
     return scores[team]
 
@@ -319,12 +349,26 @@ print(team_score({"Comets": 5, "Waves": 3}, "Comets"))
 
 ### Challenge: express a missing result
 
-Annotate a function that returns an item label when it exists and `None` otherwise.
+Annotate a function that returns an item label when it exists and `None` otherwise. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about type hints. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+badges = {4: 'bronze', 7: 'gold'}
+```
+
+```expected
+gold
+None
+```
 
 ```python run
-# Complete the express a missing result task.
-# Sample data: badges = {4: "bronze", 7: "gold"}
-# Write your code below and print the result
+# Complete the Challenge: express a missing result task.
+badges = {4: 'bronze', 7: 'gold'}
+# Write your code below
 ```
 
 
@@ -332,6 +376,7 @@ Annotate a function that returns an item label when it exists and `None` otherwi
 The union `str | None` communicates both possible results. Callers should check for `None` before using the value as a string.
 
 ```python
+badges = {4: 'bronze', 7: 'gold'}
 def find_badge(code: int) -> str | None:
     badges = {4: "bronze", 7: "gold"}
     return badges.get(code)

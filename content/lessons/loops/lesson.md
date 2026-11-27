@@ -15,7 +15,6 @@ learningGoals:
   - "Use break and continue to control a loop"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What an iteration is and how a loop repeats a block
@@ -312,12 +311,27 @@ Use `break` when the repetition should finish. Use `continue` when only the curr
 
 ### Easy: print a practice rotation
 
-Use a `for` loop to visit each drill in order.
+Use a `for` loop to visit each drill in order. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about loops. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+drills = ['serve', 'footwork', 'return']
+```
+
+```expected
+Next drill: serve
+Next drill: footwork
+Next drill: return
+```
 
 ```python run
-# Complete the print a practice rotation task.
-# Sample data: drills = ['serve', 'footwork', 'return']
-# Write your code below and print the result
+# Complete the Easy: print a practice rotation task.
+drills = ['serve', 'footwork', 'return']
+# Write your code below
 ```
 
 
@@ -325,6 +339,7 @@ Use a `for` loop to visit each drill in order.
 The loop receives each list item as `drill`. The body prints once for each item, in list order.
 
 ```python
+drills = ['serve', 'footwork', 'return']
 drills = ["serve", "footwork", "return"]
 for drill in drills:
     print("Next drill:", drill)
@@ -333,12 +348,28 @@ for drill in drills:
 
 ### Medium: count down to a song cue
 
-Use a `while` loop that updates its counter each round.
+Use a `while` loop that updates its counter each round. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about loops. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+seconds = 3
+```
+
+```expected
+3
+2
+1
+Play
+```
 
 ```python run
-# Complete the count down to a song cue task.
-# Sample data: seconds = 3
-# Write your code below and print the result
+# Complete the Medium: count down to a song cue task.
+seconds = 3
+# Write your code below
 ```
 
 
@@ -356,12 +387,27 @@ print("Play")
 
 ### Challenge: find a player's team
 
-Loop through a dictionary's keys and stop after the requested player is found.
+Use `teams` and `search_name` as the sample data. Loop through a dictionary's keys and stop after the requested player is found. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about loops. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+teams = {'Sana': 'Falcons', 'Rohan': 'Tigers', 'Leela': 'Owls'}
+search_name = 'Rohan'
+```
+
+```expected
+Tigers
+```
 
 ```python run
-# Complete the find a player's team task.
-# Sample data: teams = {'Sana': 'Falcons', 'Rohan': 'Tigers', 'Leela': 'Owls'}, search_name = 'Rohan'
-# Write your code below and print the result
+# Complete the Challenge: find a player's team task.
+teams = {'Sana': 'Falcons', 'Rohan': 'Tigers', 'Leela': 'Owls'}
+search_name = 'Rohan'
+# Write your code below
 ```
 
 
@@ -369,6 +415,8 @@ Loop through a dictionary's keys and stop after the requested player is found.
 The loop visits each dictionary key. When it matches `search_name`, the program prints that key's value and exits the loop.
 
 ```python
+teams = {'Sana': 'Falcons', 'Rohan': 'Tigers', 'Leela': 'Owls'}
+search_name = 'Rohan'
 teams = {"Sana": "Falcons", "Rohan": "Tigers", "Leela": "Owls"}
 search_name = "Rohan"
 for player in teams:

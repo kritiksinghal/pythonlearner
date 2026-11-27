@@ -17,7 +17,6 @@ relatedProblems:
   - "count-vowels"
   - "greeting-card"
 ---
-
 ## What you will learn
 
 - How the `while` loop checks a condition repeatedly before every cycle
@@ -272,7 +271,7 @@ Distinction score detected!
 
 ### Calculating mathematical factorials
 
-Loops are well suited for multiplicative accumulation. A mathematical factorial ($n!$) multiplies all positive integers from $n$ down to $1$. For example, $5! = 5 \times 4 \times 3 \times 2 \times 1 = 120$.
+Loops are well suited for multiplicative accumulation. A mathematical factorial (n!) multiplies all positive integers from n down to $1$. For example, $5! = 5 × 4 × 3 × 2 × 1 = 120$.
 
 ```python run
 n = 5
@@ -450,12 +449,29 @@ This subtle bug creates an infinite loop. When `count` reaches `2`, the `continu
 
 ### Exercise 1 (easy): Print multiples of 3
 
-Write a while loop that starts at 3 and prints multiples of 3 up to and including 15.
+Use `n` as the sample data. Write a while loop that starts at 3 and prints multiples of 3 up to and including 15. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about repeating with loops. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+n = 3
+```
+
+```expected
+3
+6
+9
+12
+15
+```
 
 ```python run
-# Complete the Print multiples of 3 task.
-# Sample data: n = 3
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Print multiples of 3 task.
+n = 3
+# Write your code below
 ```
 
 
@@ -482,10 +498,23 @@ while n <= 15:
 
 Start with `value = 100`. Use a while loop to repeatedly divide `value` by `2` as long as `value >= 1`. Count how many division steps occur and print the result.
 
+
+:::tip Hint
+Use the lesson idea about repeating with loops. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+value = 100
+```
+
+```expected
+Reached under 1 in 7 steps. Final value: 0.78125
+```
+
 ```python run
-# Complete the Halving numbers until below 1 task.
-# Sample data: value = 100
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): Halving numbers until below 1 task.
+value = 100
+# Write your code below
 ```
 
 
@@ -508,12 +537,25 @@ Reached under 1 in 7 steps. Final value: 0.78125
 
 ### Exercise 3 (challenge): Sum of even numbers up to 20
 
-Compute the sum of all even numbers from 2 up to 20 ($2 + 4 + 6 + \dots + 20$) using a while loop and an accumulator variable.
+Use a `while` loop and an accumulator to sum the even numbers from 2 through 20. Print the total.
+
+
+:::tip Hint
+Use the lesson idea about repeating with loops. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+num = 2
+```
+
+```expected
+Sum of even numbers 2 to 20: 110
+```
 
 ```python run
-# Complete the Sum of even numbers up to 20 task.
-# Sample data: num = 2
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Sum of even numbers up to 20 task.
+num = 2
+# Write your code below
 ```
 
 

@@ -27,7 +27,6 @@ learningGoals:
   - "Avoid unintended aliasing bugs by creating independent shallow copies with `.copy()`."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How to declare and initialize Python **lists** using comma-separated elements inside square brackets `[...]`.
@@ -221,11 +220,11 @@ Under the hood, CPython implements lists as the **`PyListObject`** structure, wh
 
 | Operation | CPython Implementation | Time Complexity | Notes |
 | :--- | :--- | :--- | :--- |
-| **Index lookup `items[i]`** | Direct pointer offset calculation | $O(1)$ constant time | Instantaneous access regardless of list size |
-| **Append `.append(x)`** | Over-allocated array slot fill | $O(1)$ amortized | CPython resizes array by ~12.5% when full |
-| **Pop from end `.pop()`** | Decrements length counter | $O(1)$ constant time | Extremely fast; no element shifting needed |
-| **Insert `.insert(0, x)`** | Shifts all elements one slot right | $O(N)$ linear time | Slower for large lists (use `collections.deque`) |
-| **Delete `.remove(x)`** | Linear search followed by shift | $O(N)$ linear time | Must find item, then shift trailing items left |
+| **Index lookup `items[i]`** | Direct pointer offset calculation | O(1) constant time | Instantaneous access regardless of list size |
+| **Append `.append(x)`** | Over-allocated array slot fill | O(1) amortized | CPython resizes array by ~12.5% when full |
+| **Pop from end `.pop()`** | Decrements length counter | O(1) constant time | Extremely fast; no element shifting needed |
+| **Insert `.insert(0, x)`** | Shifts all elements one slot right | O(N) linear time | Slower for large lists (use `collections.deque`) |
+| **Delete `.remove(x)`** | Linear search followed by shift | O(N) linear time | Must find item, then shift trailing items left |
 
 Because CPython over-allocates internal memory capacity (for instance, allocating space for 8 items when you create a list of 4), appending elements does not require reallocating memory on every single call.
 
@@ -233,7 +232,7 @@ Because CPython over-allocates internal memory capacity (for instance, allocatin
 
 ### 1. `IndexError: list index out of range`
 
-Attempting to access an index that does not exist in the list raises an immediate `IndexError`. Remember that for a list of length $N$, valid positive indices run from `0` to $N - 1$.
+Attempting to access an index that does not exist in the list raises an immediate `IndexError`. Remember that for a list of length N, valid positive indices run from `0` to N - 1.
 
 Broken code:
 ```python
@@ -313,12 +312,25 @@ How to fix it: iterate over a copy of the list (`for item in my_list.copy():`) o
 
 ### Exercise 1 (easy): Shopping inventory manager
 
-Create a list named `cart = ["milk", "bread", "eggs"]`. Perform the following sequence of operations: append `"butter"` to the cart, remove `"bread"` using `.remove()`, insert `"apples"` at index `0`, and print the final contents of the cart.
+Update `cart`: append `butter`, remove `bread`, then insert `apples` at index 0. Print the final list.
+
+
+:::tip Hint
+Use the lesson idea about lists. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+cart = ['milk', 'bread', 'eggs']
+```
+
+```expected
+Updated shopping cart: ['apples', 'milk', 'eggs', 'butter']
+```
 
 ```python run
-# Complete the Shopping inventory manager task.
-# Sample data: cart = ['milk', 'bread', 'eggs']
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Shopping inventory manager task.
+cart = ['milk', 'bread', 'eggs']
+# Write your code below
 ```
 
 
@@ -326,6 +338,7 @@ Create a list named `cart = ["milk", "bread", "eggs"]`. Perform the following se
 Execute the methods in sequence and print the modified list:
 
 ```python run
+cart = ['milk', 'bread', 'eggs']
 cart = ["milk", "bread", "eggs"]
 cart.append("butter")
 cart.remove("bread")
@@ -340,12 +353,28 @@ Updated shopping cart: ['apples', 'milk', 'eggs', 'butter']
 
 ### Exercise 2 (medium): Examination score analyzer
 
-Given a list of student exam marks `marks = [72, 85, 91, 64, 78, 88]`, calculate and print the highest score, the lowest score, the total sum of all marks, and the class average rounded to two decimal places.
+Use `marks` to find the highest score, lowest score, total, and average. Round the average to two decimals and print all four values.
+
+
+:::tip Hint
+Use the lesson idea about lists. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+marks = [72, 85, 91, 64, 78, 88]
+```
+
+```expected
+Highest mark: 91
+Lowest mark: 64
+Total marks: 478
+Class average: 79.67
+```
 
 ```python run
-# Complete the Examination score analyzer task.
-# Sample data: marks = [72, 85, 91, 64, 78, 88]
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): Examination score analyzer task.
+marks = [72, 85, 91, 64, 78, 88]
+# Write your code below
 ```
 
 
@@ -374,12 +403,26 @@ Class average: 79.67
 
 ### Exercise 3 (challenge): Customer service queue simulator
 
-Simulate an airport check-in desk service queue. Initialize `queue = ["Passenger 1", "Passenger 2", "Passenger 3"]`. Add two new arrivals (`"Passenger 4"` and `"Passenger 5"`) using `.append()`. Then, simulate serving the first two passengers in order by calling `.pop(0)` twice, printing each passenger as they are served. Finally, display the remaining queue.
+Use `queue` to add two passengers. Serve the first two in order, print each name, then print the remaining queue.
+
+:::tip Hint
+Use the lesson idea about lists. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+queue = ['Passenger 1', 'Passenger 2', 'Passenger 3']
+```
+
+```expected
+Served: Passenger 1
+Served: Passenger 2
+Remaining in queue: ['Passenger 3', 'Passenger 4', 'Passenger 5']
+```
 
 ```python run
-# Complete the Customer service queue simulator task.
-# Sample data: queue = ['Passenger 1', 'Passenger 2', 'Passenger 3'], served1 = queue.pop(0)
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Customer service queue simulator task.
+queue = ['Passenger 1', 'Passenger 2', 'Passenger 3']
+# Write your code below
 ```
 
 
@@ -387,6 +430,7 @@ Simulate an airport check-in desk service queue. Initialize `queue = ["Passenger
 Append new passengers, call `queue.pop(0)` to process the front of the line, and print the remaining list:
 
 ```python run
+queue = ['Passenger 1', 'Passenger 2', 'Passenger 3']
 queue = ["Passenger 1", "Passenger 2", "Passenger 3"]
 queue.append("Passenger 4")
 queue.append("Passenger 5")

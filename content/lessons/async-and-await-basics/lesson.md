@@ -16,7 +16,6 @@ learningGoals:
   - "Explain how awaiting lets other tasks make progress"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What **asynchronous programming** is useful for
@@ -310,12 +309,27 @@ A blocking operation can stop the event loop from running other tasks. Prefer an
 
 ### Easy: identify a coroutine function
 
-Define an async function and use `inspect` to check its kind.
+Define an async function and use `inspect` to check its kind. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about async and await basics. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+delay_seconds = 0
+message = 'First serve'
+```
+
+```expected
+True
+```
 
 ```python run
-# Complete the identify a coroutine function task.
-# Sample data: delay_seconds = 0, message = "First serve"
-# Write your code below and print the result
+# Complete the Easy: identify a coroutine function task.
+delay_seconds = 0
+message = 'First serve'
+# Write your code below
 ```
 
 
@@ -323,6 +337,8 @@ Define an async function and use `inspect` to check its kind.
 An async def statement creates a coroutine function. `inspect.iscoroutinefunction()` reports that status without running it.
 
 ```python
+delay_seconds = 0
+message = 'First serve'
 import inspect
 
 async def start_match():
@@ -334,12 +350,25 @@ print(inspect.iscoroutinefunction(start_match))
 
 ### Medium: inspect a coroutine object
 
-Call an async function, check the returned object, then close it because this example does not await it.
+Use `message` as the sample data. Call an async function, check the returned object, then close it because this example does not await it. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about async and await basics. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+message = "Finished"
+```
+
+```expected
+True
+```
 
 ```python run
-# Complete the inspect a coroutine object task.
-# Sample data: pending = read_result()
-# Write your code below and print the result
+# Complete the Medium: inspect a coroutine object task.
+message = "Finished"
+# Write your code below
 ```
 
 
@@ -347,6 +376,7 @@ Call an async function, check the returned object, then close it because this ex
 Calling the async function creates a coroutine object. Close it in this inspection-only example; real work should be awaited or scheduled.
 
 ```python
+message = "Finished"
 import inspect
 
 async def read_result():
@@ -360,12 +390,25 @@ pending.close()
 
 ### Challenge: run a coroutine in a terminal
 
-Write an async function that returns a message after an async sleep, then execute it from a normal Python script with `asyncio.run()`.
+Define `finish_practice()` as an async function that returns `message`. Create its coroutine, print whether it is awaitable, then close it.
+
+
+:::tip Hint
+Use the lesson idea about async and await basics. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+message = "Practice complete"
+```
+
+```expected
+True
+```
 
 ```python run
-# Complete the run a coroutine in a terminal task.
-# Sample data: delay_seconds = 0
-# Write your code below and print the result
+# Complete the Challenge: run a coroutine in a terminal task.
+message = "Practice complete"
+# Write your code below
 ```
 
 
@@ -381,13 +424,15 @@ python3.12 async_practice.py
 The top-level `asyncio.run()` starts the loop and runs the coroutine to completion. Inside the coroutine, await pauses at the async sleep before returning the message.
 
 ```python
-import asyncio
+message = "Practice complete"
+import inspect
 
 async def finish_practice():
-    await asyncio.sleep(0)
-    return "Practice complete"
+    return message
 
-print(asyncio.run(finish_practice()))
+pending = finish_practice()
+print(inspect.isawaitable(pending))
+pending.close()
 ```
 :::
 

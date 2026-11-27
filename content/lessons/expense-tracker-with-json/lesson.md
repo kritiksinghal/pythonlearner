@@ -16,7 +16,6 @@ learningGoals:
   - "Use preset values in browser examples and input() in a terminal version"
 relatedProblems: []
 ---
-
 ## The goal
 
 Build a small expense tracker that records a description, category, and amount for each purchase. The program should calculate the total and save the entries as JSON text so they can be loaded on another run. Runnable examples use preset expense values and an in-memory text string; the terminal version with `input()` and a file is shown separately in a plain Python block.
@@ -297,10 +296,23 @@ In the saved program, include the `add_expense()` helper before the interactive 
 
 Try each improvement only after you can add an entry, save it, restart, and load it again.
 
+
+:::tip Hint
+Use the lesson idea about expense tracker with json. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+expenses = [{'category': 'food', 'cents': 475}, {'category': 'travel', 'cents': 1299}]
+```
+
+```expected
+{'food': 700, 'travel': 1299}
+```
+
 ```python run
-# Calculate the total cents for each expense category.
-# Sample data: expenses = [{"category": "food", "cents": 475}, {"category": "travel", "cents": 1299}]
-# Write your code below and print the result
+# Complete the Make It Yourself task.
+expenses = [{'category': 'food', 'cents': 475}, {'category': 'travel', 'cents': 1299}]
+# Write your code below
 ```
 
 1. Reject zero or negative amounts before saving.
@@ -319,6 +331,7 @@ Reference: Python documentation, json — JSON encoder and decoder
 Use a dictionary keyed by category and add each expense amount to its running total. `dict.get` starts a category at zero the first time it appears.
 
 ```python
+expenses = [{'category': 'food', 'cents': 475}, {'category': 'travel', 'cents': 1299}]
 def category_totals(expenses):
     totals = {}
     for expense in expenses:

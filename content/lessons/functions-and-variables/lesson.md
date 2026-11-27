@@ -17,7 +17,6 @@ relatedProblems:
   - "format-phone-number"
   - "censor-words"
 ---
-
 ## What you will learn
 
 - How to store information in memory using a **variable**
@@ -281,7 +280,7 @@ print(y)
 | 1 | Global Scope | Reads `def square(n):`. Stores the bytecode recipe in memory. Does not run the body. | `square` points to function object |
 | 2 | Global Scope | Evaluates right side of `y = square(4)`. Prepares function call. | Global namespace waiting for return |
 | 3 | Local Scope (`square`) | Creates new local frame. Binds parameter `n = 4`. | `n = 4` in local memory |
-| 4 | Local Scope (`square`) | Evaluates `n * n` ($4 \times 4 = 16$). Executes `return 16`. | Local frame returns 16 and is destroyed |
+| 4 | Local Scope (`square`) | Evaluates `n * n` ($4 × 4 = 16$). Executes `return 16`. | Local frame returns 16 and is destroyed |
 | 5 | Global Scope | Receives returned value `16`. Assigns `y = 16`. | `y = 16` in global memory |
 | 6 | Global Scope | Executes `print(y)`. Looks up `y` and displays `16`. | Program finishes cleanly |
 
@@ -386,12 +385,27 @@ The parameter `name` has no default value, so Python demands an argument. Callin
 
 ### Exercise 1 (easy): Badge generator function
 
-Write a function called `create_badge(full_name, title)` that cleans `full_name` using `.strip().title()`, converts `title` to uppercase with `.strip().upper()`, and returns a single formatted string in the pattern `"Name - TITLE"`. Test it with `"  albert einstein  "` and `"physicist"`.
+Use `full_name` and `title` as the sample data. Define `create_badge(full_name, title)` to clean both values. Return a string in the form `Name - TITLE` and print two test results.
+
+
+:::tip Hint
+Use the lesson idea about functions and variables. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+full_name = "  albert einstein  "
+title = "physicist"
+```
+
+```expected
+Albert Einstein - PHYSICIST
+```
 
 ```python run
-# Complete the Badge generator function task.
-# Sample data: badge = create_badge('  albert einstein  ', 'physicist')
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Badge generator function task.
+full_name = "  albert einstein  "
+title = "physicist"
+# Write your code below
 ```
 
 
@@ -399,6 +413,8 @@ Write a function called `create_badge(full_name, title)` that cleans `full_name`
 Chaining `.strip()` and `.title()` standardizes user names regardless of extra whitespace, and an f-string joins the badge elements together cleanly.
 
 ```python run
+full_name = "  albert einstein  "
+title = "physicist"
 def create_badge(full_name, title):
     cleaned_name = full_name.strip().title()
     cleaned_title = title.strip().upper()
@@ -415,12 +431,32 @@ Albert Einstein - PHYSICIST
 
 ### Exercise 2 (medium): Tip calculation function
 
-Write a function named `calculate_tip(bill_amount, percent)` that accepts the bill subtotal and a tip percentage, calculates the tip amount, and returns it. Test it with a 500 bill at 10% and a 120 bill at 18%.
+Use `bill_amount`, `percent`, `second_bill_amount` and `second_percent` as the sample data. Define `calculate_tip(bill_amount, percent)` to return the tip amount. Print the results for both supplied bills.
+
+
+:::tip Hint
+Use the lesson idea about functions and variables. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+bill_amount = 500
+percent = 10
+second_bill_amount = 120
+second_percent = 18
+```
+
+```expected
+Tip for 500 at 10%: 50.0
+Tip for 120 at 18%: 21.6
+```
 
 ```python run
-# Complete the Tip calculation function task.
-# Sample data: tip_10 = calculate_tip(500, 10), tip_18 = calculate_tip(120, 18)
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): Tip calculation function task.
+bill_amount = 500
+percent = 10
+second_bill_amount = 120
+second_percent = 18
+# Write your code below
 ```
 
 
@@ -428,6 +464,10 @@ Write a function named `calculate_tip(bill_amount, percent)` that accepts the bi
 Multiplying the subtotal by `percent / 100` computes the exact tip amount, which `return` hands back to the caller for printing or total computation.
 
 ```python run
+bill_amount = 500
+percent = 10
+second_bill_amount = 120
+second_percent = 18
 def calculate_tip(bill_amount, percent):
     return bill_amount * (percent / 100)
 
@@ -445,12 +485,28 @@ Tip for 120 at 18%: 21.6
 
 ### Exercise 3 (challenge): Seconds to minutes converter function
 
-Write a function `convert_seconds(total_seconds)` that converts a total count of seconds into minutes and leftover seconds using `//` and `%`, returning a formatted string like `"2 min 15 sec"`. Test it with `135` and `3665` seconds.
+Use `total_seconds` and `other_seconds` as the sample data. Define `convert_seconds(total_seconds)` using `//` and `%`. Return `minutes min seconds sec` and print both test results.
+
+
+:::tip Hint
+Use the lesson idea about functions and variables. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+total_seconds = 135
+other_seconds = 3665
+```
+
+```expected
+2 min 15 sec
+61 min 5 sec
+```
 
 ```python run
-# Complete the Seconds to minutes converter function task.
-# Sample data: total_seconds = 135, other_seconds = 3665
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Seconds to minutes converter function task.
+total_seconds = 135
+other_seconds = 3665
+# Write your code below
 ```
 
 
@@ -458,6 +514,8 @@ Write a function `convert_seconds(total_seconds)` that converts a total count of
 Floor division `//` extracts the full minutes, while modulo `%` determines the remaining seconds.
 
 ```python run
+total_seconds = 135
+other_seconds = 3665
 def convert_seconds(total_seconds):
     minutes = total_seconds // 60
     seconds = total_seconds % 60

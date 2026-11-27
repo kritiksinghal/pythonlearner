@@ -18,7 +18,6 @@ learningGoals:
   - "Apply core transformation and inspection methods including `.upper()`, `.lower()`, `.strip()`, `.replace()`, `.find()`, and `.count()`."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How Python defines textual data as ordered sequences of Unicode characters (**strings**).
@@ -331,7 +330,7 @@ Score: 98
 | :--- | :--- | :--- | :--- |
 | **Length** | `len("Python")` | `6` | Total character count |
 | **Concatenate** | `"Py" + "thon"` | `"Python"` | Joins two strings |
-| **Repeat** | `"Hi" * 3` | `"HiHiHi"` | Repeats string $n$ times |
+| **Repeat** | `"Hi" * 3` | `"HiHiHi"` | Repeats string n times |
 | **Strip whitespace** | `" text ".strip()` | `"text"` | Trims outer whitespace |
 | **Uppercase** | `"code".upper()` | `"CODE"` | Converts all letters to upper |
 | **Lowercase** | `"CODE".lower()` | `"code"` | Converts all letters to lower |
@@ -346,12 +345,25 @@ Score: 98
 
 ### Exercise 1 (easy): Clean and standardize author name
 
-A book catalog database received the messy string `raw_author = '   arundhati roy   '`. Write a script that removes all leading and trailing whitespace and transforms the name into proper title casing (`'Arundhati Roy'`), then prints the result.
+Use `raw_author` to remove surrounding spaces and apply title case. Print the cleaned name.
+
+
+:::tip Hint
+Use the lesson idea about text strings. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+raw_author = '   arundhati roy   '
+```
+
+```expected
+Sanitized author name: Arundhati Roy
+```
 
 ```python run
-# Complete the Clean and standardize author name task.
-# Sample data: raw_author = '   arundhati roy   ', clean_author = raw_author.strip().title()
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Clean and standardize author name task.
+raw_author = '   arundhati roy   '
+# Write your code below
 ```
 
 
@@ -371,12 +383,25 @@ Sanitized author name: Arundhati Roy
 
 ### Exercise 2 (medium): Masking payment card digits
 
-To protect customer privacy, an e-commerce checkout screen must display only the final four digits of a payment card number, replacing all preceding digits with asterisks. Given `raw_card = '4532-8901-2345-9876'`, remove the hyphens and generate a masked string showing 12 asterisks followed by the last 4 digits (`'************9876'`).
+Use `raw_card` to remove hyphens and mask all but its final four digits. Print 12 asterisks followed by `9876`.
+
+
+:::tip Hint
+Use the lesson idea about text strings. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+raw_card = '4532-8901-2345-9876'
+```
+
+```expected
+Masked account number: ************9876
+```
 
 ```python run
-# Complete the Masking payment card digits task.
-# Sample data: raw_card = '4532-8901-2345-9876', digits_only = raw_card.replace('-', '')
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): Masking payment card digits task.
+raw_card = '4532-8901-2345-9876'
+# Write your code below
 ```
 
 
@@ -397,12 +422,27 @@ Masked account number: ************9876
 
 ### Exercise 3 (challenge): Word frequency and selective replacement
 
-Given the passage `paragraph = 'Python is powerful. Python is fast. Python is friendly.'`, count how many times the word `'Python'` appears. Then, use `.replace(old, new, count)` to substitute only the first two occurrences of `'Python'` with `'Snake'`, leaving the third occurrence unchanged. Print both the count and the transformed text.
+Count `target_word` in `paragraph`. Replace its first two occurrences with `Snake`, then print the count and new text.
+
+:::tip Hint
+Use the lesson idea about text strings. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+paragraph = 'Python is powerful. Python is fast. Python is friendly.'
+target_word = 'Python'
+```
+
+```expected
+Occurrences of Python: 3
+Replaced first two: Snake is powerful. Snake is fast. Python is friendly.
+```
 
 ```python run
-# Complete the Word frequency and selective replacement task.
-# Sample data: paragraph = 'Python is powerful. Python is fast. Python is friendly.', target_word = 'Python'
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Word frequency and selective replacement task.
+paragraph = 'Python is powerful. Python is fast. Python is friendly.'
+target_word = 'Python'
+# Write your code below
 ```
 
 

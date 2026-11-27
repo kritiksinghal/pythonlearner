@@ -24,7 +24,6 @@ learningGoals:
   - "Traverse text strings character-by-character to count frequencies and inspect patterns."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - The essential distinction between **indefinite iteration** (using `while` loops) and **definite iteration** (using `for` loops).
@@ -183,7 +182,7 @@ Over 1, Ball 6: bowled
 
 ### 7. Multiplicative accumulation: calculating factorials
 
-The accumulator pattern works with multiplication just as easily as addition. To calculate a factorial ($n! = 1 \times 2 \times \dots \times n$), initialize the accumulator to `1` (the multiplicative identity) and multiply by each integer in sequence.
+The accumulator pattern works with multiplication just as easily as addition. To calculate a factorial (n! = 1 × 2 × … × n), initialize the accumulator to `1` (the multiplicative identity) and multiply by each integer in sequence.
 
 ```python run
 n = 5
@@ -340,12 +339,34 @@ How to fix it: if you need to skip steps dynamically, use a `while` loop (as cov
 
 ### Exercise 1 (easy): Multiplication table generator
 
-Write a program that uses a `for` loop with `range(1, 11)` to print the multiplication table for the number `7` (from $7 \times 1 = 7$ up to $7 \times 10 = 70$), formatted using an f-string.
+Use `multiplier` and `range(1, 11)` to print its multiplication table, one product per line.
+
+
+:::tip Hint
+Use the lesson idea about for loops and range. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+multiplier = 7
+```
+
+```expected
+7 x 1 = 7
+7 x 2 = 14
+7 x 3 = 21
+7 x 4 = 28
+7 x 5 = 35
+7 x 6 = 42
+7 x 7 = 49
+7 x 8 = 56
+7 x 9 = 63
+7 x 10 = 70
+```
 
 ```python run
-# Complete the Multiplication table generator task.
-# Sample data: multiplier = 7
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Multiplication table generator task.
+multiplier = 7
+# Write your code below
 ```
 
 
@@ -375,12 +396,25 @@ for step in range(1, 11):
 
 ### Exercise 2 (medium): Vowel counter in a sentence
 
-Given the phrase `sentence = "Coding in Python is deeply rewarding"`, write a `for` loop that iterates through every character, checks if the lowercase character is a vowel (`ch in "aeiou"`), and accumulates the count into `vowel_count`. Print the final tally.
+Count the vowels in `sentence` with a `for` loop. Store the count in `vowel_count` and print it.
+
+
+:::tip Hint
+Use the lesson idea about for loops and range. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+sentence = 'Coding in Python is deeply rewarding'
+```
+
+```expected
+Total vowels found: 10
+```
 
 ```python run
-# Complete the Vowel counter in a sentence task.
-# Sample data: sentence = 'Coding in Python is deeply rewarding'
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): Vowel counter in a sentence task.
+sentence = 'Coding in Python is deeply rewarding'
+# Write your code below
 ```
 
 
@@ -388,6 +422,7 @@ Given the phrase `sentence = "Coding in Python is deeply rewarding"`, write a `f
 Traverse `sentence` directly, convert each character to lowercase, test with `in "aeiou"`, and increment `vowel_count`:
 
 ```python run
+sentence = 'Coding in Python is deeply rewarding'
 sentence = "Coding in Python is deeply rewarding"
 vowel_count = 0
 for char in sentence:
@@ -403,12 +438,33 @@ Total vowels found: 10
 
 ### Exercise 3 (challenge): Sum of odd squares
 
-Using a `for` loop and `range()`, calculate the sum of the squares ($i^2$) of all odd numbers between `1` and `15` inclusive ($1^2 + 3^2 + 5^2 + \dots + 15^2$). Print each term as it is calculated and display the final sum.
+Use `total_odd_squares` as the sample data. Use `range()` to square each odd number from 1 through 15. Print each square, then print their sum.
+
+
+:::tip Hint
+Use the lesson idea about for loops and range. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+total_odd_squares = 0
+```
+
+```expected
+1^2 =   1 (Running sum: 1)
+3^2 =   9 (Running sum: 10)
+5^2 =  25 (Running sum: 35)
+7^2 =  49 (Running sum: 84)
+9^2 =  81 (Running sum: 165)
+11^2 = 121 (Running sum: 286)
+13^2 = 169 (Running sum: 455)
+15^2 = 225 (Running sum: 680)
+Final total of odd squares: 680
+```
 
 ```python run
-# Complete the Sum of odd squares task.
-# Sample data: total_odd_squares = 0
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Sum of odd squares task.
+total_odd_squares = 0
+# Write your code below
 ```
 
 

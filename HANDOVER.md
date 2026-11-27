@@ -56,10 +56,12 @@ npm run build
 Keep `package-lock.json` intact when installing across platforms. It includes the optional Linux x64 GNU packages for Tailwind Oxide and Lightning CSS that Vercel needs, even when the lockfile was generated on macOS.
 
 ```bash
+python3 scripts/lint_lessons.py
 LESSON_PYTHON="$HOME/Library/spyder-6/envs/spyder-runtime/bin/python3.12" python3 scripts/verify_lessons.py
 node scripts/verify_in_pyodide.mjs
 LESSON_PYTHON="$HOME/Library/spyder-6/envs/spyder-runtime/bin/python3.12" python3 scripts/verify_problems.py
 npm run build
+node scripts/check_rendered_lessons.mjs
 ```
 
 `verify_in_pyodide.mjs` also runs stdin self-tests by extracting and loading the same `PLAIN_RUNNER_PY` helper embedded in `public/pyodideWorker.js`.
@@ -112,6 +114,9 @@ The development server is normally available at `http://localhost:3000`. Both le
 
 - `LESSON_PYTHON` selects the lesson verifier's interpreter; it must report Python 3.12.x.
 - The verifier checks titles, sections, word counts, runnable outputs, error lines, and quiz schema.
+- `lint_lessons.py` checks fence and callout pairing, section headings, tables, and LaTeX-style notation across all lessons.
+- Every exercise includes a formatted sample-input panel and expected output. Exercise tasks that ask the learner for information use the runner's prefilled Input box. Hint and Solution are separate collapsed dropdowns. `verify_lessons.py` and `verify_in_pyodide.mjs` run exercise solutions with sample stdin where needed and compare their output with the expected block.
+- `check_rendered_lessons.mjs` checks the built HTML for all lesson pages for Markdown that leaked into rendered code or visible text; it also checks the live DOM when Playwright is available.
 - The Pyodide verifier checks browser-compatible lesson examples against Pyodide 0.26.4.
 - Plain lesson and practice runs accept pre-entered stdin, one line per `input()` call; the worker prints input prompts and echoed lines as a terminal transcript. `run`/function and stdio test modes retain their existing behavior.
 - Dynamic lesson and problem slugs must be enumerated at build time; content must not be read from `/content` at request time.
@@ -127,6 +132,7 @@ The development server is normally available at `http://localhost:3000`. Both le
   fi
   ```
 
+- Definition of done for lesson content includes a clean structural lint, passing Python 3.12 and Pyodide lesson verifiers, and a built-HTML scan of all 60 lesson pages. A browser DOM check that cannot run is reported as **needs human check**.
 - Production checks include clean install, build, lint, static route output, case-sensitive path checks, and confirming the client asset leak scan reports zero hits for `referenceSolution` and `wrongSolutions`. The public `solution` field is allowed.
 
 ---

@@ -15,7 +15,6 @@ learningGoals:
   - "Extend a class through inheritance and super()"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How classes describe a kind of object and objects hold individual data
@@ -382,12 +381,25 @@ Inside a setter for `room`, assigning to `self.room` calls the setter again. Sto
 
 ### Easy: create a reading object
 
-Store a title and return it from a method.
+Use `book_title` as the sample data. Store a title and return it from a method.
+
+
+:::tip Hint
+Use the lesson idea about object oriented programming. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+book_title = 'A Field of Stars'
+```
+
+```expected
+Note: Tidal pools
+```
 
 ```python run
-# Complete the create a reading object task.
-# Sample data: book_title = "A Field of Stars"
-# Write your code below and print the result
+# Complete the Easy: create a reading object task.
+book_title = 'A Field of Stars'
+# Write your code below
 ```
 
 
@@ -395,6 +407,7 @@ Store a title and return it from a method.
 The constructor saves the title on the instance. The method reads that attribute and returns a heading.
 
 ```python
+book_title = 'A Field of Stars'
 class FieldNote:
     def __init__(self, title):
         self.title = title
@@ -408,12 +421,25 @@ print(FieldNote("Tidal pools").heading())
 
 ### Medium: validate a shelf label
 
-Use a property setter to reject an empty label.
+Use `shelf_label` as the sample data. Use a property setter to reject an empty label. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about object oriented programming. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+shelf_label = 'Science'
+```
+
+```expected
+Fiction
+```
 
 ```python run
-# Complete the validate a shelf label task.
-# Sample data: shelf_label = "Science"
-# Write your code below and print the result
+# Complete the Medium: validate a shelf label task.
+shelf_label = 'Science'
+# Write your code below
 ```
 
 
@@ -421,6 +447,7 @@ Use a property setter to reject an empty label.
 The setter checks the value before storing it in a separate internal attribute.
 
 ```python
+shelf_label = 'Science'
 class Shelf:
     def __init__(self, label):
         self.label = label
@@ -441,12 +468,27 @@ print(Shelf("Fiction").label)
 
 ### Challenge: extend a base class
 
-Create a `Mineral` class and a child that adds its color while reusing the parent's name setup.
+Create a `Mineral` class and a child that adds its color while reusing the parent's name setup. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about object oriented programming. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+mineral_name = "Quartz"
+mineral_color = "smoky"
+```
+
+```expected
+Quartz smoky
+```
 
 ```python run
-# Complete the extend a base class task.
-# Sample data: sample = Quartz('Quartz', 'smoky')
-# Write your code below and print the result
+# Complete the Challenge: extend a base class task.
+mineral_name = "Quartz"
+mineral_color = "smoky"
+# Write your code below
 ```
 
 
@@ -454,6 +496,8 @@ Create a `Mineral` class and a child that adds its color while reusing the paren
 The child initializer delegates the shared name setup to the parent, then stores its additional color attribute.
 
 ```python
+mineral_name = "Quartz"
+mineral_color = "smoky"
 class Mineral:
     def __init__(self, name):
         self.name = name

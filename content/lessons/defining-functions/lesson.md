@@ -35,7 +35,6 @@ learningGoals:
   - "Write a main() function to gather the starting steps of a program."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - A **function** is a named group of instructions that performs a task when called.
@@ -316,12 +315,25 @@ Python reports `NameError: name 'notice' is not defined`. The function tries to 
 
 ### Easy: Create a greeting function
 
-Define a function that prints a greeting for a school science fair, then call it once.
+Use `event_name` as the sample data. Define a function that prints a greeting for a school science fair, then call it once. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about defining functions. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+event_name = 'school science fair'
+```
+
+```expected
+Welcome to the science fair!
+```
 
 ```python run
-# Complete the Create a greeting function task.
-# Sample data: event_name = "school science fair"
-# Write your code below and print the result
+# Complete the Easy: Create a greeting function task.
+event_name = 'school science fair'
+# Write your code below
 ```
 
 :::solution
@@ -329,6 +341,7 @@ The solution completes “Create a greeting function” by using the provided sa
 
 
 ```python
+event_name = 'school science fair'
 def greet_fair_visitors():
     print("Welcome to the science fair!")
 
@@ -339,12 +352,27 @@ greet_fair_visitors()
 
 ### Medium: Announce three playlist sections
 
-Define one function that prints a playlist section heading, then call it three times.
+Use `sections` as the sample data. Define one function that prints a playlist section heading, then call it three times. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about defining functions. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+sections = ['acoustic songs', 'instrumentals', 'final track']
+```
+
+```expected
+Next: acoustic songs
+Next: acoustic songs
+Next: acoustic songs
+```
 
 ```python run
-# Complete the Announce three playlist sections task.
-# Sample data: sections = ["acoustic songs", "instrumentals", "final track"]
-# Write your code below and print the result
+# Complete the Medium: Announce three playlist sections task.
+sections = ['acoustic songs', 'instrumentals', 'final track']
+# Write your code below
 ```
 
 :::solution
@@ -352,6 +380,7 @@ The solution completes “Announce three playlist sections” by using the provi
 
 
 ```python
+sections = ['acoustic songs', 'instrumentals', 'final track']
 def announce_section():
     print("Next: acoustic songs")
 
@@ -364,12 +393,27 @@ announce_section()
 
 ### Challenge: Organize a study session with `main()`
 
-Define one function that prints a study checklist and a `main()` function that prints a title before calling the checklist. Call `main()`.
+Use `checklist` as the sample data. Define one function that prints a study checklist and a `main()` function that prints a title before calling the checklist. Call `main()`. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about defining functions. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+checklist = ['Review notes', 'Take a break', 'Practice']
+```
+
+```expected
+Saturday study session
+Review notes
+Solve two problems
+```
 
 ```python run
-# Complete the Organize a study session with `main()` task.
-# Sample data: checklist = ["Review notes", "Take a break", "Practice"]
-# Write your code below and print the result
+# Complete the Challenge: Organize a study session with `main()` task.
+checklist = ['Review notes', 'Take a break', 'Practice']
+# Write your code below
 ```
 
 :::solution
@@ -377,6 +421,7 @@ The solution completes “Organize a study session with `main()`” by using the
 
 
 ```python
+checklist = ['Review notes', 'Take a break', 'Practice']
 def print_checklist():
     print("Review notes")
     print("Solve two problems")

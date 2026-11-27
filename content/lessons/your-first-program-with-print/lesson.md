@@ -15,7 +15,6 @@ learningGoals:
   - "Employ escape characters like `\n`, `\t`, and escaped quotation marks to format complex multi-line text structures."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How the built-in `print()` function serves as your program's primary window to the outside world.
@@ -283,12 +282,31 @@ Finished string
 
 ### Exercise 1 (easy): Formatted product pricing label
 
-Create three variables: `item = 'Cricket Bat'`, `price = 2400`, and `discount = 300`. In a single `print()` call, output the item name, original price, discount amount, and the calculated final price (`price - discount`), separating each piece of information with a vertical bar surrounded by spaces (`sep=' | '`).
+Use `item`, `price`, and `discount` to print the item, original price, discount, and final price. Separate them with ` | `.
+
+
+:::tip Hint
+Use the lesson idea about your first program with print. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+item = 'Cricket Bat'
+price = 2400
+discount = 300
+sep = ' | '
+```
+
+```expected
+Cricket Bat | Original Price: | 2400 | Discount: | 300 | Final: | 2100
+```
 
 ```python run
-# Complete the Formatted product pricing label task.
-# Sample data: item = 'Cricket Bat', price = 2400
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Formatted product pricing label task.
+item = 'Cricket Bat'
+price = 2400
+discount = 300
+sep = ' | '
+# Write your code below
 ```
 
 
@@ -299,6 +317,7 @@ Pass the labels and mathematical calculation as distinct arguments separated by 
 item = 'Cricket Bat'
 price = 2400
 discount = 300
+sep = ' | '
 print(item, 'Original Price:', price, 'Discount:', discount, 'Final:', price - discount, sep=' | ')
 ```
 
@@ -309,12 +328,25 @@ Cricket Bat | Original Price: | 2400 | Discount: | 300 | Final: | 2100
 
 ### Exercise 2 (medium): Single-line breadcrumb navigation
 
-Write three consecutive `print()` calls that print `'Step 1'`, `'Step 2'`, and `'Complete!'`. Use the `end` keyword parameter so all three steps appear on one single line connected by arrows like `' -> '`, finishing with a normal newline after `'Complete!'`.
+Use `end` as the sample data. Print `Step 1`, `Step 2`, and `Complete!` on one line. Separate the steps with ` -> ` and end with a newline.
+
+
+:::tip Hint
+Use the lesson idea about your first program with print. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+end = ' -> '
+```
+
+```expected
+Step 1 -> Step 2 -> Complete!
+```
 
 ```python run
-# Complete the Single-line breadcrumb navigation task.
-# Sample data: end=' -> '
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): Single-line breadcrumb navigation task.
+end = ' -> '
+# Write your code below
 ```
 
 
@@ -322,6 +354,7 @@ Write three consecutive `print()` calls that print `'Step 1'`, `'Step 2'`, and `
 Set `end=' -> '` on the first two print statements, leaving the third statement with the default newline:
 
 ```python run
+end = ' -> '
 print('Step 1', end=' -> ')
 print('Step 2', end=' -> ')
 print('Complete!')
@@ -334,12 +367,31 @@ Step 1 -> Step 2 -> Complete!
 
 ### Exercise 3 (challenge): Formatted commercial receipt
 
-Build a formatted store receipt using repeated string banners (`'=' * 30` and `'-' * 30`), custom currency separators (`sep=': $'`), and clean headers. Output a receipt number `#4092`, a stationery charge of `$350`, a sales tax of `$17.5`, and the total balance `$367.5`.
+Use `sep` as the sample data. Print receipt `#4092` with a 350 stationery charge, 17.5 tax, and 367.5 total. Use the shown banners and currency format.
+
+
+:::tip Hint
+Use the lesson idea about your first program with print. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+sep = ': $'
+```
+
+```expected
+==============================
+RECEIPT #4092
+Stationery Pack: $350
+Sales Tax (5%): $17.5
+------------------------------
+Total Due: $367.5
+==============================
+```
 
 ```python run
-# Complete the Formatted commercial receipt task.
-# Sample data: sep=': $'
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Formatted commercial receipt task.
+sep = ': $'
+# Write your code below
 ```
 
 
@@ -347,6 +399,7 @@ Build a formatted store receipt using repeated string banners (`'=' * 30` and `'
 Use `print('=' * 30)` for boundary rules, `sep=''` to join receipt numbers, and `sep=': $'` to format price labels:
 
 ```python run
+sep = ': $'
 print('=' * 30)
 print('RECEIPT #', 4092, sep='')
 print('Stationery Pack', 350, sep=': $')

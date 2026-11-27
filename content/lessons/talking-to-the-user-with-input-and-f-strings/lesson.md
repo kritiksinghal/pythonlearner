@@ -19,7 +19,6 @@ learningGoals:
   - "Apply advanced f-string format specifiers for decimal precision (:.2f), thousands separators (:,), and column alignment (:<, :>)."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How the `input()` function pauses program execution to read keystrokes from the keyboard.
@@ -298,58 +297,94 @@ Score: 95
 
 ### Exercise 1 (easy): Temperature conversion display
 
-Given a simulated temperature string `raw_temp = "28"` (in Celsius), convert it to an integer, calculate Fahrenheit using the formula `(celsius * 9 / 5) + 32`, and print a formatted summary showing one decimal place: `28°C is equivalent to 82.4°F`.
+Ask the user for a temperature in Celsius. Convert it to Fahrenheit. Print the temperature as `28°C is equivalent to 82.4°F`, with Fahrenheit to one decimal place.
+
+:::tip Hint
+Use the lesson idea about talking to the user with input and f strings. Trace the sample values before printing so you can check each step.
+:::
+
+```input
+28
+```
+
+```expected
+Enter temperature in Celsius: 28
+28°C is equivalent to 82.4°F
+```
 
 ```python run
-# Complete the Temperature conversion display task.
-# Sample data: raw_temp = '28'
-# Write your code below and print the result
+# Ask the user for a Celsius temperature and print its Fahrenheit conversion.
+# Write your code below
 ```
 
 
 :::solution Solution
-Cast `raw_temp` to `int`, compute `fahrenheit`, and interpolate both values using `{fahrenheit:.1f}`:
+
+Read the Celsius value with `input()`, convert it to a number, then format the Fahrenheit result to one decimal place.
 
 ```python run
-raw_temp = "28"
-celsius = int(raw_temp)
+raw_temp = input("Enter temperature in Celsius: ")
+celsius = float(raw_temp)
 fahrenheit = (celsius * 9 / 5) + 32
-print(f"{celsius}°C is equivalent to {fahrenheit:.1f}°F")
+print(f"{celsius:g}°C is equivalent to {fahrenheit:.1f}°F")
 ```
 
 ```output
+Enter temperature in Celsius: 28
 28°C is equivalent to 82.4°F
 ```
 :::
 
 ### Exercise 2 (medium): Restaurant bill splitter
 
-Write a script that processes three simulated input strings: `raw_total = "3500"`, `raw_people = "4"`, and `raw_tip_percent = "10"`. Calculate the total tip amount, the grand bill total (`subtotal + tip`), and the per-person share (`grand_total / people`). Display the grand total and individual share with rupee symbols `₹`, thousands commas, and two decimal places.
+Ask for the bill subtotal in rupees, the number of people, and the tip percentage. Calculate the tip, grand total, and each person’s share. Print both totals with rupee symbols, commas, and two decimal places.
+
+:::tip Hint
+Use the lesson idea about talking to the user with input and f strings. Trace the sample values before printing so you can check each step.
+:::
+
+```input
+3500
+4
+10
+```
+
+```expected
+Bill subtotal in rupees: 3500
+Number of people: 4
+Tip percent: 10
+Grand Total: ₹3,850.00
+Share Per Person: ₹962.50
+```
 
 ```python run
-# Complete the Restaurant bill splitter task.
-# Sample data: raw_total = '3500', raw_people = '4'
-# Write your code below and print the result
+# Ask for a bill, group size, and tip percentage; print the total and each share.
+# Write your code below
 ```
 
 
 :::solution Solution
-Cast `raw_total` and `raw_tip_percent` to floats, cast `raw_people` to an integer, compute shares, and format with `:,.2f`:
+
+Read the three responses as text, convert them to numeric values, then calculate and format the tip-inclusive totals.
 
 ```python run
-raw_total = "3500"
-raw_people = "4"
-raw_tip_percent = "10"
+raw_total = input("Bill subtotal in rupees: ")
+raw_people = input("Number of people: ")
+raw_tip_percent = input("Tip percent: ")
 subtotal = float(raw_total)
 people = int(raw_people)
 tip_pct = float(raw_tip_percent)
-grand_total = subtotal + (subtotal * (tip_pct / 100))
+tip = subtotal * tip_pct / 100
+grand_total = subtotal + tip
 per_person = grand_total / people
 print(f"Grand Total: ₹{grand_total:,.2f}")
 print(f"Share Per Person: ₹{per_person:,.2f}")
 ```
 
 ```output
+Bill subtotal in rupees: 3500
+Number of people: 4
+Tip percent: 10
 Grand Total: ₹3,850.00
 Share Per Person: ₹962.50
 ```
@@ -357,25 +392,51 @@ Share Per Person: ₹962.50
 
 ### Exercise 3 (challenge): Academic report card generator
 
-Given a student name `student_name = "Devika Sharma"` and exam marks `marks_math = 92`, `marks_science = 88`, and `marks_english = 95`, generate a formatted report card with boundary lines `'=' * 30`, left-aligned subject names (`:<12`), right-aligned marks (`:>3`), total marks out of 300, and overall percentage rounded to two decimal places.
+Ask for a student name and marks in Math, Science, and English. Calculate the total and percentage. Print an aligned report card with the name in uppercase and the percentage to two decimals.
+
+:::tip Hint
+Use the lesson idea about talking to the user with input and f strings. Trace the sample values before printing so you can check each step.
+:::
+```input
+Devika Sharma
+92
+88
+95
+```
+
+```expected
+Student name: Devika Sharma
+Math marks: 92
+Science marks: 88
+English marks: 95
+==============================
+STUDENT REPORT: DEVIKA SHARMA
+------------------------------
+Math         :  92
+Science      :  88
+English      :  95
+------------------------------
+Total: 275/300 (91.67%)
+==============================
+```
 
 ```python run
-# Complete the Academic report card generator task.
-# Sample data: student_name = 'Devika Sharma', marks_math = 92
-# Write your code below and print the result
+# Ask for a student name and three marks, then print an aligned report card.
+# Write your code below
 ```
 
 
 :::solution Solution
-Calculate sum and percentage, uppercase the student name, and use column width specifiers `:<12` and `:>3`:
+
+Collect the name and marks, convert each mark to an integer, and use f-string widths to align the report.
 
 ```python run
-student_name = "Devika Sharma"
-marks_math = 92
-marks_science = 88
-marks_english = 95
+student_name = input("Student name: ")
+marks_math = int(input("Math marks: "))
+marks_science = int(input("Science marks: "))
+marks_english = int(input("English marks: "))
 total_marks = marks_math + marks_science + marks_english
-percentage = (total_marks / 300) * 100
+percentage = total_marks / 300 * 100
 print("=" * 30)
 print(f"STUDENT REPORT: {student_name.upper()}")
 print("-" * 30)
@@ -388,6 +449,10 @@ print("=" * 30)
 ```
 
 ```output
+Student name: Devika Sharma
+Math marks: 92
+Science marks: 88
+English marks: 95
 ==============================
 STUDENT REPORT: DEVIKA SHARMA
 ------------------------------

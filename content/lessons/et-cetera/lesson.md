@@ -16,7 +16,6 @@ learningGoals:
   - "Explain how generators and iterators supply values gradually"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How sets remove duplicates and why sorted output is useful
@@ -372,12 +371,25 @@ Functions can read a global, but assigning to it requires the `global` keyword a
 
 ### Easy: list unique instrument names
 
-Remove repeated labels and print the remaining values in sorted order.
+Use `instruments` as the sample data. Remove repeated labels and print the remaining values in sorted order.
+
+
+:::tip Hint
+Use the lesson idea about et cetera. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+instruments = ['lyre', 'frame drum', 'lyre', 'shawm']
+```
+
+```expected
+['frame drum', 'lyre', 'shawm']
+```
 
 ```python run
-# Complete the list unique instrument names task.
-# Sample data: instruments = ['lyre', 'frame drum', 'lyre', 'shawm']
-# Write your code below and print the result
+# Complete the Easy: list unique instrument names task.
+instruments = ['lyre', 'frame drum', 'lyre', 'shawm']
+# Write your code below
 ```
 
 
@@ -385,6 +397,7 @@ Remove repeated labels and print the remaining values in sorted order.
 The set removes the repeated lyre label, and sorted returns the unique names in predictable order.
 
 ```python
+instruments = ['lyre', 'frame drum', 'lyre', 'shawm']
 instruments = ["lyre", "frame drum", "lyre", "shawm"]
 print(sorted(set(instruments)))
 ```
@@ -392,12 +405,27 @@ print(sorted(set(instruments)))
 
 ### Medium: number each route stop
 
-Use enumerate with a start value of one.
+Use `start` as the sample data. Use enumerate with a start value of one. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about et cetera. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+start = 1
+```
+
+```expected
+1: Ferry
+2: Market
+3: Library
+```
 
 ```python run
-# Complete the number each route stop task.
-# Sample data: start=1
-# Write your code below and print the result
+# Complete the Medium: number each route stop task.
+start = 1
+# Write your code below
 ```
 
 
@@ -405,6 +433,7 @@ Use enumerate with a start value of one.
 Each iteration supplies both a counter and a stop name. The selected start value makes the display begin at one.
 
 ```python
+start = 1
 for number, stop in enumerate(["Ferry", "Market", "Library"], start=1):
     print(f"{number}: {stop}")
 ```
@@ -412,12 +441,25 @@ for number, stop in enumerate(["Ferry", "Market", "Library"], start=1):
 
 ### Challenge: generate a countdown
 
-Write a generator that yields three rehearsal cues one at a time.
+Use `cues` as the sample data. Write a generator that yields three rehearsal cues one at a time. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about et cetera. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+cues = ['Ready', 'Set', 'Serve']
+```
+
+```expected
+[3, 2, 1]
+```
 
 ```python run
-# Complete the generate a countdown task.
-# Sample data: cues = ["Ready", "Set", "Serve"]
-# Write your code below and print the result
+# Complete the Challenge: generate a countdown task.
+cues = ['Ready', 'Set', 'Serve']
+# Write your code below
 ```
 
 
@@ -425,6 +467,7 @@ Write a generator that yields three rehearsal cues one at a time.
 Each yield provides the current number and pauses. Converting the generator to a list requests each remaining value until the generator finishes.
 
 ```python
+cues = ['Ready', 'Set', 'Serve']
 def cues(start):
     while start > 0:
         yield start

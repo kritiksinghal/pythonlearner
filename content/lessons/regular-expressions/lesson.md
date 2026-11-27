@@ -15,7 +15,6 @@ learningGoals:
   - "Replace or find repeated matches with the re module"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What a **regular expression** describes
@@ -316,12 +315,25 @@ Nested or quoted formats have rules that are easy to miss with a pattern. Use `j
 
 ### Easy: find digits
 
-Use a regex to find the first group of digits in a message.
+Use `message` as the sample data. Use a regex to find the first group of digits in a message. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about regular expressions. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+message = 'Level 27 unlocked'
+```
+
+```expected
+27
+```
 
 ```python run
-# Complete the find digits task.
-# Sample data: message = 'Level 27 unlocked'
-# Write your code below and print the result
+# Complete the Easy: find digits task.
+message = 'Level 27 unlocked'
+# Write your code below
 ```
 
 
@@ -329,6 +341,7 @@ Use a regex to find the first group of digits in a message.
 `\d+` matches a run of one or more digits, and `group()` returns the matched text.
 
 ```python
+message = 'Level 27 unlocked'
 import re
 
 message = "Level 27 unlocked"
@@ -339,12 +352,25 @@ print(match.group())
 
 ### Medium: validate a room code
 
-Check that a code is one uppercase letter followed by two digits.
+Use `room_code` as the sample data. Check that a code is one uppercase letter followed by two digits. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about regular expressions. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+room_code = 'A42'
+```
+
+```expected
+True
+```
 
 ```python run
-# Complete the validate a room code task.
-# Sample data: room_code = "A42"
-# Write your code below and print the result
+# Complete the Medium: validate a room code task.
+room_code = 'A42'
+# Write your code below
 ```
 
 
@@ -352,6 +378,7 @@ Check that a code is one uppercase letter followed by two digits.
 The character class accepts one uppercase letter, and `\d{2}` requires exactly two digits. fullmatch rejects extra characters.
 
 ```python
+room_code = 'A42'
 import re
 
 print(re.fullmatch(r"[A-Z]\d{2}", "H08") is not None)
@@ -360,12 +387,26 @@ print(re.fullmatch(r"[A-Z]\d{2}", "H08") is not None)
 
 ### Challenge: capture a time
 
-Capture the hour and minute from a string in `HH:MM` form.
+Use `time_text` as the sample data. Capture the hour and minute from a string in `HH:MM` form. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about regular expressions. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+time_text = "07:35"
+```
+
+```expected
+07
+35
+```
 
 ```python run
-# Complete the capture a time task.
-# Sample data: match = re.fullmatch('(?P<hour>\\d{2}):(?P<minute>\\d{2})', '07:35')
-# Write your code below and print the result
+# Complete the Challenge: capture a time task.
+time_text = "07:35"
+# Write your code below
 ```
 
 
@@ -373,6 +414,7 @@ Capture the hour and minute from a string in `HH:MM` form.
 Named groups capture each two-digit part. The fullmatch requires the whole text to fit the pattern.
 
 ```python
+time_text = "07:35"
 import re
 
 match = re.fullmatch(r"(?P<hour>\d{2}):(?P<minute>\d{2})", "07:35")

@@ -32,7 +32,6 @@ learningGoals:
   - "Choose sets for uniqueness and membership, and lists when order or duplicates matter."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - A **set** is a collection of unique values, useful when you care whether something is present rather than where it appears.
@@ -282,12 +281,25 @@ Python reports `KeyError: 'pepper'` because `.remove()` expects the member to ex
 
 ### Easy: Remove repeated song genres
 
-Create a set from a list with repeated genres. Print its members in alphabetical order.
+Use `genres` as the sample data. Create a set from a list with repeated genres. Print its members in alphabetical order.
+
+
+:::tip Hint
+Use the lesson idea about sets. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+genres = ['soul', 'pop', 'soul', 'indie']
+```
+
+```expected
+['indie', 'pop', 'soul']
+```
 
 ```python run
-# Complete the Remove repeated song genres task.
-# Sample data: genres = ["soul", "pop", "soul", "indie"]
-# Write your code below and print the result
+# Complete the Easy: Remove repeated song genres task.
+genres = ['soul', 'pop', 'soul', 'indie']
+# Write your code below
 ```
 
 :::solution
@@ -295,6 +307,7 @@ The solution completes “Remove repeated song genres” by using the provided s
 
 
 ```python
+genres = ['soul', 'pop', 'soul', 'indie']
 genres = ["soul", "pop", "soul", "indie"]
 print(sorted(set(genres)))
 ```
@@ -303,12 +316,25 @@ print(sorted(set(genres)))
 
 ### Medium: Compare two practice groups
 
-Make two sets of athletes. Print the athletes who attended both sessions.
+Use `session_one` as the sample data. Make two sets of athletes. Print the athletes who attended both sessions.
+
+
+:::tip Hint
+Use the lesson idea about sets. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+session_one = {'Arjun', 'Pia', 'Meera'}
+```
+
+```expected
+['Arjun', 'Pia']
+```
 
 ```python run
-# Complete the Compare two practice groups task.
-# Sample data: session_one = {"Meera", "Arjun", "Pia"}
-# Write your code below and print the result
+# Complete the Medium: Compare two practice groups task.
+session_one = {'Arjun', 'Pia', 'Meera'}
+# Write your code below
 ```
 
 :::solution
@@ -316,6 +342,7 @@ The solution completes “Compare two practice groups” by using the provided s
 
 
 ```python
+session_one = {'Arjun', 'Pia', 'Meera'}
 session_one = {"Meera", "Arjun", "Pia"}
 session_two = {"Pia", "Arjun", "Kabir"}
 print(sorted(session_one & session_two))
@@ -325,12 +352,25 @@ print(sorted(session_one & session_two))
 
 ### Challenge: Find a one-day visitor
 
-Given sets of people who visited a museum on Saturday and Sunday, print those who visited exactly one day.
+Use `saturday` as the sample data. Given sets of people who visited a museum on Saturday and Sunday, print those who visited exactly one day.
+
+
+:::tip Hint
+Use the lesson idea about sets. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+saturday = {'Nina', 'Aarav', 'Om'}
+```
+
+```expected
+['Aarav', 'Ravi']
+```
 
 ```python run
-# Complete the Find a one-day visitor task.
-# Sample data: saturday = {"Aarav", "Nina", "Om"}
-# Write your code below and print the result
+# Complete the Challenge: Find a one-day visitor task.
+saturday = {'Nina', 'Aarav', 'Om'}
+# Write your code below
 ```
 
 :::solution
@@ -338,6 +378,7 @@ The solution completes “Find a one-day visitor” by using the provided sample
 
 
 ```python
+saturday = {'Nina', 'Aarav', 'Om'}
 saturday = {"Aarav", "Nina", "Om"}
 sunday = {"Nina", "Ravi", "Om"}
 print(sorted(saturday ^ sunday))

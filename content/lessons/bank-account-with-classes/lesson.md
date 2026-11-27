@@ -16,7 +16,6 @@ learningGoals:
   - "Test account actions with preset values"
 relatedProblems: []
 ---
-
 ## The goal
 
 Create a `BankAccount` class that stores an owner's name and balance, accepts deposits, and processes withdrawals. The account should reject zero or negative transaction amounts and should not allow a withdrawal larger than the balance. The runnable version uses preset transactions and never calls `input()`; the terminal version with real input appears as plain Python with a sample session.
@@ -318,12 +317,27 @@ Sample session: at the action prompt enter `deposit`; at the amount prompt enter
 
 ## Make it yourself
 
-Test the two rejected cases separately: a non-positive amount and an amount larger than the balance. Also test a withdrawal exactly equal to the balance; it should leave the account at zero if that is your chosen rule.
+Test a non-positive amount and an amount above `balance_cents` separately. Also test a withdrawal equal to the balance; decide whether zero is allowed.
+
+:::tip Hint
+Use the lesson idea about bank account with classes. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+amount_cents = 1250
+balance_cents = 5000
+```
+
+```expected
+True
+3750 2450
+```
 
 ```python run
-# Transfer cents between accounts without changing either on rejection.
-# Sample data: amount_cents = 1250, balance_cents = 5000
-# Write your code below and print the result
+# Complete the Make It Yourself task.
+amount_cents = 1250
+balance_cents = 5000
+# Write your code below
 ```
 
 1. Add a method to transfer money between two accounts.
@@ -342,6 +356,8 @@ Reference: Python documentation, Classes
 Check the amount before changing either account, then update both balances together. The method returns `False` for an invalid transfer and leaves both balances unchanged.
 
 ```python
+amount_cents = 1250
+balance_cents = 5000
 class BankAccount:
     def __init__(self, owner, balance_cents=0):
         self.owner = owner

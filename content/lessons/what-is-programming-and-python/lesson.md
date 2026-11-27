@@ -14,7 +14,6 @@ learningGoals:
   - "Recognize the primary execution environments including interactive shells, standalone script files, and browser-based WebAssembly runtimes."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - The core definition of **programming** as systematic, sequential problem-solving using formal language instructions.
@@ -296,12 +295,27 @@ Calculated speed: 50.0
 
 ### Exercise 1 (easy): Grocery invoice subtotal
 
-Write a script that calculates the total cost of purchasing `6` units of an organic beverage priced at `45` rupees each, applying a `5%` tax rate (`0.05`). Compute the subtotal, calculate tax, and print the final invoice total.
+Use `item_price`, `quantity`, and `tax_rate` to calculate the taxed total. Print the subtotal, tax, and final total.
+
+
+:::tip Hint
+Use the lesson idea about what is programming and python. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+item_price = 45
+quantity = 6
+```
+
+```expected
+Total bill: 283.5
+```
 
 ```python run
-# Complete the Grocery invoice subtotal task.
-# Sample data: item_price = 45, quantity = 6
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Grocery invoice subtotal task.
+item_price = 45
+quantity = 6
+# Write your code below
 ```
 
 
@@ -324,12 +338,27 @@ Total bill: 283.5
 
 ### Exercise 2 (medium): Marathon distance converter
 
-A standard marathon course covers exactly `42.195` kilometers. Write a program that converts this distance into miles using the conversion factor `1 kilometer = 0.621371 miles`. Round the resulting mileage to two decimal places before printing.
+Convert `distance_km` to miles using `0.621371`. Round the result to two decimal places and print it.
+
+
+:::tip Hint
+Use the lesson idea about what is programming and python. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+distance_km = 42.195
+miles_conversion_factor = 0.621371
+```
+
+```expected
+Marathon distance in miles: 26.22
+```
 
 ```python run
-# Complete the Marathon distance converter task.
-# Sample data: distance_km = 42.195, miles_conversion_factor = 0.621371
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): Marathon distance converter task.
+distance_km = 42.195
+miles_conversion_factor = 0.621371
+# Write your code below
 ```
 
 
@@ -350,12 +379,28 @@ Marathon distance in miles: 26.22
 
 ### Exercise 3 (challenge): Simple interest financial maturity
 
-Write a script that calculates simple interest on a principal deposit of `50000` currency units invested at an annual interest rate of `7.5%` for `3` years. Use the formula `interest = (principal * rate * time) / 100`, calculate the total maturity balance (`principal + interest`), and print both metrics clearly.
+Use `principal`, `rate`, and `time` to calculate interest and maturity balance. Print both values to two decimals.
+
+
+:::tip Hint
+Use the lesson idea about what is programming and python. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+principal = 50000
+rate_percent = 7.5
+```
+
+```expected
+Interest earned: 11250.0
+Maturity amount: 61250.0
+```
 
 ```python run
-# Complete the Simple interest financial maturity task.
-# Sample data: principal = 50000, rate_percent = 7.5
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Simple interest financial maturity task.
+principal = 50000
+rate_percent = 7.5
+# Write your code below
 ```
 
 

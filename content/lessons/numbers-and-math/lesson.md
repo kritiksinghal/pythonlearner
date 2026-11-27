@@ -17,7 +17,6 @@ learningGoals:
   - "Utilize built-in mathematical functions including `abs()`, `round()`, `min()`, `max()`, and augmented assignment operators."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - The architectural differences between exact whole numbers (**integers**) and real decimal numbers (**floats**).
@@ -329,12 +328,27 @@ Calculated sum: 15
 
 ### Exercise 1 (easy): Vehicle fuel economy
 
-A commuter travels `450` kilometers on a road trip using `30` liters of fuel. Write a script that calculates fuel efficiency in kilometers per liter (`km / liters`) and prints the result.
+Use `distance_km` and `fuel_liters` as the sample data. A commuter travels `450` kilometers on a road trip using `30` liters of fuel. Write a script that calculates fuel efficiency in kilometers per liter (`km / liters`) and prints the result. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about numbers and math. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+distance_km = 450
+fuel_liters = 30
+```
+
+```expected
+Fuel efficiency (km/L): 15.0
+```
 
 ```python run
-# Complete the Vehicle fuel economy task.
-# Sample data: distance_km = 450, fuel_liters = 30
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Vehicle fuel economy task.
+distance_km = 450
+fuel_liters = 30
+# Write your code below
 ```
 
 
@@ -355,12 +369,27 @@ Fuel efficiency (km/L): 15.0
 
 ### Exercise 2 (medium): ATM currency note breakdown
 
-An ATM needs to dispense `1870` rupees using the minimum number of banknotes. Using the denominations `500`, `100`, and `10`, write a program that uses `//` and `%` to calculate how many 500-rupee notes, 100-rupee notes, and 10-rupee notes must be dispensed.
+Break `amount_rupees` into 500, 100, and 10 rupee notes using `//` and `%`. Print each note count.
+
+
+:::tip Hint
+Use the lesson idea about numbers and math. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+total_rupees = 1870
+```
+
+```expected
+500 notes: 3
+100 notes: 3
+10 notes: 7
+```
 
 ```python run
-# Complete the ATM currency note breakdown task.
-# Sample data: total_rupees = 1870
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): ATM currency note breakdown task.
+total_rupees = 1870
+# Write your code below
 ```
 
 
@@ -388,12 +417,27 @@ print('10 notes:', notes_10)
 
 ### Exercise 3 (challenge): Compound investment growth
 
-Write a program that calculates compound interest on an investment of `10000` dollars invested at an annual interest rate of `8%` (`0.08`) for `5` years. The formula for the maturity balance is $A = P 	imes (1 + r)^t$. Calculate the total maturity balance and the pure profit earned ($A - P$), rounding both figures to two decimal places.
+Use `principal`, `annual_rate`, and `years` to calculate compound interest. Print the maturity balance and profit to two decimals.
+
+:::tip Hint
+Use the lesson idea about numbers and math. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+principal = 10000
+annual_rate = 0.08
+```
+
+```expected
+Maturity balance: 14693.28
+Compound interest profit: 4693.28
+```
 
 ```python run
-# Complete the Compound investment growth task.
-# Sample data: principal = 10000, annual_rate = 0.08
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Compound investment growth task.
+principal = 10000
+annual_rate = 0.08
+# Write your code below
 ```
 
 

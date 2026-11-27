@@ -38,7 +38,6 @@ learningGoals:
   - "Distinguish collecting arguments in a definition from unpacking values in a call."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - A **default parameter value** supplies an input when a caller leaves that parameter out.
@@ -307,12 +306,26 @@ Python reports `TypeError: print_reservation() got an unexpected keyword argumen
 
 ### Easy: Add a default tip
 
-Write a function that accepts a bill and a tip amount defaulting to 10. Print the result with both the default and a custom tip.
+Use `bill` as the sample data. Write a function that accepts a bill and a tip amount defaulting to 10. Print the result with both the default and a custom tip.
+
+
+:::tip Hint
+Use the lesson idea about default keyword args and kwargs. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+bill = 80
+```
+
+```expected
+190
+205
+```
 
 ```python run
-# Complete the Add a default tip task.
-# Sample data: bill = 80
-# Write your code below and print the result
+# Complete the Easy: Add a default tip task.
+bill = 80
+# Write your code below
 ```
 
 :::solution
@@ -320,6 +333,7 @@ The solution completes “Add a default tip” by using the provided sample valu
 
 
 ```python
+bill = 80
 def bill_total(bill, tip=10):
     return bill + tip
 
@@ -331,12 +345,27 @@ print(bill_total(180, tip=25))
 
 ### Medium: Label keyword settings
 
-Write a function with `city` and `transport` parameters. Call it using keyword arguments in reverse order.
+Write a function with `city` and `transport` parameters. Call it using keyword arguments in reverse order. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about default keyword args and kwargs. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+city = 'Jaipur'
+transport = 'train'
+```
+
+```expected
+Visit Bhopal by train.
+```
 
 ```python run
-# Complete the Label keyword settings task.
-# Sample data: city = "Jaipur", transport = "train"
-# Write your code below and print the result
+# Complete the Medium: Label keyword settings task.
+city = 'Jaipur'
+transport = 'train'
+# Write your code below
 ```
 
 :::solution
@@ -344,6 +373,8 @@ The solution completes “Label keyword settings” by using the provided sample
 
 
 ```python
+city = 'Jaipur'
+transport = 'train'
 def travel_note(city, transport):
     print(f"Visit {city} by {transport}.")
 
@@ -354,12 +385,25 @@ travel_note(transport="train", city="Bhopal")
 
 ### Challenge: Accept any number of scores
 
-Write a function that accepts extra positional scores and returns their total. Call it with four values.
+Use `scores` as the sample data. Write a function that accepts extra positional scores and returns their total. Call it with four values. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about default keyword args and kwargs. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+scores = (72, 88, 91, 65)
+```
+
+```expected
+60
+```
 
 ```python run
-# Complete the Accept any number of scores task.
-# Sample data: scores = (72, 88, 91, 65)
-# Write your code below and print the result
+# Complete the Challenge: Accept any number of scores task.
+scores = (72, 88, 91, 65)
+# Write your code below
 ```
 
 :::solution
@@ -367,6 +411,7 @@ The solution completes “Accept any number of scores” by using the provided s
 
 
 ```python
+scores = (72, 88, 91, 65)
 def total_scores(*scores):
     return sum(scores)
 

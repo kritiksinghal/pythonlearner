@@ -16,7 +16,6 @@ learningGoals:
   - "Test a complete play path with simulated choices"
 relatedProblems: []
 ---
-
 ## The goal
 
 Build a small text adventure in which a traveler explores an old observatory during a storm. The player starts at the entrance, chooses one route, finds or misses a brass key, and then decides whether to open the rooftop door. The program should show a different ending depending on the route and whether the key was found.
@@ -275,10 +274,25 @@ The function `ending()` uses the inventory to choose a conclusion. The route bra
 
 Start by changing the story setting and items while keeping the same program shape. Then add one new state variable and make it affect an ending. Try these extensions in order:
 
+
+:::tip Hint
+Use the lesson idea about text adventure. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+route = 'gallery'
+inventory = ['brass key']
+```
+
+```expected
+The brass key opens the gallery cabinet.
+```
+
 ```python run
-# Use the route and inventory to choose the story ending.
-# Sample data: route = "gallery", inventory = ["brass key"]
-# Write your code below and print the result
+# Complete the Make It Yourself task.
+route = 'gallery'
+inventory = ['brass key']
+# Write your code below
 ```
 
 1. Replace the observatory with a lighthouse, train station, or mountain cabin.
@@ -297,6 +311,8 @@ Reference: Python documentation, More Control Flow Tools
 Use the route and inventory as inputs to choose an ending. Checking for the key inside the gallery branch makes the new state affect the story.
 
 ```python
+route = 'gallery'
+inventory = ['brass key']
 def describe_route(route, inventory):
     if route == "gallery" and "brass key" in inventory:
         return "The brass key opens the gallery cabinet."

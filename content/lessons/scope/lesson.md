@@ -37,7 +37,6 @@ learningGoals:
   - "Use function parameters and return values to share changing data clearly."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - **Scope** is the part of a program where a particular name can be used.
@@ -322,12 +321,25 @@ Python reports `NameError: name 'citty' is not defined`. Python does not guess t
 
 ### Easy: Keep a value local
 
-Create a function that defines a local variable for a song title and prints it. Call the function.
+Use `title` as the sample data. Create a function that defines a local variable for a song title and prints it. Call the function. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about scope. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+title = 'Paper Lanterns'
+```
+
+```expected
+Paper Lanterns
+```
 
 ```python run
-# Complete the Keep a value local task.
-# Sample data: title = "Paper Lanterns"
-# Write your code below and print the result
+# Complete the Easy: Keep a value local task.
+title = 'Paper Lanterns'
+# Write your code below
 ```
 
 :::solution
@@ -335,6 +347,7 @@ The solution completes “Keep a value local” by using the provided sample val
 
 
 ```python
+title = 'Paper Lanterns'
 def play_title():
     title = "Paper Lanterns"
     print(title)
@@ -346,12 +359,24 @@ play_title()
 
 ### Medium: Pass a global value into a function
 
-Create a top-level variable with a team name, then pass it to a function that prints a cheer using a parameter.
+Pass `team` to a function. Print the cheer created from its parameter.
+
+:::tip Hint
+Use the lesson idea about scope. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+team = 'Fireflies'
+```
+
+```expected
+Fireflies onward!
+```
 
 ```python run
-# Complete the Pass a global value into a function task.
-# Sample data: team = "Fireflies"
-# Write your code below and print the result
+# Complete the Medium: Pass a global value into a function task.
+team = 'Fireflies'
+# Write your code below
 ```
 
 :::solution
@@ -359,6 +384,7 @@ The solution completes “Pass a global value into a function” by using the pr
 
 
 ```python
+team = 'Fireflies'
 team = "Fireflies"
 
 def cheer(team_name):
@@ -371,12 +397,27 @@ cheer(team)
 
 ### Challenge: Return a changed value
 
-Write a function that accepts a starting number of library books and a number borrowed, then returns how many remain. Store and print the returned value.
+Use `starting_books` and `borrowed_books` as the sample data. Write a function that accepts a starting number of library books and a number borrowed, then returns how many remain. Store and print the returned value.
+
+
+:::tip Hint
+Use the lesson idea about scope. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+starting_books = 28
+borrowed_books = 6
+```
+
+```expected
+33
+```
 
 ```python run
-# Complete the Return a changed value task.
-# Sample data: starting_books = 28, borrowed_books = 6
-# Write your code below and print the result
+# Complete the Challenge: Return a changed value task.
+starting_books = 28
+borrowed_books = 6
+# Write your code below
 ```
 
 :::solution
@@ -384,6 +425,8 @@ The solution completes “Return a changed value” by using the provided sample
 
 
 ```python
+starting_books = 28
+borrowed_books = 6
 def books_remaining(total, borrowed):
     return total - borrowed
 

@@ -15,7 +15,6 @@ learningGoals:
   - "Recognize generated initialization, representation, and equality behavior"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What a **dataclass** is and when it can reduce repetitive class code
@@ -347,12 +346,27 @@ The generated initializer follows field order, and required parameters cannot fo
 
 ### Easy: define a data record
 
-Create a dataclass for a film with a title and year.
+Use `title` and `year` as the sample data. Create a dataclass for a film with a title and year. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about dataclasses. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+title = 'Cloud Harbor'
+year = 2024
+```
+
+```expected
+Film(title='Soft Thunder', year=2021)
+```
 
 ```python run
-# Complete the define a data record task.
-# Sample data: title = "Cloud Harbor", year = 2024
-# Write your code below and print the result
+# Complete the Easy: define a data record task.
+title = 'Cloud Harbor'
+year = 2024
+# Write your code below
 ```
 
 
@@ -360,6 +374,8 @@ Create a dataclass for a film with a title and year.
 Annotate the fields and decorate the class. The generated representation shows their names and values.
 
 ```python
+title = 'Cloud Harbor'
+year = 2024
 from dataclasses import dataclass
 
 @dataclass
@@ -373,12 +389,28 @@ print(Film("Soft Thunder", 2021))
 
 ### Medium: use a fresh collection
 
-Create two dataclass instances with separate lists of ingredients.
+Use `berry_name` and `citrus_name` as the sample data. Create two dataclass instances with separate lists of ingredients. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about dataclasses. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+berry_name = "berry"
+citrus_name = "citrus"
+```
+
+```expected
+['oats']
+[]
+```
 
 ```python run
-# Complete the use a fresh collection task.
-# Sample data: berry = Smoothie('berry'), citrus = Smoothie('citrus')
-# Write your code below and print the result
+# Complete the Medium: use a fresh collection task.
+berry_name = "berry"
+citrus_name = "citrus"
+# Write your code below
 ```
 
 
@@ -386,6 +418,8 @@ Create two dataclass instances with separate lists of ingredients.
 The factory creates a new list for each smoothie, so appending to one does not affect the other.
 
 ```python
+berry_name = "berry"
+citrus_name = "citrus"
 from dataclasses import dataclass, field
 
 @dataclass
@@ -403,12 +437,27 @@ print(citrus.ingredients)
 
 ### Challenge: freeze a record
 
-Define a frozen dataclass for a game coordinate and read its row.
+Use `row` and `column` as the sample data. Define a frozen dataclass for a game coordinate and read its row. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about dataclasses. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+row = 5
+column = 2
+```
+
+```expected
+5
+```
 
 ```python run
-# Complete the freeze a record task.
-# Sample data: spot = GridSpot(5, 2)
-# Write your code below and print the result
+# Complete the Challenge: freeze a record task.
+row = 5
+column = 2
+# Write your code below
 ```
 
 
@@ -416,6 +465,8 @@ Define a frozen dataclass for a game coordinate and read its row.
 The frozen option prevents ordinary reassignment, while reading the fields remains allowed.
 
 ```python
+row = 5
+column = 2
 from dataclasses import dataclass
 
 @dataclass(frozen=True)

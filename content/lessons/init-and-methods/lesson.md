@@ -15,7 +15,6 @@ learningGoals:
   - "Return values from methods and keep instance state consistent"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How the special method **`__init__`** prepares an instance after it is created
@@ -320,10 +319,23 @@ Python recognizes the exact special name `__init__`. A spelling such as `_init_`
 
 Create a `Song` with a title and print the title.
 
+
+:::tip Hint
+Use the lesson idea about init and methods. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+song_title = "Silver Kite"
+```
+
+```expected
+Silver Kite
+```
+
 ```python run
-# Complete the initialize a song task.
-# Sample data: track = Song('Silver Kite')
-# Write your code below and print the result
+# Complete the Easy: initialize a song task.
+song_title = "Silver Kite"
+# Write your code below
 ```
 
 
@@ -331,6 +343,7 @@ Create a `Song` with a title and print the title.
 The initializer receives the title and stores it on the instance as `self.title`.
 
 ```python
+song_title = "Silver Kite"
 class Song:
     def __init__(self, title):
         self.title = title
@@ -342,12 +355,27 @@ print(track.title)
 
 ### Medium: calculate a score bonus
 
-Create a player with a score and a method that returns the score plus a bonus.
+Use `starting_score` and `bonus_points` as the sample data. Create a player with a score and a method that returns the score plus a bonus. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about init and methods. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+starting_score = 76
+bonus_points = 12
+```
+
+```expected
+84
+```
 
 ```python run
-# Complete the calculate a score bonus task.
-# Sample data: player = Player(76)
-# Write your code below and print the result
+# Complete the Medium: calculate a score bonus task.
+starting_score = 76
+bonus_points = 12
+# Write your code below
 ```
 
 
@@ -355,6 +383,8 @@ Create a player with a score and a method that returns the score plus a bonus.
 The method uses the object's stored score and the temporary bonus argument, then returns their sum.
 
 ```python
+starting_score = 76
+bonus_points = 12
 class Player:
     def __init__(self, score):
         self.score = score
@@ -369,12 +399,25 @@ print(player.with_bonus(8))
 
 ### Challenge: update a reading streak
 
-Create a counter with a starting streak and a method that adds one day.
+Use `starting_days` as the sample data. Create a counter with a starting streak and a method that adds one day. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about init and methods. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+starting_days = 6
+```
+
+```expected
+7
+```
 
 ```python run
-# Complete the update a reading streak task.
-# Sample data: streak = ReadingStreak(6)
-# Write your code below and print the result
+# Complete the Challenge: update a reading streak task.
+starting_days = 6
+# Write your code below
 ```
 
 
@@ -382,6 +425,7 @@ Create a counter with a starting streak and a method that adds one day.
 The method increments `self.days` on the calling instance. The print reads the updated attribute.
 
 ```python
+starting_days = 6
 class ReadingStreak:
     def __init__(self, days):
         self.days = days

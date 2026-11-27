@@ -17,7 +17,6 @@ learningGoals:
   - "Handle a missing file with FileNotFoundError"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - Why files preserve information after a program ends
@@ -290,12 +289,26 @@ Handle that case near the read operation rather than assuming that a previous ru
 
 ### Easy: save a rehearsal note
 
-Write a short two-line note and read it back.
+Use `note_lines` as the sample data. Write a short two-line note and read it back.
+
+
+:::tip Hint
+Use the lesson idea about file io. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+note_lines = ["Doors open at six", "Soundcheck at five"]
+```
+
+```expected
+Doors open at six
+Soundcheck at five
+```
 
 ```python run
-# Complete the save a rehearsal note task.
-# Sample data: end=""
-# Write your code below and print the result
+# Complete the Easy: save a rehearsal note task.
+note_lines = ["Doors open at six", "Soundcheck at five"]
+# Write your code below
 ```
 
 
@@ -303,22 +316,40 @@ Write a short two-line note and read it back.
 The program writes both strings with line endings, then reads and prints the resulting text.
 
 ```python
-with open("cs50p-io-rehearsal.txt", "w") as file:
-    file.write("Doors open at six\n")
-    file.write("Soundcheck at five\n")
-with open("cs50p-io-rehearsal.txt") as file:
-    print(file.read(), end="")
+note_lines = ["Doors open at six", "Soundcheck at five"]
+import io
+
+note = io.StringIO()
+for line in note_lines:
+    note.write(line + "\n")
+note.seek(0)
+print(note.read(), end="")
 ```
 :::
 
 ### Medium: append another result
 
-Create a starting entry and append one more without replacing the first.
+Use `first_entry` and `next_entry` as the sample data. Create a starting entry and append one more without replacing the first. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about file io. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+first_entry = "Round one"
+next_entry = "Round two"
+```
+
+```expected
+Round two
+```
 
 ```python run
-# Complete the append another result task.
-# Sample data: end=""
-# Write your code below and print the result
+# Complete the Medium: append another result task.
+first_entry = "Round one"
+next_entry = "Round two"
+# Write your code below
 ```
 
 
@@ -326,23 +357,39 @@ Create a starting entry and append one more without replacing the first.
 The append mode preserves the first saved line and adds the second at the end.
 
 ```python
-with open("cs50p-io-rounds2.txt", "w") as file:
-    file.write("Round one\n")
-with open("cs50p-io-rounds2.txt", "a") as file:
-    file.write("Round two\n")
-with open("cs50p-io-rounds2.txt") as file:
-    print(file.read(), end="")
+first_entry = "Round one"
+next_entry = "Round two"
+import io
+
+rounds = io.StringIO(first_entry + "\n")
+rounds.write(next_entry + "\n")
+rounds.seek(0)
+print(rounds.read(), end="")
 ```
 :::
 
 ### Challenge: read a CSV table
 
-Create a tiny CSV roster, then read each row using its column names.
+Use `roster_csv` as the sample data. Create a tiny CSV roster, then read each row using its column names. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about file io. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+roster_csv = "player,position\nNoor,keeper\nIshan,forward\n"
+```
+
+```expected
+Noor keeper
+Ishan forward
+```
 
 ```python run
-# Complete the read a CSV table task.
-# Sample data: roster_csv = "name,score\nAsha,92\nBo,85"
-# Write your code below and print the result
+# Complete the Challenge: read a CSV table task.
+roster_csv = "player,position\nNoor,keeper\nIshan,forward\n"
+# Write your code below
 ```
 
 
@@ -350,14 +397,12 @@ Create a tiny CSV roster, then read each row using its column names.
 The header row supplies the dictionary keys. The loop reads the data row and prints the requested fields.
 
 ```python
+roster_csv = "player,position\nNoor,keeper\nIshan,forward\n"
 import csv
+import io
 
-with open("cs50p-io-roster.csv", "w") as file:
-    file.write("player,position\n")
-    file.write("Noor,keeper\n")
-with open("cs50p-io-roster.csv") as file:
-    for row in csv.DictReader(file):
-        print(row["player"], "-", row["position"])
+for row in csv.DictReader(io.StringIO(roster_csv)):
+    print(row["player"], row["position"])
 ```
 :::
 

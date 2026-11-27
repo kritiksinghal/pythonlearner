@@ -14,16 +14,28 @@ import { resetPyodideWorker, runPlainPython } from "@/lib/pyodideRunner";
 
 interface Props {
   initialCode: string;
+  expectedOutput?: string;
+  initialStdin?: string;
+  showInput?: boolean;
   title?: string;
 }
 
-export default function RunnableCodeBlock({ initialCode, title = "Interactive Example" }: Props) {
+function normalizePrintedOutput(value: string) {
+  return value
+    .split(/\r?\n/)
+    .map((line) => line.replace(/[ \t]+$/, ""))
+    .join("\n")
+    .replace(/(?:\n[ \t]*)+$/, "");
+}
+
+export default function RunnableCodeBlock({ initialCode, expectedOutput, initialStdin = "", showInput = false, title = "Interactive Example" }: Props) {
   const [code, setCode] = useState(initialCode.trim());
   const [isRunning, setIsRunning] = useState(false);
   const [output, setOutput] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showRetry, setShowRetry] = useState(false);
-  const [stdin, setStdin] = useState("");
+  const [checkFeedback, setCheckFeedback] = useState<string | null>(null);
+  const [stdin, setStdin] = useState(initialStdin);
   const needsInput = /\binput\s*\(|\bsys\s*\.\s*stdin\b/.test(code);
   const inputId = useId();
   const blockRef = useRef<HTMLDivElement>(null);
@@ -33,6 +45,7 @@ export default function RunnableCodeBlock({ initialCode, title = "Interactive Ex
     setOutput(null);
     setError(null);
     setShowRetry(false);
+    setCheckFeedback(null);
 
     const res = await runPlainPython(code, stdin);
     setIsRunning(false);
@@ -43,7 +56,35 @@ export default function RunnableCodeBlock({ initialCode, title = "Interactive Ex
     } else {
       setOutput(res.output ?? "(No output)");
     }
+    return res;
   }, [code, stdin]);
+
+  const handleCheck = useCallback(async () => {
+    if (expectedOutput === undefined) return;
+    const res = await handleRun();
+    if (res.fatal) return;
+    const actual = res.output ?? "";
+    if (actual === "(No output printed)" || !actual.trim()) {
+      setCheckFeedback("Your code printed nothing. Use print() to show your result.");
+      return;
+    }
+    const expectedNormalized = normalizePrintedOutput(expectedOutput);
+    const actualNormalized = normalizePrintedOutput(actual);
+    if (expectedNormalized === actualNormalized) {
+      setCheckFeedback("✓ Correct! Your output matches.");
+      return;
+    }
+    const expectedLines = expectedNormalized.split("\n");
+    const actualLines = actualNormalized.split("\n");
+    let firstDifference = 0;
+    while (
+      firstDifference < Math.min(expectedLines.length, actualLines.length) &&
+      expectedLines[firstDifference] === actualLines[firstDifference]
+    ) {
+      firstDifference += 1;
+    }
+    setCheckFeedback(`Not yet. First difference: line ${firstDifference + 1}.`);
+  }, [expectedOutput, handleRun]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -78,7 +119,7 @@ export default function RunnableCodeBlock({ initialCode, title = "Interactive Ex
         <CodeEditor code={code} onChange={setCode} height="140px" />
       </div>
 
-      {needsInput && (
+      {(needsInput || showInput) && (
         <div className="border-t border-border px-3.5 py-3">
           <label htmlFor={inputId} className="mb-1.5 block text-[10px] font-mono uppercase tracking-wider text-muted">
             Input: one line for each input() call
@@ -95,15 +136,25 @@ export default function RunnableCodeBlock({ initialCode, title = "Interactive Ex
       )}
 
       {/* Action Bar */}
-      <div className="flex items-center justify-between border-t border-border bg-code-bg/30 px-3.5 py-2">
+      <div className="flex flex-wrap items-center gap-2 border-t border-border bg-code-bg/30 px-3.5 py-2">
         <button
-          onClick={handleRun}
+          onClick={() => void handleRun()}
           disabled={isRunning}
           className="inline-flex items-center gap-2 rounded bg-foreground px-3.5 py-1.5 text-xs font-medium text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-accent" />
           <span>{isRunning ? "Running…" : "Run code"}</span>
         </button>
+        {expectedOutput !== undefined && (
+          <button
+            type="button"
+            onClick={() => void handleCheck()}
+            disabled={isRunning}
+            className="rounded border border-border bg-surface px-3.5 py-1.5 text-xs font-medium text-foreground hover:border-muted disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            Check my answer
+          </button>
+        )}
 
         {isRunning && (
           <span className="text-xs font-mono text-muted">Executing…</span>
@@ -116,6 +167,9 @@ export default function RunnableCodeBlock({ initialCode, title = "Interactive Ex
           <div className="mb-1 text-[10px] font-mono uppercase tracking-wider text-muted">
             Terminal Output
           </div>
+          {checkFeedback && (
+            <p className="mb-2 text-xs font-medium text-foreground" role="status">{checkFeedback}</p>
+          )}
           {error ? (
             <div className="space-y-3">
               <pre className="rounded border border-red-300 bg-red-50 p-2 font-mono text-xs text-red-700 whitespace-pre-wrap dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-300" role="alert">
@@ -135,6 +189,18 @@ export default function RunnableCodeBlock({ initialCode, title = "Interactive Ex
             <pre className="rounded border border-border bg-surface p-2 font-mono text-xs text-foreground whitespace-pre-wrap">
               {output}
             </pre>
+          )}
+          {checkFeedback?.startsWith("Not yet.") && expectedOutput !== undefined && (
+            <div className="mt-2 grid gap-2 sm:grid-cols-2">
+              <div>
+                <div className="mb-1 text-[10px] font-mono uppercase tracking-wider text-muted">Expected</div>
+                <pre className="rounded border border-border bg-surface p-2 font-mono text-xs whitespace-pre-wrap">{expectedOutput || "(empty output)"}</pre>
+              </div>
+              <div>
+                <div className="mb-1 text-[10px] font-mono uppercase tracking-wider text-muted">Your output</div>
+                <pre className="rounded border border-border bg-surface p-2 font-mono text-xs whitespace-pre-wrap">{output || "(empty output)"}</pre>
+              </div>
+            </div>
           )}
         </div>
       )}

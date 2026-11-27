@@ -15,7 +15,6 @@ learningGoals:
   - "Make one focused correction and run the code again"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How **syntax errors** differ from errors raised while code runs
@@ -291,12 +290,28 @@ If you alter five lines and the program works, you have not learned which assump
 
 ### Easy: inspect the type
 
-The operation below raises an exception. Catch it and print its type name and message.
+Use `left_value` and `right_value` as the sample data. The operation below raises an exception. Catch it and print its type name and message.
+
+
+:::tip Hint
+Use the lesson idea about reading error messages. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+left_value = 12
+right_value = ' runs'
+```
+
+```expected
+TypeError
+unsupported operand type(s) for +: 'int' and 'str'
+```
 
 ```python run
-# Complete the inspect the type task.
-# Sample data: left_value = 12, right_value = " runs"
-# Write your code below and print the result
+# Complete the Easy: inspect the type task.
+left_value = 12
+right_value = ' runs'
+# Write your code below
 ```
 
 
@@ -304,6 +319,8 @@ The operation below raises an exception. Catch it and print its type name and me
 The runnable block already shows the solution: inspect the caught exception using `type(problem).__name__` and print `problem` for its message. A fix for the original operation could convert the integer with `str(12)` or format it in a string.
 
 ```python
+left_value = 12
+right_value = ' runs'
 try:
     print(12 + " runs")
 except TypeError as problem:
@@ -314,12 +331,25 @@ except TypeError as problem:
 
 ### Medium: find a valid index
 
-Make the index safe for the two-item list and print the second item.
+Use `players` as the sample data. Make the index safe for the two-item list and print the second item.
+
+
+:::tip Hint
+Use the lesson idea about reading error messages. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+players = ['Ravi', 'Noor']
+```
+
+```expected
+Noor
+```
 
 ```python run
-# Complete the find a valid index task.
-# Sample data: players = ['Ravi', 'Noor']
-# Write your code below and print the result
+# Complete the Medium: find a valid index task.
+players = ['Ravi', 'Noor']
+# Write your code below
 ```
 
 
@@ -327,6 +357,7 @@ Make the index safe for the two-item list and print the second item.
 The list has positions zero and one, so `index = 1` selects its second value. If the index came from changing input, check that it remains below `len(players)` before indexing.
 
 ```python
+players = ['Ravi', 'Noor']
 players = ["Ravi", "Noor"]
 index = 1
 print(players[index])
@@ -335,12 +366,26 @@ print(players[index])
 
 ### Challenge: make the input visible
 
-Trim the whitespace from the text, then display both original and cleaned values with `repr()`.
+Use `label` as the sample data. Trim the whitespace from the text, then display both original and cleaned values with `repr()`.
+
+
+:::tip Hint
+Use the lesson idea about reading error messages. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+label = '  practice  '
+```
+
+```expected
+'  practice  '
+'practice'
+```
 
 ```python run
-# Complete the make the input visible task.
-# Sample data: label = '  practice  ', clean_label = label.strip()
-# Write your code below and print the result
+# Complete the Challenge: make the input visible task.
+label = '  practice  '
+# Write your code below
 ```
 
 
@@ -348,6 +393,7 @@ Trim the whitespace from the text, then display both original and cleaned values
 `strip()` creates a string without surrounding whitespace. `repr()` shows the spaces in the original value so the change is easy to inspect.
 
 ```python
+label = '  practice  '
 label = "  practice  "
 clean_label = label.strip()
 print(repr(label))

@@ -26,16 +26,15 @@ learningGoals:
   - "Calculate total iteration counts and evaluate the quadratic performance impact of nested loops."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - The core concept of **nested iteration**: how an inner loop runs to full completion for every single cycle of an outer loop.
-- The multiplicative mathematical relationship governing total iterations ($M \times N$).
+- The multiplicative mathematical relationship governing total iterations (M × N).
 - How to model two-dimensional grids, tables, and game boards using row and column loop variables.
 - Using the `end=" "` parameter in `print()` to assemble horizontal rows, followed by parameterless `print()` calls to drop to the next line.
 - Generating iconic visual patterns: escalating staircases, descending wedges, number pyramids, and alternating checkerboards.
 - Avoiding variable name collisions between parent and child loop identifiers.
-- Recognizing the computational scalability implications of quadratic time complexity ($O(N^2)$).
+- Recognizing the computational scalability implications of quadratic time complexity (O(N^2)).
 
 ## Why this matters
 
@@ -51,7 +50,7 @@ Watch how the hands interact throughout the day:
 1. When the hour hand points to `1`, the minute hand must tick through all sixty individual minute marks (`1, 2, 3, ... 59, 60`).
 2. Only after the minute hand completes its entire sixty-tick revolution does the hour hand finally advance by a single step to point at `2`.
 3. Now, pointing at `2`, the hour hand pauses while the minute hand embarks on another full sixty-tick revolution.
-4. Over the course of twelve hours, the minute hand completes $12 \times 60 = 720$ individual movements.
+4. Over the course of twelve hours, the minute hand completes $12 × 60 = 720$ individual movements.
 
 In Python, **nested loops** operate on this exact mechanical clock principle. The outer loop is the slow-moving hour hand. The inner loop is the fast-spinning minute hand. For every single step the outer loop takes, the inner loop must run completely from its starting point to its finishing point before the outer loop is permitted to advance to its next step.
 
@@ -214,7 +213,7 @@ print(f"Outer loops: 3, Inner loops: 4 -> Total operations: {step_count}")
 Outer loops: 3, Inner loops: 4 -> Total operations: 12
 ```
 
-With 3 outer iterations and 4 inner iterations, the accumulator increments $3 \times 4 = 12$ times. If both loops ran 1,000 times, the inner body would execute $1,000 \times 1,000 = 1,000,000$ (one million) times.
+With 3 outer iterations and 4 inner iterations, the accumulator increments $3 × 4 = 12$ times. If both loops ran 1,000 times, the inner body would execute $1,000 × 1,000 = 1,000,000$ (one million) times.
 
 ## What Python is doing behind the scenes
 
@@ -291,13 +290,13 @@ for r in range(2):
 
 Writing nested loops with ranges that are too large (e.g. `range(100000)` inside `range(100000)`) results in $10^{10}$ operations, freezing the computer for minutes.
 
-How to fix it: always calculate the total operation count ($M \times N$) before running nested loops, keeping large data traversals optimized.
+How to fix it: always calculate the total operation count (M × N) before running nested loops, keeping large data traversals optimized.
 
 ## Cheat sheet
 
 | Pattern Goal | Code Structure | Output Shape |
 | :--- | :--- | :--- |
-| **Grid / Matrix** | `for r in range(M): for c in range(N):` | $M$ rows of $N$ columns |
+| **Grid / Matrix** | `for r in range(M): for c in range(N):` | M rows of N columns |
 | **Right Triangle** | `for r in range(1, N+1): print("*" * r)` | Expanding staircase |
 | **Inverted Triangle** | `for r in range(N, 0, -1): print("*" * r)` | Descending wedge |
 | **Coordinate pairs** | `print(f"({r},{c})", end=" ")` | Space-delimited items |
@@ -308,12 +307,29 @@ How to fix it: always calculate the total operation count ($M \times N$) before 
 
 ### Exercise 1 (easy): Star staircase pattern
 
-Write a nested loop (or outer loop with string multiplication) that prints a 5-step staircase of hashes `#`, starting with 1 hash on the first line and finishing with 5 hashes on the fifth line.
+Use `steps` to print a hash staircase. The rows contain 1 through 5 hashes, one row per line.
+
+
+:::tip Hint
+Use the lesson idea about nested loops and patterns. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+steps = 5
+```
+
+```expected
+#
+##
+###
+####
+#####
+```
 
 ```python run
-# Complete the Star staircase pattern task.
-# Sample data: steps = 5
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Star staircase pattern task.
+steps = 5
+# Write your code below
 ```
 
 
@@ -337,12 +353,28 @@ for step in range(1, steps + 1):
 
 ### Exercise 2 (medium): 4x4 Addition lookup grid
 
-Using nested `for` loops, construct a 4x4 addition grid where each coordinate displays the sum of its row and column numbers (`row + col`), with `row` running 1 to 4 and `col` running 1 to 4. Align each number within a 3-character space (`:>3`).
+Use nested loops for `row` and `col` from 1 through 4. Print each sum right-aligned in a 3-character field.
+
+
+:::tip Hint
+Use the lesson idea about nested loops and patterns. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+end = ' '
+```
+
+```expected
+  2   3   4   5 
+  3   4   5   6 
+  4   5   6   7 
+  5   6   7   8 
+```
 
 ```python run
-# Complete the 4x4 Addition lookup grid task.
-# Sample data: end=" "
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): 4x4 Addition lookup grid task.
+end = ' '
+# Write your code below
 ```
 
 
@@ -350,6 +382,7 @@ Using nested `for` loops, construct a 4x4 addition grid where each coordinate di
 Loop over rows 1 to 4 and columns 1 to 4, printing `f"{row + col:>3}"` with `end=" "`, and call `print()` after each row:
 
 ```python run
+end = ' '
 for row in range(1, 5):
     for col in range(1, 5):
         addition_sum = row + col
@@ -367,12 +400,29 @@ for row in range(1, 5):
 
 ### Exercise 3 (challenge): Hollow square border pattern
 
-Write a program that prints a 5x5 hollow square border of asterisks. The first row and last row must be completely filled with asterisks (`* * * * *`), while the middle rows must have an asterisk at the first and last column with spaces in between (`*       *`).
+Use `side_length` to print a 5 by 5 hollow star square. Print full top and bottom rows with hollow middle rows.
+
+
+:::tip Hint
+Use the lesson idea about nested loops and patterns. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+size = 5
+```
+
+```expected
+* * * * * 
+*       * 
+*       * 
+*       * 
+* * * * * 
+```
 
 ```python run
-# Complete the Hollow square border pattern task.
-# Sample data: size = 5
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Hollow square border pattern task.
+size = 5
+# Write your code below
 ```
 
 
@@ -403,7 +453,7 @@ for row in range(size):
 
 - A **nested loop** places one loop inside the body of another.
 - The inner loop executes all of its iterations from start to finish on every single turn of the outer loop.
-- The total operations executed equals the outer loop count multiplied by the inner loop count ($M \times N$).
+- The total operations executed equals the outer loop count multiplied by the inner loop count (M × N).
 - Outer loops typically model vertical rows, while inner loops model horizontal columns.
 - Use `end=" "` to assemble items horizontally, followed by `print()` to conclude each row.
 - Always use distinct variable names (e.g. `row` and `col`) to prevent identifier collisions.

@@ -37,12 +37,20 @@ function fencedBlocks(markdown) {
   const blocks = [];
   const lines = markdown.split(/\r?\n/);
   let section = '';
+  let exerciseIndex = null;
+  let inSolution = false;
   for (let i = 0; i < lines.length; i += 1) {
     const line = lines[i];
     const trimmed = line.trim();
     if (trimmed.startsWith('## ') && !trimmed.startsWith('### ')) {
       section = trimmed.slice(3).trim().toLowerCase();
+      exerciseIndex = section === 'make it yourself' ? 0 : null;
+      inSolution = false;
+    } else if (section === 'try it yourself' && trimmed.startsWith('### ')) {
+      exerciseIndex = exerciseIndex === null ? 0 : exerciseIndex + 1;
     }
+    if (trimmed.startsWith(':::solution')) inSolution = true;
+    else if (trimmed === ':::' && inSolution) inSolution = false;
     const opening = line.match(/^```([^\r\n]*)$/);
     if (!opening) continue;
     const bodyStart = i + 1;
@@ -54,6 +62,8 @@ function fencedBlocks(markdown) {
       body: lines.slice(bodyStart, closing).join('\n'),
       line: i + 1,
       section,
+      exerciseIndex,
+      solution: inSolution,
     });
     i = closing;
   }
@@ -115,9 +125,9 @@ for (const lesson of lessons) {
   try { markdown = readFileSync(lessonPath, 'utf8'); } catch { continue; }
   const blocks = fencedBlocks(markdown);
   const runnable = blocks.map((block, index) => ({ block, index }))
-    .filter(({ block }) => block.info === 'python run' && !(
-      (block.section.includes('try it yourself') || block.section.includes('make it yourself'))
-      && !hasExecutableStatements(block.body)
+    .filter(({ block }) => block.info === 'python run' && (
+      !block.section.includes('try it yourself') && !block.section.includes('make it yourself')
+      || block.solution
     ));
   if (!runnable.length) continue;
 
@@ -134,9 +144,15 @@ for (const lesson of lessons) {
   for (const { block, index } of runnable) {
     blockCount += 1;
     const expectedBlock = expectedFor(blocks, index);
+    const expectedExercise = block.solution
+      ? blocks.find((candidate) => candidate.info === 'expected' && candidate.exerciseIndex === block.exerciseIndex)
+      : null;
+    const inputExercise = block.solution
+      ? blocks.find((candidate) => candidate.info === 'input' && candidate.exerciseIndex === block.exerciseIndex)
+      : null;
     let actual;
     try {
-      actual = await execute(worker, `${lesson}:${block.line}`, block.body);
+      actual = await execute(worker, `${lesson}:${block.line}`, block.body, inputExercise?.body ?? '');
     } catch (error) {
       actual = { fatal: error.message };
       await worker.terminate();
@@ -150,7 +166,8 @@ for (const lesson of lessons) {
     }
     const actualText = actual.output ?? actual.fatal;
     const expectedText = expectedBlock?.body.replace(/\s+$/, '');
-    if (expectedBlock && actualText === expectedText) {
+    const exerciseExpected = expectedExercise?.body.replace(/\s+$/, '');
+    if (expectedBlock && actualText === expectedText && (!block.solution || actualText === exerciseExpected)) {
       console.log(`[PASS] ${lesson} (line ${block.line})`);
       passCount += 1;
     } else {

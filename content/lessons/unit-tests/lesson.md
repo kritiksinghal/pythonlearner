@@ -16,7 +16,6 @@ learningGoals:
   - "Recognize pytest discovery naming and raises checks"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What a unit test checks and how `assert` reports a failed expectation
@@ -281,12 +280,25 @@ An assertion tells you that the observed behavior differs from an expectation. R
 
 ### Easy: test a distance conversion
 
-Write and check a function that doubles a distance reading.
+Use `distance` as the sample data. Write and check a function that doubles a distance reading. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about unit tests. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+distance = 8
+```
+
+```expected
+distance check passed
+```
 
 ```python run
-# Complete the test a distance conversion task.
-# Sample data: distance = 8
-# Write your code below and print the result
+# Complete the Easy: test a distance conversion task.
+distance = 8
+# Write your code below
 ```
 
 
@@ -294,6 +306,7 @@ Write and check a function that doubles a distance reading.
 The function returns twice the supplied number, and the assertion checks the expected result for 8.
 
 ```python
+distance = 8
 def double_distance(distance):
     return distance * 2
 
@@ -304,12 +317,25 @@ print("distance check passed")
 
 ### Medium: include zero and a negative value
 
-Check a function on two values that are not both typical positive inputs.
+Use `distances` as the sample data. Check a function on two values that are not both typical positive inputs. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about unit tests. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+distances = [0, -3]
+```
+
+```expected
+boundary checks passed
+```
 
 ```python run
-# Complete the include zero and a negative value task.
-# Sample data: distances = [0, -3]
-# Write your code below and print the result
+# Complete the Medium: include zero and a negative value task.
+distances = [0, -3]
+# Write your code below
 ```
 
 
@@ -317,6 +343,7 @@ Check a function on two values that are not both typical positive inputs.
 The tests explicitly cover zero and a negative number, so both cases are checked rather than inferred from a positive input.
 
 ```python
+distances = [0, -3]
 def absolute_square(value):
     return value * value
 
@@ -328,12 +355,25 @@ print("boundary checks passed")
 
 ### Challenge: separate calculation and display
 
-Write a function that returns a total, then test the function without prompting.
+Use `prices` as the sample data. Write a function that returns a total, then test the function without prompting. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about unit tests. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+prices = [12, 8, 5]
+```
+
+```expected
+fee calculation checked
+```
 
 ```python run
-# Complete the separate calculation and display task.
-# Sample data: prices = [12, 8, 5]
-# Write your code below and print the result
+# Complete the Challenge: separate calculation and display task.
+prices = [12, 8, 5]
+# Write your code below
 ```
 
 
@@ -341,6 +381,7 @@ Write a function that returns a total, then test the function without prompting.
 The calculation accepts values as arguments and returns a result. A separate main function could prompt and print, while this assertion checks the logic directly.
 
 ```python
+prices = [12, 8, 5]
 def total_with_fee(price, fee):
     return price + fee
 

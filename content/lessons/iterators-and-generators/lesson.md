@@ -15,7 +15,6 @@ learningGoals:
   - "Choose a generator when producing a sequence lazily is useful"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What an **iterable** is and how it differs from an **iterator**
@@ -307,12 +306,27 @@ Generators do not support list-style indexing or repeated traversal. Use a list 
 
 ### Easy: yield three team names
 
-Write a generator that yields three strings and print them in a loop.
+Use `team_names` as the sample data. Write a generator that yields three strings and print them in a loop.
+
+
+:::tip Hint
+Use the lesson idea about iterators and generators. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+team_names = ['Falcons', 'Tigers', 'Owls']
+```
+
+```expected
+Falcons
+Tigers
+Owls
+```
 
 ```python run
-# Complete the yield three team names task.
-# Sample data: team_names = ["Falcons", "Tigers", "Owls"]
-# Write your code below and print the result
+# Complete the Easy: yield three team names task.
+team_names = ['Falcons', 'Tigers', 'Owls']
+# Write your code below
 ```
 
 
@@ -320,6 +334,7 @@ Write a generator that yields three strings and print them in a loop.
 Each `yield` makes one name available. The for loop requests each name until the generator ends.
 
 ```python
+team_names = ['Falcons', 'Tigers', 'Owls']
 def teams():
     yield "Falcons"
     yield "Tigers"
@@ -332,12 +347,25 @@ for team in teams():
 
 ### Medium: generate doubled values
 
-Use a generator expression to double each value and print the values as a list.
+Use `numbers` as the sample data. Use a generator expression to double each value and print the values as a list.
+
+
+:::tip Hint
+Use the lesson idea about iterators and generators. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+numbers = [3, 5, 8]
+```
+
+```expected
+[6, 10, 16]
+```
 
 ```python run
-# Complete the generate doubled values task.
-# Sample data: numbers = [3, 5, 8]
-# Write your code below and print the result
+# Complete the Medium: generate doubled values task.
+numbers = [3, 5, 8]
+# Write your code below
 ```
 
 
@@ -353,12 +381,27 @@ print(list(doubled))
 
 ### Challenge: make a running sequence
 
-Create a generator that yields the first four multiples of seven.
+Use `first_multiple` and `count` as the sample data. Create a generator that yields the first four multiples of seven. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about iterators and generators. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+first_multiple = 7
+count = 4
+```
+
+```expected
+[7, 14, 21, 28]
+```
 
 ```python run
-# Complete the make a running sequence task.
-# Sample data: first_multiple = 7, count = 4
-# Write your code below and print the result
+# Complete the Challenge: make a running sequence task.
+first_multiple = 7
+count = 4
+# Write your code below
 ```
 
 
@@ -366,6 +409,8 @@ Create a generator that yields the first four multiples of seven.
 The loop computes one multiple per iteration and yields it. `list()` collects the four generated values for this small example.
 
 ```python
+first_multiple = 7
+count = 4
 def multiples_of_seven():
     for multiplier in range(1, 5):
         yield multiplier * 7

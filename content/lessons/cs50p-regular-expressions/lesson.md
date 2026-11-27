@@ -15,7 +15,6 @@ learningGoals:
   - "Use raw strings and flags where appropriate"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What a regular expression describes
@@ -343,12 +342,26 @@ Name the shape in plain language before adding symbols. For example, state “tw
 
 ### Easy: check a short locker code
 
-Require exactly four digits.
+Use `locker_code` as the sample data. Require exactly four digits. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about cs50p regular expressions. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+locker_code = '6391'
+```
+
+```expected
+True
+False
+```
 
 ```python run
-# Complete the check a short locker code task.
-# Sample data: locker_code = "6391"
-# Write your code below and print the result
+# Complete the Easy: check a short locker code task.
+locker_code = '6391'
+# Write your code below
 ```
 
 
@@ -356,6 +369,7 @@ Require exactly four digits.
 The first code contains four digits. The second contains only three, so it does not fit the required shape.
 
 ```python
+locker_code = '6391'
 import re
 
 print(bool(re.fullmatch(r"\d{4}", "6391")))
@@ -365,12 +379,25 @@ print(bool(re.fullmatch(r"\d{4}", "639")))
 
 ### Medium: collect the set numbers
 
-Extract all digit groups from a line describing a match.
+Use `match_line` as the sample data. Extract all digit groups from a line describing a match.
+
+
+:::tip Hint
+Use the lesson idea about cs50p regular expressions. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+match_line = 'Match 3-2, 6-1'
+```
+
+```expected
+['2', '11', '3', '9']
+```
 
 ```python run
-# Complete the collect the set numbers task.
-# Sample data: match_line = "Match 3-2, 6-1"
-# Write your code below and print the result
+# Complete the Medium: collect the set numbers task.
+match_line = 'Match 3-2, 6-1'
+# Write your code below
 ```
 
 
@@ -378,6 +405,7 @@ Extract all digit groups from a line describing a match.
 `findall` returns each consecutive run of digits in order, including set numbers and point totals.
 
 ```python
+match_line = 'Match 3-2, 6-1'
 import re
 
 print(re.findall(r"\d+", "Set 2: 11 points, set 3: 9 points"))
@@ -386,12 +414,25 @@ print(re.findall(r"\d+", "Set 2: 11 points, set 3: 9 points"))
 
 ### Challenge: change a roster name order
 
-Capture a surname and given name separated by a comma, then print the given name first.
+Use `roster_name` as the sample data. Capture a surname and given name separated by a comma, then print the given name first.
+
+
+:::tip Hint
+Use the lesson idea about cs50p regular expressions. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+roster_name = "Das, Kabir"
+```
+
+```expected
+Kabir Das
+```
 
 ```python run
-# Complete the change a roster name order task.
-# Sample data: match = re.fullmatch('(.+), (.+)', 'Das, Kabir')
-# Write your code below and print the result
+# Complete the Challenge: change a roster name order task.
+roster_name = "Das, Kabir"
+# Write your code below
 ```
 
 
@@ -399,6 +440,7 @@ Capture a surname and given name separated by a comma, then print the given name
 The two groups capture the text on either side of the comma. Printing them in reverse order changes the display while preserving both pieces.
 
 ```python
+roster_name = "Das, Kabir"
 import re
 
 match = re.fullmatch(r"(.+), (.+)", "Das, Kabir")

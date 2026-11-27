@@ -15,7 +15,6 @@ learningGoals:
   - "Diagnose common import-name mistakes"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What a **module** is and why Python code is organized into modules
@@ -287,12 +286,25 @@ Python includes a standard library, but packages from third parties require sepa
 
 ### Easy: import a complete module
 
-Use `math` to find the square root of 144.
+Use `math` to find the square root of 144. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about modules and imports. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+number = 144
+```
+
+```expected
+12.0
+```
 
 ```python run
-# Complete the import a complete module task.
-# Sample data: number = 144
-# Write your code below and print the result
+# Complete the Easy: import a complete module task.
+number = 144
+# Write your code below
 ```
 
 
@@ -300,6 +312,7 @@ Use `math` to find the square root of 144.
 Import `math`, then access `sqrt` through the module name. This keeps the origin of the function clear.
 
 ```python
+number = 144
 import math
 
 print(math.sqrt(144))
@@ -308,12 +321,25 @@ print(math.sqrt(144))
 
 ### Medium: import one selected function
 
-Use `statistics.median` by importing just `median`, then find the middle score.
+Use `statistics.median` by importing just `median`, then find the middle score. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about modules and imports. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+marks = [71, 94, 83, 86, 78]
+```
+
+```expected
+83
+```
 
 ```python run
-# Complete the import one selected function task.
-# Sample data: marks = [71, 94, 83, 86, 78]
-# Write your code below and print the result
+# Complete the Medium: import one selected function task.
+marks = [71, 94, 83, 86, 78]
+# Write your code below
 ```
 
 
@@ -321,6 +347,7 @@ Use `statistics.median` by importing just `median`, then find the middle score.
 The statement binds `median` in the current module, so call `median(marks)` directly.
 
 ```python
+marks = [71, 94, 83, 86, 78]
 from statistics import median
 
 marks = [71, 94, 83, 86, 78]
@@ -332,10 +359,27 @@ print(median(marks))
 
 Alias `datetime` as `dt`, create a date, and print its weekday number.
 
+
+:::tip Hint
+Use the lesson idea about modules and imports. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+concert_year = 2026
+concert_month = 6
+concert_day = 20
+```
+
+```expected
+5
+```
+
 ```python run
-# Complete the give the module a clear alias task.
-# Sample data: concert = dt.date(2026, 6, 20)
-# Write your code below and print the result
+# Complete the Challenge: give the module a clear alias task.
+concert_year = 2026
+concert_month = 6
+concert_day = 20
+# Write your code below
 ```
 
 
@@ -343,6 +387,9 @@ Alias `datetime` as `dt`, create a date, and print its weekday number.
 The alias `dt` refers to the imported module. A date's `weekday()` method returns a number from zero for Monday through six for Sunday.
 
 ```python
+concert_year = 2026
+concert_month = 6
+concert_day = 20
 import datetime as dt
 
 concert = dt.date(2026, 6, 20)

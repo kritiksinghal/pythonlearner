@@ -29,7 +29,6 @@ learningGoals:
   - "Differentiate when to use mutable lists versus immutable, hashable tuples."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How Python defines **tuples** as ordered, immutable sequences of data.
@@ -316,12 +315,26 @@ x=10, y=20, remaining=[30]
 
 ### Exercise 1 (easy): Coordinate extraction and axis swap
 
-Create a tuple holding two-dimensional GPS coordinates `location = (19.0760, 72.8777)` (Mumbai latitude and longitude). Unpack the tuple into `latitude` and `longitude`. Then, use tuple swapping syntax to swap their values so that `latitude` holds the longitude and vice-versa, printing the swapped result.
+Unpack `location` into `latitude` and `longitude`, then swap them. Print both values after the swap.
+
+
+:::tip Hint
+Use the lesson idea about tuples. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+location = (19.076, 72.8777)
+```
+
+```expected
+Swapped latitude: 72.8777
+Swapped longitude: 19.076
+```
 
 ```python run
-# Complete the Coordinate extraction and axis swap task.
-# Sample data: location = (19.076, 72.8777)
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Coordinate extraction and axis swap task.
+location = (19.076, 72.8777)
+# Write your code below
 ```
 
 
@@ -329,6 +342,7 @@ Create a tuple holding two-dimensional GPS coordinates `location = (19.0760, 72.
 Unpack into `latitude, longitude`, then swap using `latitude, longitude = longitude, latitude`:
 
 ```python run
+location = (19.076, 72.8777)
 location = (19.0760, 72.8777)
 latitude, longitude = location
 latitude, longitude = longitude, latitude
@@ -344,12 +358,26 @@ Swapped longitude: 19.076
 
 ### Exercise 2 (medium): Race podium split with star unpacking
 
-Given the leaderboard of a 100-meter sprint `leaderboard = ("Usain", "Yohan", "Justin", "Tyson", "Asafa")`, use extended unpacking to assign the gold winner to `gold`, the silver winner to `silver`, the bronze winner to `bronze`, and gather all remaining sprinters into `others`. Print the podium and the remaining runners.
+Unpack `leaderboard` into `gold`, `silver`, `bronze`, and `others`. Print the podium and remaining names.
+
+
+:::tip Hint
+Use the lesson idea about tuples. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+leaderboard = ('Usain', 'Yohan', 'Justin', 'Tyson', 'Asafa')
+```
+
+```expected
+Gold: Usain, Silver: Yohan, Bronze: Justin
+Runners-up: ['Tyson', 'Asafa']
+```
 
 ```python run
-# Complete the Race podium split with star unpacking task.
-# Sample data: leaderboard = ('Usain', 'Yohan', 'Justin', 'Tyson', 'Asafa')
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): Race podium split with star unpacking task.
+leaderboard = ('Usain', 'Yohan', 'Justin', 'Tyson', 'Asafa')
+# Write your code below
 ```
 
 
@@ -357,6 +385,7 @@ Given the leaderboard of a 100-meter sprint `leaderboard = ("Usain", "Yohan", "J
 Use `gold, silver, bronze, *others = leaderboard`:
 
 ```python run
+leaderboard = ('Usain', 'Yohan', 'Justin', 'Tyson', 'Asafa')
 leaderboard = ("Usain", "Yohan", "Justin", "Tyson", "Asafa")
 gold, silver, bronze, *others = leaderboard
 print(f"Gold: {gold}, Silver: {silver}, Bronze: {bronze}")
@@ -371,12 +400,25 @@ Runners-up: ['Tyson', 'Asafa']
 
 ### Exercise 3 (challenge): Perceived RGB color luminance
 
-A digital graphics filter calculates perceived human brightness (luminance) from an RGB color tuple using the standardized formula: $L = (0.299 \times R) + (0.587 \times G) + (0.114 \times B)$. Given the color tuple `forest_green = (34, 139, 34)`, unpack the channels, calculate the luminance value, round it to one decimal place, and print the result.
+Unpack `forest_green` into red, green, and blue channels. Calculate luminance, round to one decimal place, and print it.
+
+
+:::tip Hint
+Use the lesson idea about tuples. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+forest_green = (34, 139, 34)
+```
+
+```expected
+Color: (34, 139, 34) -> Perceived Luminance: 95.6
+```
 
 ```python run
-# Complete the Perceived RGB color luminance task.
-# Sample data: forest_green = (34, 139, 34)
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Perceived RGB color luminance task.
+forest_green = (34, 139, 34)
+# Write your code below
 ```
 
 

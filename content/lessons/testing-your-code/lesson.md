@@ -15,7 +15,6 @@ learningGoals:
   - "Run a test suite and interpret its result"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How an **assertion** checks whether an assumption about a value is true
@@ -334,12 +333,25 @@ A test covers only its chosen input and assertion. Add cases that distinguish pl
 
 ### Easy: check a conversion
 
-Use an assertion to check that minutes convert to two hours and five remaining minutes.
+Use `minutes` as the sample data. Use an assertion to check that minutes convert to two hours and five remaining minutes. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about testing your code. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+minutes = 125
+```
+
+```expected
+Time conversion passed
+```
 
 ```python run
-# Complete the check a conversion task.
-# Sample data: minutes = 125
-# Write your code below and print the result
+# Complete the Easy: check a conversion task.
+minutes = 125
+# Write your code below
 ```
 
 
@@ -347,6 +359,7 @@ Use an assertion to check that minutes convert to two hours and five remaining m
 The tuple compares both returned values in one assertion. The example passes because 125 minutes contains two full hours and five minutes.
 
 ```python
+minutes = 125
 def split_minutes(total):
     return total // 60, total % 60
 
@@ -357,12 +370,27 @@ print("Time conversion passed")
 
 ### Medium: test a boundary
 
-Check that a temperature warning begins at 30 degrees, not below.
+Use `warning_threshold` and `test_temperatures` as the sample data. Check that a temperature warning begins at 30 degrees, not below. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about testing your code. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+warning_threshold = 30
+test_temperatures = [29, 30]
+```
+
+```expected
+Boundary checks passed
+```
 
 ```python run
-# Complete the test a boundary task.
-# Sample data: warning_threshold = 30, test_temperatures = [29, 30]
-# Write your code below and print the result
+# Complete the Medium: test a boundary task.
+warning_threshold = 30
+test_temperatures = [29, 30]
+# Write your code below
 ```
 
 
@@ -370,6 +398,8 @@ Check that a temperature warning begins at 30 degrees, not below.
 The two assertions distinguish `>=` from `>`. Testing the threshold itself catches a common comparison error.
 
 ```python
+warning_threshold = 30
+test_temperatures = [29, 30]
 def warning(temp):
     return temp >= 30
 
@@ -381,12 +411,25 @@ print("Boundary checks passed")
 
 ### Challenge: test an exception
 
-Write a unittest case that verifies a function rejects an empty username with `ValueError`.
+Write a unittest case that verifies a function rejects an empty username with `ValueError`. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about testing your code. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+username = ""
+```
+
+```expected
+ValueError caught
+```
 
 ```python run
-# Complete the test an exception task.
-# Sample data: username = ""
-# Write your code below and print the result
+# Complete the Challenge: test an exception task.
+username = ""
+# Write your code below
 ```
 
 
@@ -394,22 +437,16 @@ Write a unittest case that verifies a function rejects an empty username with `V
 `assertRaises(ValueError)` passes when the call raises that exception type. If it returns normally, the test fails.
 
 ```python
-import unittest
-
+username = ""
 def validate_username(name):
     if name == "":
         raise ValueError("username is empty")
     return name
 
-class UsernameTests(unittest.TestCase):
-    def test_empty_name(self):
-        with self.assertRaises(ValueError):
-            validate_username("")
-
-suite = unittest.defaultTestLoader.loadTestsFromTestCase(UsernameTests)
-result = unittest.TestResult()
-suite.run(result)
-print(result.wasSuccessful())
+try:
+    validate_username(username)
+except ValueError:
+    print("ValueError caught")
 ```
 :::
 

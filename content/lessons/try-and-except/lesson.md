@@ -15,7 +15,6 @@ learningGoals:
   - "Avoid hiding unrelated programming errors"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How a **try block** marks code where a known problem may happen
@@ -322,10 +321,23 @@ A default can keep a program usable, but it can also disguise missing or corrupt
 
 Try converting a short phrase to an integer. Catch `ValueError` and show a friendly prompt.
 
+
+:::tip Hint
+Use the lesson idea about try and except. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+raw_laps = 'several'
+```
+
+```expected
+Please enter the lap count as digits
+```
+
 ```python run
-# Complete the catch a conversion problem task.
-# Sample data: raw_laps = "several"
-# Write your code below and print the result
+# Complete the Easy: catch a conversion problem task.
+raw_laps = 'several'
+# Write your code below
 ```
 
 
@@ -333,6 +345,7 @@ Try converting a short phrase to an integer. Catch `ValueError` and show a frien
 The `int()` operation raises `ValueError`, so the handler displays the prompt. If the text were a valid integer string, execution would continue without entering the except suite.
 
 ```python
+raw_laps = 'several'
 try:
     laps = int("several")
 except ValueError:
@@ -344,10 +357,23 @@ except ValueError:
 
 Use `else` to print a message only when converting the score succeeds.
 
+
+:::tip Hint
+Use the lesson idea about try and except. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+raw_score = '88'
+```
+
+```expected
+Saved score: 96
+```
+
 ```python run
-# Complete the report success separately task.
-# Sample data: raw_score = "88"
-# Write your code below and print the result
+# Complete the Medium: report success separately task.
+raw_score = '88'
+# Write your code below
 ```
 
 
@@ -355,6 +381,7 @@ Use `else` to print a message only when converting the score succeeds.
 The try suite completes, so the except suite is skipped and the else suite prints the saved score.
 
 ```python
+raw_score = '88'
 try:
     score = int("96")
 except ValueError:
@@ -368,10 +395,23 @@ else:
 
 Use `try` and `except` to print either the selected song or a clear message for an invalid position.
 
+
+:::tip Hint
+Use the lesson idea about try and except. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+songs = ['Orbit', 'Paper Moon']
+```
+
+```expected
+No song at that position
+```
+
 ```python run
-# Complete the handle invalid positions task.
-# Sample data: songs = ['Orbit', 'Paper Moon']
-# Write your code below and print the result
+# Complete the Challenge: handle invalid positions task.
+songs = ['Orbit', 'Paper Moon']
+# Write your code below
 ```
 
 
@@ -379,6 +419,7 @@ Use `try` and `except` to print either the selected song or a clear message for 
 The index three is outside the two-item list. The `IndexError` handler catches that expected condition and prints a message that describes the choice problem.
 
 ```python
+songs = ['Orbit', 'Paper Moon']
 songs = ["Orbit", "Paper Moon"]
 try:
     print(songs[3])

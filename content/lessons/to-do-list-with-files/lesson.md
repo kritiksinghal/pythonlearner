@@ -17,7 +17,6 @@ learningGoals:
   - "Keep browser examples runnable with in-memory streams"
 relatedProblems: []
 ---
-
 ## The goal
 
 Build a command-line to-do list that can add tasks, show saved tasks, and mark a task complete. The program will store one task per line in a text file so the list survives after the program ends. This is a small practical project for combining lists, functions, and file operations.
@@ -348,10 +347,23 @@ The interactive version asks for a task number and converts the response with `i
 
 Add one improvement at a time and keep the existing save format valid.
 
+
+:::tip Hint
+Use the lesson idea about to do list with files. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+tasks = [{'text': 'Charge the recorder', 'done': False}]
+```
+
+```expected
+1. [ ] Charge the recorder
+```
+
 ```python run
-# Display numbered tasks with a marker for completed items.
-# Sample data: tasks = [{"text": "Charge the recorder", "done": False}]
-# Write your code below and print the result
+# Complete the Make It Yourself task.
+tasks = [{'text': 'Charge the recorder', 'done': False}]
+# Write your code below
 ```
 
 1. Add a `remove` action that deletes a selected task.
@@ -372,6 +384,7 @@ Reference: Python documentation, Reading and Writing Files
 Handle the empty list before looping, then use `enumerate` to number each task. The completion flag controls the marker while the task text stays unchanged.
 
 ```python
+tasks = [{'text': 'Charge the recorder', 'done': False}]
 def display_tasks(tasks):
     if not tasks:
         print("No tasks yet.")

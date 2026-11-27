@@ -16,7 +16,6 @@ learningGoals:
   - "Describe packages, APIs, and a reusable local module"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How an imported module makes reusable functions available
@@ -289,12 +288,25 @@ A local file named `random.py` can interfere with importing the intended module.
 
 ### Easy: choose a warm-up activity
 
-Import `choice` directly and pick from a short activity list.
+Use `Counter` to find the most common activity in `activities`. Print that activity.
+
+
+:::tip Hint
+Use the lesson idea about libraries. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+activities = ["stretch", "skip", "stretch"]
+```
+
+```expected
+stretch
+```
 
 ```python run
-# Complete the choose a warm-up activity task.
-# Sample data: activities = ["stretch", "skip", "jog"]
-# Write your code below and print the result
+# Complete the Easy: choose a warm-up activity task.
+activities = ["stretch", "skip", "stretch"]
+# Write your code below
 ```
 
 
@@ -303,21 +315,35 @@ Import `choice` directly and pick from a short activity list.
 The function returns one item from the supplied list. The lesson runner fixes the random result for verification; an ordinary run may choose another activity.
 
 ```python
-from random import choice
+activities = ["stretch", "skip", "stretch"]
+from collections import Counter
 
-activities = ["stretch", "skip", "jog"]
-print(choice(activities))
+most_common = Counter(activities).most_common(1)[0][0]
+print(most_common)
 ```
 :::
 
 ### Medium: calculate an average
 
-Use the standard library to compute the average of a set of temperatures.
+Use `temperatures` as the sample data. Use the standard library to compute the average of a set of temperatures. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about libraries. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+temperatures = [22, 26, 24]
+```
+
+```expected
+24
+```
 
 ```python run
-# Complete the calculate an average task.
-# Sample data: temperatures = [22, 26, 24]
-# Write your code below and print the result
+# Complete the Medium: calculate an average task.
+temperatures = [22, 26, 24]
+# Write your code below
 ```
 
 
@@ -325,6 +351,7 @@ Use the standard library to compute the average of a set of temperatures.
 `statistics.mean` calculates the arithmetic mean from the list and returns 24.
 
 ```python
+temperatures = [22, 26, 24]
 import statistics
 
 temperatures = [22, 26, 24]
@@ -334,12 +361,25 @@ print(statistics.mean(temperatures))
 
 ### Challenge: plan a command-line greeting
 
-Write a terminal script that expects exactly one name. Check the argument count before reading its first argument, then print a greeting.
+Use `name` as the sample data. Write a terminal script that expects exactly one name. Check the argument count before reading its first argument, then print a greeting.
+
+
+:::tip Hint
+Use the lesson idea about libraries. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+name = 'Nila'
+```
+
+```expected
+hello, Nila
+```
 
 ```python run
-# Complete the plan a command-line greeting task.
-# Sample data: name = "Nila"
-# Write your code below and print the result
+# Complete the Challenge: plan a command-line greeting task.
+name = 'Nila'
+# Write your code below
 ```
 
 ```bash
@@ -351,6 +391,7 @@ hello, Nila
 Import `sys`, check that `len(sys.argv)` is 2, and then print `sys.argv[1]`. If the count differs, call `sys.exit` with a short usage message.
 
 ```python
+name = 'Nila'
 import sys
 
 sys.argv = ["greeting.py", "Nila"]

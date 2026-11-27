@@ -15,7 +15,6 @@ learningGoals:
   - "Use DictReader and DictWriter when column names help"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How **JSON** stores nested structured data as text
@@ -309,12 +308,25 @@ Values such as sets and custom objects need a deliberate conversion. Convert the
 
 ### Easy: read a JSON value
 
-Parse a JSON string containing a game name and print the value.
+Use `game_json` as the sample data. Parse a JSON string containing a game name and print the value.
+
+
+:::tip Hint
+Use the lesson idea about json and csv. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+game_json = '{"name": "Sky Sprint", "levels": 4}'
+```
+
+```expected
+Sky Sprint
+```
 
 ```python run
-# Complete the read a JSON value task.
-# Sample data: game = json.loads('{"name": "Sky Sprint", "levels": 4}')
-# Write your code below and print the result
+# Complete the Easy: read a JSON value task.
+game_json = '{"name": "Sky Sprint", "levels": 4}'
+# Write your code below
 ```
 
 
@@ -322,6 +334,7 @@ Parse a JSON string containing a game name and print the value.
 `loads()` converts the JSON object into a dictionary, and the `name` key retrieves the game title.
 
 ```python
+game_json = '{"name": "Sky Sprint", "levels": 4}'
 import json
 
 game = json.loads('{"name": "Sky Sprint", "levels": 4}')
@@ -333,10 +346,24 @@ print(game["name"])
 
 Use `DictReader` to print each player's name and convert their score to an integer.
 
+
+:::tip Hint
+Use the lesson idea about json and csv. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+text = 'name,score\nAsha,81\nImran,92\n'
+```
+
+```expected
+Asha 81
+Imran 92
+```
+
 ```python run
-# Complete the read CSV with headers task.
-# Sample data: text = 'name,score\nAsha,81\nImran,92\n'
-# Write your code below and print the result
+# Complete the Medium: read CSV with headers task.
+text = 'name,score\nAsha,81\nImran,92\n'
+# Write your code below
 ```
 
 
@@ -344,6 +371,7 @@ Use `DictReader` to print each player's name and convert their score to an integ
 DictReader maps each row to column names. The `score` value is a string, so call `int()` before using it as a number.
 
 ```python
+text = 'name,score\nAsha,81\nImran,92\n'
 import csv
 from io import StringIO
 
@@ -355,12 +383,28 @@ for row in csv.DictReader(StringIO(text)):
 
 ### Challenge: encode a Python dictionary
 
-Turn a small event dictionary into readable JSON.
+Use `event` as the sample data. Turn a small event dictionary into readable JSON. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about json and csv. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+event = {'name': 'Night Run', 'distance_km': 5}
+```
+
+```expected
+{
+  "name": "Night Run",
+  "distance_km": 5
+}
+```
 
 ```python run
-# Complete the encode a Python dictionary task.
-# Sample data: event = {'name': 'Night Run', 'distance_km': 5}
-# Write your code below and print the result
+# Complete the Challenge: encode a Python dictionary task.
+event = {'name': 'Night Run', 'distance_km': 5}
+# Write your code below
 ```
 
 
@@ -368,6 +412,7 @@ Turn a small event dictionary into readable JSON.
 `dumps()` serializes the dictionary to JSON text. `indent=2` adds whitespace so the structure is easy to inspect.
 
 ```python
+event = {'name': 'Night Run', 'distance_km': 5}
 import json
 
 event = {"name": "Night Run", "distance_km": 5}

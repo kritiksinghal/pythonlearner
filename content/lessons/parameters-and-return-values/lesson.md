@@ -36,7 +36,6 @@ learningGoals:
   - "Recognize that print displays a value while return provides a value to code."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - A **parameter** is a name in a function definition that receives a value when the function is called.
@@ -334,12 +333,25 @@ Python reports `TypeError: can only concatenate str (not "int") to str`. The fir
 
 ### Easy: Return a greeting
 
-Write a function that accepts a name and returns a greeting string. Print the result of calling it.
+Use `name` as the sample data. Write a function that accepts a name and returns a greeting string. Print the result of calling it.
+
+
+:::tip Hint
+Use the lesson idea about parameters and return values. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+name = 'Pia'
+```
+
+```expected
+Hello, Pia!
+```
 
 ```python run
-# Complete the Return a greeting task.
-# Sample data: name = "Pia"
-# Write your code below and print the result
+# Complete the Easy: Return a greeting task.
+name = 'Pia'
+# Write your code below
 ```
 
 :::solution
@@ -347,6 +359,7 @@ The solution completes “Return a greeting” by using the provided sample valu
 
 
 ```python
+name = 'Pia'
 def greeting(name):
     return f"Hello, {name}!"
 
@@ -357,12 +370,27 @@ print(greeting("Pia"))
 
 ### Medium: Calculate a cricket total
 
-Write a function that accepts runs from two batters and returns their combined score.
+Use `first_batter` and `second_batter` as the sample data. Write a function that accepts runs from two batters and returns their combined score. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about parameters and return values. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+first_batter = 36
+second_batter = 49
+```
+
+```expected
+85
+```
 
 ```python run
-# Complete the Calculate a cricket total task.
-# Sample data: first_batter = 36, second_batter = 49
-# Write your code below and print the result
+# Complete the Medium: Calculate a cricket total task.
+first_batter = 36
+second_batter = 49
+# Write your code below
 ```
 
 :::solution
@@ -370,6 +398,8 @@ The solution completes “Calculate a cricket total” by using the provided sam
 
 
 ```python
+first_batter = 36
+second_batter = 49
 def partnership(first_batter, second_batter):
     return first_batter + second_batter
 
@@ -380,12 +410,28 @@ print(partnership(36, 49))
 
 ### Challenge: Return a ticket label
 
-Write a function that accepts a city and a departure time and returns one formatted ticket line. Call it twice and print both results.
+Use `city` and `departure_time` as the sample data. Write a function that accepts a city and a departure time and returns one formatted ticket line. Call it twice and print both results.
+
+
+:::tip Hint
+Use the lesson idea about parameters and return values. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+city = 'Udaipur'
+departure_time = '08:20'
+```
+
+```expected
+Train to Udaipur leaves at 08:20.
+Train to Indore leaves at 11:45.
+```
 
 ```python run
-# Complete the Return a ticket label task.
-# Sample data: city = "Udaipur", departure_time = "08:20"
-# Write your code below and print the result
+# Complete the Challenge: Return a ticket label task.
+city = 'Udaipur'
+departure_time = '08:20'
+# Write your code below
 ```
 
 :::solution
@@ -393,6 +439,8 @@ The solution completes “Return a ticket label” by using the provided sample 
 
 
 ```python
+city = 'Udaipur'
+departure_time = '08:20'
 def ticket_line(city, time):
     return f"Train to {city} leaves at {time}."
 

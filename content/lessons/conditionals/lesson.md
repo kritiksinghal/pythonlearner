@@ -15,7 +15,6 @@ learningGoals:
   - "Recognize when match is a clear alternative for fixed values"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How a **condition** evaluates to `True` or `False`
@@ -503,12 +502,25 @@ If a value matches both a specific case and a broad case, the first true branch 
 
 ### Easy: compare the rainfall
 
-Print a warning when rainfall is at least 20 millimeters.
+Use `rainfall` as the sample data. Print a warning when rainfall is at least 20 millimeters.
+
+
+:::tip Hint
+Use the lesson idea about conditionals. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+rainfall = 24
+```
+
+```expected
+Heavy rain alert
+```
 
 ```python run
-# Complete the compare the rainfall task.
-# Sample data: rainfall = 24
-# Write your code below and print the result
+# Complete the Easy: compare the rainfall task.
+rainfall = 24
+# Write your code below
 ```
 
 
@@ -526,12 +538,25 @@ else:
 
 ### Medium: check a range
 
-Print a message when the practice room temperature is between 19 and 24 degrees, inclusive.
+Use `room_temperature` as the sample data. Print a message when the practice room temperature is between 19 and 24 degrees, inclusive.
+
+
+:::tip Hint
+Use the lesson idea about conditionals. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+room_temperature = 21
+```
+
+```expected
+Comfortable for practice
+```
 
 ```python run
-# Complete the check a range task.
-# Sample data: room_temperature = 21
-# Write your code below and print the result
+# Complete the Medium: check a range task.
+room_temperature = 21
+# Write your code below
 ```
 
 
@@ -549,12 +574,25 @@ else:
 
 ### Challenge: match a fixed command
 
-Use `match` to respond to a short control-room command and include a catch-all.
+Use `match` to respond to a short control-room command and include a catch-all. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about conditionals. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+command = 'pause'
+```
+
+```expected
+Music pauses
+```
 
 ```python run
-# Complete the match a fixed command task.
-# Sample data: command = 'pause'
-# Write your code below and print the result
+# Complete the Challenge: match a fixed command task.
+command = 'pause'
+# Write your code below
 ```
 
 
@@ -562,6 +600,7 @@ Use `match` to respond to a short control-room command and include a catch-all.
 The `pause` value matches the second case, which groups two accepted spellings. Other values reach the catch-all case.
 
 ```python
+command = 'pause'
 command = "pause"
 match command:
     case "play":

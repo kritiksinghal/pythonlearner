@@ -23,6 +23,113 @@ interface Props {
   content: string;
 }
 
+interface MarkdownLine {
+  text: string;
+  start: number;
+  end: number;
+}
+
+type MarkdownToken =
+  | { kind: "fence"; start: number; end: number; tag: string; body: string }
+  | { kind: "callout"; start: number; end: number; type: string; title: string; body: string };
+
+function splitLines(content: string): MarkdownLine[] {
+  const lines: MarkdownLine[] = [];
+  const pattern = /[^\r\n]*(?:\r\n|\n|\r|$)/g;
+  let match: RegExpExecArray | null;
+  while ((match = pattern.exec(content)) !== null) {
+    if (!match[0]) break;
+    const raw = match[0];
+    lines.push({ text: raw.replace(/(?:\r\n|\n|\r)$/, ""), start: match.index, end: match.index + raw.length });
+  }
+  return lines;
+}
+
+function fenceOpening(line: string) {
+  return /^ {0,3}(`{3,}|~{3,})(.*)$/.exec(line);
+}
+
+function calloutOpening(line: string) {
+  return /^:::(\w+)(?:[ \t]+([^\r\n]*))?[ \t]*$/.exec(line);
+}
+
+function findFenceClose(lines: MarkdownLine[], from: number, marker: string, size: number, stopAtCallout = false) {
+  for (let i = from; i < lines.length; i += 1) {
+    if (stopAtCallout && lines[i].text.trim() === ":::") return { index: -1, boundary: i };
+    const close = /^ {0,3}(`{3,}|~{3,})[ \t]*$/.exec(lines[i].text);
+    if (close && close[1][0] === marker && close[1].length >= size) return { index: i, boundary: -1 };
+  }
+  return { index: -1, boundary: -1 };
+}
+
+/** Tokenize fenced blocks and callouts by whole lines, honoring delimiter type and length. */
+function findMarkdownTokens(content: string): MarkdownToken[] {
+  const lines = splitLines(content);
+  const tokens: MarkdownToken[] = [];
+  for (let i = 0; i < lines.length; i += 1) {
+    const line = lines[i];
+    const fence = fenceOpening(line.text);
+    if (fence) {
+      const marker = fence[1][0];
+      const closing = findFenceClose(lines, i + 1, marker, fence[1].length);
+      const closeIndex = closing.index;
+      const end = closeIndex >= 0 ? lines[closeIndex].end : content.length;
+      const bodyEnd = closeIndex >= 0 ? lines[closeIndex].start : content.length;
+      tokens.push({
+        kind: "fence",
+        start: line.start,
+        end,
+        tag: fence[2].trim().toLowerCase(),
+        body: content.slice(line.end, bodyEnd).replace(/(?:\r\n|\n|\r)$/, ""),
+      });
+      if (closeIndex < 0) break;
+      i = closeIndex;
+      continue;
+    }
+
+    const callout = calloutOpening(line.text);
+    if (!callout) continue;
+
+    let depth = 1;
+    let closeIndex = -1;
+    for (let cursor = i + 1; cursor < lines.length; cursor += 1) {
+      const nestedFence = fenceOpening(lines[cursor].text);
+      if (nestedFence) {
+        const fenceClose = findFenceClose(lines, cursor + 1, nestedFence[1][0], nestedFence[1].length, true);
+        if (fenceClose.index >= 0) {
+          cursor = fenceClose.index;
+          continue;
+        }
+        if (fenceClose.boundary >= 0) cursor = fenceClose.boundary - 1;
+        else break;
+      }
+
+      if (lines[cursor].text.trim() === ":::") {
+        depth -= 1;
+        if (depth === 0) {
+          closeIndex = cursor;
+          break;
+        }
+      } else if (calloutOpening(lines[cursor].text)) {
+        depth += 1;
+      }
+    }
+    const end = closeIndex >= 0 ? lines[closeIndex].end : content.length;
+    const bodyEnd = closeIndex >= 0 ? lines[closeIndex].start : content.length;
+    tokens.push({
+      kind: "callout",
+      start: line.start,
+      end,
+      type: callout[1].toLowerCase(),
+      title: (callout[2] || "").trim(),
+      body: content.slice(line.end, bodyEnd).replace(/(?:\r\n|\n|\r)$/, ""),
+    });
+    if (closeIndex < 0) break;
+    i = closeIndex;
+  }
+  return tokens;
+}
+
 /** Slugify heading text to match Table of Contents links */
 export function slugifyHeading(text: string): string {
   return text
@@ -60,32 +167,50 @@ function renderInline(text: string): React.ReactNode[] {
 }
 
 export default function MarkdownView({ content }: Props) {
-  // Regex matches both code fences (```...```) and container callouts (:::...:::)
-  const blockRegex =
-    /(?:```([a-zA-Z0-9_\-\s]*)\r?\n([\s\S]*?)\r?\n```|:::([a-zA-Z]+)(?:[ \t]+([^\r\n]*))?\r?\n([\s\S]*?)\r?\n:::)/g;
-
+  const tokens = findMarkdownTokens(content);
+  const expectedByToken = new Map<number, string>();
+  const sampleInputByToken = new Map<number, { text: string; isInteractive: boolean }>();
+  tokens.forEach((token, index) => {
+    const next = tokens[index + 1];
+    if (token.kind === "fence" && token.tag === "expected" && next?.kind === "fence" && next.tag === "python run") {
+      expectedByToken.set(index + 1, token.body.trimEnd());
+      const inputToken = tokens[index - 1];
+      if (inputToken?.kind === "fence" && (inputToken.tag === "input" || inputToken.tag === "sample input")) {
+        sampleInputByToken.set(index + 1, {
+          text: inputToken.body,
+          isInteractive: inputToken.tag === "input",
+        });
+      }
+    }
+  });
   const elements: React.ReactNode[] = [];
   let lastIndex = 0;
-  let match: RegExpExecArray | null;
+  let currentHeading = "";
 
-  while ((match = blockRegex.exec(content)) !== null) {
-    const priorHeadings = content.slice(0, match.index).match(/^##\s+[^\r\n]+/gm);
-    const inTryItYourself = priorHeadings?.at(-1)?.slice(3).trim().toLowerCase() === "try it yourself";
-    const textBefore = content.slice(lastIndex, match.index).trim();
+  for (let tokenIndex = 0; tokenIndex < tokens.length; tokenIndex += 1) {
+    const token = tokens[tokenIndex];
+    const textSegment = content.slice(lastIndex, token.start);
+    const headingMatches = [...textSegment.matchAll(/^## (?!#)([^\r\n]+)$/gm)];
+    if (headingMatches.length) currentHeading = headingMatches.at(-1)?.[1].trim().toLowerCase() || currentHeading;
+    const inTryItYourself = currentHeading === "try it yourself" || currentHeading === "make it yourself";
+    const textBefore = textSegment.trim();
     if (textBefore) {
       elements.push(...renderTextBlocks(textBefore, elements.length));
     }
 
-    if (match[1] !== undefined) {
+    if (token.kind === "fence") {
       // ── Code block ──
-      const tag = (match[1] || "").trim().toLowerCase();
-      const codeSnippet = match[2].trimEnd();
+      const tag = token.tag;
+      const codeSnippet = token.body.trimEnd();
 
       if (inTryItYourself && (tag === "python run" || tag.endsWith("run"))) {
         elements.push(
           <RunnableCodeBlock
             key={`exercise-${elements.length}`}
-            initialCode=""
+            initialCode={codeSnippet}
+            expectedOutput={expectedByToken.get(tokenIndex)}
+            initialStdin={sampleInputByToken.get(tokenIndex)?.text}
+            showInput={sampleInputByToken.get(tokenIndex)?.isInteractive}
             title="Your Turn"
           />
         );
@@ -94,10 +219,31 @@ export default function MarkdownView({ content }: Props) {
           <RunnableCodeBlock
             key={`run-${elements.length}`}
             initialCode={codeSnippet}
+            expectedOutput={expectedByToken.get(tokenIndex)}
           />
         );
       } else if (tag === "output" && inTryItYourself) {
         // Keep expected answers out of view until the learner opens the solution.
+      } else if (tag === "input" || tag === "sample input") {
+        elements.push(
+          <div key={`sample-input-${elements.length}`} className="my-3 overflow-hidden rounded-md border border-border bg-code-bg/60">
+            <div className="flex items-center gap-1.5 border-b border-border bg-code-bg/40 px-3 py-1 text-[11px] font-mono text-muted">
+              <span className="h-1.5 w-1.5 rounded-full bg-muted/60" />
+              <span>Sample input</span>
+            </div>
+            <pre className="p-3 font-mono text-xs text-foreground whitespace-pre-wrap leading-relaxed overflow-x-auto"><code>{codeSnippet}</code></pre>
+          </div>
+        );
+      } else if (tag === "expected") {
+        elements.push(
+          <div key={`expected-${elements.length}`} className="my-3 overflow-hidden rounded-md border border-accent/40 bg-accent/5">
+            <div className="flex items-center gap-1.5 border-b border-accent/20 bg-accent/10 px-3 py-1 text-[11px] font-mono text-muted">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              <span>Expected output</span>
+            </div>
+            <pre className="p-3 font-mono text-xs text-foreground whitespace-pre-wrap leading-relaxed overflow-x-auto"><code>{codeSnippet}</code></pre>
+          </div>
+        );
       } else if (tag === "output") {
         elements.push(
           <div
@@ -123,11 +269,11 @@ export default function MarkdownView({ content }: Props) {
           </pre>
         );
       }
-    } else if (match[3] !== undefined) {
+    } else {
       // ── Callout / Solution block ──
-      const type = (match[3] || "").toLowerCase();
-      const title = (match[4] || "").trim();
-      const body = match[5].trim();
+      const type = token.type;
+      const title = token.title;
+      const body = token.body.trim();
 
       if (type === "solution") {
         elements.push(
@@ -147,6 +293,21 @@ export default function MarkdownView({ content }: Props) {
               </span>
             </summary>
             <div className="mt-3 border-t border-border pt-3">
+              <MarkdownView content={body} />
+            </div>
+          </details>
+        );
+      } else if (type === "tip" && title.toLowerCase() === "hint") {
+        elements.push(
+          <details
+            key={`hint-${elements.length}`}
+            className="group my-3 rounded-md border border-border bg-surface px-3.5 py-3"
+          >
+            <summary className="cursor-pointer select-none font-medium text-xs sm:text-sm text-foreground flex items-center justify-between">
+              <span>Hint</span>
+              <span className="text-muted text-xs group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div className="mt-3 border-t border-border pt-3 text-sm leading-relaxed text-foreground/90">
               <MarkdownView content={body} />
             </div>
           </details>
@@ -210,7 +371,7 @@ export default function MarkdownView({ content }: Props) {
       }
     }
 
-    lastIndex = match.index + match[0].length;
+    lastIndex = token.end;
   }
 
   const remaining = content.slice(lastIndex).trim();

@@ -28,7 +28,6 @@ learningGoals:
   - "Perform slice assignment to insert, replace, and delete multi-element sub-ranges in mutable lists."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How Python uses zero-based numbering for positive indices starting at the front of a sequence.
@@ -314,12 +313,25 @@ Type of single_slice: <class 'list'>
 
 ### Exercise 1 (easy): Phone number area code extraction
 
-Given a standardized landline phone number `phone = "+91-022-26543210"`, use slicing to extract the country code (`+91`), the city area code (`022`), and the local line number (`26543210`). Print each component labeled with f-strings.
+Slice `phone` into its country code, area code, and local number. Print each part with a label.
+
+
+:::tip Hint
+Use the lesson idea about indexing and slicing. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+phone = '+91-022-26543210'
+```
+
+```expected
+Country: +91, Area: 022, Line: 26543210
+```
 
 ```python run
-# Complete the Phone number area code extraction task.
-# Sample data: phone = '+91-022-26543210'
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Phone number area code extraction task.
+phone = '+91-022-26543210'
+# Write your code below
 ```
 
 
@@ -327,6 +339,7 @@ Given a standardized landline phone number `phone = "+91-022-26543210"`, use sli
 Use `phone[:3]` for country code, `phone[4:7]` for area code, and `phone[8:]` for local number:
 
 ```python run
+phone = '+91-022-26543210'
 phone = "+91-022-26543210"
 country_code = phone[:3]
 area_code = phone[4:7]
@@ -341,12 +354,29 @@ Country: +91, Area: 022, Line: 26543210
 
 ### Exercise 2 (medium): Search result pagination
 
-Given an inventory list of 12 laptops `laptops = ["L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9", "L10", "L11", "L12"]` and a page size of `4`, write slicing expressions that extract and print Page 1 (items 0 to 4), Page 2 (items 4 to 8), and Page 3 (items 8 to 12).
+Use `laptops` and a page size of 4. Print pages 1, 2, and 3 using slices `0:4`, `4:8`, and `8:12`.
+
+
+:::tip Hint
+Use the lesson idea about indexing and slicing. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+laptops = ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'L10', 'L11', 'L12']
+page_size = 4
+```
+
+```expected
+Page 1: ['L1', 'L2', 'L3', 'L4']
+Page 2: ['L5', 'L6', 'L7', 'L8']
+Page 3: ['L9', 'L10', 'L11', 'L12']
+```
 
 ```python run
-# Complete the Search result pagination task.
-# Sample data: laptops = ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'L10', 'L11', 'L12'], page_size = 4
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): Search result pagination task.
+laptops = ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'L10', 'L11', 'L12']
+page_size = 4
+# Write your code below
 ```
 
 
@@ -354,6 +384,8 @@ Given an inventory list of 12 laptops `laptops = ["L1", "L2", "L3", "L4", "L5", 
 Slice by increments of `page_size`: `[0:4]`, `[4:8]`, and `[8:12]`:
 
 ```python run
+laptops = ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'L10', 'L11', 'L12']
+page_size = 4
 laptops = ["L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9", "L10", "L11", "L12"]
 page_size = 4
 page1 = laptops[0:4]
@@ -373,12 +405,25 @@ Page 3: ['L9', 'L10', 'L11', 'L12']
 
 ### Exercise 3 (challenge): Middle trimming and sub-list replacement
 
-Given an array of sensor telemetry `readings = [100, 999, 999, 999, 500]`, where the middle three values represent corrupted sensor spikes, use a single slice assignment statement `readings[1:4] = ...` to replace all three corrupted values with the two valid interpolated values `[200, 350]`. Print the healed array.
+Replace `readings[1:4]` with `[200, 350]` in one slice assignment. Print the updated `readings` list.
+
+
+:::tip Hint
+Use the lesson idea about indexing and slicing. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+readings = [100, 999, 999, 999, 500]
+```
+
+```expected
+Healed sensor telemetry: [100, 200, 350, 500]
+```
 
 ```python run
-# Complete the Middle trimming and sub-list replacement task.
-# Sample data: readings = [100, 999, 999, 999, 500]
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Middle trimming and sub-list replacement task.
+readings = [100, 999, 999, 999, 500]
+# Write your code below
 ```
 
 

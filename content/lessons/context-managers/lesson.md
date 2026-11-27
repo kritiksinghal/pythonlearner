@@ -15,7 +15,6 @@ learningGoals:
   - "Build a generator-based context manager with contextlib.contextmanager"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What a **context manager** does before and after a block of code
@@ -336,12 +335,29 @@ Treat the managed value as valid only during the with block unless its documenta
 
 ### Easy: mark the start and end
 
-Create a manager that prints a start message before the block and a finish message afterward.
+Use `opening_message` and `closing_message` as the sample data. Create a manager that prints a start message before the block and a finish message afterward. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about context managers. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+opening_message = 'Warm-up begins'
+closing_message = 'Warm-up ends'
+```
+
+```expected
+Warm-up begins
+Stretch
+Warm-up ends
+```
 
 ```python run
-# Complete the mark the start and end task.
-# Sample data: opening_message = "Warm-up begins", closing_message = "Warm-up ends"
-# Write your code below and print the result
+# Complete the Easy: mark the start and end task.
+opening_message = 'Warm-up begins'
+closing_message = 'Warm-up ends'
+# Write your code below
 ```
 
 
@@ -349,6 +365,8 @@ Create a manager that prints a start message before the block and a finish messa
 The code before yield runs on entry, the block runs next, and the finally suite runs during cleanup.
 
 ```python
+opening_message = 'Warm-up begins'
+closing_message = 'Warm-up ends'
 from contextlib import contextmanager
 
 @contextmanager
@@ -366,12 +384,26 @@ with warmup():
 
 ### Medium: provide a value
 
-Use `__enter__` to provide a practice room name to the block.
+Use `__enter__` to provide a practice room name to the block. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about context managers. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+room_name = 'Room C'
+```
+
+```expected
+Room C
+Room released
+```
 
 ```python run
-# Complete the provide a value task.
-# Sample data: room_name = "Room C"
-# Write your code below and print the result
+# Complete the Medium: provide a value task.
+room_name = 'Room C'
+# Write your code below
 ```
 
 
@@ -379,6 +411,7 @@ Use `__enter__` to provide a practice room name to the block.
 The block variable receives the return value from `__enter__`. The exit method runs after the block.
 
 ```python
+room_name = 'Room C'
 class ChangingRoom:
     def __enter__(self):
         return "Room C"
@@ -393,12 +426,26 @@ with ChangingRoom() as room:
 
 ### Challenge: restore a setting
 
-Use a context manager to temporarily change a display label and restore the previous label.
+Use `display_label` as the sample data. Use a context manager to temporarily change a display label and restore the previous label.
+
+
+:::tip Hint
+Use the lesson idea about context managers. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+display_label = 'standard'
+```
+
+```expected
+festival
+standard
+```
 
 ```python run
-# Complete the restore a setting task.
-# Sample data: display_label = 'standard'
-# Write your code below and print the result
+# Complete the Challenge: restore a setting task.
+display_label = 'standard'
+# Write your code below
 ```
 
 
@@ -406,6 +453,7 @@ Use a context manager to temporarily change a display label and restore the prev
 Save the previous value, change it before yield, then restore it in finally so both normal and exceptional exits clean up.
 
 ```python
+display_label = 'standard'
 from contextlib import contextmanager
 
 display_label = "standard"

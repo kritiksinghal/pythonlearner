@@ -34,7 +34,6 @@ learningGoals:
   - "Choose a start value for a human-friendly counter without changing list indexes."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How `sorted()` returns a new sorted list and `.sort()` rearranges a list in place.
@@ -287,12 +286,25 @@ Python reports `IndexError: list index out of range` on the second pass, because
 
 ### Easy: Sort temperatures
 
-Use `sorted()` to make a new list of temperatures from lowest to highest.
+Use `temperatures` as the sample data. Use `sorted()` to make a new list of temperatures from lowest to highest.
+
+
+:::tip Hint
+Use the lesson idea about sorting zip and enumerate. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+temperatures = [31, 24, 29, 27]
+```
+
+```expected
+[24, 27, 29, 31]
+```
 
 ```python run
-# Complete the Sort temperatures task.
-# Sample data: temperatures = [31, 24, 29, 27]
-# Write your code below and print the result
+# Complete the Easy: Sort temperatures task.
+temperatures = [31, 24, 29, 27]
+# Write your code below
 ```
 
 :::solution
@@ -308,12 +320,27 @@ print(sorted(temperatures))
 
 ### Medium: Pair teams and scores
 
-Use `zip()` to print each team's name next to its score.
+Use `teams` as the sample data. Use `zip()` to print each team's name next to its score.
+
+
+:::tip Hint
+Use the lesson idea about sorting zip and enumerate. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+teams = ['Falcons', 'Tigers', 'Comets']
+```
+
+```expected
+Falcons: 82
+Tigers: 76
+Comets: 91
+```
 
 ```python run
-# Complete the Pair teams and scores task.
-# Sample data: teams = ["Falcons", "Tigers", "Comets"]
-# Write your code below and print the result
+# Complete the Medium: Pair teams and scores task.
+teams = ['Falcons', 'Tigers', 'Comets']
+# Write your code below
 ```
 
 :::solution
@@ -321,6 +348,7 @@ The solution completes “Pair teams and scores” by using the provided sample 
 
 
 ```python
+teams = ['Falcons', 'Tigers', 'Comets']
 teams = ["Falcons", "Tigers", "Comets"]
 scores = [82, 76, 91]
 for team, score in zip(teams, scores):
@@ -331,12 +359,27 @@ for team, score in zip(teams, scores):
 
 ### Challenge: Number a playlist
 
-Use `enumerate()` to print each track with a number starting at one.
+Use `playlist` as the sample data. Use `enumerate()` to print each track with a number starting at one.
+
+
+:::tip Hint
+Use the lesson idea about sorting zip and enumerate. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+playlist = ['Dawn Drive', 'Blue Kite', 'Last Train']
+```
+
+```expected
+1. Dawn Drive
+2. Blue Kite
+3. Last Train
+```
 
 ```python run
-# Complete the Number a playlist task.
-# Sample data: playlist = ["Dawn Drive", "Blue Kite", "Last Train"]
-# Write your code below and print the result
+# Complete the Challenge: Number a playlist task.
+playlist = ['Dawn Drive', 'Blue Kite', 'Last Train']
+# Write your code below
 ```
 
 :::solution
@@ -344,6 +387,7 @@ The solution completes “Number a playlist” by using the provided sample valu
 
 
 ```python
+playlist = ['Dawn Drive', 'Blue Kite', 'Last Train']
 playlist = ["Dawn Drive", "Blue Kite", "Last Train"]
 for number, track in enumerate(playlist, start=1):
     print(f"{number}. {track}")

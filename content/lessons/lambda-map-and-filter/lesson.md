@@ -39,7 +39,6 @@ learningGoals:
   - "Choose a named function or comprehension when it is clearer than lambda, map, or filter."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - A **lambda expression** creates a small function with the `lambda` keyword and one expression.
@@ -281,12 +280,25 @@ Python reports `AttributeError: 'int' object has no attribute 'upper'`. The item
 
 ### Easy: Convert minutes to seconds
 
-Use `map()` and a lambda to multiply every number of minutes by 60. Print the resulting list.
+Use `minutes` as the sample data. Use `map()` and a lambda to multiply every number of minutes by 60. Print the resulting list.
+
+
+:::tip Hint
+Use the lesson idea about lambda map and filter. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+minutes = [2, 5, 8]
+```
+
+```expected
+[120, 300, 480]
+```
 
 ```python run
-# Complete the Convert minutes to seconds task.
-# Sample data: minutes = [2, 5, 8]
-# Write your code below and print the result
+# Complete the Easy: Convert minutes to seconds task.
+minutes = [2, 5, 8]
+# Write your code below
 ```
 
 :::solution
@@ -303,12 +315,25 @@ print(seconds)
 
 ### Medium: Keep short songs
 
-Use `filter()` to keep song lengths under 200 seconds.
+Use `durations` as the sample data. Use `filter()` to keep song lengths under 200 seconds. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about lambda map and filter. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+durations = [185, 214, 172, 206]
+```
+
+```expected
+[185, 172]
+```
 
 ```python run
-# Complete the Keep short songs task.
-# Sample data: durations = [185, 214, 172, 206]
-# Write your code below and print the result
+# Complete the Medium: Keep short songs task.
+durations = [185, 214, 172, 206]
+# Write your code below
 ```
 
 :::solution
@@ -325,12 +350,25 @@ print(short_songs)
 
 ### Challenge: Apply a named function with `map()`
 
-Write a function that adds 5 points to a mark, then use `map()` to apply it to three marks.
+Use `marks` as the sample data. Write a function that adds 5 points to a mark, then use `map()` to apply it to three marks. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about lambda map and filter. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+marks = [66, 74, 89]
+```
+
+```expected
+[71, 79, 94]
+```
 
 ```python run
-# Complete the Apply a named function with `map()` task.
-# Sample data: marks = [66, 74, 89]
-# Write your code below and print the result
+# Complete the Challenge: Apply a named function with `map()` task.
+marks = [66, 74, 89]
+# Write your code below
 ```
 
 :::solution
@@ -338,6 +376,7 @@ The solution completes “Apply a named function with `map()`” by using the pr
 
 
 ```python
+marks = [66, 74, 89]
 def add_bonus(mark):
     return mark + 5
 

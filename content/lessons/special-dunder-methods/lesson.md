@@ -15,7 +15,6 @@ learningGoals:
   - "Implement only behaviors that have a clear meaning for the class"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What **special methods** are and why they are often called dunder methods
@@ -310,12 +309,25 @@ Equality and ordering are separate behaviors. Defining `__eq__` does not explain
 
 ### Easy: readable output
 
-Define `__str__` for a `Badge` that returns its color.
+Define `__str__` for a `Badge` that returns its color. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about special dunder methods. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+badge_color = 'gold'
+```
+
+```expected
+silver badge
+```
 
 ```python run
-# Complete the readable output task.
-# Sample data: badge_color = "gold"
-# Write your code below and print the result
+# Complete the Easy: readable output task.
+badge_color = 'gold'
+# Write your code below
 ```
 
 
@@ -323,6 +335,7 @@ Define `__str__` for a `Badge` that returns its color.
 `print()` uses the returned string from `__str__`. The method returns text instead of printing internally.
 
 ```python
+badge_color = 'gold'
 class Badge:
     def __init__(self, color):
         self.color = color
@@ -336,12 +349,25 @@ print(Badge("silver"))
 
 ### Medium: support `len()`
 
-Implement `__len__` for a shelf containing three records.
+Implement `__len__` for a shelf containing three records. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about special dunder methods. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+records = ['score', 'date', 'venue']
+```
+
+```expected
+3
+```
 
 ```python run
-# Complete the support `len()` task.
-# Sample data: records = ["score", "date", "venue"]
-# Write your code below and print the result
+# Complete the Medium: support `len()` task.
+records = ['score', 'date', 'venue']
+# Write your code below
 ```
 
 
@@ -349,6 +375,7 @@ Implement `__len__` for a shelf containing three records.
 The special method returns the internal list length as an integer, which lets the caller use `len()`.
 
 ```python
+records = ['score', 'date', 'venue']
 class Shelf:
     def __init__(self, records):
         self.records = records
@@ -362,12 +389,25 @@ print(len(Shelf(["A", "B", "C"])))
 
 ### Challenge: compare two distances
 
-Implement `__lt__` so two `TrackLength` objects compare by kilometers.
+Implement `__lt__` so two `TrackLength` objects compare by kilometers. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about special dunder methods. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+distances_km = [2.5, 10, 0.75]
+```
+
+```expected
+True
+```
 
 ```python run
-# Complete the compare two distances task.
-# Sample data: distances_km = [2.5, 10, 0.75]
-# Write your code below and print the result
+# Complete the Challenge: compare two distances task.
+distances_km = [2.5, 10, 0.75]
+# Write your code below
 ```
 
 
@@ -375,6 +415,7 @@ Implement `__lt__` so two `TrackLength` objects compare by kilometers.
 The method compares the stored numeric values and returns the resulting Boolean.
 
 ```python
+distances_km = [2.5, 10, 0.75]
 class TrackLength:
     def __init__(self, kilometers):
         self.kilometers = kilometers

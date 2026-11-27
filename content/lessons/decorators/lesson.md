@@ -15,7 +15,6 @@ learningGoals:
   - "Preserve a wrapped function's metadata with functools.wraps"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What a **decorator** is and what it receives
@@ -324,12 +323,26 @@ Without `functools.wraps`, tools may see the wrapper's name and documentation in
 
 ### Easy: announce a call
 
-Write a decorator that prints `Loading forecast` before calling the wrapped function.
+Use `forecast_message` as the sample data. Write a decorator that prints `Loading forecast` before calling the wrapped function. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about decorators. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+forecast_message = 'Forecast ready'
+```
+
+```expected
+Loading forecast
+Cloudy
+```
 
 ```python run
-# Complete the announce a call task.
-# Sample data: forecast_message = "Forecast ready"
-# Write your code below and print the result
+# Complete the Easy: announce a call task.
+forecast_message = 'Forecast ready'
+# Write your code below
 ```
 
 
@@ -337,6 +350,7 @@ Write a decorator that prints `Loading forecast` before calling the wrapped func
 The decorator returns a wrapper that prints first, calls the original function, and returns its result.
 
 ```python
+forecast_message = 'Forecast ready'
 def announce(function):
     def wrapper():
         print("Loading forecast")
@@ -353,12 +367,26 @@ print(forecast())
 
 ### Medium: forward an argument
 
-Make a wrapper that prints `Saving` and still returns the wrapped function's value.
+Make a wrapper that prints `Saving` and still returns the wrapped function's value. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about decorators. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+value = 42
+```
+
+```expected
+Saving
+Saved 8 tracks
+```
 
 ```python run
-# Complete the forward an argument task.
-# Sample data: value = 42
-# Write your code below and print the result
+# Complete the Medium: forward an argument task.
+value = 42
+# Write your code below
 ```
 
 
@@ -366,6 +394,7 @@ Make a wrapper that prints `Saving` and still returns the wrapped function's val
 The wrapper forwards the count through `*args`, then returns the original function's string.
 
 ```python
+value = 42
 def saving(function):
     def wrapper(*args, **kwargs):
         print("Saving")
@@ -382,12 +411,25 @@ print(save_playlist(8))
 
 ### Challenge: preserve the function name
 
-Use `wraps` in a decorator and check the decorated function's name.
+Use `wraps` in a decorator and check the decorated function's name. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about decorators. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+function_name = 'greet'
+```
+
+```expected
+river_level
+```
 
 ```python run
-# Complete the preserve the function name task.
-# Sample data: function_name = "greet"
-# Write your code below and print the result
+# Complete the Challenge: preserve the function name task.
+function_name = 'greet'
+# Write your code below
 ```
 
 
@@ -395,6 +437,7 @@ Use `wraps` in a decorator and check the decorated function's name.
 `@wraps(function)` copies the original function's identifying metadata to the wrapper, so its public name remains `river_level`.
 
 ```python
+function_name = 'greet'
 from functools import wraps
 
 def preserve(function):

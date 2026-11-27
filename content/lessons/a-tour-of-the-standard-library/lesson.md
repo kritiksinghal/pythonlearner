@@ -15,7 +15,6 @@ learningGoals:
   - "Recognize that third-party packages are separate from the standard library"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What the Python **standard library** is
@@ -275,12 +274,25 @@ Names with a leading underscore are usually implementation details. Prefer publi
 
 ### Easy: calculate a median
 
-Use `statistics.median()` to find the middle of three music ratings.
+Use `ratings` as the sample data. Use `statistics.median()` to find the middle of three music ratings. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about a tour of the standard library. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+ratings = [4, 5, 2]
+```
+
+```expected
+4
+```
 
 ```python run
-# Complete the calculate a median task.
-# Sample data: ratings = [4, 5, 2]
-# Write your code below and print the result
+# Complete the Easy: calculate a median task.
+ratings = [4, 5, 2]
+# Write your code below
 ```
 
 
@@ -290,6 +302,7 @@ Import `statistics` and call `median()` with the ratings. The middle of the orde
 
 
 ```python
+ratings = [4, 5, 2]
 import statistics
 
 ratings = [4, 5, 2]
@@ -301,10 +314,23 @@ print(statistics.median(ratings))
 
 Use `Counter` to print how often `green` occurs in a list.
 
+
+:::tip Hint
+Use the lesson idea about a tour of the standard library. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+colors = ['green', 'gold', 'green', 'red']
+```
+
+```expected
+2
+```
+
 ```python run
-# Complete the count repeated colors task.
-# Sample data: colors = ['green', 'gold', 'green', 'red']
-# Write your code below and print the result
+# Complete the Medium: count repeated colors task.
+colors = ['green', 'gold', 'green', 'red']
+# Write your code below
 ```
 
 
@@ -314,6 +340,7 @@ Use `Counter` to print how often `green` occurs in a list.
 
 
 ```python
+colors = ['green', 'gold', 'green', 'red']
 from collections import Counter
 
 colors = ["green", "gold", "green", "red"]
@@ -323,12 +350,29 @@ print(Counter(colors)["green"])
 
 ### Challenge: inspect a date
 
-Create a date for a match and print its ISO representation.
+Use `match_year`, `match_month` and `match_day` as the sample data. Create a date for a match and print its ISO representation.
+
+
+:::tip Hint
+Use the lesson idea about a tour of the standard library. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+match_year = 2026
+match_month = 4
+match_day = 11
+```
+
+```expected
+2026-04-11
+```
 
 ```python run
-# Complete the inspect a date task.
-# Sample data: match_day = datetime.date(2026, 4, 11)
-# Write your code below and print the result
+# Complete the Challenge: inspect a date task.
+match_year = 2026
+match_month = 4
+match_day = 11
+# Write your code below
 ```
 
 
@@ -338,6 +382,9 @@ Construct a `date` with year, month, and day, then call `isoformat()` for a stan
 
 
 ```python
+match_year = 2026
+match_month = 4
+match_day = 11
 import datetime
 
 match_day = datetime.date(2026, 4, 11)

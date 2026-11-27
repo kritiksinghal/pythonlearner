@@ -33,7 +33,6 @@ learningGoals:
   - "Choose a normal loop whenever a comprehension would be hard to read."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - A **comprehension** is a compact expression that builds a collection by working through an iterable.
@@ -288,12 +287,25 @@ Python reports `ValueError: invalid literal for int() with base 10: 'x'`. The co
 
 ### Easy: Convert distances
 
-Given a list of distances in kilometers, create a list with each value converted to meters by multiplying by 1000.
+Use `distances_km` as the sample data. Given a list of distances in kilometers, create a list with each value converted to meters by multiplying by 1000.
+
+
+:::tip Hint
+Use the lesson idea about comprehensions. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+distances_km = [1, 3, 5]
+```
+
+```expected
+[1000, 3000, 5000]
+```
 
 ```python run
-# Complete the Convert distances task.
-# Sample data: distances_km = [1, 3, 5]
-# Write your code below and print the result
+# Complete the Easy: Convert distances task.
+distances_km = [1, 3, 5]
+# Write your code below
 ```
 
 :::solution
@@ -301,6 +313,7 @@ The solution completes “Convert distances” by using the provided sample valu
 
 
 ```python
+distances_km = [1, 3, 5]
 kilometers = [1, 3, 5]
 meters = [distance * 1000 for distance in kilometers]
 print(meters)
@@ -310,12 +323,25 @@ print(meters)
 
 ### Medium: Keep passing marks
 
-Use a list comprehension to make a list containing only marks of 50 or more.
+Use `marks` as the sample data. Use a list comprehension to make a list containing only marks of 50 or more.
+
+
+:::tip Hint
+Use the lesson idea about comprehensions. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+marks = [48, 73, 50, 91]
+```
+
+```expected
+[73, 50, 91]
+```
 
 ```python run
-# Complete the Keep passing marks task.
-# Sample data: marks = [48, 73, 50, 91]
-# Write your code below and print the result
+# Complete the Medium: Keep passing marks task.
+marks = [48, 73, 50, 91]
+# Write your code below
 ```
 
 :::solution
@@ -332,12 +358,25 @@ print(passing)
 
 ### Challenge: Map books to page counts
 
-Given a list of book titles, create a dictionary that maps each title to the number of characters in it.
+Use `titles` as the sample data. Given a list of book titles, create a dictionary that maps each title to the number of characters in it.
+
+
+:::tip Hint
+Use the lesson idea about comprehensions. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+titles = ['River Road', 'Night Train', 'Red Kite']
+```
+
+```expected
+{'River Road': 10, 'Night Train': 11, 'Red Kite': 8}
+```
 
 ```python run
-# Complete the Map books to page counts task.
-# Sample data: titles = ["River Road", "Night Train", "Red Kite"]
-# Write your code below and print the result
+# Complete the Challenge: Map books to page counts task.
+titles = ['River Road', 'Night Train', 'Red Kite']
+# Write your code below
 ```
 
 :::solution
@@ -345,6 +384,7 @@ The solution completes “Map books to page counts” by using the provided samp
 
 
 ```python
+titles = ['River Road', 'Night Train', 'Red Kite']
 titles = ["River Road", "Night Train", "Red Kite"]
 page_labels = {title: len(title) for title in titles}
 print(page_labels)

@@ -25,7 +25,6 @@ learningGoals:
   - "Avoid redundant boolean flag variables by letting loop completion naturally trigger the `else` clause."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How the **`break`** statement immediately terminates the innermost enclosing loop.
@@ -294,10 +293,25 @@ How to fix it: ensure any logging or cleanup required for skipped iterations occ
 
 Write a search program that inspects a list of product IDs: `product_ids = [101, 204, 305, 408, 512]`. Search for the target ID `305`. When found, print `f"Product {target} found at index {idx}!"` and immediately `break` out of the loop.
 
+
+:::tip Hint
+Use the lesson idea about break continue and loop else. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+product_ids = [101, 204, 305, 408, 512]
+target = 305
+```
+
+```expected
+Product 305 found at index 2!
+```
+
 ```python run
-# Complete the Early exit linear search task.
-# Sample data: product_ids = [101, 204, 305, 408, 512], target = 305
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Early exit linear search task.
+product_ids = [101, 204, 305, 408, 512]
+target = 305
+# Write your code below
 ```
 
 
@@ -320,12 +334,27 @@ Product 305 found at index 2!
 
 ### Exercise 2 (medium): Ignoring negative numbers with `continue`
 
-Given a list of bank account balances `balances = [1200, -350, 4500, -80, 2100]`, calculate the sum of strictly positive accounts, skipping negative balances using `continue`. Print each approved balance as it is processed and display the final total.
+Use `balances` to add only positive amounts. Print each accepted balance, then print the final total.
+
+:::tip Hint
+Use the lesson idea about break continue and loop else. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+balances = [1200, -350, 4500, -80, 2100]
+```
+
+```expected
+Approved positive balance: ₹1200
+Approved positive balance: ₹4500
+Approved positive balance: ₹2100
+Total solvent deposits: ₹7800
+```
 
 ```python run
-# Complete the Ignoring negative numbers with `continue` task.
-# Sample data: balances = [1200, -350, 4500, -80, 2100]
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): Ignoring negative numbers with `continue` task.
+balances = [1200, -350, 4500, -80, 2100]
+# Write your code below
 ```
 
 
@@ -355,10 +384,23 @@ Total solvent deposits: ₹7800
 
 Given an integer `test_val = 29`, use a `for ... else` loop to test whether any integer between `2` and `test_val - 1` divides `test_val` evenly. If a factor is discovered, print the factor and `break`. If the loop finishes without finding any factor, let the `else` block confirm that `test_val` is prime.
 
+
+:::tip Hint
+Use the lesson idea about break continue and loop else. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+test_val = 29
+```
+
+```expected
+29 is confirmed prime!
+```
+
 ```python run
-# Complete the Composite number factorization check task.
-# Sample data: test_val = 29
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Composite number factorization check task.
+test_val = 29
+# Write your code below
 ```
 
 

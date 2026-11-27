@@ -31,7 +31,6 @@ learningGoals:
   - "Loop through dictionary keys, values, and key/value pairs."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What a **dictionary** is and when named keys are more useful than numbered positions.
@@ -294,12 +293,25 @@ Python reports `AttributeError: 'dict' object has no attribute 'append'`. Add or
 
 ### Easy: Show a player's score
 
-Create a dictionary of two players' cricket runs. Print one player's name and score in a sentence.
+Use `runs` as the sample data. Create a dictionary of two players' cricket runs. Print one player's name and score in a sentence.
+
+
+:::tip Hint
+Use the lesson idea about dictionaries. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+runs = {'Tara': 27, 'Ishan': 41}
+```
+
+```expected
+Ishan scored 41 runs.
+```
 
 ```python run
-# Complete the Show a player's score task.
-# Sample data: runs = {"Tara": 27, "Ishan": 41}
-# Write your code below and print the result
+# Complete the Easy: Show a player's score task.
+runs = {'Tara': 27, 'Ishan': 41}
+# Write your code below
 ```
 
 :::solution
@@ -307,6 +319,7 @@ The solution completes “Show a player's score” by using the provided sample 
 
 
 ```python
+runs = {'Tara': 27, 'Ishan': 41}
 runs = {"Tara": 27, "Ishan": 41}
 print(f"Ishan scored {runs['Ishan']} runs.")
 ```
@@ -315,12 +328,25 @@ print(f"Ishan scored {runs['Ishan']} runs.")
 
 ### Medium: Update a weather reading
 
-Start with temperatures for two cities. Add a third city, update one reading, and print the final dictionary.
+Use `temperatures` as the sample data. Start with temperatures for two cities. Add a third city, update one reading, and print the final dictionary.
+
+
+:::tip Hint
+Use the lesson idea about dictionaries. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+temperatures = {'Delhi': 33, 'Shimla': 19}
+```
+
+```expected
+{'Delhi': 33, 'Shimla': 20, 'Chennai': 35}
+```
 
 ```python run
-# Complete the Update a weather reading task.
-# Sample data: temperatures = {"Delhi": 33, "Shimla": 19}
-# Write your code below and print the result
+# Complete the Medium: Update a weather reading task.
+temperatures = {'Delhi': 33, 'Shimla': 19}
+# Write your code below
 ```
 
 :::solution
@@ -328,6 +354,7 @@ The solution completes “Update a weather reading” by using the provided samp
 
 
 ```python
+temperatures = {'Delhi': 33, 'Shimla': 19}
 temperatures = {"Delhi": 33, "Shimla": 19}
 temperatures["Chennai"] = 35
 temperatures["Shimla"] = 20
@@ -338,12 +365,27 @@ print(temperatures)
 
 ### Challenge: Count music genres
 
-Given a list of genres, build a dictionary that records how many times each genre appears. Print the count for each genre.
+Use `genres` as the sample data. Given a list of genres, build a dictionary that records how many times each genre appears. Print the count for each genre.
+
+
+:::tip Hint
+Use the lesson idea about dictionaries. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+genres = ['jazz', 'pop', 'jazz', 'rock', 'pop']
+```
+
+```expected
+jazz: 3
+pop: 2
+rock: 1
+```
 
 ```python run
-# Complete the Count music genres task.
-# Sample data: genres = ["jazz", "pop", "jazz", "rock", "pop"]
-# Write your code below and print the result
+# Complete the Challenge: Count music genres task.
+genres = ['jazz', 'pop', 'jazz', 'rock', 'pop']
+# Write your code below
 ```
 
 :::solution
@@ -351,6 +393,7 @@ The solution completes “Count music genres” by using the provided sample val
 
 
 ```python
+genres = ['jazz', 'pop', 'jazz', 'rock', 'pop']
 genres = ["jazz", "pop", "jazz", "rock", "pop", "jazz"]
 counts = {}
 for genre in genres:

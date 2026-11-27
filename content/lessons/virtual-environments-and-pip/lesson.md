@@ -16,7 +16,6 @@ learningGoals:
   - "Keep project dependencies separate and reproducible"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What a **virtual environment** is and why projects use one
@@ -255,12 +254,25 @@ The name used by `pip install` can differ from the name used by `import`. Read t
 
 ### Easy: identify the requested Python version
 
-Read the version tuple in a Python 3.12 interpreter and print its major and minor components.
+Use `version_info` as the sample data. Read the version tuple in a Python 3.12 interpreter and print its major and minor components.
+
+
+:::tip Hint
+Use the lesson idea about virtual environments and pip. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+version_info = (3, 12, 0)
+```
+
+```expected
+3.12
+```
 
 ```python run
-# Complete the identify the requested Python version task.
-# Sample data: version_info = (3, 12, 0)
-# Write your code below and print the result
+# Complete the Easy: identify the requested Python version task.
+version_info = (3, 12, 0)
+# Write your code below
 ```
 
 
@@ -268,6 +280,7 @@ Read the version tuple in a Python 3.12 interpreter and print its major and mino
 `sys.version_info` stores the running interpreter version. The major and minor fields produce the stable `3.12` form.
 
 ```python
+version_info = (3, 12, 0)
 import sys
 
 print(f"{sys.version_info.major}.{sys.version_info.minor}")
@@ -276,12 +289,27 @@ print(f"{sys.version_info.major}.{sys.version_info.minor}")
 
 ### Medium: write down a project command sequence
 
-Print the commands you would run to create and populate an environment. Run each command in a terminal when setting up a real project.
+Use `steps` as the sample data. Print the commands you would run to create and populate an environment. Run each command in a terminal when setting up a real project.
+
+
+:::tip Hint
+Use the lesson idea about virtual environments and pip. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+steps = ['python3.12 -m venv .venv', 'source .venv/bin/activate', 'python -m pip install rich']
+```
+
+```expected
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install rich
+```
 
 ```python run
-# Complete the write down a project command sequence task.
-# Sample data: steps = ['python3.12 -m venv .venv', 'source .venv/bin/activate', 'python -m pip install rich']
-# Write your code below and print the result
+# Complete the Medium: write down a project command sequence task.
+steps = ['python3.12 -m venv .venv', 'source .venv/bin/activate', 'python -m pip install rich']
+# Write your code below
 ```
 
 
@@ -289,6 +317,7 @@ Print the commands you would run to create and populate an environment. Run each
 The list represents a setup plan. Python prints the command strings; it does not execute them. Run them in the appropriate terminal to create and use an environment.
 
 ```python
+steps = ['python3.12 -m venv .venv', 'source .venv/bin/activate', 'python -m pip install rich']
 steps = [
     "python3.12 -m venv .venv",
     "source .venv/bin/activate",
@@ -301,12 +330,26 @@ for step in steps:
 
 ### Challenge: explain why module-form pip is safer
 
-Build a command string using the same interpreter name for running a script and pip.
+Use `python_name` as the sample data. Build a command string using the same interpreter name for running a script and pip. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about virtual environments and pip. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+python_name = 'python'
+```
+
+```expected
+python -m pip install package_name
+python app.py
+```
 
 ```python run
-# Complete the explain why module-form pip is safer task.
-# Sample data: python_name = 'python'
-# Write your code below and print the result
+# Complete the Challenge: explain why module-form pip is safer task.
+python_name = 'python'
+# Write your code below
 ```
 
 
@@ -314,6 +357,7 @@ Build a command string using the same interpreter name for running a script and 
 Both commands begin with the same `python` executable. That keeps pip associated with the interpreter that will run the project.
 
 ```python
+python_name = 'python'
 python_name = "python"
 print(f"{python_name} -m pip install package_name")
 print(f"{python_name} app.py")

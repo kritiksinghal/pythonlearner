@@ -16,7 +16,6 @@ learningGoals:
   - "Use with so Python closes a file after its work"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What a **file object** represents after you open a path
@@ -284,10 +283,23 @@ Relative paths use the current working directory, which depends on how you start
 
 Use `StringIO` to practice reading a line and removing its newline.
 
+
+:::tip Hint
+Use the lesson idea about reading and writing files. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+sample_text = "serve\nreturn\n"
+```
+
+```expected
+serve
+```
+
 ```python run
-# Complete the read a line from memory task.
-# Sample data: practice = StringIO('serve\nreturn\n')
-# Write your code below and print the result
+# Complete the Easy: read a line from memory task.
+sample_text = "serve\nreturn\n"
+# Write your code below
 ```
 
 
@@ -295,6 +307,7 @@ Use `StringIO` to practice reading a line and removing its newline.
 `next(practice)` reads the next line from the stream. Calling `strip()` removes its line ending for display.
 
 ```python
+sample_text = "serve\nreturn\n"
 from io import StringIO
 
 practice = StringIO("serve\nreturn\n")
@@ -304,12 +317,26 @@ print(next(practice).strip())
 
 ### Medium: write multiple lines
 
-Write two lines to a memory stream and show the resulting text.
+Use `starting_text` as the sample data. Write two lines to a memory stream and show the resulting text.
+
+
+:::tip Hint
+Use the lesson idea about reading and writing files. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+starting_text = ""
+```
+
+```expected
+North 2
+South 1
+```
 
 ```python run
-# Complete the write multiple lines task.
-# Sample data: board = StringIO()
-# Write your code below and print the result
+# Complete the Medium: write multiple lines task.
+starting_text = ""
+# Write your code below
 ```
 
 
@@ -317,6 +344,7 @@ Write two lines to a memory stream and show the resulting text.
 Each `write()` adds the provided characters. The newline characters split the entries onto separate lines.
 
 ```python
+starting_text = ""
 from io import StringIO
 
 board = StringIO()
@@ -328,12 +356,28 @@ print(board.getvalue(), end="")
 
 ### Challenge: choose append behavior
 
-Move to the end of an in-memory log, add a new line, then show both entries.
+Use `first_entry` and `next_entry` as the sample data. Move to the end of an in-memory log, add a new line, then show both entries.
+
+
+:::tip Hint
+Use the lesson idea about reading and writing files. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+first_entry = "Song: Dawn Chorus\n"
+next_entry = "Song: Long Way Home\n"
+```
+
+```expected
+Song: Dawn Chorus
+Song: Long Way Home
+```
 
 ```python run
-# Complete the choose append behavior task.
-# Sample data: log = StringIO('Song: Dawn Chorus\n')
-# Write your code below and print the result
+# Complete the Challenge: choose append behavior task.
+first_entry = "Song: Dawn Chorus\n"
+next_entry = "Song: Long Way Home\n"
+# Write your code below
 ```
 
 
@@ -341,6 +385,8 @@ Move to the end of an in-memory log, add a new line, then show both entries.
 Seeking to the end positions the stream for another write. For a disk file, append mode `"a"` provides this behavior.
 
 ```python
+first_entry = "Song: Dawn Chorus\n"
+next_entry = "Song: Long Way Home\n"
 from io import StringIO
 
 log = StringIO("Song: Dawn Chorus\n")

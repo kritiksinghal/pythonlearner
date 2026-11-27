@@ -20,7 +20,6 @@ learningGoals:
   - "Evaluate the truthiness of non-boolean objects using `bool()` and distinguish between equality `==` and identity `is`."
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - How Python models absolute logic using the two canonical boolean states: **`True`** and **`False`**.
@@ -374,12 +373,26 @@ Result is None (is): True
 
 ### Exercise 1 (easy): Exam passing threshold
 
-Given a student score `score = 68` and a passing mark `pass_mark = 50`, write a comparison statement that evaluates whether the student passed. Store the result in a boolean variable `passed` and print the outcome.
+Compare `score` with `pass_mark`. Store the result in `passed` and print it.
+
+:::tip Hint
+Use the lesson idea about true false and comparisons. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+pass_mark = 50
+score = 68
+```
+
+```expected
+Exam result passed: True
+```
 
 ```python run
-# Complete the Exam passing threshold task.
-# Sample data: pass_mark = 50
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Exam passing threshold task.
+pass_mark = 50
+score = 68
+# Write your code below
 ```
 
 
@@ -387,8 +400,8 @@ Given a student score `score = 68` and a passing mark `pass_mark = 50`, write a 
 Use the greater-than-or-equal-to operator `>=`:
 
 ```python run
-score = 68
 pass_mark = 50
+score = 68
 passed = score >= pass_mark
 print("Exam result passed:", passed)
 ```
@@ -400,12 +413,25 @@ Exam result passed: True
 
 ### Exercise 2 (medium): Liquid water temperature range
 
-Water remains in liquid state at standard pressure between 0 degrees Celsius and 100 degrees Celsius inclusive. Given `water_temp = 45`, write a chained comparison that checks if `water_temp` is in the liquid range (`0 <= water_temp <= 100`), storing the result in `is_liquid` and printing it.
+Check whether `water_temp` is between 0 and 100 inclusive. Store the boolean in `is_liquid` and print it.
+
+
+:::tip Hint
+Use the lesson idea about true false and comparisons. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+water_temp = 45
+```
+
+```expected
+Is liquid state: True
+```
 
 ```python run
-# Complete the Liquid water temperature range task.
-# Sample data: water_temp = 45
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): Liquid water temperature range task.
+water_temp = 45
+# Write your code below
 ```
 
 
@@ -425,12 +451,25 @@ Is liquid state: True
 
 ### Exercise 3 (challenge): Username policy validation
 
-A web application requires usernames to be between 5 and 15 characters long inclusive. Given `username = "coder_pro"`, use `len()` inside a chained comparison to verify whether the username length satisfies the policy (`5 <= len(username) <= 15`), and print a clear boolean report.
+Use `len(username)` to check whether `username` has 5–15 characters. Print the boolean result.
+
+
+:::tip Hint
+Use the lesson idea about true false and comparisons. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+username = 'coder_pro'
+```
+
+```expected
+Username 'coder_pro' length (9) is valid: True
+```
 
 ```python run
-# Complete the Username policy validation task.
-# Sample data: username = 'coder_pro'
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Username policy validation task.
+username = 'coder_pro'
+# Write your code below
 ```
 
 
@@ -438,6 +477,7 @@ A web application requires usernames to be between 5 and 15 characters long incl
 Call `len(username)` and test with the chained comparison `5 <= char_count <= 15`:
 
 ```python run
+username = 'coder_pro'
 username = "coder_pro"
 char_count = len(username)
 is_valid_len = 5 <= char_count <= 15

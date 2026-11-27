@@ -15,7 +15,6 @@ learningGoals:
   - "Use super() to extend parent initialization"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What **inheritance** means for Python classes
@@ -332,12 +331,25 @@ Inheritance suggests that a child is a specialized parent. If two objects only s
 
 ### Easy: inherit a greeting
 
-Create a child class `MorningNote` that inherits a greeting method and call it.
+Create a child class `MorningNote` that inherits a greeting method and call it. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about inheritance. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+greeting = 'Good morning'
+```
+
+```expected
+Hello
+```
 
 ```python run
-# Complete the inherit a greeting task.
-# Sample data: greeting = "Good morning"
-# Write your code below and print the result
+# Complete the Easy: inherit a greeting task.
+greeting = 'Good morning'
+# Write your code below
 ```
 
 
@@ -345,6 +357,7 @@ Create a child class `MorningNote` that inherits a greeting method and call it.
 The child class names `Note` as its parent. It inherits the `greeting()` method without defining a replacement.
 
 ```python
+greeting = 'Good morning'
 class Note:
     def greeting(self):
         return "Hello"
@@ -358,12 +371,27 @@ print(MorningNote().greeting())
 
 ### Medium: override a method
 
-Create a child `Piano` that overrides the parent's sound description.
+Create a child `Piano` that overrides the parent's sound description. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about inheritance. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+instrument = 'piano'
+sound = 'soft notes'
+```
+
+```expected
+Soft chords
+```
 
 ```python run
-# Complete the override a method task.
-# Sample data: instrument = "piano", sound = "soft notes"
-# Write your code below and print the result
+# Complete the Medium: override a method task.
+instrument = 'piano'
+sound = 'soft notes'
+# Write your code below
 ```
 
 
@@ -371,6 +399,8 @@ Create a child `Piano` that overrides the parent's sound description.
 The method with the same name in `Piano` overrides the parent version for Piano instances.
 
 ```python
+instrument = 'piano'
+sound = 'soft notes'
 class Instrument:
     def sound(self):
         return "Music"
@@ -385,12 +415,27 @@ print(Piano().sound())
 
 ### Challenge: extend initialization
 
-Create a child class for a `FestivalPass` that reuses the parent's name setup and adds an access zone.
+Create a child class for a `FestivalPass` that reuses the parent's name setup and adds an access zone. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about inheritance. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+holder = "Meera"
+access_zone = "stage"
+```
+
+```expected
+Meera stage
+```
 
 ```python run
-# Complete the extend initialization task.
-# Sample data: entry = FestivalPass('Meera', 'stage')
-# Write your code below and print the result
+# Complete the Challenge: extend initialization task.
+holder = "Meera"
+access_zone = "stage"
+# Write your code below
 ```
 
 
@@ -398,6 +443,8 @@ Create a child class for a `FestivalPass` that reuses the parent's name setup an
 The child's initializer calls the parent's initializer for the shared holder data, then stores its own zone attribute.
 
 ```python
+holder = "Meera"
+access_zone = "stage"
 class Pass:
     def __init__(self, holder):
         self.holder = holder

@@ -15,7 +15,6 @@ learningGoals:
   - "Recognize that objects combine identity and data"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What a **class** describes and what an **object** is
@@ -303,10 +302,23 @@ A class attribute is shared when instances look it up. Put player-specific score
 
 Create a `Book` instance, assign its title, and print it.
 
+
+:::tip Hint
+Use the lesson idea about classes and objects. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+book_title = "A Field of Stars"
+```
+
+```expected
+A Field of Stars
+```
+
 ```python run
-# Complete the create a book object task.
-# Sample data: library_book = Book()
-# Write your code below and print the result
+# Complete the Easy: create a book object task.
+book_title = "A Field of Stars"
+# Write your code below
 ```
 
 
@@ -314,6 +326,7 @@ Create a `Book` instance, assign its title, and print it.
 Define the class, create an instance with parentheses, then assign and read its `title` attribute.
 
 ```python
+book_title = "A Field of Stars"
 class Book:
     pass
 
@@ -325,12 +338,28 @@ print(library_book.title)
 
 ### Medium: keep separate team values
 
-Create two instances with different colors and print the colors separately.
+Use `home_color` and `away_color` as the sample data. Create two instances with different colors and print the colors separately.
+
+
+:::tip Hint
+Use the lesson idea about classes and objects. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+home_color = "maroon"
+away_color = "cream"
+```
+
+```expected
+maroon
+cream
+```
 
 ```python run
-# Complete the keep separate team values task.
-# Sample data: home = Jersey(), away = Jersey()
-# Write your code below and print the result
+# Complete the Medium: keep separate team values task.
+home_color = "maroon"
+away_color = "cream"
+# Write your code below
 ```
 
 
@@ -338,6 +367,8 @@ Create two instances with different colors and print the colors separately.
 Each instance receives its own `color` attribute. The two values remain separate even though the instances share one class.
 
 ```python
+home_color = "maroon"
+away_color = "cream"
 class Jersey:
     pass
 
@@ -354,10 +385,24 @@ print(away.color)
 
 Create two `Game` instances with names, store them in a list, and print each name.
 
+
+:::tip Hint
+Use the lesson idea about classes and objects. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+games = []
+```
+
+```expected
+Cloud Hop
+Castle Rally
+```
+
 ```python run
-# Complete the collect objects in a list task.
-# Sample data: games = []
-# Write your code below and print the result
+# Complete the Challenge: collect objects in a list task.
+games = []
+# Write your code below
 ```
 
 
@@ -365,6 +410,7 @@ Create two `Game` instances with names, store them in a list, and print each nam
 Each loop creates an instance and assigns a name, then appends it to the list. A second loop reads the attribute from each object.
 
 ```python
+games = []
 class Game:
     pass
 

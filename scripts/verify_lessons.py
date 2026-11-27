@@ -8,8 +8,8 @@ Self-enforcing verification for PyLearner lessons per LESSON_STANDARD.md:
 3. At least 8 runnable examples (```python run blocks).
 4. quiz.json is valid JSON with 8-10 questions, 4 options each, and a correctIndex within range.
 5. The curriculumTitle frontmatter value exists in CURRICULUM.md.
-6. Every exercise in "Try it yourself" or "Make it yourself" has a comment-only runnable starter and a solution block.
-7. Every solution has Python code that runs with Python 3.12; following output blocks must match.
+6. Every exercise in "Try it yourself" or "Make it yourself" has a data-only starter, expected output, hint, and solution block.
+7. Every solution starts with the starter's literal data assignments and prints the expected output with Python 3.12.
 8. Every ```python run block outside exercise sections is followed by an ```output block (print a WARN otherwise).
 9. Running runnable examples with LESSON_PYTHON (default python3.12) produces output that matches the ```output block.
 10. Running code blocks paired with error output reproduces the displayed final error line.
@@ -107,19 +107,26 @@ def count_words(text_without_code):
 
 
 def parse_exercises(content):
-    """Collect exercise starters and solution bodies without treating solution code as starters."""
+    """Collect exercise tasks, hints, expected output, starters, and solutions."""
     lines = content.splitlines()
     sections = []
     section = ""
     current = None
-    in_solution = False
     i = 0
 
     def add_current():
         nonlocal current
         if current is not None:
+            current["task"] = "\n".join(current.pop("task_lines")).strip()
             sections.append(current)
             current = None
+
+    def new_exercise(name, section_name, line_number):
+        return {
+            "section": section_name, "heading": name, "heading_line": line_number,
+            "starters": [], "solutions": [], "expected": [], "inputs": [], "hints": [],
+            "stray_code": [], "stray_outputs": [], "task_lines": [], "task_closed": False,
+        }
 
     while i < len(lines):
         line = lines[i]
@@ -127,6 +134,8 @@ def parse_exercises(content):
         if trimmed.startswith("## ") and not trimmed.startswith("### "):
             add_current()
             section = trimmed[3:].strip().lower()
+            if section == "make it yourself":
+                current = new_exercise("Make it yourself", section, i + 1)
             i += 1
             continue
 
@@ -134,48 +143,70 @@ def parse_exercises(content):
             i += 1
             continue
 
-        if trimmed.startswith("### ") and not in_solution:
+        if trimmed.startswith("### ") and section == "try it yourself":
             add_current()
-            current = {
-                "section": section, "heading": trimmed[4:].strip(),
-                "starters": [], "solutions": [], "stray_code": [], "stray_outputs": [],
-            }
+            current = new_exercise(trimmed[4:].strip(), section, i + 1)
+            i += 1
+            continue
+
+        if current is None:
             i += 1
             continue
 
         if trimmed.startswith(":::solution"):
-            if current is None:
-                current = {
-                    "section": section, "heading": section.title(),
-                    "starters": [], "solutions": [], "stray_code": [], "stray_outputs": [],
-                }
             solution_start = i + 1
             body = []
             i += 1
-            while i < len(lines) and lines[i].strip() != ":::":
+            fence = None
+            while i < len(lines):
+                opening = re.match(r"^\s*(`{3,}|~{3,})(.*)$", lines[i])
+                if opening and fence is None:
+                    fence = (opening.group(1)[0], len(opening.group(1)))
+                elif fence:
+                    closing = re.match(r"^\s*(`{3,}|~{3,})\s*$", lines[i])
+                    if closing and closing.group(1)[0] == fence[0] and len(closing.group(1)) >= fence[1]:
+                        fence = None
+                if lines[i].strip() == ":::" and fence is None:
+                    break
                 body.append(lines[i])
                 i += 1
             current["solutions"].append({"line": solution_start, "body": "\n".join(body)})
-            in_solution = True
             if i < len(lines):
-                in_solution = False
                 i += 1
             continue
 
-        if not in_solution and trimmed.startswith("```"):
+        if trimmed.startswith(":::tip") or trimmed.startswith(":::hint"):
+            current["task_closed"] = True
+            hint_body = []
+            i += 1
+            while i < len(lines) and lines[i].strip() != ":::":
+                hint_body.append(lines[i])
+                i += 1
+            current["hints"].append("\n".join(hint_body).strip())
+            if i < len(lines):
+                i += 1
+            continue
+
+        opening = re.match(r"^\s*```([^`]*)$", line)
+        if opening:
+            info = opening.group(1).strip().lower()
             info = trimmed[3:].strip().lower()
             start_line = i + 1
             body = []
             i += 1
-            while i < len(lines) and lines[i].strip() != "```":
+            while i < len(lines) and not re.match(r"^\s*```\s*$", lines[i]):
                 body.append(lines[i])
                 i += 1
-            if info == "python run":
-                if current is None:
-                    current = {
-                        "section": section, "heading": section.title(),
-                        "starters": [], "solutions": [], "stray_code": [], "stray_outputs": [],
-                    }
+            if i >= len(lines):
+                break
+            if info == "expected":
+                current["task_closed"] = True
+                current["expected"].append({"line": start_line, "body": "\n".join(body)})
+            elif info in ("input", "sample input"):
+                current["task_closed"] = True
+                current["inputs"].append({"line": start_line, "tag": info, "body": "\n".join(body)})
+            elif info == "python run":
+                current["task_closed"] = True
                 next_line = i + 1
                 while next_line < len(lines) and not lines[next_line].strip():
                     next_line += 1
@@ -185,24 +216,64 @@ def parse_exercises(content):
                     "body": "\n".join(body),
                     "followed_by_output": has_output,
                 })
-            elif current is not None and info == "python":
+            elif info == "python":
                 current["stray_code"].append(start_line)
-            elif current is not None and info == "output":
+            elif info == "output":
                 current["stray_outputs"].append(start_line)
-            if i < len(lines):
-                i += 1
+            i += 1
             continue
 
+        if trimmed and not trimmed.startswith(":::") and not current["task_closed"]:
+            current["task_lines"].append(trimmed)
         i += 1
 
     add_current()
     return sections
 
 
+def run_interactive_solution(code, stdin_text, interpreter):
+    harness = f'''import builtins, io, json, sys
+code = {json.dumps(code)}
+input_text = {json.dumps(stdin_text)}
+old_in, old_out, old_input = sys.stdin, sys.stdout, builtins.input
+sys.stdin = io.StringIO(input_text + ("\\n" if input_text and not input_text.endswith("\\n") else ""))
+captured = io.StringIO()
+sys.stdout = captured
+def learner_input(prompt=""):
+    if prompt:
+        print(prompt, end="", file=sys.stdout)
+    line = sys.stdin.readline()
+    if line == "":
+        raise EOFError("sample input ended early")
+    print(line.rstrip("\\r\\n"), file=sys.stdout)
+    return line.rstrip("\\r\\n")
+builtins.input = learner_input
+try:
+    exec(compile(code, "<lesson_solution>", "exec"), {{}})
+    result = {{"output": captured.getvalue().rstrip()}}
+except BaseException as error:
+    result = {{"error": f"{{type(error).__name__}}: {{error}}"}}
+finally:
+    builtins.input = old_input
+    sys.stdin, sys.stdout = old_in, old_out
+print(json.dumps(result))
+'''
+    proc = subprocess.run([interpreter, "-c", harness], capture_output=True, text=True, timeout=5)
+    if proc.returncode != 0:
+        return None, proc.stderr.strip() or proc.stdout.strip() or "interactive solution process failed"
+    try:
+        result = json.loads(proc.stdout)
+    except json.JSONDecodeError:
+        return None, f"invalid verifier response: {proc.stdout!r}"
+    if "error" in result:
+        return None, result["error"]
+    return result.get("output", ""), None
+
+
 def verify_exercises(content, lesson_slug, interpreter):
     failures = 0
     exercises = parse_exercises(content)
-    blanked_starters = 0
+    checked_starters = 0
     new_starters = 0
     for exercise in exercises:
         heading = exercise["heading"]
@@ -222,33 +293,53 @@ def verify_exercises(content, lesson_slug, interpreter):
             failures += 1
             print(f"[FAIL] {lesson_slug}: Exercise '{heading}' has {len(starters)} starters; expected one")
 
+        if not exercise["task"]:
+            failures += 1
+            print(f"[FAIL] {lesson_slug}: Exercise '{heading}' has no task text")
+        else:
+            sentences = re.split(r"(?<=[.!?])\s+", exercise["task"])
+            for sentence in sentences:
+                words = re.findall(r"\b[\w'-]+\b", sentence)
+                if len(words) > 20:
+                    print(f"[WARN] {lesson_slug}: Exercise '{heading}' has a task sentence over 20 words ({len(words)})")
+            if re.search(r"\b(below|above|the text|the data|the operation)\b", exercise["task"], re.I) and not re.search(r"`[A-Za-z_]\w*`", exercise["task"]):
+                print(f"[WARN] {lesson_slug}: Exercise '{heading}' uses a vague reference without a backticked variable")
+
+        if len(exercise["expected"]) != 1:
+            failures += 1
+            print(f"[FAIL] {lesson_slug}: Exercise '{heading}' needs exactly one ```expected block")
+        if len(exercise["inputs"]) != 1:
+            failures += 1
+            print(f"[FAIL] {lesson_slug}: Exercise '{heading}' needs exactly one sample-input block")
+        if not exercise["hints"] or not any(exercise["hints"]):
+            failures += 1
+            print(f"[FAIL] {lesson_slug}: Exercise '{heading}' has no Hint callout")
+
+        starter_assignments = []
         for starter in starters:
             nonblank = [line.strip() for line in starter["body"].splitlines() if line.strip()]
-            executable = [
-                line for line in nonblank
-                if line.strip() and not line.strip().startswith("#")
-            ]
-            if executable:
+            comment_lines = [line for line in nonblank if line.startswith("#")]
+            source_lines = [line for line in nonblank if not line.startswith("#")]
+            valid = bool(comment_lines) and comment_lines[0].startswith("# ") and comment_lines[-1] == "# Write your code below"
+            try:
+                parsed = ast.parse("\n".join(source_lines))
+                for statement in parsed.body:
+                    if not isinstance(statement, ast.Assign) or len(statement.targets) != 1 or not isinstance(statement.targets[0], ast.Name):
+                        raise ValueError("only simple literal assignments are allowed")
+                    ast.literal_eval(statement.value)
+                    starter_assignments.append(ast.dump(statement, include_attributes=False))
+            except (SyntaxError, ValueError, TypeError) as error:
+                valid = False
+                print(f"[FAIL] {lesson_slug} (line {starter['line']}): Exercise '{heading}' starter is not data-only: {error}")
                 failures += 1
-                print(
-                    f"[FAIL] {lesson_slug} (line {starter['line']}): Exercise '{heading}' starter "
-                    f"contains executable code: {executable[0]!r}"
-                )
-            if (
-                len(nonblank) < 3
-                or not nonblank[0].startswith("# ")
-                or nonblank[0].lower().startswith("# sample data:")
-                or not nonblank[-1] == "# Write your code below and print the result"
-                or not any(line.lower().startswith("# sample data:") for line in nonblank[1:-1])
-                or any(not line.startswith("# Sample data:") for line in nonblank[1:-1])
-            ):
+            if not valid:
                 failures += 1
                 print(
                     f"[FAIL] {lesson_slug} (line {starter['line']}): Exercise '{heading}' starter must have "
-                    "one instruction, sample-data comment line(s), and the exact write-code comment"
+                    "an instruction comment, literal sample assignments/comments, and '# Write your code below' last"
                 )
             else:
-                blanked_starters += 1
+                checked_starters += 1
             if starter["followed_by_output"]:
                 failures += 1
                 print(f"[FAIL] {lesson_slug}: Exercise '{heading}' has an output block attached to its starter")
@@ -273,29 +364,56 @@ def verify_exercises(content, lesson_slug, interpreter):
                 print(f"[FAIL] {lesson_slug}: Exercise '{heading}' solution #{solution_index} has no Python code")
                 continue
 
-            for code_match in code_blocks:
+            for code_index, code_match in enumerate(code_blocks):
                 code = code_match.group(1)
+                if code_index == 0 and starter_assignments:
+                    try:
+                        solution_tree = ast.parse(code)
+                        solution_assignments = [
+                            ast.dump(node, include_attributes=False)
+                            for node in solution_tree.body[:len(starter_assignments)]
+                            if isinstance(node, ast.Assign)
+                        ]
+                        if starter_assignments and solution_assignments != starter_assignments:
+                            failures += 1
+                            print(f"[FAIL] {lesson_slug}: Exercise '{heading}' solution does not start with its starter data")
+                    except SyntaxError as error:
+                        failures += 1
+                        print(f"[FAIL] {lesson_slug}: Exercise '{heading}' solution has invalid Python: {error}")
                 following = solution["body"][code_match.end():]
                 output_match = re.match(
                     r"(?:\s*\r?\n)*```output[^\r\n]*\r?\n([\s\S]*?)\r?\n```",
                     following,
                 )
                 try:
-                    proc = subprocess.run(
-                        [interpreter, "-c", code], capture_output=True, text=True, timeout=5
-                    )
-                    if proc.returncode != 0:
+                    if exercise["inputs"] and exercise["inputs"][0]["tag"] == "input":
+                        actual_output, run_error = run_interactive_solution(code, exercise["inputs"][0]["body"], interpreter)
+                        return_code = 0 if run_error is None else 1
+                        actual_stdout = actual_output or ""
+                    else:
+                        proc = subprocess.run(
+                            [interpreter, "-c", code], capture_output=True, text=True, timeout=5
+                        )
+                        return_code = proc.returncode
+                        actual_stdout = proc.stdout
+                        run_error = proc.stderr.strip().splitlines()[-1] if proc.stderr.strip() else "non-zero exit"
+                    if return_code != 0:
                         failures += 1
-                        detail = proc.stderr.strip().splitlines()[-1] if proc.stderr.strip() else "non-zero exit"
-                        print(f"[FAIL] {lesson_slug}: Exercise '{heading}' solution code failed: {detail}")
-                    elif output_match and proc.stdout.rstrip() != output_match.group(1).rstrip():
+                        print(f"[FAIL] {lesson_slug}: Exercise '{heading}' solution code failed: {run_error}")
+                    elif output_match and actual_stdout.rstrip() != output_match.group(1).rstrip():
                         failures += 1
                         print(
                             f"[FAIL] {lesson_slug}: Exercise '{heading}' solution output mismatch; "
-                            f"expected {output_match.group(1).rstrip()!r}, got {proc.stdout.rstrip()!r}"
+                            f"expected {output_match.group(1).rstrip()!r}, got {actual_stdout.rstrip()!r}"
                         )
                     else:
-                        print(f"[PASS] {lesson_slug}: Exercise '{heading}' solution code runs")
+                        expected = exercise["expected"][0]["body"].rstrip() if exercise["expected"] else None
+                        actual = actual_stdout.rstrip()
+                        if expected is None or actual != expected:
+                            failures += 1
+                            print(f"[FAIL] {lesson_slug}: Exercise '{heading}' output differs from Expected output; expected {expected!r}, got {actual!r}")
+                        else:
+                            print(f"[PASS] {lesson_slug}: Exercise '{heading}' solution matches Expected output")
                 except subprocess.TimeoutExpired:
                     failures += 1
                     print(f"[FAIL] {lesson_slug}: Exercise '{heading}' solution timed out after 5s")
@@ -304,7 +422,7 @@ def verify_exercises(content, lesson_slug, interpreter):
                     print(f"[FAIL] {lesson_slug}: Could not run solution for '{heading}': {error}")
     print(
         f"[EXERCISES] {lesson_slug}: {len(exercises)} found, "
-        f"{blanked_starters} blank starters, {new_starters} new starters needed"
+        f"{checked_starters} data-only starters, {new_starters} new starters needed"
     )
     return len(exercises), failures
 
@@ -518,14 +636,21 @@ def verify_lessons(interpreter):
         i = 0
         n = len(file_lines)
         current_section = ""
+        in_solution_block = False
 
         while i < n:
             line_str = file_lines[i].strip()
+
+            if line_str.startswith(":::solution"):
+                in_solution_block = True
+            elif line_str == ":::" and in_solution_block:
+                in_solution_block = False
 
             if line_str.startswith("## ") and not line_str.startswith("### "):
                 current_section = line_str[3:].strip().lower()
 
             if line_str == "```python run" or line_str.startswith("```python run"):
+                solution_run = in_solution_block
                 start_line = i + 1
                 code_lines = []
                 i += 1
@@ -540,6 +665,18 @@ def verify_lessons(interpreter):
 
                 code = "".join(code_lines)
                 i += 1  # Skip closing ```
+
+                # Exercise solutions have their own sample-input-aware check above.
+                if solution_run:
+                    while i < n and not file_lines[i].strip():
+                        i += 1
+                    if i < n and file_lines[i].strip().startswith("```output"):
+                        i += 1
+                        while i < n and file_lines[i].strip() != "```":
+                            i += 1
+                        if i < n:
+                            i += 1
+                    continue
 
                 # Skip blank lines
                 while i < n and not file_lines[i].strip():

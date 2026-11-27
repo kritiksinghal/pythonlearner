@@ -15,7 +15,6 @@ learningGoals:
 relatedProblems:
   - "count-vowels"
 ---
-
 ## What you will learn
 
 - How to create a **variable** and store data in it
@@ -373,12 +372,27 @@ class = "Biology"
 
 ### Exercise 1 (easy): Calculate a restaurant bill
 
-You ordered 2 pizzas at 350 each and 3 drinks at 80 each. Store each in a variable, calculate the total, and print it.
+Use `pizza_price` and `pizza_count` as the sample data. You ordered 2 pizzas at 350 each and 3 drinks at 80 each. Store each in a variable, calculate the total, and print it.
+
+
+:::tip Hint
+Use the lesson idea about variables and types. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+pizza_price = 350
+pizza_count = 2
+```
+
+```expected
+Your bill: 940
+```
 
 ```python run
-# Complete the Calculate a restaurant bill task.
-# Sample data: pizza_price = 350, pizza_count = 2
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Calculate a restaurant bill task.
+pizza_price = 350
+pizza_count = 2
+# Write your code below
 ```
 
 
@@ -401,12 +415,24 @@ Your bill: 940
 
 ### Exercise 2 (medium): Convert seconds to minutes and seconds
 
-Take the number `500` (seconds) and use `//` and `%` to print how many full minutes and how many remaining seconds that is.
+Use `total_seconds` with `//` and `%`. Print full minutes and leftover seconds.
+
+:::tip Hint
+Use the lesson idea about variables and types. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+total_seconds = 500
+```
+
+```expected
+8 minutes and 20 seconds
+```
 
 ```python run
-# Complete the Convert seconds to minutes and seconds task.
-# Sample data: total_seconds = 500
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): Convert seconds to minutes and seconds task.
+total_seconds = 500
+# Write your code below
 ```
 
 
@@ -429,10 +455,28 @@ print(mins, "minutes and", secs, "seconds")
 
 For each value below, predict the type, then verify it with `type()`. Store `42`, `42.0`, `"42"`, and `True` in four different variables and print the type of each.
 
+
+:::tip Hint
+Use the lesson idea about variables and types. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+a = 42
+b = 42.0
+```
+
+```expected
+<class 'int'>
+<class 'float'>
+<class 'str'>
+<class 'bool'>
+```
+
 ```python run
-# Complete the Type detective task.
-# Sample data: a = 42, b = 42.0
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Type detective task.
+a = 42
+b = 42.0
+# Write your code below
 ```
 
 

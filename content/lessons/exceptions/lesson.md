@@ -15,7 +15,6 @@ learningGoals:
   - "Raise ValueError when a value violates a rule"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What an exception is and when Python raises one
@@ -298,12 +297,25 @@ Bad text for integer conversion raises `ValueError`, while an incompatible type 
 
 ### Easy: convert a delivery count
 
-Handle a non-integer value with a specific exception type.
+Use `raw` as the sample data. Handle a non-integer value with a specific exception type. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about exceptions. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+raw = 'twelve'
+```
+
+```expected
+Enter a whole number of packages
+```
 
 ```python run
-# Complete the convert a delivery count task.
-# Sample data: raw = 'twelve'
-# Write your code below and print the result
+# Complete the Easy: convert a delivery count task.
+raw = 'twelve'
+# Write your code below
 ```
 
 
@@ -311,6 +323,7 @@ Handle a non-integer value with a specific exception type.
 `int` cannot convert the word to an integer, so it raises `ValueError` and the handler prints the requested guidance.
 
 ```python
+raw = 'twelve'
 raw = "twelve"
 try:
     packages = int(raw)
@@ -321,12 +334,25 @@ except ValueError:
 
 ### Medium: process a valid mark
 
-Use an `else` suite for work that should happen only after conversion succeeds.
+Use an `else` suite for work that should happen only after conversion succeeds. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about exceptions. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+raw_mark = '88'
+```
+
+```expected
+Recorded mark: 88
+```
 
 ```python run
-# Complete the process a valid mark task.
-# Sample data: raw_mark = '88'
-# Write your code below and print the result
+# Complete the Medium: process a valid mark task.
+raw_mark = '88'
+# Write your code below
 ```
 
 
@@ -334,6 +360,7 @@ Use an `else` suite for work that should happen only after conversion succeeds.
 The text converts successfully. Python skips `except` and runs `else` with the integer value.
 
 ```python
+raw_mark = '88'
 raw_mark = "88"
 try:
     mark = int(raw_mark)
@@ -346,12 +373,27 @@ else:
 
 ### Challenge: validate an age range
 
-Raise a `ValueError` for an age outside the stated range and catch it at the call site.
+Raise a `ValueError` for an age outside the stated range and catch it at the call site. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about exceptions. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+age = 15
+invalid_age = 130
+```
+
+```expected
+Age is outside the allowed range
+```
 
 ```python run
-# Complete the validate an age range task.
-# Sample data: age = 15, invalid_age = 130
-# Write your code below and print the result
+# Complete the Challenge: validate an age range task.
+age = 15
+invalid_age = 130
+# Write your code below
 ```
 
 
@@ -359,6 +401,8 @@ Raise a `ValueError` for an age outside the stated range and catch it at the cal
 The condition is true for 135, so the function raises rather than returning an invalid value. The caller catches that particular exception and prints its message.
 
 ```python
+age = 15
+invalid_age = 130
 def checked_age(age):
     if age < 0 or age > 120:
         raise ValueError("Age is outside the allowed range")

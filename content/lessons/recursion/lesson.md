@@ -15,7 +15,6 @@ learningGoals:
   - "Avoid missing stopping conditions and excessive call depth"
 relatedProblems: []
 ---
-
 ## What you will learn
 
 - What **recursion** means when a function calls itself
@@ -373,12 +372,29 @@ A recursion depth error on large input does not always mean the base case is wro
 
 ### Easy: count down by twos
 
-Write a recursive function that prints `8`, `6`, `4`, and `2`, then prints `Done`. The base case should stop before the next value becomes zero.
+Write a recursive function that prints `8`, `6`, `4`, and `2`, then prints `Done`. The base case should stop before the next value becomes zero. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about recursion. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+starting_number = 8
+```
+
+```expected
+8
+6
+4
+2
+Done
+```
 
 ```python run
-# Complete the count down by twos task.
-# Sample data: starting_number = 8
-# Write your code below and print the result
+# Complete the Easy: count down by twos task.
+starting_number = 8
+# Write your code below
 ```
 
 
@@ -387,6 +403,7 @@ The solution completes “count down by twos” by using the provided sample val
 
 
 ```python run
+starting_number = 8
 def even_countdown(number):
     if number <= 0:
         print("Done")
@@ -409,12 +426,25 @@ Done
 
 ### Medium: add the numbers down to one
 
-Create a function that returns the sum from the given positive integer down to one. Use `0` as the base result for an input of zero.
+Use `starting_number` as the sample data. Create a function that returns the sum from the given positive integer down to one. Use `0` as the base result for an input of zero. Print the result exactly as shown in Expected output.
+
+
+:::tip Hint
+Use the lesson idea about recursion. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+starting_number = 5
+```
+
+```expected
+15
+```
 
 ```python run
-# Complete the add the numbers down to one task.
-# Sample data: starting_number = 5
-# Write your code below and print the result
+# Complete the Medium: add the numbers down to one task.
+starting_number = 5
+# Write your code below
 ```
 
 
@@ -423,6 +453,7 @@ The solution completes “add the numbers down to one” by using the provided s
 
 
 ```python run
+starting_number = 5
 def sum_down(number):
     if number == 0:
         return 0
@@ -441,10 +472,23 @@ print(sum_down(5))
 
 Write a recursive function that counts how many times `e` appears in a word. It should return zero when the text is empty.
 
+
+:::tip Hint
+Use the lesson idea about recursion. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+first_match = 1
+```
+
+```expected
+3
+```
+
 ```python run
-# Complete the count a chosen character task.
-# Sample data: first_match = 1
-# Write your code below and print the result
+# Complete the Challenge: count a chosen character task.
+first_match = 1
+# Write your code below
 ```
 
 
@@ -453,6 +497,7 @@ The solution completes “count a chosen character” by using the provided samp
 
 
 ```python run
+first_match = 1
 def count_e(text):
     if text == "":
         return 0

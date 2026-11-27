@@ -16,7 +16,6 @@ learningGoals:
 relatedProblems:
   - "find-maximum"
 ---
-
 ## What you will learn
 
 - How to use the `if` statement to run code only when a condition is met
@@ -364,12 +363,25 @@ Python refuses to order a string against a number because their formats are inco
 
 ### Exercise 1 (easy): Movie theater ticket pricing
 
-Write a program that determines a ticket price based on age: under 12 pays 150, ages 12 through 17 pays 250, and 18 or older pays 350. Test it with an age of 15.
+Use `age` to set a ticket price: 150 under 12, 250 for ages 12–17, and 350 otherwise. Print the price for age 15.
+
+
+:::tip Hint
+Use the lesson idea about making decisions with if. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+age = 15
+```
+
+```expected
+Ticket price: 250
+```
 
 ```python run
-# Complete the Movie theater ticket pricing task.
-# Sample data: age = 15
-# Write your code below and print the result
+# Complete the Exercise 1 (easy): Movie theater ticket pricing task.
+age = 15
+# Write your code below
 ```
 
 
@@ -394,12 +406,28 @@ Ticket price: 250
 
 ### Exercise 2 (medium): Free delivery calculation
 
-A store offers free delivery (fee of 0) if the order total is 500 or more, or if the customer has VIP status. Otherwise, delivery costs 50. Given an order of 650 by a non-VIP customer, calculate the fee and total payable.
+Use `order_total` and `is_vip` to set the delivery fee. Print the fee and total payable for the supplied order.
+
+
+:::tip Hint
+Use the lesson idea about making decisions with if. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+order_total = 650
+is_vip = False
+```
+
+```expected
+Delivery fee: 0
+Total payable: 650
+```
 
 ```python run
-# Complete the Free delivery calculation task.
-# Sample data: order_total = 650, is_vip = False
-# Write your code below and print the result
+# Complete the Exercise 2 (medium): Free delivery calculation task.
+order_total = 650
+is_vip = False
+# Write your code below
 ```
 
 
@@ -425,12 +453,25 @@ Total payable: 650
 
 ### Exercise 3 (challenge): Leap year checker
 
-A year is a leap year if it is divisible by 4, except end-of-century years which must also be divisible by 400. Write a program checking whether 2024 is a leap year.
+Check whether `year` is a leap year using the century rule. Print the result for 2024.
+
+
+:::tip Hint
+Use the lesson idea about making decisions with if. Trace the sample values before printing so you can check each step.
+:::
+
+```sample input
+year = 2024
+```
+
+```expected
+2024 is a leap year.
+```
 
 ```python run
-# Complete the Leap year checker task.
-# Sample data: year = 2024
-# Write your code below and print the result
+# Complete the Exercise 3 (challenge): Leap year checker task.
+year = 2024
+# Write your code below
 ```
 
 
